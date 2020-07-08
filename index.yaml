@@ -8582,6 +8582,39 @@ entries:
     - https://giantswarm.github.com/giantswarm-test-catalog/prometheus-operator-app-0.3.3-59717122fb8ede3b1c889f2da669ccbda138420c.tgz
     version: 0.3.3-59717122fb8ede3b1c889f2da669ccbda138420c
   - apiVersion: v1
+    appVersion: 0.38.1
+    created: "2020-07-08T13:04:12.505615877Z"
+    dependencies:
+    - condition: kubeStateMetrics.enabled
+      name: kube-state-metrics
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 2.8.*
+    - condition: nodeExporter.enabled
+      name: prometheus-node-exporter
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 1.10.*
+    - condition: grafana.enabled
+      name: grafana
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 5.3.*
+    description: Provides easy monitoring definitions for Kubernetes services, and
+      deployment and management of Prometheus instances.
+    digest: 34240a515a82cdb0abffe8913862010075e751eebd2ea8d9c155fbc3806cd971
+    home: https://github.com/giantswarm/prometheus-operator-app
+    icon: https://raw.githubusercontent.com/prometheus/prometheus.github.io/master/assets/prometheus_logo-cb55bb5c346.png
+    keywords:
+    - operator
+    - prometheus
+    name: prometheus-operator-app
+    sources:
+    - https://raw.githubusercontent.com/giantswarm/prometheus-operator-app/v0.3.3-4cc692cfd980ec020dd5bc8bdd04404a5635206c/README.md
+    - https://github.com/coreos/kube-prometheus
+    - https://github.com/coreos/prometheus-operator
+    - https://coreos.com/operators/prometheus
+    urls:
+    - https://giantswarm.github.com/giantswarm-test-catalog/prometheus-operator-app-0.3.3-4cc692cfd980ec020dd5bc8bdd04404a5635206c.tgz
+    version: 0.3.3-4cc692cfd980ec020dd5bc8bdd04404a5635206c
+  - apiVersion: v1
     appVersion: v0.38.1
     created: "2020-07-07T14:02:02.375320002Z"
     dependencies:
@@ -9340,4 +9373,4 @@ entries:
     urls:
     - https://giantswarm.github.com/giantswarm-test-catalog/prometheus-operator-app-chart-0.2.0-17bb46789974b9ddf0bac78532aa6b56a96b2546.tgz
     version: 0.2.0-17bb46789974b9ddf0bac78532aa6b56a96b2546
-generated: "2020-07-08T13:03:06.151847146Z"
+generated: "2020-07-08T13:04:12.471444812Z"
