@@ -8217,6 +8217,39 @@ entries:
     version: 0.3.3-d0709e3b7b63dbcfecf950febc63fe35bd78eda4
   - apiVersion: v1
     appVersion: 0.38.1
+    created: "2020-07-09T09:09:46.488704473Z"
+    dependencies:
+    - condition: kubeStateMetrics.enabled
+      name: kube-state-metrics
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 2.8.*
+    - condition: nodeExporter.enabled
+      name: prometheus-node-exporter
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 1.10.*
+    - condition: grafana.enabled
+      name: grafana
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 5.3.*
+    description: Provides easy monitoring definitions for Kubernetes services, and
+      deployment and management of Prometheus instances.
+    digest: 8d6045fba3762fc4080e556e55a9f3eac038c286abb15b4893626bc8b117e1b1
+    home: https://github.com/giantswarm/prometheus-operator-app
+    icon: https://raw.githubusercontent.com/prometheus/prometheus.github.io/master/assets/prometheus_logo-cb55bb5c346.png
+    keywords:
+    - operator
+    - prometheus
+    name: prometheus-operator-app
+    sources:
+    - https://raw.githubusercontent.com/giantswarm/prometheus-operator-app/v0.3.3-bc03311b9f79c60ff442ae2b8c26501c9cc3f4ab/README.md
+    - https://github.com/coreos/kube-prometheus
+    - https://github.com/coreos/prometheus-operator
+    - https://coreos.com/operators/prometheus
+    urls:
+    - https://giantswarm.github.com/giantswarm-test-catalog/prometheus-operator-app-0.3.3-bc03311b9f79c60ff442ae2b8c26501c9cc3f4ab.tgz
+    version: 0.3.3-bc03311b9f79c60ff442ae2b8c26501c9cc3f4ab
+  - apiVersion: v1
+    appVersion: 0.38.1
     created: "2020-07-07T12:54:56.136612643Z"
     dependencies:
     - condition: kubeStateMetrics.enabled
@@ -9424,4 +9457,4 @@ entries:
     urls:
     - https://giantswarm.github.com/giantswarm-test-catalog/prometheus-operator-app-chart-0.2.0-17bb46789974b9ddf0bac78532aa6b56a96b2546.tgz
     version: 0.2.0-17bb46789974b9ddf0bac78532aa6b56a96b2546
-generated: "2020-07-08T15:10:24.370931265Z"
+generated: "2020-07-09T09:09:46.455302933Z"
