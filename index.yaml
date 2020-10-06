@@ -13911,6 +13911,39 @@ entries:
   prometheus-operator-app:
   - apiVersion: v1
     appVersion: 0.38.1
+    created: "2020-10-06T09:54:45.551583601Z"
+    dependencies:
+    - condition: kubeStateMetrics.enabled
+      name: kube-state-metrics
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 2.8.*
+    - condition: nodeExporter.enabled
+      name: prometheus-node-exporter
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 1.10.*
+    - condition: grafana.enabled
+      name: grafana
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 5.3.*
+    description: Provides easy monitoring definitions for Kubernetes services, and
+      deployment and management of Prometheus instances.
+    digest: e823f7927d174e60e4e76bbe6df0160c96540cb8aede02e221fdda0dab464926
+    home: https://github.com/giantswarm/prometheus-operator-app
+    icon: https://raw.githubusercontent.com/prometheus/prometheus.github.io/master/assets/prometheus_logo-cb55bb5c346.png
+    keywords:
+    - operator
+    - prometheus
+    name: prometheus-operator-app
+    sources:
+    - https://raw.githubusercontent.com/giantswarm/prometheus-operator-app/v0.3.4-da4abee349cb694ac09f88e0789cfcd5501ffed4/README.md
+    - https://github.com/coreos/kube-prometheus
+    - https://github.com/coreos/prometheus-operator
+    - https://coreos.com/operators/prometheus
+    urls:
+    - https://giantswarm.github.com/giantswarm-test-catalog/prometheus-operator-app-0.3.4-da4abee349cb694ac09f88e0789cfcd5501ffed4.tgz
+    version: 0.3.4-da4abee349cb694ac09f88e0789cfcd5501ffed4
+  - apiVersion: v1
+    appVersion: 0.38.1
     created: "2020-07-30T09:33:42.77106606Z"
     dependencies:
     - condition: kubeStateMetrics.enabled
@@ -15765,4 +15798,4 @@ entries:
     urls:
     - https://giantswarm.github.com/giantswarm-test-catalog/prometheus-operator-app-chart-0.2.0-17bb46789974b9ddf0bac78532aa6b56a96b2546.tgz
     version: 0.2.0-17bb46789974b9ddf0bac78532aa6b56a96b2546
-generated: "2020-10-06T09:53:15.66165155Z"
+generated: "2020-10-06T09:54:45.526227411Z"
