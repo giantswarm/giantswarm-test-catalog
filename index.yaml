@@ -16551,6 +16551,31 @@ entries:
     version: 0.0.0-03b77841850aeae59cff11c0bcc9e76689306bb8
   kong-app:
   - annotations:
+      application.giantswarm.io/values-schema: https://raw.githubusercontent.com/giantswarm/kong-app/v1.2.0-6d13d6ffe76b8ef03620c00957b0a0a357d5dd3e/helm/kong-app/values.schema.json
+    apiVersion: v1
+    appVersion: "2.3"
+    created: "2021-03-05T14:19:35.431248389Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 8.6.8
+    description: The Cloud-Native Ingress and API-management
+    digest: 84ff4636e5cf1bea29c908bbea18393cd7590220d62fc9bf93eac950e273f1ee
+    home: https://konghq.com/
+    icon: https://s.giantswarm.io/app-icons/1/png/kong-app-light.png
+    maintainers:
+    - email: harry@konghq.com
+      name: hbagdi
+    - email: traines@konghq.com
+      name: rainest
+    name: kong-app
+    sources:
+    - https://raw.githubusercontent.com/giantswarm/kong-app/v1.2.0-6d13d6ffe76b8ef03620c00957b0a0a357d5dd3e/README.md
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/kong-app-1.2.0-6d13d6ffe76b8ef03620c00957b0a0a357d5dd3e.tgz
+    version: 1.2.0-6d13d6ffe76b8ef03620c00957b0a0a357d5dd3e
+  - annotations:
       application.giantswarm.io/values-schema: https://raw.githubusercontent.com/giantswarm/kong-app/v1.1.2-fb0695a402afda6473fe36f41f1dbab454c38d7d/helm/kong-app/values.schema.json
     apiVersion: v1
     appVersion: "2.3"
@@ -37747,4 +37772,4 @@ entries:
     urls:
     - https://giantswarm.github.com/giantswarm-test-catalog/promtail-0.0.0-0ceb79b1d98a7beb7a6790b3759da93fbf73cb0f.tgz
     version: 0.0.0-0ceb79b1d98a7beb7a6790b3759da93fbf73cb0f
-generated: "2021-03-05T12:40:47.955010312Z"
+generated: "2021-03-05T14:19:35.424467884Z"
