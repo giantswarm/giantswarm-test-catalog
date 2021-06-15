@@ -25467,6 +25467,31 @@ entries:
     - https://giantswarm.github.io/giantswarm-test-catalog/kong-app-2.0.0-01414a3562b4265b066c97f70bce7e6c50205118.tgz
     version: 2.0.0-01414a3562b4265b066c97f70bce7e6c50205118
   - annotations:
+      application.giantswarm.io/values-schema: https://raw.githubusercontent.com/giantswarm/kong-app/v2.0.0-0046c2b1f32475ed0a11bbfd4691765a547a0d3e/helm/kong-app/values.schema.json
+    apiVersion: v1
+    appVersion: 2.4.1
+    created: "2021-06-15T12:20:55.048338226Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 8.6.8
+    description: The Cloud-Native Ingress and API-management
+    digest: 91f757b0756df08188a33080d384fae5fd1f83d68d41eec3c39dbeafe9b9f1a7
+    home: https://konghq.com/
+    icon: https://s.giantswarm.io/app-icons/1/png/kong-app-light.png
+    maintainers:
+    - email: harry@konghq.com
+      name: hbagdi
+    - email: traines@konghq.com
+      name: rainest
+    name: kong-app
+    sources:
+    - https://raw.githubusercontent.com/giantswarm/kong-app/v2.0.0-0046c2b1f32475ed0a11bbfd4691765a547a0d3e/README.md
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/kong-app-2.0.0-0046c2b1f32475ed0a11bbfd4691765a547a0d3e.tgz
+    version: 2.0.0-0046c2b1f32475ed0a11bbfd4691765a547a0d3e
+  - annotations:
       application.giantswarm.io/values-schema: https://raw.githubusercontent.com/giantswarm/kong-app/v1.2.0-fca0a70d3f138daeb37d15f3a077e35a568876af/helm/kong-app/values.schema.json
     apiVersion: v1
     appVersion: 2.3.3
@@ -54394,4 +54419,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/strimzi-kafka-operator-app-0.2.0-70fe68949573e35677ecd9db155d645ad11fa5d7.tgz
     version: 0.2.0-70fe68949573e35677ecd9db155d645ad11fa5d7
-generated: "2021-06-15T11:29:34.373215163Z"
+generated: "2021-06-15T12:20:55.042253577Z"
