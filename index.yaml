@@ -46176,6 +46176,61 @@ entries:
     - https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-0.8.2-2ce1ab6e48bd77ffd9d58b1151a042ec46bd1f98.tgz
     version: 0.8.2-2ce1ab6e48bd77ffd9d58b1151a042ec46bd1f98
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-0.8.2-1289c6c36339fd8d98b292f57d3b207e930276e1.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-0.8.2-1289c6c36339fd8d98b292f57d3b207e930276e1.tgz-meta/README.md
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-0.8.2-1289c6c36339fd8d98b292f57d3b207e930276e1.tgz-meta/values.schema.json
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/prometheus-community/helm-charts
+        - name: Upstream Project
+          url: https://github.com/prometheus-operator/kube-prometheus
+      artifacthub.io/operator: "true"
+      config.giantswarm.io/version: 1.x.x
+    apiVersion: v2
+    appVersion: 0.47.0
+    created: "2021-07-14T12:40:53.409303712Z"
+    dependencies:
+    - condition: kubeStateMetrics.enabled
+      name: kube-state-metrics
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 2.13.*
+    - condition: nodeExporter.enabled
+      name: prometheus-node-exporter
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 1.17.*
+    - condition: grafana.enabled
+      name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: 6.8.*
+    description: kube-prometheus-stack collects Kubernetes manifests, Grafana dashboards, and Prometheus rules combined with documentation and scripts to provide easy to operate end-to-end Kubernetes cluster monitoring with Prometheus using the Prometheus Operator.
+    digest: 66885797710fafbca2d1bb327da10cab249362cdffb86e4cd3f8a2a355abaf71
+    home: https://github.com/giantswarm/prometheus-operator-app
+    icon: https://s.giantswarm.io/app-icons/1/png/prometheus-operator-app-light.png
+    keywords:
+    - operator
+    - prometheus
+    - kube-prometheus
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: vsliouniaev
+    - name: bismarck
+    - email: gianrubio@gmail.com
+      name: gianrubio
+    - email: github.gkarthiks@gmail.com
+      name: gkarthiks
+    - email: scott@r6by.com
+      name: scottrigby
+    - email: miroslav.hadzhiev@gmail.com
+      name: Xtigyro
+    name: prometheus-operator-app
+    sources:
+    - https://github.com/prometheus-community/helm-charts
+    - https://github.com/prometheus-operator/kube-prometheus
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-0.8.2-1289c6c36339fd8d98b292f57d3b207e930276e1.tgz
+    version: 0.8.2-1289c6c36339fd8d98b292f57d3b207e930276e1
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-0.8.2-0825eb68860590087ddffbbd023cf066f9213f31.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-0.8.2-0825eb68860590087ddffbbd023cf066f9213f31.tgz-meta/README.md
       application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-0.8.2-0825eb68860590087ddffbbd023cf066f9213f31.tgz-meta/values.schema.json
@@ -59038,4 +59093,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/strimzi-kafka-operator-app-0.2.0-70fe68949573e35677ecd9db155d645ad11fa5d7.tgz
     version: 0.2.0-70fe68949573e35677ecd9db155d645ad11fa5d7
-generated: "2021-07-14T11:59:05.520221604Z"
+generated: "2021-07-14T12:40:53.388570316Z"
