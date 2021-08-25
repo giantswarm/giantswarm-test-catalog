@@ -30928,6 +30928,33 @@ entries:
     version: 0.0.0-03b77841850aeae59cff11c0bcc9e76689306bb8
   kong-app:
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-2.3.0-ef1b53e772c06ccae28582e5ae31fbb44183abc1.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-2.3.0-ef1b53e772c06ccae28582e5ae31fbb44183abc1.tgz-meta/README.md
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-2.3.0-ef1b53e772c06ccae28582e5ae31fbb44183abc1.tgz-meta/values.schema.json
+    apiVersion: v1
+    appVersion: "2.5"
+    created: "2021-08-25T13:22:54.557002119Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 8.6.8
+    description: The Cloud-Native Ingress and API-management
+    digest: bdba433b74312d8afcc0ba2c56954c1945f1b8fc5c358717517a76383ce40edf
+    home: https://konghq.com/
+    icon: https://s.giantswarm.io/app-icons/1/png/kong-app-light.png
+    maintainers:
+    - email: harry@konghq.com
+      name: hbagdi
+    - email: traines@konghq.com
+      name: rainest
+    name: kong-app
+    sources:
+    - https://github.com/giantswarm/kong-app/blob/master/README.md
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/kong-app-2.3.0-ef1b53e772c06ccae28582e5ae31fbb44183abc1.tgz
+    version: 2.3.0-ef1b53e772c06ccae28582e5ae31fbb44183abc1
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-2.3.0-d2c065820e6cf31212916c1898fbbfa71e7651ca.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-2.3.0-d2c065820e6cf31212916c1898fbbfa71e7651ca.tgz-meta/README.md
       application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-2.3.0-d2c065820e6cf31212916c1898fbbfa71e7651ca.tgz-meta/values.schema.json
@@ -71399,4 +71426,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/strimzi-kafka-operator-app-0.2.0-70fe68949573e35677ecd9db155d645ad11fa5d7.tgz
     version: 0.2.0-70fe68949573e35677ecd9db155d645ad11fa5d7
-generated: "2021-08-25T11:39:54.80485939Z"
+generated: "2021-08-25T13:22:54.550643193Z"
