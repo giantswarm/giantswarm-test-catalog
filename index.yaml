@@ -31767,6 +31767,33 @@ entries:
     - https://giantswarm.github.io/giantswarm-test-catalog/kong-app-2.1.0-358debf4290814ede619fe762e22aaa1642b6e1f.tgz
     version: 2.1.0-358debf4290814ede619fe762e22aaa1642b6e1f
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-2.1.0-2fa2785b32539319a6448fb0075a044cbb61974e.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-2.1.0-2fa2785b32539319a6448fb0075a044cbb61974e.tgz-meta/README.md
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-2.1.0-2fa2785b32539319a6448fb0075a044cbb61974e.tgz-meta/values.schema.json
+    apiVersion: v1
+    appVersion: "2.5"
+    created: "2021-08-25T11:29:48.286387808Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 8.6.8
+    description: The Cloud-Native Ingress and API-management
+    digest: 59d25c301d08293628e5554a4e7a9d00180be922da714f89c28bf610050985b0
+    home: https://konghq.com/
+    icon: https://s.giantswarm.io/app-icons/1/png/kong-app-light.png
+    maintainers:
+    - email: harry@konghq.com
+      name: hbagdi
+    - email: traines@konghq.com
+      name: rainest
+    name: kong-app
+    sources:
+    - https://github.com/giantswarm/kong-app/blob/master/README.md
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/kong-app-2.1.0-2fa2785b32539319a6448fb0075a044cbb61974e.tgz
+    version: 2.1.0-2fa2785b32539319a6448fb0075a044cbb61974e
+  - annotations:
       application.giantswarm.io/values-schema: https://raw.githubusercontent.com/giantswarm/kong-app/v2.1.0-2e7909b3b2ba6ae114703f7226040e90595c11ff/helm/kong-app/values.schema.json
     apiVersion: v1
     appVersion: 2.4.1
@@ -71291,4 +71318,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/strimzi-kafka-operator-app-0.2.0-70fe68949573e35677ecd9db155d645ad11fa5d7.tgz
     version: 0.2.0-70fe68949573e35677ecd9db155d645ad11fa5d7
-generated: "2021-08-25T11:28:53.669960084Z"
+generated: "2021-08-25T11:29:48.279818384Z"
