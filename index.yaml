@@ -7146,6 +7146,39 @@ entries:
     version: 0.6.1-0ad9abd977061aa2debb1f30f057e5f209a1102b
   linkerd2-cni-app:
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/linkerd2-cni-app-0.4.0-f4e1ce245407a166d60cd619a264616411037944.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/linkerd2-cni-app-0.4.0-f4e1ce245407a166d60cd619a264616411037944.tgz-meta/README.md
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/linkerd2-cni-app-0.4.0-f4e1ce245407a166d60cd619a264616411037944.tgz-meta/values.schema.json
+    apiVersion: v1
+    appVersion: 2.10.2
+    created: "2021-11-03T18:20:34.599315921Z"
+    dependencies:
+    - name: partials
+      repository: file://../partials
+      version: 0.1.0
+    description: 'Linkerd is a *service mesh*, designed to give platform-wide observability,
+      reliability, and security without requiring configuration or code changes. The
+      Linkerd [CNI plugin](https://linkerd.io/2/features/cni/) takes care of setting
+      up your pod''s network so  incoming and outgoing traffic is proxied through
+      the data plane. '
+    digest: f0e5983aa591d2c60cf8b650495c67e5d7989fa3ab8cf68d58aa15b6fbeb923f
+    home: https://github.com/giantswarm/linkerd2-cni-app
+    icon: https://s.giantswarm.io/app-icons/1/png/linkerd2-app-light.png
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: cncf-linkerd-dev@lists.cncf.io
+      name: Linkerd authors
+      url: https://linkerd.io/
+    - name: Giant Swarm applications team
+      url: https://github.com/giantswarm/linkerd2-cni-app
+    name: linkerd2-cni-app
+    sources:
+    - https://github.com/linkerd/linkerd2
+    - https://github.com/giantswarm/linkerd2-cni-app
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/linkerd2-cni-app-0.4.0-f4e1ce245407a166d60cd619a264616411037944.tgz
+    version: 0.4.0-f4e1ce245407a166d60cd619a264616411037944
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/linkerd2-cni-app-0.4.0-e868c0809b703d34a2a00755c36bf96e681772e1.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/linkerd2-cni-app-0.4.0-e868c0809b703d34a2a00755c36bf96e681772e1.tgz-meta/README.md
       application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/linkerd2-cni-app-0.4.0-e868c0809b703d34a2a00755c36bf96e681772e1.tgz-meta/values.schema.json
@@ -17406,4 +17439,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/trivy-app-0.0.0-08bfb0faed02ee1301f6028dd44a7ce339e8cd6a.tgz
     version: 0.0.0-08bfb0faed02ee1301f6028dd44a7ce339e8cd6a
-generated: "2021-11-03T18:20:28.729808342Z"
+generated: "2021-11-03T18:20:34.598120308Z"
