@@ -1549,6 +1549,42 @@ entries:
     version: 0.2.1-12ede1f516b6f1c4af593e5b1523c3d12c5e0504
   efk-stack-app:
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/efk-stack-app-0.7.1.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/efk-stack-app-0.7.1.tgz-meta/README.md
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/efk-stack-app-0.7.1.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: 0.7.1
+    created: "2021-12-14T15:08:35.412120435Z"
+    dependencies:
+    - name: elasticsearch-curator
+      repository: file://charts/elasticsearch-curator
+      version: 2.0.3
+    - name: fluentd-elasticsearch
+      repository: file://charts/fluentd-elasticsearch
+      version: 6.1.1
+    - name: opendistro-certs
+      repository: file://charts/opendistro-certs
+      version: 0.1.0
+    - name: opendistro-es
+      repository: file://charts/opendistro-es
+      version: 1.13.2
+    - name: elasticsearch-exporter
+      repository: file://charts/elasticsearch-exporter
+      version: 3.0.0
+    description: Open Distro for Elasticsearch
+    digest: 6bbb5e9b4dd882e76d4bc7e5485068b9e5c8d68be5a2f1f14456e4994ed9d71b
+    home: https://github.com/giantswarm/efk-stack-app
+    icon: https://s.giantswarm.io/app-icons/1/png/efk-stack-app-light.png
+    maintainers:
+    - name: Giant Swarm applications team
+      url: https://github.com/giantswarm/efk-stack-app
+    name: efk-stack-app
+    sources:
+    - https://github.com/giantswarm/efk-stack-app
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/efk-stack-app-0.7.1.tgz
+    version: 0.7.1
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/efk-stack-app-0.5.4.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/efk-stack-app-0.5.4.tgz-meta/README.md
       application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/efk-stack-app-0.5.4.tgz-meta/values.schema.json
@@ -21064,4 +21100,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/trivy-app-0.0.0-1f31555f0359b87e3dc60f912d79fd1bde636c08.tgz
     version: 0.0.0-1f31555f0359b87e3dc60f912d79fd1bde636c08
-generated: "2021-12-14T15:08:20.479041073Z"
+generated: "2021-12-14T15:08:35.405379256Z"
