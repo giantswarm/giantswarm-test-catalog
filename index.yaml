@@ -14032,6 +14032,47 @@ entries:
     - https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-0.12.1-5c403b4e9bfd8be1a5d4e1d91e55ec746d6eaead.tgz
     version: 0.12.1-5c403b4e9bfd8be1a5d4e1d91e55ec746d6eaead
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-0.12.1-488ee2290876676096525f38644dfaa5a9673db5.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-0.12.1-488ee2290876676096525f38644dfaa5a9673db5.tgz-meta/README.md
+      application.giantswarm.io/team: atlas
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/prometheus-community/helm-charts
+        - name: Upstream Project
+          url: https://github.com/prometheus-operator/kube-prometheus
+      artifacthub.io/operator: "true"
+      config.giantswarm.io/version: 1.x.x
+    apiVersion: v2
+    appVersion: 0.52.1
+    created: "2022-01-12T13:55:54.930520108Z"
+    dependencies:
+    - name: prometheus-operator
+      repository: ""
+      version: 23.2.*
+    description: kube-prometheus-stack collects Kubernetes manifests, Grafana dashboards,
+      and Prometheus rules combined with documentation and scripts to provide easy
+      to operate end-to-end Kubernetes cluster monitoring with Prometheus using the
+      Prometheus Operator.
+    digest: b5aac1471aebf053297a55221078e2c98a7b30851524d8fe4a48f6f27daf49c0
+    home: https://github.com/giantswarm/prometheus-operator-app
+    icon: https://s.giantswarm.io/app-icons/prometheus-operator/2/light.svg
+    keywords:
+    - operator
+    - prometheus
+    - kube-prometheus
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: theo@giantswarm.io
+      name: TheoBrigitte
+    name: prometheus-operator-app
+    sources:
+    - https://github.com/prometheus-community/helm-charts
+    - https://github.com/prometheus-operator/kube-prometheus
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-0.12.1-488ee2290876676096525f38644dfaa5a9673db5.tgz
+    version: 0.12.1-488ee2290876676096525f38644dfaa5a9673db5
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-0.12.1-4669af9c8f36662f7bb3681e21d08d1666569213.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-0.12.1-4669af9c8f36662f7bb3681e21d08d1666569213.tgz-meta/README.md
       application.giantswarm.io/team: atlas
@@ -23276,4 +23317,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/trivy-app-0.0.2-20f18b6ab03c35194b736ff108a2d15f01949e8e.tgz
     version: 0.0.2-20f18b6ab03c35194b736ff108a2d15f01949e8e
-generated: "2022-01-12T13:54:32.514512337Z"
+generated: "2022-01-12T13:55:54.906487017Z"
