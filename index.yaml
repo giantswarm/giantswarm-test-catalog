@@ -928,6 +928,30 @@ entries:
     version: 1.0.3-0039c8b571778f57912a69a4c666202757d642ec
   cert-manager-app:
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-2.13.0.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-2.13.0.tgz-meta/README.md
+      application.giantswarm.io/team: team-cabbage
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-2.13.0.tgz-meta/values.schema.json
+      config.giantswarm.io/version: 1.x.x
+    apiVersion: v1
+    appVersion: 1.6.1
+    created: "2022-04-11T10:07:15.143663345Z"
+    dependencies:
+    - name: cert-manager-giantswarm-clusterissuer
+      repository: ""
+      version: 1.1.0
+    description: Simplifies the process of obtaining, renewing and using certificates
+    digest: a9c42e91d253395bd3d6e8eced751280b9e90d0f764aba311f84c54db5e7df3a
+    home: https://github.com/giantswarm/cert-manager-app
+    icon: https://s.giantswarm.io/app-icons/cert-manager/1/light.svg
+    kubeVersion: '>=1.16.0-0'
+    name: cert-manager-app
+    sources:
+    - https://github.com/jetstack/cert-manager
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-2.13.0.tgz
+    version: 2.13.0
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-2.12.0-f8dd07a00b5aa5a0964bd715830bd79428e779fe.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-2.12.0-f8dd07a00b5aa5a0964bd715830bd79428e779fe.tgz-meta/README.md
       application.giantswarm.io/team: team-cabbage
@@ -17838,4 +17862,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/trivy-app-0.1.0-046cb50a207c505595adf28107eadf80c9cf890f.tgz
     version: 0.1.0-046cb50a207c505595adf28107eadf80c9cf890f
-generated: "2022-04-11T10:06:14.590269347Z"
+generated: "2022-04-11T10:07:15.136199752Z"
