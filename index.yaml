@@ -10056,6 +10056,35 @@ entries:
     - https://giantswarm.github.io/giantswarm-test-catalog/kong-app-2.8.0-13682d13aa5e4f5e2faeaa5aef82bf2a47e60ffd.tgz
     version: 2.8.0-13682d13aa5e4f5e2faeaa5aef82bf2a47e60ffd
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-2.8.0-01f19d0d3ed65d3fe6f30d914fc94f922bff9877.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-2.8.0-01f19d0d3ed65d3fe6f30d914fc94f922bff9877.tgz-meta/README.md
+      application.giantswarm.io/team: team-cabbage
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-2.8.0-01f19d0d3ed65d3fe6f30d914fc94f922bff9877.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: "2.8"
+    created: "2022-04-14T08:17:59.479013199Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.1.15
+    description: The Cloud-Native Ingress and API-management
+    digest: d951f4363ba2469e1490f630f670bac7717793f510e9819f1945d1e95a170bb6
+    home: https://github.com/giantswarm/kong-app
+    icon: https://s.giantswarm.io/app-icons/kong/1/light.svg
+    kubeVersion: '>=1.20.0-0'
+    maintainers:
+    - email: harry@konghq.com
+      name: hbagdi
+    - email: traines@konghq.com
+      name: rainest
+    name: kong-app
+    sources:
+    - https://konghq.com/
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/kong-app-2.8.0-01f19d0d3ed65d3fe6f30d914fc94f922bff9877.tgz
+    version: 2.8.0-01f19d0d3ed65d3fe6f30d914fc94f922bff9877
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-2.8.0-01c1406118de1704128e928f1d9831018f85a62d.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-2.8.0-01c1406118de1704128e928f1d9831018f85a62d.tgz-meta/README.md
       application.giantswarm.io/team: team-cabbage
@@ -20453,4 +20482,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/trivy-app-0.1.0-046cb50a207c505595adf28107eadf80c9cf890f.tgz
     version: 0.1.0-046cb50a207c505595adf28107eadf80c9cf890f
-generated: "2022-04-14T08:16:27.430837738Z"
+generated: "2022-04-14T08:17:59.467885691Z"
