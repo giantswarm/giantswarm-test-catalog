@@ -1271,6 +1271,44 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/dex-app-1.24.2-455b98f263581988779b126faa099919f6a0e1d7.tgz
     version: 1.24.2-455b98f263581988779b126faa099919f6a0e1d7
+  efk-stack-app:
+  - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/efk-stack-app-0.7.3-af4af8d95844c54922ee6abc8b5316c33ccd7d64.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/efk-stack-app-0.7.3-af4af8d95844c54922ee6abc8b5316c33ccd7d64.tgz-meta/README.md
+      application.giantswarm.io/team: atlas
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/efk-stack-app-0.7.3-af4af8d95844c54922ee6abc8b5316c33ccd7d64.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: 0.7.1
+    created: "2022-06-07T13:24:48.453873818Z"
+    dependencies:
+    - name: elasticsearch-curator
+      repository: file://charts/elasticsearch-curator
+      version: 2.0.3
+    - name: fluentd-elasticsearch
+      repository: file://charts/fluentd-elasticsearch
+      version: 6.1.1
+    - name: opendistro-certs
+      repository: file://charts/opendistro-certs
+      version: 0.1.0
+    - name: opendistro-es
+      repository: file://charts/opendistro-es
+      version: 1.13.3
+    - name: elasticsearch-exporter
+      repository: file://charts/elasticsearch-exporter
+      version: 3.0.0
+    description: Open Distro for Elasticsearch
+    digest: b35e89a0bd3ccf2e8d69169585a801c4e67c61d54aff132d9bbb296d4a9b1bfa
+    home: https://github.com/giantswarm/efk-stack-app
+    icon: https://s.giantswarm.io/app-icons/1/png/efk-stack-app-light.png
+    maintainers:
+    - name: Giant Swarm applications team
+      url: https://github.com/giantswarm/efk-stack-app
+    name: efk-stack-app
+    sources:
+    - https://github.com/giantswarm/efk-stack-app
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/efk-stack-app-0.7.3-af4af8d95844c54922ee6abc8b5316c33ccd7d64.tgz
+    version: 0.7.3-af4af8d95844c54922ee6abc8b5316c33ccd7d64
   external-dns-app:
   - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-2.14.0-e2459200155d78bde0fc6639609aced40a03b6a6.tgz-meta/main.yaml
@@ -10420,4 +10458,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/trivy-app-0.3.0-275b8a35f8b096e90c8ba153b694f1ea14b5bee0.tgz
     version: 0.3.0-275b8a35f8b096e90c8ba153b694f1ea14b5bee0
-generated: "2022-06-07T13:24:26.667950568Z"
+generated: "2022-06-07T13:24:48.447064748Z"
