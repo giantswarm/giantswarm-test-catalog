@@ -1,0 +1,43 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "controllerImage": {
+            "type": "string"
+        },
+        "controllerImageVersion": {
+            "type": "string"
+        },
+        "enableHeadlessServices": {
+            "type": "boolean"
+        },
+        "enablePSP": {
+            "type": "boolean"
+        },
+        "gateway": {
+            "type": "object",
+            "properties": {
+                "probe": {
+                    "type": "object",
+                    "properties": {
+                        "port": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
+        },
+        "logLevel": {
+            "type": "string"
+        },
+        "namespace": {
+            "type": "string"
+        },
+        "serviceMirrorRetryLimit": {
+            "type": "integer"
+        },
+        "serviceMirrorUID": {
+            "type": "integer"
+        }
+    }
+}
