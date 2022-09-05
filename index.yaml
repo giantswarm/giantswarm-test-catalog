@@ -3533,6 +3533,34 @@ entries:
     version: 0.13.0-015b378742771054c99712df50e91ca2eb79c1de
   goldilocks-app:
   - apiVersion: v2
+    appVersion: v4.4.0
+    created: "2022-09-05T08:10:36.340547027Z"
+    dependencies:
+    - condition: vpa.enabled
+      name: vertical-pod-autoscaler-app
+      repository: https://giantswarm.github.io/default-catalog
+      version: 2.5.0
+    - condition: metrics-server.enabled
+      name: metrics-server-app
+      repository: https://giantswarm.github.io/default-catalog
+      version: 1.8.0
+    description: 'A Helm chart for running Fairwinds Goldilocks. See https://github.com/FairwindsOps/goldilocks '
+    digest: 6229266859f31ebefebc419f676eabaa0055b00b51fcbe7bfcd05690f2909c87
+    home: https://github.com/giantswarm/goldilocks-app
+    icon: https://raw.githubusercontent.com/FairwindsOps/charts/master/stable/goldilocks/icon.png
+    keywords:
+    - goldilocks
+    - resources
+    - kubernetes
+    maintainers:
+    - name: sudermanjr
+    name: goldilocks-app
+    sources:
+    - https://github.com/FairwindsOps/goldilocks
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/goldilocks-app-6.2.0-0604a8dc81a363a4f677ede79b55b0a19e78c93e.tgz
+    version: 6.2.0-0604a8dc81a363a4f677ede79b55b0a19e78c93e
+  - apiVersion: v2
     appVersion: v3.1.4
     created: "2022-08-23T12:14:51.162180825Z"
     dependencies:
@@ -12921,4 +12949,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/trivy-operator-0.0.1-272c8e6d25d20c082d10b5ae64b6204c42d43053.tgz
     version: 0.0.1-272c8e6d25d20c082d10b5ae64b6204c42d43053
-generated: "2022-09-05T08:10:22.335280112Z"
+generated: "2022-09-05T08:10:36.336786449Z"
