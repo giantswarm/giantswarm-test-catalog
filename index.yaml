@@ -21389,6 +21389,29 @@ entries:
   prometheus-operator-app:
   - annotations:
       application.giantswarm.io/team: atlas
+      config.giantswarm.io/version: 1.x.x
+    apiVersion: v2
+    appVersion: v0.60.1
+    created: "2022-10-26T09:45:24.051173983Z"
+    dependencies:
+    - alias: prometheus-operator-app
+      name: kube-prometheus-stack
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 41.6.0
+    description: Giant Swarm's Prometheus Operator Deployment
+    digest: 6485937b641fe6485f93e82718f209ae1f65cd1cedf6c35b978e5fabf39c3d4e
+    home: https://github.com/giantswarm/prometheus-operator-app
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: prometheus-operator-app
+    sources:
+    - https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-2.0.1-dc98f054e96bf19f9dc34b2b4e7230ae91d45ba4.tgz
+    version: 2.0.1-dc98f054e96bf19f9dc34b2b4e7230ae91d45ba4
+  - annotations:
+      application.giantswarm.io/team: atlas
     apiVersion: v2
     appVersion: v0.60.1
     created: "2022-10-25T14:43:28.757170099Z"
@@ -27853,4 +27876,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/trivy-operator-0.1.0-093cf8b52cad83bd7d357e8ce932f938a14a27f7.tgz
     version: 0.1.0-093cf8b52cad83bd7d357e8ce932f938a14a27f7
-generated: "2022-10-26T09:40:15.139797132Z"
+generated: "2022-10-26T09:45:24.019980728Z"
