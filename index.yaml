@@ -11056,6 +11056,31 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/linkerd2-multicluster-link-app-0.8.0-291c9d3103d05105c12747e36364ac03283efd04.tgz
     version: 0.8.0-291c9d3103d05105c12747e36364ac03283efd04
+  - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/linkerd2-multicluster-link-app-0.8.0-19f61bc05f36bfa5162113d5eba72aacd0d09ef1.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/linkerd2-multicluster-link-app-0.8.0-19f61bc05f36bfa5162113d5eba72aacd0d09ef1.tgz-meta/README.md
+      application.giantswarm.io/team: team-cabbage
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/linkerd2-multicluster-link-app-0.8.0-19f61bc05f36bfa5162113d5eba72aacd0d09ef1.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: stable-2.12.2
+    created: "2022-11-01T08:53:51.786486761Z"
+    dependencies:
+    - name: partials
+      repository: ""
+      version: 0.1.0
+    description: 'A helm chart containing the resources to enable mirroring of services
+      from a remote cluster.  Warning: The purpose of this chart is just to support
+      the `linkerd multicluster link` CLI command, which also produces the `cluster-credentials`
+      secret and the Link CR, which are not found in this chart. Therefore this chart
+      is not a replacement for that command, and shouldn''t be used as-is unless you
+      really know what you''re doing ;-) '
+    digest: adfda4d64f64ab0d5fbcae4d39ba8e1365f8ad5725326bfc66a1a33171717dbc
+    icon: https://linkerd.io/images/logo-only-200h.png
+    kubeVersion: '>=1.21.0-0'
+    name: linkerd2-multicluster-link-app
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/linkerd2-multicluster-link-app-0.8.0-19f61bc05f36bfa5162113d5eba72aacd0d09ef1.tgz
+    version: 0.8.0-19f61bc05f36bfa5162113d5eba72aacd0d09ef1
   loki:
   - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/loki-0.4.3-e37b18a8bf372da0cb58aee8a4a272af8065bf66.tgz-meta/main.yaml
@@ -16078,4 +16103,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/trivy-operator-0.2.0-d5bb355f890937cce108a70419c6b6738ff0ea03.tgz
     version: 0.2.0-d5bb355f890937cce108a70419c6b6738ff0ea03
-generated: "2022-11-01T00:34:45.488498582Z"
+generated: "2022-11-01T08:53:51.784792552Z"
