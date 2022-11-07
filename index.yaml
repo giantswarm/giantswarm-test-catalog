@@ -12436,6 +12436,31 @@ entries:
     - https://giantswarm.github.io/giantswarm-test-catalog/linkerd2-multicluster-link-app-0.8.0-e9ea71ad9977b521fa4783ed916ce2832e2624d5.tgz
     version: 0.8.0-e9ea71ad9977b521fa4783ed916ce2832e2624d5
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/linkerd2-multicluster-link-app-0.8.0-b79b739dcca9192f16abcc711b24608e73418aa1.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/linkerd2-multicluster-link-app-0.8.0-b79b739dcca9192f16abcc711b24608e73418aa1.tgz-meta/README.md
+      application.giantswarm.io/team: team-cabbage
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/linkerd2-multicluster-link-app-0.8.0-b79b739dcca9192f16abcc711b24608e73418aa1.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: stable-2.12.2
+    created: "2022-11-07T10:27:33.924092785Z"
+    dependencies:
+    - name: partials
+      repository: ""
+      version: 0.1.0
+    description: 'A helm chart containing the resources to enable mirroring of services
+      from a remote cluster.  Warning: The purpose of this chart is just to support
+      the `linkerd multicluster link` CLI command, which also produces the `cluster-credentials`
+      secret and the Link CR, which are not found in this chart. Therefore this chart
+      is not a replacement for that command, and shouldn''t be used as-is unless you
+      really know what you''re doing ;-) '
+    digest: caf76657b42e5dd2d46967cfa14796f00f6d532b899c5b0ba24eb7675986017b
+    icon: https://linkerd.io/images/logo-only-200h.png
+    kubeVersion: '>=1.21.0-0'
+    name: linkerd2-multicluster-link-app
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/linkerd2-multicluster-link-app-0.8.0-b79b739dcca9192f16abcc711b24608e73418aa1.tgz
+    version: 0.8.0-b79b739dcca9192f16abcc711b24608e73418aa1
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/linkerd2-multicluster-link-app-0.8.0-9e302adb42b5f3d9674862f1cb2c66972126cdf6.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/linkerd2-multicluster-link-app-0.8.0-9e302adb42b5f3d9674862f1cb2c66972126cdf6.tgz-meta/README.md
       application.giantswarm.io/team: team-cabbage
@@ -18202,4 +18227,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/trivy-operator-0.2.0-d5bb355f890937cce108a70419c6b6738ff0ea03.tgz
     version: 0.2.0-d5bb355f890937cce108a70419c6b6738ff0ea03
-generated: "2022-11-07T10:26:07.436286394Z"
+generated: "2022-11-07T10:27:33.922347731Z"
