@@ -11404,6 +11404,31 @@ entries:
     version: 0.8.0-03d7cb5cbffa736668566aee5f7d9cda9f4a3bb8
   linkerd-multicluster-link:
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/linkerd-multicluster-link-0.9.0-ed902689b174d8b22d50aa02c45d3164c6135054.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/linkerd-multicluster-link-0.9.0-ed902689b174d8b22d50aa02c45d3164c6135054.tgz-meta/README.md
+      application.giantswarm.io/team: team-cabbage
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/linkerd-multicluster-link-0.9.0-ed902689b174d8b22d50aa02c45d3164c6135054.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: stable-2.12.2
+    created: "2022-11-09T15:38:23.746671077Z"
+    dependencies:
+    - name: partials
+      repository: ""
+      version: 0.1.0
+    description: 'A helm chart containing the resources to enable mirroring of services
+      from a remote cluster.  Warning: The purpose of this chart is just to support
+      the `linkerd multicluster link` CLI command, which also produces the `cluster-credentials`
+      secret and the Link CR, which are not found in this chart. Therefore this chart
+      is not a replacement for that command, and shouldn''t be used as-is unless you
+      really know what you''re doing ;-) '
+    digest: aa1ae4fb9d30d6ce2133cd064095cb5bc4ba3da26476e74ec925a738dce61a7b
+    icon: https://linkerd.io/images/logo-only-200h.png
+    kubeVersion: '>=1.21.0-0'
+    name: linkerd-multicluster-link
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/linkerd-multicluster-link-0.9.0-ed902689b174d8b22d50aa02c45d3164c6135054.tgz
+    version: 0.9.0-ed902689b174d8b22d50aa02c45d3164c6135054
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/linkerd-multicluster-link-0.9.0-ce7ad4469418dceffdb5a6ce98909f486516530d.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/linkerd-multicluster-link-0.9.0-ce7ad4469418dceffdb5a6ce98909f486516530d.tgz-meta/README.md
       application.giantswarm.io/team: team-cabbage
@@ -21202,4 +21227,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/trivy-operator-0.2.0-43beeadcc5be8e89f215b7253c4a832e775b2fa0.tgz
     version: 0.2.0-43beeadcc5be8e89f215b7253c4a832e775b2fa0
-generated: "2022-11-09T15:37:28.69658503Z"
+generated: "2022-11-09T15:38:23.745613681Z"
