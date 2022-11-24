@@ -24650,6 +24650,33 @@ entries:
     version: 2.7.1-2c4a2f830409f866cf0b5d7a5afe419a376444bb
   prometheus-operator-app:
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-2.1.1-a96d9375f685da0fa0dfe4128225306132cd2bac.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-2.1.1-a96d9375f685da0fa0dfe4128225306132cd2bac.tgz-meta/README.md
+      application.giantswarm.io/team: atlas
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-2.1.1-a96d9375f685da0fa0dfe4128225306132cd2bac.tgz-meta/values.schema.json
+      config.giantswarm.io/version: 1.x.x
+    apiVersion: v2
+    appVersion: v0.60.1
+    created: "2022-11-24T15:54:27.660101822Z"
+    dependencies:
+    - alias: prometheus-operator-app
+      name: kube-prometheus-stack
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 41.6.0
+    description: Giant Swarm's Prometheus Operator Deployment
+    digest: 805fcc7471af4d8389c30131d4489c10dfbcadffd772d7d528066f7f0d127903
+    home: https://github.com/giantswarm/prometheus-operator-app
+    icon: https://s.giantswarm.io/app-icons/prometheus-operator/2/light.svg
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: prometheus-operator-app
+    sources:
+    - https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-2.1.1-a96d9375f685da0fa0dfe4128225306132cd2bac.tgz
+    version: 2.1.1-a96d9375f685da0fa0dfe4128225306132cd2bac
+  - annotations:
       application.giantswarm.io/team: atlas
     apiVersion: v2
     appVersion: v0.54.0
@@ -31202,4 +31229,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/trivy-operator-0.2.0-43beeadcc5be8e89f215b7253c4a832e775b2fa0.tgz
     version: 0.2.0-43beeadcc5be8e89f215b7253c4a832e775b2fa0
-generated: "2022-11-24T15:44:11.075711168Z"
+generated: "2022-11-24T15:54:27.635174938Z"
