@@ -12514,6 +12514,32 @@ entries:
     version: 2.7.1-026172e71528f532cc14780beb0315ce04492497
   prometheus-operator-app:
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-3.0.0-e11a0c0ed890f3ca24088557fbf4f7300613951c.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-3.0.0-e11a0c0ed890f3ca24088557fbf4f7300613951c.tgz-meta/README.md
+      application.giantswarm.io/team: atlas
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-3.0.0-e11a0c0ed890f3ca24088557fbf4f7300613951c.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: v0.60.1
+    created: "2023-01-16T14:11:50.921811384Z"
+    dependencies:
+    - alias: prometheus-operator-app
+      name: kube-prometheus-stack
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 44.2.0
+    description: Giant Swarm's Prometheus Operator Deployment
+    digest: 9b79d4133156df84c416cd1566e89b55830a9055be1f7d8b877a1706b79c7930
+    home: https://github.com/giantswarm/prometheus-operator-app
+    icon: https://s.giantswarm.io/app-icons/prometheus-operator/2/light.svg
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: prometheus-operator-app
+    sources:
+    - https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-3.0.0-e11a0c0ed890f3ca24088557fbf4f7300613951c.tgz
+    version: 3.0.0-e11a0c0ed890f3ca24088557fbf4f7300613951c
+  - annotations:
       application.giantswarm.io/team: atlas
     apiVersion: v2
     appVersion: v0.54.0
@@ -16538,4 +16564,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/trivy-operator-0.3.0-3b66c93a2c0cac59a0528a9f2f10b4b0a128cf96.tgz
     version: 0.3.0-3b66c93a2c0cac59a0528a9f2f10b4b0a128cf96
-generated: "2023-01-16T14:11:43.458862857Z"
+generated: "2023-01-16T14:11:50.892490311Z"
