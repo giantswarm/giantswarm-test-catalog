@@ -22173,6 +22173,32 @@ entries:
     version: 2.7.1-0237264155e3c55d6a6eef63a95235ac62a31163
   prometheus-operator-app:
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-4.0.1.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-4.0.1.tgz-meta/README.md
+      application.giantswarm.io/team: atlas
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-4.0.1.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: v0.63.0
+    created: "2023-03-16T10:02:35.710447277Z"
+    dependencies:
+    - alias: prometheus-operator-app
+      name: kube-prometheus-stack
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 45.7.1
+    description: Giant Swarm's Prometheus Operator Deployment
+    digest: 66b08e3368516c7ddfd2e09ca89c664b5f8d3553dedc7da54aec11f4e28d17b4
+    home: https://github.com/giantswarm/prometheus-operator-app
+    icon: https://s.giantswarm.io/app-icons/prometheus-operator/2/light.svg
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: prometheus-operator-app
+    sources:
+    - https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-4.0.1.tgz
+    version: 4.0.1
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-4.0.0-f7a9d16b91aee17e97a11f9c97ef9dafe44cbe22.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-4.0.0-f7a9d16b91aee17e97a11f9c97ef9dafe44cbe22.tgz-meta/README.md
       application.giantswarm.io/team: atlas
@@ -27161,4 +27187,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/trivy-operator-0.3.3-1c77070fc4b7b92506fc20b381d92dc73fed9d6b.tgz
     version: 0.3.3-1c77070fc4b7b92506fc20b381d92dc73fed9d6b
-generated: "2023-03-16T10:00:17.285530749Z"
+generated: "2023-03-16T10:02:35.684508528Z"
