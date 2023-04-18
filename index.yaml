@@ -13220,6 +13220,39 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/kong-app-3.0.1-1aa650f80acd126e3b2643dc488b574876dd06da.tgz
     version: 3.0.1-1aa650f80acd126e3b2643dc488b574876dd06da
+  - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-3.0.1-1a0e53906c251d547c4ce4d265b3c1b1b90a0229.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-3.0.1-1a0e53906c251d547c4ce4d265b3c1b1b90a0229.tgz-meta/README.md
+      application.giantswarm.io/team: team-cabbage
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-3.0.1-1a0e53906c251d547c4ce4d265b3c1b1b90a0229.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: 3.1.1
+    created: "2023-04-18T06:46:24.847589481Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.9.13
+    - name: kubectl-apply-job
+      repository: https://giantswarm.github.io/giantswarm-playground-catalog
+      version: 0.2.2
+    description: The Cloud-Native Ingress and API-management
+    digest: a131e566012bcd1dbe2eaad33e13ebef2763214159f7368893927274583b9960
+    home: https://github.com/giantswarm/kong-app
+    icon: https://s.giantswarm.io/app-icons/kong/1/light.svg
+    kubeVersion: '>=1.22.0-0'
+    maintainers:
+    - email: harry@konghq.com
+      name: hbagdi
+    - email: traines@konghq.com
+      name: rainest
+    name: kong-app
+    sources:
+    - https://konghq.com/
+    - https://github.com/Kong/charts/tree/main/charts/kong
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/kong-app-3.0.1-1a0e53906c251d547c4ce4d265b3c1b1b90a0229.tgz
+    version: 3.0.1-1a0e53906c251d547c4ce4d265b3c1b1b90a0229
   kyverno:
   - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/kyverno-0.14.3-d4cf0e5a0fe86c6ef2815a1a438ccd07299b1163.tgz-meta/main.yaml
@@ -36309,4 +36342,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/trivy-operator-0.3.4-3973e5230f2d4de3d61f9f6b6682b1067442af4f.tgz
     version: 0.3.4-3973e5230f2d4de3d61f9f6b6682b1067442af4f
-generated: "2023-04-18T01:21:36.719664411Z"
+generated: "2023-04-18T06:46:24.832306133Z"
