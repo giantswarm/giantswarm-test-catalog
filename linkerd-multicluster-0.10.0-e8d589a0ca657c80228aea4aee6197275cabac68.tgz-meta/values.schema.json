@@ -1,0 +1,100 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "enablePSP": {
+            "type": "boolean"
+        },
+        "enablePodAntiAffinity": {
+            "type": "boolean"
+        },
+        "gateway": {
+            "type": "object",
+            "properties": {
+                "UID": {
+                    "type": "integer"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "loadBalancerIP": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "port": {
+                    "type": "integer"
+                },
+                "probe": {
+                    "type": "object",
+                    "properties": {
+                        "path": {
+                            "type": "string"
+                        },
+                        "port": {
+                            "type": "integer"
+                        },
+                        "seconds": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "replicas": {
+                    "type": "integer"
+                },
+                "serviceAnnotations": {
+                    "type": "object"
+                },
+                "serviceType": {
+                    "type": "string"
+                }
+            }
+        },
+        "identityTrustDomain": {
+            "type": "string"
+        },
+        "image": {
+            "type": "object",
+            "properties": {
+                "registry": {
+                    "type": "string"
+                }
+            }
+        },
+        "linkerdNamespace": {
+            "type": "string"
+        },
+        "linkerdVersion": {
+            "type": "string"
+        },
+        "namespaceMetadata": {
+            "type": "object",
+            "properties": {
+                "image": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "version": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "proxyOutboundPort": {
+            "type": "integer"
+        },
+        "remoteMirrorServiceAccount": {
+            "type": "boolean"
+        },
+        "remoteMirrorServiceAccountName": {
+            "type": "string"
+        }
+    }
+}
