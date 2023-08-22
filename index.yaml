@@ -24750,6 +24750,32 @@ entries:
     version: 2.10.0-0bcf584d4947cc099250c5bb10fe6dcbc2123489
   prometheus-operator-app:
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-5.0.7-ed82efd26b5f49c27ebd87b7d9a3855b4872c550.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-5.0.7-ed82efd26b5f49c27ebd87b7d9a3855b4872c550.tgz-meta/README.md
+      application.giantswarm.io/team: atlas
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-5.0.7-ed82efd26b5f49c27ebd87b7d9a3855b4872c550.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: v0.65.1
+    created: "2023-08-22T11:07:12.528658264Z"
+    dependencies:
+    - alias: prometheus-operator-app
+      name: kube-prometheus-stack
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 48.3.3
+    description: Giant Swarm's Prometheus Operator Deployment
+    digest: 849004fc4bf093a8edc76e300f60f8c2b34716652d70350dbbceb36612b29c1e
+    home: https://github.com/giantswarm/prometheus-operator-app
+    icon: https://s.giantswarm.io/app-icons/prometheus-operator/2/light.svg
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: prometheus-operator-app
+    sources:
+    - https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-5.0.7-ed82efd26b5f49c27ebd87b7d9a3855b4872c550.tgz
+    version: 5.0.7-ed82efd26b5f49c27ebd87b7d9a3855b4872c550
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-5.0.7-e87876d77701ab340d788821dce5b743e2ab9484.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-app-5.0.7-e87876d77701ab340d788821dce5b743e2ab9484.tgz-meta/README.md
       application.giantswarm.io/team: atlas
@@ -29960,4 +29986,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/trivy-operator-0.4.0-11e6d79c82bb2c7e43459b1553f351fc0029e9b4.tgz
     version: 0.4.0-11e6d79c82bb2c7e43459b1553f351fc0029e9b4
-generated: "2023-08-22T11:01:25.205885486Z"
+generated: "2023-08-22T11:07:12.497549196Z"
