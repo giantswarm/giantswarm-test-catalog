@@ -2034,6 +2034,34 @@ entries:
     version: 1.17.2-gs1-17682d361602eb57f375959a3301acbaecb7ef15
   cert-manager-app:
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.1.0-f22fb1e654ba331aeb5b320cd6555de023ba3143.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.1.0-f22fb1e654ba331aeb5b320cd6555de023ba3143.tgz-meta/README.md
+      application.giantswarm.io/team: bigmac
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.1.0-f22fb1e654ba331aeb5b320cd6555de023ba3143.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: v1.12.3
+    created: "2023-08-24T13:21:15.890846672Z"
+    dependencies:
+    - alias: giantSwarmClusterIssuer
+      name: cert-manager-giantswarm-clusterissuer
+      repository: ""
+      version: 2.0.0
+    - condition: ciliumNetworkPolicy.enabled
+      name: cert-manager-giantswarm-netpol
+      repository: ""
+      version: 0.1.0
+    description: Simplifies the process of obtaining, renewing and using certificates.
+    digest: 0c45602931a4177c3e693140b28cab72df56add044b6839976a0fa359f4dca76
+    home: https://github.com/giantswarm/cert-manager-app
+    icon: https://s.giantswarm.io/app-icons/cert-manager/1/light.svg
+    kubeVersion: '>=1.22.0-0'
+    name: cert-manager-app
+    sources:
+    - https://github.com/cert-manager/cert-manager
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.1.0-f22fb1e654ba331aeb5b320cd6555de023ba3143.tgz
+    version: 3.1.0-f22fb1e654ba331aeb5b320cd6555de023ba3143
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.1.0-c22f0da3f466ce6ce5addb40d4715287c7297cac.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.1.0-c22f0da3f466ce6ce5addb40d4715287c7297cac.tgz-meta/README.md
       application.giantswarm.io/team: team-cabbage
@@ -32012,4 +32040,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/trivy-operator-0.4.0-11e6d79c82bb2c7e43459b1553f351fc0029e9b4.tgz
     version: 0.4.0-11e6d79c82bb2c7e43459b1553f351fc0029e9b4
-generated: "2023-08-24T13:17:03.48570547Z"
+generated: "2023-08-24T13:21:15.884741079Z"
