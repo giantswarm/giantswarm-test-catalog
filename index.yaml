@@ -1130,6 +1130,34 @@ entries:
     - https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.3.0-abf9b1ccbc78b7abdd94aa1c2737b13918cc9d37.tgz
     version: 3.3.0-abf9b1ccbc78b7abdd94aa1c2737b13918cc9d37
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.3.0-7e4b4e80d3ed2c0464ab253392b6420a9890c273.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.3.0-7e4b4e80d3ed2c0464ab253392b6420a9890c273.tgz-meta/README.md
+      application.giantswarm.io/team: team-cabbage
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.3.0-7e4b4e80d3ed2c0464ab253392b6420a9890c273.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: v1.12.3
+    created: "2023-09-11T07:55:17.257203291Z"
+    dependencies:
+    - alias: giantSwarmClusterIssuer
+      name: cert-manager-giantswarm-clusterissuer
+      repository: ""
+      version: 2.0.0
+    - condition: ciliumNetworkPolicy.enabled
+      name: cert-manager-giantswarm-netpol
+      repository: ""
+      version: 0.1.0
+    description: Simplifies the process of obtaining, renewing and using certificates.
+    digest: 69395d1681eebf16dcff90da28fa741bcd061a410fa1b5c72f2253ab39c5fa50
+    home: https://github.com/giantswarm/cert-manager-app
+    icon: https://s.giantswarm.io/app-icons/cert-manager/1/light.svg
+    kubeVersion: '>=1.22.0-0'
+    name: cert-manager-app
+    sources:
+    - https://github.com/cert-manager/cert-manager
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.3.0-7e4b4e80d3ed2c0464ab253392b6420a9890c273.tgz
+    version: 3.3.0-7e4b4e80d3ed2c0464ab253392b6420a9890c273
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.3.0-76294dd2dc43c7c1c3d16ab1dee69475e290822a.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.3.0-76294dd2dc43c7c1c3d16ab1dee69475e290822a.tgz-meta/README.md
       application.giantswarm.io/team: team-cabbage
@@ -23417,4 +23445,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/trivy-operator-0.4.0-5006b3aeb99fd5797e9dbbab5738ed03e7ae5015.tgz
     version: 0.4.0-5006b3aeb99fd5797e9dbbab5738ed03e7ae5015
-generated: "2023-09-11T07:53:15.71019818Z"
+generated: "2023-09-11T07:55:17.251574349Z"
