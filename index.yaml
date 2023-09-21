@@ -5650,6 +5650,30 @@ entries:
     version: 0.7.5-0333beb545d99422ca8a4b2602ca83ee75e9ea50
   external-dns-app:
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-2.40.0-fadfb9691739b7d1b76138a10d441a869ce53581.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-2.40.0-fadfb9691739b7d1b76138a10d441a869ce53581.tgz-meta/README.md
+      application.giantswarm.io/team: team-cabbage
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-2.40.0-fadfb9691739b7d1b76138a10d441a869ce53581.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: v0.11.0
+    created: "2023-09-21T12:08:03.909880715Z"
+    dependencies:
+    - condition: crd.install
+      name: crd
+      repository: ""
+      version: 0.1.0
+    description: Configure external DNS servers for Kubernetes Ingresses and Services
+    digest: f99e09736a16a7daa3185531e4cb834458daa2614a3e3cc25432fabacae2e252
+    home: https://github.com/giantswarm/external-dns-app
+    icon: https://s.giantswarm.io/app-icons/external-dns/1/dark.png
+    kubeVersion: '>=1.19.0-0'
+    name: external-dns-app
+    sources:
+    - https://github.com/kubernetes-sigs/external-dns
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-2.40.0-fadfb9691739b7d1b76138a10d441a869ce53581.tgz
+    version: 2.40.0-fadfb9691739b7d1b76138a10d441a869ce53581
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-2.40.0-5bee3d154bd60c101441992d3398e5fb77c848f1.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-2.40.0-5bee3d154bd60c101441992d3398e5fb77c848f1.tgz-meta/README.md
       application.giantswarm.io/team: team-cabbage
@@ -30314,4 +30338,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/trivy-operator-0.4.0-241bd7a39fb6dc4d6c8c06901d595baf70cb96ad.tgz
     version: 0.4.0-241bd7a39fb6dc4d6c8c06901d595baf70cb96ad
-generated: "2023-09-21T12:05:19.254757119Z"
+generated: "2023-09-21T12:08:03.908056093Z"
