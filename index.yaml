@@ -6128,6 +6128,32 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/grafana-2.5.0-04bfea2718172095f8e48853053b3eecb5630821.tgz
     version: 2.5.0-04bfea2718172095f8e48853053b3eecb5630821
+  grafana-agent:
+  - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/grafana-agent-0.1.0-12ef61eac140bf6020c329e925d94319b2248160.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/grafana-agent-0.1.0-12ef61eac140bf6020c329e925d94319b2248160.tgz-meta/README.md
+      application.giantswarm.io/team: atlas
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/grafana-agent-0.1.0-12ef61eac140bf6020c329e925d94319b2248160.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: v0.36.2
+    created: "2023-10-02T19:11:26.596346999Z"
+    dependencies:
+    - name: grafana-agent
+      repository: https://grafana.github.io/helm-charts
+      version: 0.25.0
+    description: Giant Swarm's Grafana Agent Deployment
+    digest: cc462dfc0ad5523d0a8c87df2ff38c6fb8cd8f9898fd1c491bf83e5cb9b60bc4
+    home: https://github.com/giantswarm/grafana-agent-app
+    icon: https://s.giantswarm.io/app-icons/grafana/1/light.svg
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: grafana-agent
+    sources:
+    - https://github.com/grafana/agent/tree/main/operations/helm/charts/grafana-agent
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/grafana-agent-0.1.0-12ef61eac140bf6020c329e925d94319b2248160.tgz
+    version: 0.1.0-12ef61eac140bf6020c329e925d94319b2248160
   hello-world:
   - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/hello-world-2.0.0-f2f391f08109dc9380bce028963a9f64fc828bec.tgz-meta/main.yaml
@@ -15596,4 +15622,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/trivy-operator-0.4.0-121b4961599a8750dd00d38c54f4aaf91b9c9995.tgz
     version: 0.4.0-121b4961599a8750dd00d38c54f4aaf91b9c9995
-generated: "2023-10-02T13:27:08.39926411Z"
+generated: "2023-10-02T19:11:26.594559472Z"
