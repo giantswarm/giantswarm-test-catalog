@@ -1,0 +1,118 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "commonLabels": {
+            "type": "object"
+        },
+        "destCNIBinDir": {
+            "type": "string"
+        },
+        "destCNINetDir": {
+            "type": "string"
+        },
+        "enablePSP": {
+            "type": "boolean"
+        },
+        "extraInitContainers": {
+            "type": "array"
+        },
+        "ignoreInboundPorts": {
+            "type": "string"
+        },
+        "ignoreOutboundPorts": {
+            "type": "string"
+        },
+        "image": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "pullPolicy": {
+                    "type": "string"
+                },
+                "registry": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            }
+        },
+        "imagePullSecrets": {
+            "type": ["null","array"]
+        },
+        "inboundProxyPort": {
+            "type": "integer"
+        },
+        "logLevel": {
+            "type": "string"
+        },
+        "outboundProxyPort": {
+            "type": "integer"
+        },
+        "podLabels": {
+            "type": "object"
+        },
+        "portsToRedirect": {
+            "type": "string"
+        },
+        "priorityClassName": {
+            "type": "string"
+        },
+        "privileged": {
+            "type": "boolean"
+        },
+        "proxyAdminPort": {
+            "type": "integer"
+        },
+        "proxyControlPort": {
+            "type": "integer"
+        },
+        "proxyUID": {
+            "type": "integer"
+        },
+        "resources": {
+            "type": "object",
+            "properties": {
+                "cpu": {
+                    "type": "object",
+                    "properties": {
+                        "limit": {
+                            "type": "string"
+                        },
+                        "request": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "memory": {
+                    "type": "object",
+                    "properties": {
+                        "limit": {
+                            "type": "string"
+                        },
+                        "request": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "tolerations": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "operator": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "useWaitFlag": {
+            "type": "boolean"
+        }
+    }
+}
