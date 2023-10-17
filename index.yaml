@@ -5885,6 +5885,43 @@ entries:
     version: 1.39.0-00175021778d6b9cceac9979eaef44f66890b942
   efk-stack-app:
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/efk-stack-app-0.7.5-ea112bd4f522fe2cd13d89deb6cbd6494afb8662.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/efk-stack-app-0.7.5-ea112bd4f522fe2cd13d89deb6cbd6494afb8662.tgz-meta/README.md
+      application.giantswarm.io/team: atlas
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/efk-stack-app-0.7.5-ea112bd4f522fe2cd13d89deb6cbd6494afb8662.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: 0.7.1
+    created: "2023-10-17T21:13:49.484859487Z"
+    dependencies:
+    - name: elasticsearch-curator
+      repository: file://charts/elasticsearch-curator
+      version: 2.0.3
+    - name: fluentd-elasticsearch
+      repository: file://charts/fluentd-elasticsearch
+      version: 6.1.1
+    - name: opendistro-certs
+      repository: file://charts/opendistro-certs
+      version: 0.1.0
+    - name: opendistro-es
+      repository: file://charts/opendistro-es
+      version: 1.13.3
+    - name: elasticsearch-exporter
+      repository: file://charts/elasticsearch-exporter
+      version: 3.0.0
+    description: Open Distro for Elasticsearch
+    digest: 73648ec5a6abc59bf9d77e91e50c6e84ce51ba190ffcb0d4ff5d4ef3b2e0af63
+    home: https://github.com/giantswarm/efk-stack-app
+    icon: https://s.giantswarm.io/app-icons/1/png/efk-stack-app-light.png
+    maintainers:
+    - name: Giant Swarm applications team
+      url: https://github.com/giantswarm/efk-stack-app
+    name: efk-stack-app
+    sources:
+    - https://github.com/giantswarm/efk-stack-app
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/efk-stack-app-0.7.5-ea112bd4f522fe2cd13d89deb6cbd6494afb8662.tgz
+    version: 0.7.5-ea112bd4f522fe2cd13d89deb6cbd6494afb8662
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/efk-stack-app-0.7.5-e81ab6f18248712060673dca40e6272390149dae.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/efk-stack-app-0.7.5-e81ab6f18248712060673dca40e6272390149dae.tgz-meta/README.md
       application.giantswarm.io/team: atlas
@@ -33320,4 +33357,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/trivy-operator-0.4.0-121b4961599a8750dd00d38c54f4aaf91b9c9995.tgz
     version: 0.4.0-121b4961599a8750dd00d38c54f4aaf91b9c9995
-generated: "2023-10-17T21:12:29.523222118Z"
+generated: "2023-10-17T21:13:49.476133866Z"
