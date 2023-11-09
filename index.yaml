@@ -38780,6 +38780,34 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/tempo-0.1.0-8ece726fbbd90f509f15708355ed9dd44766f038.tgz
     version: 0.1.0-8ece726fbbd90f509f15708355ed9dd44766f038
+  - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/tempo-0.1.0-0d45908b8347e88648d6c08504cba85b6727eb99.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/tempo-0.1.0-0d45908b8347e88648d6c08504cba85b6727eb99.tgz-meta/README.md
+      application.giantswarm.io/team: atlas
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/tempo-0.1.0-0d45908b8347e88648d6c08504cba85b6727eb99.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: 2.2.3
+    created: "2023-11-09T13:10:49.530042471Z"
+    dependencies:
+    - alias: tempo
+      condition: tempo.enabled
+      name: tempo-distributed
+      repository: https://grafana.github.io/helm-charts
+      version: 1.7.0
+    description: Helm chart for Grafana Tempo in microservice mode
+    digest: 9c6e7787027ae86d6649ce0a0778626347387dc21f0fc422da72dd3a390a9d4b
+    home: https://github.com/giantswarm/tempo-app
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: tempo
+    sources:
+    - https://github.com/giantswarm/tempo-app
+    - https://github.com/grafana/helm-charts/blob/main/charts/tempo-distributed
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/tempo-0.1.0-0d45908b8347e88648d6c08504cba85b6727eb99.tgz
+    version: 0.1.0-0d45908b8347e88648d6c08504cba85b6727eb99
   trivy:
   - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/trivy-0.9.0-7aec936356b81cfab66564b488661aa0a5f2d750.tgz-meta/main.yaml
@@ -40333,4 +40361,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/trivy-operator-0.4.1-04593dfaabe52860f89fbcd09036ec8e98f92ad0.tgz
     version: 0.4.1-04593dfaabe52860f89fbcd09036ec8e98f92ad0
-generated: "2023-11-09T13:10:06.192639127Z"
+generated: "2023-11-09T13:10:49.516712532Z"
