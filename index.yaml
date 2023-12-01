@@ -11363,6 +11363,39 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/kong-app-3.5.0-69f0254c572a12b41134408ddfeb6bdb566121dd.tgz
     version: 3.5.0-69f0254c572a12b41134408ddfeb6bdb566121dd
+  - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-3.5.0-1caa09566244bcfce53f87dd3159cc447d836ef8.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-3.5.0-1caa09566244bcfce53f87dd3159cc447d836ef8.tgz-meta/README.md
+      application.giantswarm.io/team: team-cabbage
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-3.5.0-1caa09566244bcfce53f87dd3159cc447d836ef8.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: 3.4.2
+    created: "2023-12-01T07:22:44.313909083Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.9.13
+    - name: kubectl-apply-job
+      repository: https://giantswarm.github.io/giantswarm-playground-catalog
+      version: 0.6.0
+    description: The Cloud-Native Ingress and API-management
+    digest: 607ee098975433495b90617a0e53fe48e5de89adbf6dc7fa4159097389a214fd
+    home: https://github.com/giantswarm/kong-app
+    icon: https://s.giantswarm.io/app-icons/kong/1/light.svg
+    kubeVersion: '>=1.22.0-0'
+    maintainers:
+    - email: harry@konghq.com
+      name: hbagdi
+    - email: traines@konghq.com
+      name: rainest
+    name: kong-app
+    sources:
+    - https://konghq.com/
+    - https://github.com/Kong/charts/tree/main/charts/kong
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/kong-app-3.5.0-1caa09566244bcfce53f87dd3159cc447d836ef8.tgz
+    version: 3.5.0-1caa09566244bcfce53f87dd3159cc447d836ef8
   kube-prometheus-stack:
   - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/kube-prometheus-stack-7.0.0-ea3562b580ccb123643b33acaabbe40b4313da8d.tgz-meta/main.yaml
@@ -22334,4 +22367,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/trivy-operator-0.5.0-04a1f9b734d5b8fbd6ba7b656eeea24342f9ca62.tgz
     version: 0.5.0-04a1f9b734d5b8fbd6ba7b656eeea24342f9ca62
-generated: "2023-12-01T07:22:41.78084873Z"
+generated: "2023-12-01T07:22:44.29491932Z"
