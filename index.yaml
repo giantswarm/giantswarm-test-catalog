@@ -25284,6 +25284,34 @@ entries:
     - https://giantswarm.github.io/giantswarm-test-catalog/loki-0.14.5-65fbaaa267b545f9a282620a45311faa9b390d84.tgz
     version: 0.14.5-65fbaaa267b545f9a282620a45311faa9b390d84
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/loki-0.14.5-4814b55deb6f0b0b63f2cdb6adf2298713ab710c.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/loki-0.14.5-4814b55deb6f0b0b63f2cdb6adf2298713ab710c.tgz-meta/README.md
+      application.giantswarm.io/team: atlas
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/loki-0.14.5-4814b55deb6f0b0b63f2cdb6adf2298713ab710c.tgz-meta/values.schema.json
+      ui.giantswarm.io/logo: https://s.giantswarm.io/app-icons/grafana-loki/2/dark.svg
+    apiVersion: v2
+    appVersion: 2.9.3
+    created: "2023-12-11T15:22:54.668997761Z"
+    dependencies:
+    - condition: loki.enabled
+      name: loki
+      repository: https://grafana.github.io/helm-charts
+      version: 5.39.0
+    description: Helm chart for Grafana Loki in simple, scalable mode
+    digest: d0fcdc6543f0ee38dad885458013931e0d0bcf046b7f0fb20b66b5da9dc40f66
+    home: https://github.com/giantswarm/loki-app
+    icon: https://s.giantswarm.io/app-icons/loki-stack/1/dark.svg
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: loki
+    sources:
+    - https://github.com/giantswarm/loki-app
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/loki-0.14.5-4814b55deb6f0b0b63f2cdb6adf2298713ab710c.tgz
+    version: 0.14.5-4814b55deb6f0b0b63f2cdb6adf2298713ab710c
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/loki-0.14.5-3993f1e9c7e264d5f313eb393e93b75e852a8af8.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/loki-0.14.5-3993f1e9c7e264d5f313eb393e93b75e852a8af8.tgz-meta/README.md
       application.giantswarm.io/team: atlas
@@ -33949,4 +33977,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/trivy-operator-0.5.0-0150d96494f4663323e3159dfb60ed65435c8763.tgz
     version: 0.5.0-0150d96494f4663323e3159dfb60ed65435c8763
-generated: "2023-12-11T15:22:35.166273358Z"
+generated: "2023-12-11T15:22:54.653970156Z"
