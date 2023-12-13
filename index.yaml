@@ -8819,6 +8819,30 @@ entries:
     - https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-2.42.0-7dc8387eade1215c8fd37565c82480f2ea570437.tgz
     version: 2.42.0-7dc8387eade1215c8fd37565c82480f2ea570437
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-2.42.0-4e61e60ea910d759fcba42e274da3af111092c0e.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-2.42.0-4e61e60ea910d759fcba42e274da3af111092c0e.tgz-meta/README.md
+      application.giantswarm.io/team: team-cabbage
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-2.42.0-4e61e60ea910d759fcba42e274da3af111092c0e.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: v0.11.0
+    created: "2023-12-13T09:58:15.362583412Z"
+    dependencies:
+    - condition: crd.install
+      name: crd
+      repository: ""
+      version: 0.1.0
+    description: Configure external DNS servers for Kubernetes Ingresses and Services
+    digest: 2d9f2220628ccb80f8fdf9b0a07c8df2247e864695d7285abd828dffad810985
+    home: https://github.com/giantswarm/external-dns-app
+    icon: https://s.giantswarm.io/app-icons/external-dns/1/dark.png
+    kubeVersion: '>=1.19.0-0'
+    name: external-dns-app
+    sources:
+    - https://github.com/kubernetes-sigs/external-dns
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-2.42.0-4e61e60ea910d759fcba42e274da3af111092c0e.tgz
+    version: 2.42.0-4e61e60ea910d759fcba42e274da3af111092c0e
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-2.42.0-40156193c6015bdd668b3e971bdd803eb37348b3.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-2.42.0-40156193c6015bdd668b3e971bdd803eb37348b3.tgz-meta/README.md
       application.giantswarm.io/team: team-cabbage
@@ -36129,4 +36153,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/trivy-operator-0.5.0-0150d96494f4663323e3159dfb60ed65435c8763.tgz
     version: 0.5.0-0150d96494f4663323e3159dfb60ed65435c8763
-generated: "2023-12-13T09:57:03.129108452Z"
+generated: "2023-12-13T09:58:15.359982919Z"
