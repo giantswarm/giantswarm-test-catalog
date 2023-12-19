@@ -43901,6 +43901,34 @@ entries:
     version: 0.2.2-065ea34c1aa88f1b76c90c37401569afe2a63af2
   tempo:
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/tempo-0.1.2-d2ce1403d997327e0331786bf614b1d7b5ed5078.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/tempo-0.1.2-d2ce1403d997327e0331786bf614b1d7b5ed5078.tgz-meta/README.md
+      application.giantswarm.io/team: atlas
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/tempo-0.1.2-d2ce1403d997327e0331786bf614b1d7b5ed5078.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: 2.2.3
+    created: "2023-12-19T16:47:43.628960116Z"
+    dependencies:
+    - alias: tempo
+      condition: tempo.enabled
+      name: tempo-distributed
+      repository: https://grafana.github.io/helm-charts
+      version: 1.7.3
+    description: Helm chart for Grafana Tempo in microservice mode
+    digest: d97e8967d030d156024b319a3790e01ba2efbeeea4020a8cb001b3e00e55fd5c
+    home: https://github.com/giantswarm/tempo-app
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: tempo
+    sources:
+    - https://github.com/giantswarm/tempo-app
+    - https://github.com/grafana/helm-charts/blob/main/charts/tempo-distributed
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/tempo-0.1.2-d2ce1403d997327e0331786bf614b1d7b5ed5078.tgz
+    version: 0.1.2-d2ce1403d997327e0331786bf614b1d7b5ed5078
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/tempo-0.1.1-e41f1c678d67b21456623e7639f045111c4897a2.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/tempo-0.1.1-e41f1c678d67b21456623e7639f045111c4897a2.tgz-meta/README.md
       application.giantswarm.io/team: atlas
@@ -45746,4 +45774,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/trivy-operator-0.5.0-0150d96494f4663323e3159dfb60ed65435c8763.tgz
     version: 0.5.0-0150d96494f4663323e3159dfb60ed65435c8763
-generated: "2023-12-19T16:32:11.017835481Z"
+generated: "2023-12-19T16:47:43.615088761Z"
