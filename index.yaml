@@ -14581,6 +14581,39 @@ entries:
     - https://giantswarm.github.io/giantswarm-test-catalog/kong-app-3.6.2-732b956ddc866b0d6d9ccbd40b40a85f8d67a8d1.tgz
     version: 3.6.2-732b956ddc866b0d6d9ccbd40b40a85f8d67a8d1
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-3.6.2-5c0a1a6a49ab878d045bf183108693923faacd4f.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-3.6.2-5c0a1a6a49ab878d045bf183108693923faacd4f.tgz-meta/README.md
+      application.giantswarm.io/team: team-cabbage
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-3.6.2-5c0a1a6a49ab878d045bf183108693923faacd4f.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: 3.5.0
+    created: "2024-01-10T15:33:05.154271405Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 11.9.13
+    - name: kubectl-apply-job
+      repository: oci://giantswarmpublic.azurecr.io/giantswarm-playground-catalog
+      version: 0.7.0
+    description: The Cloud-Native Ingress and API-management
+    digest: 20b1606e5a0cb8d21b4fda0b6b26028ba2a1a9a314bb8091ea4e60c585cbdaa5
+    home: https://github.com/giantswarm/kong-app
+    icon: https://s.giantswarm.io/app-icons/kong/1/light.svg
+    kubeVersion: '>=1.22.0-0'
+    maintainers:
+    - email: harry@konghq.com
+      name: hbagdi
+    - email: traines@konghq.com
+      name: rainest
+    name: kong-app
+    sources:
+    - https://konghq.com/
+    - https://github.com/Kong/charts/tree/main/charts/kong
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/kong-app-3.6.2-5c0a1a6a49ab878d045bf183108693923faacd4f.tgz
+    version: 3.6.2-5c0a1a6a49ab878d045bf183108693923faacd4f
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-3.6.2-423a3a2d50f1dfa86f00dd84c10fbbdd24b062c2.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-3.6.2-423a3a2d50f1dfa86f00dd84c10fbbdd24b062c2.tgz-meta/README.md
       application.giantswarm.io/team: team-cabbage
@@ -30246,4 +30279,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/trivy-operator-0.5.0-0150d96494f4663323e3159dfb60ed65435c8763.tgz
     version: 0.5.0-0150d96494f4663323e3159dfb60ed65435c8763
-generated: "2024-01-10T15:16:15.941559535Z"
+generated: "2024-01-10T15:33:05.141924147Z"
