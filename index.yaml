@@ -20164,6 +20164,41 @@ entries:
     version: 7.0.0-0483950c13ab8a691b48de389c64bf51e40db0e1
   kyverno:
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/kyverno-0.17.0.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/kyverno-0.17.0.tgz-meta/README.md
+      application.giantswarm.io/team: shield
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/kyverno-0.17.0.tgz-meta/values.schema.json
+      config.giantswarm.io/version: 1.x.x
+    apiVersion: v2
+    appVersion: v1.11.2
+    created: "2024-01-15T15:19:20.587220919Z"
+    dependencies:
+    - name: policy-reporter
+      repository: ""
+      version: 2.21.2
+    - name: kyverno
+      repository: ""
+      version: 3.1.2
+    description: 'Kyverno is a policy engine designed for Kubernetes. It can validate,
+      mutate, and generate configurations using admission controls and background
+      scans. Kyverno policies are Kubernetes resources and do not require learning
+      a new language. '
+    digest: 5e8e2ae2370c741b9731015bec4b63aa8d76351a409f17a03c52282f6f8574a7
+    home: https://github.com/giantswarm/kyverno-app
+    icon: https://s.giantswarm.io/app-icons/kyverno/1/light.svg
+    keywords:
+    - kubernetes
+    - policy agent
+    - validating webhook
+    - admissions controller
+    name: kyverno
+    sources:
+    - https://github.com/kyverno/kyverno
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/kyverno-0.17.0.tgz
+    version: 0.17.0
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/kyverno-0.16.4-fac74a99e8c12b458966f41577b13af2b58d62c2.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/kyverno-0.16.4-fac74a99e8c12b458966f41577b13af2b58d62c2.tgz-meta/README.md
       application.giantswarm.io/team: shield
@@ -35660,4 +35695,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/trivy-operator-0.5.0-0150d96494f4663323e3159dfb60ed65435c8763.tgz
     version: 0.5.0-0150d96494f4663323e3159dfb60ed65435c8763
-generated: "2024-01-15T15:12:15.517690515Z"
+generated: "2024-01-15T15:19:20.55310842Z"
