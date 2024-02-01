@@ -2,12 +2,12 @@ name: GiantSwarm Test Catalog Cleanup
 
 on:
   schedule:
-    - cron: '0 0 1 * *'
+    - cron: '30 * * * *'
   workflow_dispatch:
 
 jobs:
   cleanup:
-    uses: giantswarm/app-catalog-cleanup-tool/.github/workflows/cleanup.yaml@v0.2.5
+    uses: giantswarm/app-catalog-cleanup-tool/.github/workflows/cleanup.yaml@version-upgrades
     with:
       delete-before: "1 month"
       dry-run: false
