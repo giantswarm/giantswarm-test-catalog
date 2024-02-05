@@ -30893,6 +30893,34 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/tempo-0.1.2-20f771c663c3009d0465a381cc002123f0e359f9.tgz
     version: 0.1.2-20f771c663c3009d0465a381cc002123f0e359f9
+  - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/tempo-0.1.2-0880aed47fbd4b62987c8ed29162d65c889aee61.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/tempo-0.1.2-0880aed47fbd4b62987c8ed29162d65c889aee61.tgz-meta/README.md
+      application.giantswarm.io/team: atlas
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/tempo-0.1.2-0880aed47fbd4b62987c8ed29162d65c889aee61.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: 2.2.3
+    created: "2024-02-05T18:04:40.5388028Z"
+    dependencies:
+    - alias: tempo
+      condition: tempo.enabled
+      name: tempo-distributed
+      repository: https://grafana.github.io/helm-charts
+      version: 1.8.3
+    description: Helm chart for Grafana Tempo in microservice mode
+    digest: 3aad6ebb00683c6dfae9f0f3fb58498c50f9d1c4c213a8c48ef5bb5b78e8c818
+    home: https://github.com/giantswarm/tempo-app
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: tempo
+    sources:
+    - https://github.com/giantswarm/tempo-app
+    - https://github.com/grafana/helm-charts/blob/main/charts/tempo-distributed
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/tempo-0.1.2-0880aed47fbd4b62987c8ed29162d65c889aee61.tgz
+    version: 0.1.2-0880aed47fbd4b62987c8ed29162d65c889aee61
   trivy:
   - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/trivy-0.10.0.tgz-meta/main.yaml
@@ -34148,4 +34176,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/trivy-operator-0.5.1-057bb87901f21a9ef2abc519f3894832d2bbd24a.tgz
     version: 0.5.1-057bb87901f21a9ef2abc519f3894832d2bbd24a
-generated: "2024-02-05T17:47:14.874803898Z"
+generated: "2024-02-05T18:04:40.522545309Z"
