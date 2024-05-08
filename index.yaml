@@ -8046,6 +8046,32 @@ entries:
     version: 2.11.0-0319cba6a64dbf821ac837a26745a4e6c6c3abd2
   grafana-agent:
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/grafana-agent-0.4.3-fc6845ebd7b9fd4e98a391e76c591003105434e8.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/grafana-agent-0.4.3-fc6845ebd7b9fd4e98a391e76c591003105434e8.tgz-meta/README.md
+      application.giantswarm.io/team: atlas
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/grafana-agent-0.4.3-fc6845ebd7b9fd4e98a391e76c591003105434e8.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: v0.37.0
+    created: "2024-05-08T15:15:04.244563172Z"
+    dependencies:
+    - condition: grafana-agent.enabled
+      name: grafana-agent
+      repository: https://grafana.github.io/helm-charts
+      version: 0.27.0
+    description: Giant Swarm's Grafana Agent Deployment
+    digest: 48dce8efb53fe920d64826ecfb543e535d8ba1d2244d0599aa122467e74288be
+    home: https://github.com/giantswarm/grafana-agent-app
+    icon: https://s.giantswarm.io/app-icons/grafana/1/light.svg
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: grafana-agent
+    sources:
+    - https://github.com/grafana/agent/tree/main/operations/helm/charts/grafana-agent
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/grafana-agent-0.4.3-fc6845ebd7b9fd4e98a391e76c591003105434e8.tgz
+    version: 0.4.3-fc6845ebd7b9fd4e98a391e76c591003105434e8
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/grafana-agent-0.4.3-bd60d41abbb63c9a4a222aeb9f40f6dd5b7263dd.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/grafana-agent-0.4.3-bd60d41abbb63c9a4a222aeb9f40f6dd5b7263dd.tgz-meta/README.md
       application.giantswarm.io/team: atlas
@@ -30128,4 +30154,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-0.1.5-2ba74104c1b9bd9c3d62ae83ce80212ae0823f5b.tgz
     version: 0.1.5-2ba74104c1b9bd9c3d62ae83ce80212ae0823f5b
-generated: "2024-05-08T15:14:23.490086235Z"
+generated: "2024-05-08T15:15:04.241380104Z"
