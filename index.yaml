@@ -41360,6 +41360,35 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/tempo-0.1.2-1cacd38a9b8ff3858bf8c17d90f2285fdb6e62bd.tgz
     version: 0.1.2-1cacd38a9b8ff3858bf8c17d90f2285fdb6e62bd
+  - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/tempo-0.1.2-00eb6af87679272f620e019d13e929eb56a354f9.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/tempo-0.1.2-00eb6af87679272f620e019d13e929eb56a354f9.tgz-meta/README.md
+      application.giantswarm.io/team: atlas
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/tempo-0.1.2-00eb6af87679272f620e019d13e929eb56a354f9.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: 2.2.3
+    created: "2024-05-24T13:44:20.778759268Z"
+    dependencies:
+    - alias: tempo
+      condition: tempo.enabled
+      name: tempo-distributed
+      repository: https://grafana.github.io/helm-charts
+      version: 1.9.10
+    description: Helm chart for Grafana Tempo in microservice mode
+    digest: e6d076dc85fab4e7e3ac22573c5977318e6a2d9f3f7eeddb26f7b4bf10975e5d
+    home: https://github.com/giantswarm/tempo-app
+    icon: https://s.giantswarm.io/app-icons/grafana-tempo/1/light.svg
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: tempo
+    sources:
+    - https://github.com/giantswarm/tempo-app
+    - https://github.com/grafana/helm-charts/blob/main/charts/tempo-distributed
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/tempo-0.1.2-00eb6af87679272f620e019d13e929eb56a354f9.tgz
+    version: 0.1.2-00eb6af87679272f620e019d13e929eb56a354f9
   trivy:
   - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/trivy-0.11.0-9f4d940ed62e852181a475ef04193fb0b17e3989.tgz-meta/main.yaml
@@ -45280,4 +45309,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-0.1.5-2ba74104c1b9bd9c3d62ae83ce80212ae0823f5b.tgz
     version: 0.1.5-2ba74104c1b9bd9c3d62ae83ce80212ae0823f5b
-generated: "2024-05-24T12:20:45.603984875Z"
+generated: "2024-05-24T13:44:20.752492693Z"
