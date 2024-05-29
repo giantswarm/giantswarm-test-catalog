@@ -1,0 +1,598 @@
+{
+  "properties": {
+    "affinity": {
+      "additionalProperties": true,
+      "description": "If specified, this will be injected as the main pod's affinity settings.",
+      "title": "Affinity",
+      "type": "object"
+    },
+    "autoscaling": {
+      "properties": {
+        "enabled": {
+          "default": "true",
+          "description": "If set to false, no HorizontalPodAutoscaler resource will be created.",
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "maxReplicas": {
+          "default": "10",
+          "minimum": 1,
+          "description": "Make sure to set a value that is higher than the minReplicas value.",
+          "title": "Max replicas",
+          "type": "integer"
+        },
+        "minReplicas": {
+          "default": "3",
+          "minimum": 1,
+          "title": "Min replicas",
+          "type": "integer"
+        },
+        "targetCPUUtilizationPercentage": {
+          "default": "80",
+          "minimum": 10,
+          "maximum": 100,
+          "title": "Target CPU utilization percentage",
+          "type": "integer"
+        },
+        "targetMemoryUtilizationPercentage": {
+          "default": "80",
+          "minimum": 10,
+          "maximum": 100,
+          "title": "Target memory utilization percentage",
+          "type": "integer"
+        }
+      },
+      "title": "Automatic scaling",
+      "type": "object"
+    },
+    "fullnameOverride": {
+      "default": "",
+      "description": "If set, this name will be used instead of a generated name for resource naming.",
+      "title": "Full name override",
+      "type": "string"
+    },
+    "global": {
+      "properties": {
+        "podSecurityStandards": {
+          "properties": {
+            "enforced": {
+              "default": "false",
+              "description": "If set to true, the chart will be deployed with PSS resources.",
+              "title": "Enforced",
+              "type": "boolean"
+            }
+          },
+          "title": "Pod security standards (PSS)",
+          "type": "object"
+        }
+      },
+      "description": "Values under this section are available to all sub-charts.",
+      "title": "Global",
+      "type": "object"
+    },
+    "image": {
+      "properties": {
+        "pullPolicy": {
+          "default": "IfNotPresent",
+          "title": "Pull policy",
+          "enum": [
+            "IfNotPresent",
+            "Always",
+            "Never"
+          ]
+        },
+        "registry": {
+          "default": "quay.io",
+          "format": "hostname",
+          "description": "Fully qualified registry host name.",
+          "title": "Registry",
+          "type": "string"
+        },
+        "repository": {
+          "default": "giantswarm/helloworld",
+          "description": "Repository name in the form of `namespace/repository`.",
+          "title": "Repository",
+          "type": "string"
+        },
+        "tag": {
+          "default": "",
+          "description": "Overrides the image tag whose default is the chart appVersion.",
+          "title": "Tag",
+          "type": "string"
+        }
+      },
+      "description": "Container image for the main pod.",
+      "title": "Image",
+      "type": "object"
+    },
+    "imagePullSecrets": {
+      "items": {
+        "properties": {
+          "name": {
+            "description": "Name of the secret resource",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "description": "Optional, if pulling any container image requires authentication.",
+      "title": "imagePullSecrets",
+      "type": "array"
+    },
+    "ingress": {
+      "properties": {
+        "annotations": {
+          "patternProperties": {
+            "^[a-zA-Z0-9/-_\\.]+$": {
+              "title": "Annotation value",
+              "type": "string"
+            }
+          },
+          "properties": {
+            "cert-manager.io/cluster-issuer": {
+              "default": "letsencrypt-giantswarm",
+              "title": "cert-manager.io/cluster-issuer"
+            }
+          },
+          "title": "Optional ingress annotations",
+          "type": "object",
+          "examples": [
+            "kubernetes.io/ingress.class: nginx",
+            "kubernetes.io/tls-acme: 'true'"
+          ]
+        },
+        "className": {
+          "default": "nginx",
+          "title": "Class",
+          "type": "string"
+        },
+        "enabled": {
+          "default": "true",
+          "description": "If set to false, no Ingress resource will be created.",
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "hosts": {
+          "items": {
+            "properties": {
+              "host": {
+                "format": "hostname",
+                "description": "Hostname to expose the service for.",
+                "type": "string"
+              },
+              "paths": {
+                "items": {
+                  "properties": {
+                    "path": {
+                      "type": "string"
+                    },
+                    "pathType": {
+                      "type": "string",
+                      "enum": [
+                        "Prefix",
+                        "Exact"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "description": "You will have to overwrite the host value to make it match your cluster's ingress subdomain.",
+          "title": "Hosts",
+          "type": "array"
+        },
+        "tls": {
+          "items": {
+            "properties": {
+              "hosts": {
+                "items": {
+                  "format": "hostname",
+                  "type": "string"
+                },
+                "description": "Hostnames to use the TLS server certificate for.",
+                "type": "array"
+              },
+              "secretName": {
+                "description": "Name of the secret containing the TLS server certificate.",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "description": "You will have to overwrite the hosts values to make it match your cluster's ingress subdomain, matching the names used as ingress hosts.",
+          "title": "Transport layer security (TLS)",
+          "type": "array"
+        }
+      },
+      "title": "Ingress",
+      "type": "object",
+      "required": [
+        "hosts"
+      ]
+    },
+    "nameOverride": {
+      "default": "",
+      "description": "If set, this name will be used instead of Chart.Name for resource naming.",
+      "title": "Name override",
+      "type": "string"
+    },
+    "nodeSelector": {
+      "patternProperties": {
+        "^[a-zA-Z0-9/-_\\.]+$": {
+          "$ref": "https://schema.giantswarm.io/labelvalue/v0.0.1"
+        }
+      },
+      "description": "If specified, this app will only be deployed to nodes with matching labels.",
+      "title": "Node selector",
+      "type": "object"
+    },
+    "podAnnotations": {
+      "patternProperties": {
+        "^[a-zA-Z0-9/-_\\.]+$": {
+          "title": "Annotation value",
+          "type": "string"
+        }
+      },
+      "description": "Optional annotations to be added to the main pod.",
+      "title": "Pod annotations",
+      "type": "object"
+    },
+    "podDisruptionBudget": {
+      "properties": {
+        "enabled": {
+          "default": "true",
+          "description": "If set to false, no PodDisruptionBudget resource will be created.",
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "maxUnavailable": {
+          "default": "1",
+          "description": "Maximum number of replicas to be unavailable during disruptions.\nDefine either 'minAvailable' or 'maxUnavailable', never both. TODO: Fix this.",
+          "title": "Max unavailable",
+          "type": "integer"
+        },
+        "minAvailable": {
+          "default": "1",
+          "description": "Minimum number of replicas to be unavailable during disruptions.\nDefine either 'minAvailable' or 'maxUnavailable', never both. TODO: Fix this.",
+          "title": "Min available",
+          "type": "integer"
+        }
+      },
+      "title": "Pod disruption budget",
+      "type": "object"
+    },
+    "podLabels": {
+      "patternProperties": {
+        "^[a-zA-Z0-9/-_\\.]+$": {
+          "$ref": "https://schema.giantswarm.io/labelvalue/v0.0.1"
+        }
+      },
+      "description": "Optional labels to be added to the main pod.",
+      "title": "Pod labels",
+      "type": "object"
+    },
+    "podSecurityContext": {
+      "properties": {
+        "fsGroup": {
+          "type": "integer"
+        }
+      },
+      "description": "Security context of the main pod.",
+      "title": "Pod security context",
+      "type": "object"
+    },
+    "replicaCount": {
+      "default": "1",
+      "minimum": 1,
+      "description": "Number of replicas to deploy for the main pod.",
+      "title": "Replica count",
+      "type": "integer"
+    },
+    "resources": {
+      "properties": {
+        "limits": {
+          "properties": {
+            "cpu": {
+              "default": "50m",
+              "title": "CPU",
+              "type": "string"
+            },
+            "memory": {
+              "default": "100M",
+              "title": "Memory",
+              "type": "string"
+            }
+          },
+          "title": "Limits",
+          "type": "object"
+        },
+        "requests": {
+          "properties": {
+            "cpu": {
+              "default": "10m",
+              "title": "CPU",
+              "type": "string",
+              "examples": [
+                "100m",
+                "1"
+              ]
+            },
+            "memory": {
+              "default": "50M",
+              "title": "Memory",
+              "type": "string",
+              "examples": [
+                "100M",
+                "1Gi"
+              ]
+            }
+          },
+          "title": "Requests",
+          "type": "object"
+        }
+      },
+      "description": "This is directly injected as the main pods's resource requests and limits.",
+      "title": "Resource requests and limits",
+      "type": "object"
+    },
+    "securityContext": {
+      "properties": {
+        "allowPrivilegeEscalation": {
+          "default": "false",
+          "title": "allowPrivilegeEscalation",
+          "type": "boolean"
+        },
+        "capabilities": {
+          "properties": {
+            "drop": {
+              "items": {
+                "type": "string"
+              },
+              "title": "drop",
+              "type": "array"
+            }
+          },
+          "title": "capabilities",
+          "type": "object"
+        },
+        "readOnlyRootFilesystem": {
+          "default": "true",
+          "title": "readOnlyRootFilesystem",
+          "type": "boolean"
+        },
+        "runAsNonRoot": {
+          "default": "true",
+          "title": "runAsNonRoot",
+          "type": "boolean"
+        },
+        "runAsUser": {
+          "default": "1000",
+          "title": "runAsUser",
+          "type": "integer"
+        },
+        "seccompProfile": {
+          "properties": {
+            "type": {
+              "default": "RuntimeDefault",
+              "title": "type",
+              "enum": [
+                "RuntimeDefault",
+                "Localhost"
+              ]
+            }
+          },
+          "title": "seccompProfile",
+          "type": "object"
+        }
+      },
+      "description": "This object will be inserted into the deployment as the main pod's SecurityContext.",
+      "title": "Security context",
+      "type": "object"
+    },
+    "service": {
+      "properties": {
+        "annotations": {
+          "patternProperties": {
+            "^[a-zA-Z0-9/-_\\.]+$": {
+              "title": "Annotation value",
+              "type": "string"
+            }
+          },
+          "title": "Optional service annotations",
+          "type": "object"
+        },
+        "labels": {
+          "patternProperties": {
+            "^[a-zA-Z0-9/-_\\.]+$": {
+              "$ref": "https://schema.giantswarm.io/labelvalue/v0.0.1"
+            }
+          },
+          "title": "Optional service labels",
+          "type": "object"
+        },
+        "port": {
+          "default": "80",
+          "title": "Port",
+          "type": "integer"
+        },
+        "type": {
+          "default": "ClusterIP",
+          "title": "Type",
+          "enum": [
+            "ClusterIP",
+            "NodePort",
+            "LoadBalancer",
+            "ExternalName"
+          ]
+        }
+      },
+      "title": "Service",
+      "type": "object"
+    },
+    "serviceAccount": {
+      "properties": {
+        "annotations": {
+          "patternProperties": {
+            "^[a-zA-Z0-9/-_\\.]+$": {
+              "title": "Annotation value",
+              "type": "string"
+            }
+          },
+          "description": "Annotations to add to the service account.",
+          "title": "annotations",
+          "type": "object"
+        },
+        "automount": {
+          "default": "false",
+          "description": "Automatically mount the service account into the pod.",
+          "title": "Mount automatically",
+          "type": "boolean"
+        },
+        "create": {
+          "default": "true",
+          "description": "Specifies whether a service account should be created",
+          "title": "Create",
+          "type": "boolean"
+        },
+        "name": {
+          "default": "",
+          "description": "The name of the service account to use.\nIf not set and create is true, a name is generated using the fullname template",
+          "title": "Name",
+          "type": "string"
+        }
+      },
+      "description": "Settings related to the service account.",
+      "title": "Service account",
+      "type": "object"
+    },
+    "strategy": {
+      "properties": {
+        "rollingUpdate": {
+          "properties": {
+            "maxSurge": {
+              "default": "1",
+              "title": "Max surge",
+              "type": "integer"
+            },
+            "maxUnavailable": {
+              "default": "1",
+              "title": "Max unavailable",
+              "type": "integer"
+            }
+          },
+          "title": "Rolling update strategy details",
+          "type": "object"
+        },
+        "type": {
+          "default": "RollingUpdate",
+          "title": "Type",
+          "enum": [
+            "Recreate",
+            "RollingUpdate"
+          ]
+        }
+      },
+      "title": "Update strategy",
+      "type": "object"
+    },
+    "tolerations": {
+      "items": {
+        "properties": {
+          "effect": {
+            "description": "Effect of the taint",
+            "type": "string",
+            "enum": [
+              "NoSchedule",
+              "PreferNoSchedule",
+              "NoExecute"
+            ]
+          },
+          "key": {
+            "description": "Key of the taint",
+            "type": "string"
+          },
+          "operator": {
+            "default": "Equal",
+            "description": "Operator of the taint",
+            "type": "string",
+            "enum": [
+              "Exists",
+              "Equal"
+            ]
+          },
+          "value": {
+            "description": "Value of the taint",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "title": "Tolerations",
+      "type": "array"
+    },
+    "topologySpreadConstraints": {
+      "items": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "description": "If specified, this will be injected as the main pod's topologySpreadConstraints spec.",
+      "title": "Topology spread constraints",
+      "type": "array"
+    },
+    "volumeMounts": {
+      "items": {
+        "properties": {
+          "mountPath": {
+            "description": "Path to mount the volume",
+            "type": "string"
+          },
+          "name": {
+            "description": "Name of the volume",
+            "type": "string"
+          },
+          "readOnly": {
+            "description": "Whether the volume is read-only",
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "description": "Additional volumeMounts on the output Deployment definition.",
+      "title": "Volume mounts",
+      "type": "array"
+    },
+    "volumes": {
+      "items": {
+        "properties": {
+          "name": {
+            "description": "Name of the volume",
+            "type": "string"
+          },
+          "secret": {
+            "properties": {
+              "optional": {
+                "description": "Whether the secret is optional",
+                "type": "boolean"
+              },
+              "secretName": {
+                "description": "Name of the secret",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "description": "Additional volumes on the output Deployment definition.",
+      "title": "Volumes",
+      "type": "array"
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object"
+}
