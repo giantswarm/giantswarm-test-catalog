@@ -15407,6 +15407,41 @@ entries:
     version: 10.0.0-0b8bcae7591b2685c50b19d8e50e244f497e9df3
   kyverno:
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/kyverno-0.17.14.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/kyverno-0.17.14.tgz-meta/README.md
+      application.giantswarm.io/team: shield
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/kyverno-0.17.14.tgz-meta/values.schema.json
+      config.giantswarm.io/version: 1.x.x
+    apiVersion: v2
+    appVersion: v1.11.4
+    created: "2024-06-12T16:16:58.146946571Z"
+    dependencies:
+    - name: policy-reporter
+      repository: ""
+      version: 2.21.6
+    - name: kyverno
+      repository: ""
+      version: 3.1.4
+    description: 'Kyverno is a policy engine designed for Kubernetes. It can validate,
+      mutate, and generate configurations using admission controls and background
+      scans. Kyverno policies are Kubernetes resources and do not require learning
+      a new language. '
+    digest: df90512516e325421a6f00f4fa285811695a76b67acbc6030e5f1f3afeeb4f9e
+    home: https://github.com/giantswarm/kyverno-app
+    icon: https://s.giantswarm.io/app-icons/kyverno/1/light.svg
+    keywords:
+    - kubernetes
+    - policy agent
+    - validating webhook
+    - admissions controller
+    name: kyverno
+    sources:
+    - https://github.com/kyverno/kyverno
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/kyverno-0.17.14.tgz
+    version: 0.17.14
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/kyverno-0.17.13-f71f993b456cfc491358cd916770e9d2f439bcfa.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/kyverno-0.17.13-f71f993b456cfc491358cd916770e9d2f439bcfa.tgz-meta/README.md
       application.giantswarm.io/team: shield
@@ -31113,4 +31148,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-0.3.1-038947d0e5bd3c83d8e1fc26555f3f7dbc7cd748.tgz
     version: 0.3.1-038947d0e5bd3c83d8e1fc26555f3f7dbc7cd748
-generated: "2024-06-12T16:15:00.61835435Z"
+generated: "2024-06-12T16:16:58.108829666Z"
