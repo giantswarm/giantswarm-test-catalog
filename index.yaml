@@ -7217,6 +7217,34 @@ entries:
     version: 6.3.0-687e044860e0fb43bfdd3661224f087c6a87d6ab
   grafana:
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/grafana-2.12.0.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/grafana-2.12.0.tgz-meta/README.md
+      application.giantswarm.io/team: atlas
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/grafana-2.12.0.tgz-meta/values.schema.json
+      config.giantswarm.io/version: 1.x.x
+    apiVersion: v2
+    appVersion: 11.0.0
+    created: "2024-06-13T05:24:47.577542582Z"
+    dependencies:
+    - name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: 8.0.2
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: 99aee91cf78894e3524813d5c6b90397485fd6a98b832f7f22190262062bc5a1
+    home: https://github.com/giantswarm/grafana-app
+    icon: https://s.giantswarm.io/app-icons/grafana/1/light.svg
+    kubeVersion: ^1.8.0-0
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: grafana
+    sources:
+    - https://github.com/grafana/helm-charts/tree/main/charts/grafana
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/grafana-2.12.0.tgz
+    version: 2.12.0
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/grafana-2.11.1.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/grafana-2.11.1.tgz-meta/README.md
       application.giantswarm.io/team: atlas
@@ -31519,4 +31547,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-0.3.1-038947d0e5bd3c83d8e1fc26555f3f7dbc7cd748.tgz
     version: 0.3.1-038947d0e5bd3c83d8e1fc26555f3f7dbc7cd748
-generated: "2024-06-13T05:20:48.282263543Z"
+generated: "2024-06-13T05:24:47.57092686Z"
