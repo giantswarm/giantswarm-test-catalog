@@ -27,6 +27,32 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.1.0-86f3a9db85a6017dc1577339f42ed359f96446c7.tgz
     version: 0.1.0-86f3a9db85a6017dc1577339f42ed359f96446c7
+  - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.1.0-1eda157699c31ee23ce6dbe74dcf7a9b61947557.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.1.0-1eda157699c31ee23ce6dbe74dcf7a9b61947557.tgz-meta/README.md
+      application.giantswarm.io/team: atlas
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.1.0-1eda157699c31ee23ce6dbe74dcf7a9b61947557.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: v1.2.0
+    created: "2024-07-08T15:11:05.287165658Z"
+    dependencies:
+    - condition: alloy.enabled
+      name: alloy
+      repository: https://grafana.github.io/helm-charts
+      version: 0.4.0
+    description: Grafana Alloy OpenTelemetry Collector
+    digest: dfb618161bc56b26b22c93618bfc9442b24df5da3d413f4c6a88dbe98f629c09
+    home: https://github.com/giantswarm/alloy-app
+    icon: https://s.giantswarm.io/app-icons/grafana-alloy/1/light.png
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: alloy
+    sources:
+    - https://github.com/grafana/alloy/tree/main/operations/helm/charts/alloy
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.1.0-1eda157699c31ee23ce6dbe74dcf7a9b61947557.tgz
+    version: 0.1.0-1eda157699c31ee23ce6dbe74dcf7a9b61947557
   athena:
   - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/athena-1.12.2.tgz-meta/main.yaml
@@ -22012,4 +22038,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-0.3.1-00187f23027d33e9ecd367f5d65e1872ca07a667.tgz
     version: 0.3.1-00187f23027d33e9ecd367f5d65e1872ca07a667
-generated: "2024-07-08T15:09:46.602832387Z"
+generated: "2024-07-08T15:11:05.284191853Z"
