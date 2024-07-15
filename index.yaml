@@ -13410,6 +13410,37 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/kong-app-3.7.1-55dcd055d2e5cb81100959165066f56c35ff4681.tgz
     version: 3.7.1-55dcd055d2e5cb81100959165066f56c35ff4681
+  - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-3.7.1-2204c08ca39557007d4f743927d6a419a3af34cd.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-3.7.1-2204c08ca39557007d4f743927d6a419a3af34cd.tgz-meta/README.md
+      application.giantswarm.io/team: cabbage
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-3.7.1-2204c08ca39557007d4f743927d6a419a3af34cd.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: 3.6.1.4
+    created: "2024-07-15T10:00:56.157800608Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 11.9.13
+    - name: kubectl-apply-job
+      repository: oci://giantswarmpublic.azurecr.io/giantswarm-playground-catalog
+      version: 0.7.0
+    description: The Cloud-Native Ingress and API-management
+    digest: ea3359ae008016918b5ccf618fa76fed0f11ebd3e9ec45b5ef7d221ad257d80c
+    home: https://github.com/giantswarm/kong-app
+    icon: https://s.giantswarm.io/app-icons/kong/1/light.svg
+    kubeVersion: '>=1.22.0-0'
+    maintainers:
+    - email: team-k8s@konghq.com
+      name: team-k8s-bot
+    name: kong-app
+    sources:
+    - https://github.com/giantswarm/kong-app
+    - https://github.com/Kong/charts/tree/main/charts/kong
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/kong-app-3.7.1-2204c08ca39557007d4f743927d6a419a3af34cd.tgz
+    version: 3.7.1-2204c08ca39557007d4f743927d6a419a3af34cd
   kube-prometheus-stack:
   - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/kube-prometheus-stack-11.0.0.tgz-meta/main.yaml
@@ -24351,4 +24382,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-0.3.1-00187f23027d33e9ecd367f5d65e1872ca07a667.tgz
     version: 0.3.1-00187f23027d33e9ecd367f5d65e1872ca07a667
-generated: "2024-07-15T09:15:23.31317728Z"
+generated: "2024-07-15T10:00:56.141593543Z"
