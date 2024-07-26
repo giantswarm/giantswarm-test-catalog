@@ -2,6 +2,32 @@ apiVersion: v1
 entries:
   alloy:
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.3.1-6a99d1775fb2244112219d7c41053dccc2d9c162.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.3.1-6a99d1775fb2244112219d7c41053dccc2d9c162.tgz-meta/README.md
+      application.giantswarm.io/team: atlas
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.3.1-6a99d1775fb2244112219d7c41053dccc2d9c162.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: v1.2.0
+    created: "2024-07-26T22:59:30.44539878Z"
+    dependencies:
+    - condition: alloy.enabled
+      name: alloy
+      repository: https://grafana.github.io/helm-charts
+      version: 0.5.1
+    description: Grafana Alloy OpenTelemetry Collector
+    digest: a36211fdb54dd3754bf4b16af15038e77331975a80ffa17466e71b178c99c111
+    home: https://github.com/giantswarm/alloy-app
+    icon: https://s.giantswarm.io/app-icons/grafana-alloy/1/light.png
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: alloy
+    sources:
+    - https://github.com/grafana/alloy/tree/main/operations/helm/charts/alloy
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.3.1-6a99d1775fb2244112219d7c41053dccc2d9c162.tgz
+    version: 0.3.1-6a99d1775fb2244112219d7c41053dccc2d9c162
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.3.1-531ea7e79bd93ca24f50ba4315b28baba16c947b.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.3.1-531ea7e79bd93ca24f50ba4315b28baba16c947b.tgz-meta/README.md
       application.giantswarm.io/team: atlas
@@ -35724,4 +35750,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-0.3.1-00187f23027d33e9ecd367f5d65e1872ca07a667.tgz
     version: 0.3.1-00187f23027d33e9ecd367f5d65e1872ca07a667
-generated: "2024-07-26T22:59:27.58164782Z"
+generated: "2024-07-26T22:59:30.441583323Z"
