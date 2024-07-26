@@ -1,0 +1,161 @@
+{
+  "additionalProperties": true,
+  "properties": {
+    "baseDomain": {
+      "default": "",
+      "description": "Defaults to the value configured in the \"giantswarm\" App Catalog.",
+      "title": "baseDomain",
+      "type": "string"
+    },
+    "clusterID": {
+      "default": "",
+      "description": "Defaults to the value configured in the \"giantswarm\" App Catalog.",
+      "title": "clusterID",
+      "type": "string"
+    },
+    "global": {
+      "additionalProperties": true,
+      "properties": {
+        "ingressSLA": {
+          "additionalProperties": false,
+          "properties": {
+            "checkDefaults": {
+              "additionalProperties": false,
+              "properties": {
+                "baseDomain": {
+                  "default": "",
+                  "description": "Default base domain for the ingress, defaults to .baseDomain. Can be\noverwritten in a specific check.",
+                  "title": "baseDomain",
+                  "type": "string"
+                },
+                "blackboxExporter": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "namespaceSelector": {
+                      "additionalProperties": true,
+                      "description": "Namespace selector to select blackbox_exporter Pod(s) as defined in\n`kubectl explain servicemonitor.spec.namespaceSelector`. Can be\noverwritten in a specific check.",
+                      "title": "namespaceSelector",
+                      "type": "object"
+                    },
+                    "selector": {
+                      "additionalProperties": true,
+                      "default": {
+                        "matchLabels": {
+                          "app.kubernetes.io/instance": "CLUSTER_ID-prometheus-blackbox-exporter",
+                          "app.kubernetes.io/name": "prometheus-blackbox-exporter"
+                        }
+                      },
+                      "description": "Selector to select blackbox_exporter Pod(s) as defined in `kubectl\nexplain servicemonitor.spec.selector`. Can be overwritten in a\nspecific check.",
+                      "title": "selector",
+                      "type": "object"
+                    }
+                  },
+                  "title": "blackboxExporter",
+                  "type": "object"
+                },
+                "certManager": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "clusterIssuer": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "name": {
+                          "default": "letsencrypt-giantswarm",
+                          "description": "Name of the ClusterIssuer to be used to generate TLS certificates\nfor the measured Ingress object. Defaults to\n.checkDefaults.certManager.clusterIssuer.name",
+                          "title": "name",
+                          "type": "string"
+                        }
+                      },
+                      "title": "clusterIssuer",
+                      "type": "object",
+                      "required": [
+                        "name"
+                      ]
+                    }
+                  },
+                  "title": "certManager",
+                  "type": "object",
+                  "required": [
+                    "clusterIssuer"
+                  ]
+                }
+              },
+              "description": "SLA checks' defaults.",
+              "title": "checkDefaults",
+              "type": "object",
+              "required": [
+                "baseDomain",
+                "blackboxExporter",
+                "certManager"
+              ]
+            },
+            "checks": {
+              "items": {
+                "properties": {
+                  "baseDomain": {
+                    "description": "Base domain for the ingress, defaults to .checkDefaults.baseDomain.\n",
+                    "type": "string"
+                  },
+                  "blackboxExporter": {
+                    "properties": {
+                      "namespaceSelector": {
+                        "additionalProperties": true,
+                        "description": "Namespace selector to select blackbox_exporter Pod(s) as defined\nin `kubectl explain servicemonitor.spec.namespaceSelector`.\nDefaults to .checkDefaults.blackboxExporter.namespaceSelector.\n",
+                        "type": "object"
+                      },
+                      "selector": {
+                        "additionalProperties": true,
+                        "description": "Selector to select blackbox_exporter Pod(s) as defined in\n`kubectl explain servicemonitor.spec.selector`. Defaults to\n.checkDefaults.blackboxExporter.selector.\n",
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "certManager": {
+                    "properties": {
+                      "clusterIssuer": {
+                        "properties": {
+                          "name": {
+                            "description": "Name of the ClusterIssuer to be used to generate TLS\ncertificates for the measured Ingress object. Defaults to\n.checkDefaults.certManager.clusterIssuer.name",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "ingressClass": {
+                    "description": "Ingress class, subject to SLA.\n",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "description": "SLA checks for ingress classes.",
+              "title": "checks",
+              "type": "array"
+            }
+          },
+          "title": "ingressSLA",
+          "type": "object",
+          "required": [
+            "checkDefaults"
+          ]
+        }
+      },
+      "title": "global",
+      "type": "object",
+      "required": [
+        "ingressSLA"
+      ]
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "clusterID",
+    "baseDomain",
+    "global"
+  ]
+}
