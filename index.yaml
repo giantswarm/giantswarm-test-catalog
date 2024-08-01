@@ -21157,6 +21157,35 @@ entries:
     - https://giantswarm.github.io/giantswarm-test-catalog/tempo-0.1.2-d7a70f84a65905d09cd4334acf494f9956cf2b4c.tgz
     version: 0.1.2-d7a70f84a65905d09cd4334acf494f9956cf2b4c
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/tempo-0.1.2-cee05a284a4bedb307c26688f61823a03b9d99d5.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/tempo-0.1.2-cee05a284a4bedb307c26688f61823a03b9d99d5.tgz-meta/README.md
+      application.giantswarm.io/team: atlas
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/tempo-0.1.2-cee05a284a4bedb307c26688f61823a03b9d99d5.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: 2.2.3
+    created: "2024-08-01T19:07:36.789095869Z"
+    dependencies:
+    - alias: tempo
+      condition: tempo.enabled
+      name: tempo-distributed
+      repository: https://grafana.github.io/helm-charts
+      version: 1.15.4
+    description: Helm chart for Grafana Tempo in microservice mode
+    digest: fe7360063724cc056c5e37921bdd1a66b7ce195a1531e8e981decfacba76f578
+    home: https://github.com/giantswarm/tempo-app
+    icon: https://s.giantswarm.io/app-icons/grafana-tempo/1/light.svg
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: tempo
+    sources:
+    - https://github.com/giantswarm/tempo-app
+    - https://github.com/grafana/helm-charts/blob/main/charts/tempo-distributed
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/tempo-0.1.2-cee05a284a4bedb307c26688f61823a03b9d99d5.tgz
+    version: 0.1.2-cee05a284a4bedb307c26688f61823a03b9d99d5
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/tempo-0.1.2-bfc5b4cf3643bf6aef8485f238ffdadb6e687ce6.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/tempo-0.1.2-bfc5b4cf3643bf6aef8485f238ffdadb6e687ce6.tgz-meta/README.md
       application.giantswarm.io/team: atlas
@@ -22075,4 +22104,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-1.0.0-21b0af457fca705f0e3ab09f836213c46a310043.tgz
     version: 1.0.0-21b0af457fca705f0e3ab09f836213c46a310043
-generated: "2024-08-01T18:11:37.014564235Z"
+generated: "2024-08-01T19:07:36.775111229Z"
