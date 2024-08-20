@@ -2,6 +2,32 @@ apiVersion: v1
 entries:
   alloy:
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.4.1-e6aab58bfc9f13d9b86442cd90c668953d0a87ce.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.4.1-e6aab58bfc9f13d9b86442cd90c668953d0a87ce.tgz-meta/README.md
+      application.giantswarm.io/team: atlas
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.4.1-e6aab58bfc9f13d9b86442cd90c668953d0a87ce.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: v1.3.0
+    created: "2024-08-20T14:40:03.337634976Z"
+    dependencies:
+    - condition: alloy.enabled
+      name: alloy
+      repository: https://grafana.github.io/helm-charts
+      version: 0.6.0
+    description: Grafana Alloy OpenTelemetry Collector
+    digest: 2ab36b24dcc563022eefed5e31e3c3ff41bd78879423e99cf511f558dc4b6c45
+    home: https://github.com/giantswarm/alloy-app
+    icon: https://s.giantswarm.io/app-icons/grafana-alloy/1/light.png
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: alloy
+    sources:
+    - https://github.com/grafana/alloy/tree/main/operations/helm/charts/alloy
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.4.1-e6aab58bfc9f13d9b86442cd90c668953d0a87ce.tgz
+    version: 0.4.1-e6aab58bfc9f13d9b86442cd90c668953d0a87ce
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.4.0.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.4.0.tgz-meta/README.md
       application.giantswarm.io/team: atlas
@@ -36884,4 +36910,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-1.0.0-21b0af457fca705f0e3ab09f836213c46a310043.tgz
     version: 1.0.0-21b0af457fca705f0e3ab09f836213c46a310043
-generated: "2024-08-20T14:39:11.458346694Z"
+generated: "2024-08-20T14:40:03.335177989Z"
