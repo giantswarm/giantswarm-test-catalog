@@ -22875,6 +22875,34 @@ entries:
     - https://giantswarm.github.io/giantswarm-test-catalog/loki-0.22.0-5b532b714056966419c0846bd567f409e4c2adb1.tgz
     version: 0.22.0-5b532b714056966419c0846bd567f409e4c2adb1
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/loki-0.22.0-5adac512f3389e2fcee99bb8ddf66b0adc2da15e.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/loki-0.22.0-5adac512f3389e2fcee99bb8ddf66b0adc2da15e.tgz-meta/README.md
+      application.giantswarm.io/team: atlas
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/loki-0.22.0-5adac512f3389e2fcee99bb8ddf66b0adc2da15e.tgz-meta/values.schema.json
+      ui.giantswarm.io/logo: https://s.giantswarm.io/app-icons/grafana-loki/2/dark.svg
+    apiVersion: v2
+    appVersion: 3.1.0
+    created: "2024-09-04T06:26:20.847155527Z"
+    dependencies:
+    - condition: loki.enabled
+      name: loki
+      repository: https://grafana.github.io/helm-charts
+      version: 6.10.0
+    description: Helm chart for Grafana Loki in simple, scalable mode
+    digest: 7153cbd7129d5fd5a0ef1f64f3f68478c443f2f12165e46dfd9a18e45bc5d75d
+    home: https://github.com/giantswarm/loki-app
+    icon: https://s.giantswarm.io/app-icons/loki-stack/1/dark.svg
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: loki
+    sources:
+    - https://github.com/giantswarm/loki-app
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/loki-0.22.0-5adac512f3389e2fcee99bb8ddf66b0adc2da15e.tgz
+    version: 0.22.0-5adac512f3389e2fcee99bb8ddf66b0adc2da15e
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/loki-0.22.0-576413900f206ed5298147713655b6cc86fa2a1c.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/loki-0.22.0-576413900f206ed5298147713655b6cc86fa2a1c.tgz-meta/README.md
       application.giantswarm.io/team: atlas
@@ -35195,4 +35223,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-1.1.0-0434cf7dbec792da0c307e2ac0cb552e9bea39d5.tgz
     version: 1.1.0-0434cf7dbec792da0c307e2ac0cb552e9bea39d5
-generated: "2024-09-04T06:26:16.560184995Z"
+generated: "2024-09-04T06:26:20.825541725Z"
