@@ -6366,6 +6366,34 @@ entries:
     version: 6.3.0-1306859001cea30d94adc31f7b7772686641e85b
   grafana:
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/grafana-2.16.0.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/grafana-2.16.0.tgz-meta/README.md
+      application.giantswarm.io/team: atlas
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/grafana-2.16.0.tgz-meta/values.schema.json
+      config.giantswarm.io/version: 1.x.x
+    apiVersion: v2
+    appVersion: 11.2.1
+    created: "2024-10-07T12:27:09.018851075Z"
+    dependencies:
+    - name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: 8.5.2
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: 38d3a38cff1dd06674cb775958961b592d654be7e770dd936d3170829fe8ea50
+    home: https://github.com/giantswarm/grafana-app
+    icon: https://s.giantswarm.io/app-icons/grafana/1/light.svg
+    kubeVersion: ^1.8.0-0
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: grafana
+    sources:
+    - https://github.com/grafana/helm-charts/tree/main/charts/grafana
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/grafana-2.16.0.tgz
+    version: 2.16.0
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/grafana-2.15.0-e1ca268cbe1323346a1c2055316b4e98b2ae8041.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/grafana-2.15.0-e1ca268cbe1323346a1c2055316b4e98b2ae8041.tgz-meta/README.md
       application.giantswarm.io/team: atlas
@@ -18192,4 +18220,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-1.1.0-0434cf7dbec792da0c307e2ac0cb552e9bea39d5.tgz
     version: 1.1.0-0434cf7dbec792da0c307e2ac0cb552e9bea39d5
-generated: "2024-10-07T12:12:28.860321256Z"
+generated: "2024-10-07T12:27:09.008220613Z"
