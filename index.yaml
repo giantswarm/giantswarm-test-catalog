@@ -5441,6 +5441,30 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-3.1.0-377fdecb64502a97b5b9abb0f4a4c756742a4fd2.tgz
     version: 3.1.0-377fdecb64502a97b5b9abb0f4a4c756742a4fd2
+  - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-0.0.0-28e0110fd7ea7d87961eda1404807bd496e88acb.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-0.0.0-28e0110fd7ea7d87961eda1404807bd496e88acb.tgz-meta/README.md
+      application.giantswarm.io/team: team-cabbage
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-0.0.0-28e0110fd7ea7d87961eda1404807bd496e88acb.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: v0.11.0
+    created: "2024-10-08T10:14:00.752956508Z"
+    dependencies:
+    - condition: crd.install
+      name: crd
+      repository: ""
+      version: 0.1.0
+    description: Configure external DNS servers for Kubernetes Ingresses and Services
+    digest: 8a16a1f839c260bd1367caf497d6a840b7b7a7121ee58a423a0a8ff073691eab
+    home: https://github.com/giantswarm/external-dns-app
+    icon: https://s.giantswarm.io/app-icons/external-dns/1/dark.png
+    kubeVersion: '>=1.19.0-0'
+    name: external-dns-app
+    sources:
+    - https://github.com/kubernetes-sigs/external-dns
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-0.0.0-28e0110fd7ea7d87961eda1404807bd496e88acb.tgz
+    version: 0.0.0-28e0110fd7ea7d87961eda1404807bd496e88acb
   external-secrets:
   - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.10.0-f4788256838bf4d9595d8fd28eaf605b7fae4edd.tgz-meta/main.yaml
@@ -19438,4 +19462,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-0.0.0-4d82932ea2189fb1a023db8c47d5310f3205f522.tgz
     version: 0.0.0-4d82932ea2189fb1a023db8c47d5310f3205f522
-generated: "2024-10-08T10:12:31.175909267Z"
+generated: "2024-10-08T10:14:00.750368974Z"
