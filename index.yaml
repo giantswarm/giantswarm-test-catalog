@@ -1327,6 +1327,32 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.4.1-397f6039e5271f8dd31852d9c35ec55110a81b78.tgz
     version: 0.4.1-397f6039e5271f8dd31852d9c35ec55110a81b78
+  - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.0.0-84efc1cee60caa70adfe6c66fb353c9ecf449d81.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.0.0-84efc1cee60caa70adfe6c66fb353c9ecf449d81.tgz-meta/README.md
+      application.giantswarm.io/team: atlas
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.0.0-84efc1cee60caa70adfe6c66fb353c9ecf449d81.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: v1.3.1
+    created: "2024-10-08T10:27:13.104153249Z"
+    dependencies:
+    - condition: alloy.enabled
+      name: alloy
+      repository: https://grafana.github.io/helm-charts
+      version: 0.9.1
+    description: Grafana Alloy OpenTelemetry Collector
+    digest: fe3c4de61ac697babbd214d1cff59e501585d6b265aceb0268998ee8ffdae4bb
+    home: https://github.com/giantswarm/alloy-app
+    icon: https://s.giantswarm.io/app-icons/grafana-alloy/1/light.png
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: alloy
+    sources:
+    - https://github.com/grafana/alloy/tree/main/operations/helm/charts/alloy
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.0.0-84efc1cee60caa70adfe6c66fb353c9ecf449d81.tgz
+    version: 0.0.0-84efc1cee60caa70adfe6c66fb353c9ecf449d81
   athena:
   - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/athena-1.12.4-faf56cd9afbca7a0c6180637948e8165772d3f2e.tgz-meta/main.yaml
@@ -19734,4 +19760,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-0.0.0-4d82932ea2189fb1a023db8c47d5310f3205f522.tgz
     version: 0.0.0-4d82932ea2189fb1a023db8c47d5310f3205f522
-generated: "2024-10-08T10:25:47.444700443Z"
+generated: "2024-10-08T10:27:13.101675806Z"
