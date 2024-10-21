@@ -2,6 +2,32 @@ apiVersion: v1
 entries:
   alloy:
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.6.1-e1d812a760a4ce772b579ef27a04bd0f21e5b4b5.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.6.1-e1d812a760a4ce772b579ef27a04bd0f21e5b4b5.tgz-meta/README.md
+      application.giantswarm.io/team: atlas
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.6.1-e1d812a760a4ce772b579ef27a04bd0f21e5b4b5.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: v1.4.3
+    created: "2024-10-21T07:41:26.917693964Z"
+    dependencies:
+    - condition: alloy.enabled
+      name: alloy
+      repository: https://grafana.github.io/helm-charts
+      version: 0.9.2
+    description: Grafana Alloy OpenTelemetry Collector
+    digest: 7a1177dfbac7869cfff17f57bd9e6d0db9df08bdb8adef65e336620f7ace8f4c
+    home: https://github.com/giantswarm/alloy-app
+    icon: https://s.giantswarm.io/app-icons/grafana-alloy/1/light.png
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: alloy
+    sources:
+    - https://github.com/grafana/alloy/tree/main/operations/helm/charts/alloy
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.6.1-e1d812a760a4ce772b579ef27a04bd0f21e5b4b5.tgz
+    version: 0.6.1-e1d812a760a4ce772b579ef27a04bd0f21e5b4b5
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.6.1-d94efea3021c13056e8e30ffa1dc7ab1dc7c278f.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.6.1-d94efea3021c13056e8e30ffa1dc7ab1dc7c278f.tgz-meta/README.md
       application.giantswarm.io/team: atlas
@@ -28329,4 +28355,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-0.0.0-0b141fee021e1ccb5c4b25af6b43fe4fc866a0f1.tgz
     version: 0.0.0-0b141fee021e1ccb5c4b25af6b43fe4fc866a0f1
-generated: "2024-10-21T07:40:21.764302702Z"
+generated: "2024-10-21T07:41:26.915131092Z"
