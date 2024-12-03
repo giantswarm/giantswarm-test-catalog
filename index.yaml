@@ -504,6 +504,40 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.8.1-388162cd5413d6ad386ab8caafe00a15f7cba4e1.tgz
     version: 3.8.1-388162cd5413d6ad386ab8caafe00a15f7cba4e1
+  - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.8.1-233a93c824819e3a2c7adb0dc6cb54896b96bd67.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.8.1-233a93c824819e3a2c7adb0dc6cb54896b96bd67.tgz-meta/README.md
+      application.giantswarm.io/team: shield
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.8.1-233a93c824819e3a2c7adb0dc6cb54896b96bd67.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: v1.14.2
+    created: "2024-12-03T12:55:59.274629134Z"
+    dependencies:
+    - alias: giantSwarmClusterIssuer
+      name: cert-manager-giantswarm-clusterissuer
+      repository: ""
+      version: 2.0.0
+    - condition: giantswarmNetworkPolicy.enabled
+      name: cert-manager-giantswarm-netpol
+      repository: ""
+      version: 0.1.0
+    - condition: ciliumNetworkPolicy.enabled
+      name: cert-manager-giantswarm-ciliumnetworkpolicies
+      repository: ""
+      version: 0.1.0
+    description: Simplifies the process of obtaining, renewing and using certificates.
+    digest: 273308a0c219291681fc5f9a4b30d8913915942f16a9d59d05d27c654357dab4
+    home: https://github.com/giantswarm/cert-manager-app
+    icon: https://s.giantswarm.io/app-icons/cert-manager/1/light.svg
+    kubeVersion: '>=1.22.0-0'
+    maintainers:
+    - name: Shield
+    name: cert-manager-app
+    sources:
+    - https://github.com/cert-manager/cert-manager
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.8.1-233a93c824819e3a2c7adb0dc6cb54896b96bd67.tgz
+    version: 3.8.1-233a93c824819e3a2c7adb0dc6cb54896b96bd67
   coredns-app:
   - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/coredns-app-1.23.0-fc27bd8da434b9277540bc787c4e6ccc49c054f7.tgz-meta/main.yaml
@@ -7954,4 +7988,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.0.0-9afe78380a7b5315ff0f2c37eb29bb4c27eb545d.tgz
     version: 2.0.0-9afe78380a7b5315ff0f2c37eb29bb4c27eb545d
-generated: "2024-12-03T12:55:26.606429324Z"
+generated: "2024-12-03T12:55:59.267850475Z"
