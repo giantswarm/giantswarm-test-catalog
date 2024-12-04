@@ -1659,6 +1659,31 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/exception-recommender-0.1.1-7405fd41c3d28d0f8406ccdd1a58af4c6d45fea5.tgz
     version: 0.1.1-7405fd41c3d28d0f8406ccdd1a58af4c6d45fea5
+  external-dns-app:
+  - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-3.1.0-434cc16ab67ec765a70d46cdc3f8985b8928550c.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-3.1.0-434cc16ab67ec765a70d46cdc3f8985b8928550c.tgz-meta/README.md
+      application.giantswarm.io/team: team-cabbage
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-3.1.0-434cc16ab67ec765a70d46cdc3f8985b8928550c.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: v0.11.0
+    created: "2024-12-04T14:50:57.304276816Z"
+    dependencies:
+    - condition: crd.install
+      name: crd
+      repository: ""
+      version: 0.1.0
+    description: Configure external DNS servers for Kubernetes Ingresses and Services
+    digest: 9f33d5e49a5580d3dac747d04d7ce807f4101198c00ede11e70694a854793bee
+    home: https://github.com/giantswarm/external-dns-app
+    icon: https://s.giantswarm.io/app-icons/external-dns/1/dark.png
+    kubeVersion: '>=1.19.0-0'
+    name: external-dns-app
+    sources:
+    - https://github.com/kubernetes-sigs/external-dns
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-3.1.0-434cc16ab67ec765a70d46cdc3f8985b8928550c.tgz
+    version: 3.1.0-434cc16ab67ec765a70d46cdc3f8985b8928550c
   external-secrets:
   - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.11.1-a8df23c838530af8d229c126f8896701a2c5ebbb.tgz-meta/main.yaml
@@ -8656,4 +8681,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.0.0-9afe78380a7b5315ff0f2c37eb29bb4c27eb545d.tgz
     version: 2.0.0-9afe78380a7b5315ff0f2c37eb29bb4c27eb545d
-generated: "2024-12-04T14:45:15.229671801Z"
+generated: "2024-12-04T14:50:57.302666447Z"
