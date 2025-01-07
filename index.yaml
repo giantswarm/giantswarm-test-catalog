@@ -2,6 +2,32 @@ apiVersion: v1
 entries:
   alloy:
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.7.0-ec5a50dc496fe319034003f0b4b3934623353f7e.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.7.0-ec5a50dc496fe319034003f0b4b3934623353f7e.tgz-meta/README.md
+      application.giantswarm.io/team: atlas
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.7.0-ec5a50dc496fe319034003f0b4b3934623353f7e.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: v1.5.1
+    created: "2025-01-07T12:36:26.395856163Z"
+    dependencies:
+    - condition: alloy.enabled
+      name: alloy
+      repository: https://grafana.github.io/helm-charts
+      version: 0.10.1
+    description: Grafana Alloy OpenTelemetry Collector
+    digest: 0ae51523ef58d3cb0286bba828b46dbd2c25d444c5218fbdf6e0cebab72e2e22
+    home: https://github.com/giantswarm/alloy-app
+    icon: https://s.giantswarm.io/app-icons/grafana-alloy/1/light.png
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: alloy
+    sources:
+    - https://github.com/grafana/alloy/tree/main/operations/helm/charts/alloy
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.7.0-ec5a50dc496fe319034003f0b4b3934623353f7e.tgz
+    version: 0.7.0-ec5a50dc496fe319034003f0b4b3934623353f7e
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.7.0-e8415bcfb991fb8a77febdd25d250e486d95522f.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.7.0-e8415bcfb991fb8a77febdd25d250e486d95522f.tgz-meta/README.md
       application.giantswarm.io/team: atlas
@@ -11390,4 +11416,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.0.1-37dfc3bdac4ec554d9531b63f9fcad145a224b5a.tgz
     version: 2.0.1-37dfc3bdac4ec554d9531b63f9fcad145a224b5a
-generated: "2025-01-07T12:05:05.829723108Z"
+generated: "2025-01-07T12:36:26.393382165Z"
