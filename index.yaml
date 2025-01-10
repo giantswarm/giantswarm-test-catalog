@@ -3301,6 +3301,30 @@ entries:
     - https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-3.1.0-7e08f5db17a5c060ea3b50a84a02372b244711d9.tgz
     version: 3.1.0-7e08f5db17a5c060ea3b50a84a02372b244711d9
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-3.1.0-64455de427808f12004eaba85a4e969c933399c9.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-3.1.0-64455de427808f12004eaba85a4e969c933399c9.tgz-meta/README.md
+      application.giantswarm.io/team: team-cabbage
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-3.1.0-64455de427808f12004eaba85a4e969c933399c9.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: v0.11.0
+    created: "2025-01-10T14:15:10.823298483Z"
+    dependencies:
+    - condition: crd.install
+      name: crd
+      repository: ""
+      version: 0.1.0
+    description: Configure external DNS servers for Kubernetes Ingresses and Services
+    digest: 06e2ba087d1ceaa1315021871ada3461e5ce2b586fab2caec59beabbf32a2125
+    home: https://github.com/giantswarm/external-dns-app
+    icon: https://s.giantswarm.io/app-icons/external-dns/1/dark.png
+    kubeVersion: '>=1.19.0-0'
+    name: external-dns-app
+    sources:
+    - https://github.com/kubernetes-sigs/external-dns
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-3.1.0-64455de427808f12004eaba85a4e969c933399c9.tgz
+    version: 3.1.0-64455de427808f12004eaba85a4e969c933399c9
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-3.1.0-434cc16ab67ec765a70d46cdc3f8985b8928550c.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-3.1.0-434cc16ab67ec765a70d46cdc3f8985b8928550c.tgz-meta/README.md
       application.giantswarm.io/team: team-cabbage
@@ -14710,4 +14734,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.0.1-0e14abfd878d83639c1853526778e188e9110c5d.tgz
     version: 2.0.1-0e14abfd878d83639c1853526778e188e9110c5d
-generated: "2025-01-10T14:14:55.765884232Z"
+generated: "2025-01-10T14:15:10.821127061Z"
