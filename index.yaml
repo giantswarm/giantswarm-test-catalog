@@ -10210,6 +10210,37 @@ entries:
     - https://giantswarm.github.io/giantswarm-test-catalog/kong-app-4.4.0-8e478eab735ccf4b212dc264dccf90f60ba8cb7f.tgz
     version: 4.4.0-8e478eab735ccf4b212dc264dccf90f60ba8cb7f
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-4.4.0-7ac879bafacf758a7d5cc59c5b6b2a1b2fa6646a.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-4.4.0-7ac879bafacf758a7d5cc59c5b6b2a1b2fa6646a.tgz-meta/README.md
+      application.giantswarm.io/team: cabbage
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-4.4.0-7ac879bafacf758a7d5cc59c5b6b2a1b2fa6646a.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: 3.7.1.2
+    created: "2025-01-23T13:56:48.311197828Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 11.9.13
+    - name: kubectl-apply-job
+      repository: oci://giantswarmpublic.azurecr.io/giantswarm-playground-catalog
+      version: 0.8.0
+    description: The Cloud-Native Ingress and API-management
+    digest: 6b48ad1a78a8ff05c12ab76ea56eb1daac3313c964e2a5e6b7915793b5149508
+    home: https://github.com/giantswarm/kong-app
+    icon: https://s.giantswarm.io/app-icons/kong/1/light.svg
+    kubeVersion: '>=1.22.0-0'
+    maintainers:
+    - email: team-k8s@konghq.com
+      name: team-k8s-bot
+    name: kong-app
+    sources:
+    - https://github.com/giantswarm/kong-app
+    - https://github.com/Kong/charts/tree/main/charts/kong
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/kong-app-4.4.0-7ac879bafacf758a7d5cc59c5b6b2a1b2fa6646a.tgz
+    version: 4.4.0-7ac879bafacf758a7d5cc59c5b6b2a1b2fa6646a
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-4.4.0-780b97d85bd621cd5f3e9f73aebd0f0fa3fe4359.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-4.4.0-780b97d85bd621cd5f3e9f73aebd0f0fa3fe4359.tgz-meta/README.md
       application.giantswarm.io/team: cabbage
@@ -19035,4 +19066,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.0.1-0e14abfd878d83639c1853526778e188e9110c5d.tgz
     version: 2.0.1-0e14abfd878d83639c1853526778e188e9110c5d
-generated: "2025-01-23T13:55:47.068640852Z"
+generated: "2025-01-23T13:56:48.298650288Z"
