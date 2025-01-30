@@ -1,0 +1,34 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "gateway": {
+            "type": "object",
+            "properties": {
+                "class": {
+                    "type": "string"
+                },
+                "host": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "gatewayClass": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "overrideExternalDnsHostname": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
