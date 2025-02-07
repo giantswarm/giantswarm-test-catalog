@@ -1,0 +1,110 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "baseDomain": {
+            "type": "string"
+        },
+        "gatewayClasses": {
+            "type": "object",
+            "properties": {
+                "giantswarm-default": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "name": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "gateways": {
+            "type": "object",
+            "properties": {
+                "giantswarm-default": {
+                    "type": "object",
+                    "properties": {
+                        "certificate": {
+                            "type": "object",
+                            "properties": {
+                                "enabled": {
+                                    "type": "boolean"
+                                }
+                            }
+                        },
+                        "className": {
+                            "type": "string"
+                        },
+                        "dnsName": {
+                            "type": "string"
+                        },
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "listeners": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "allowedRoutes": {
+                                        "type": "object",
+                                        "properties": {
+                                            "namespaces": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "from": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "port": {
+                                        "type": "integer"
+                                    },
+                                    "protocol": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "service": {
+                            "type": "object",
+                            "properties": {
+                                "annotations": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "tlsIssuer": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                },
+                                "enabled": {
+                                    "type": "boolean"
+                                },
+                                "gateway": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
