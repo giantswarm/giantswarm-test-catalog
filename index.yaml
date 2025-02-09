@@ -4507,6 +4507,33 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.11.1-21d0a23fb0eeb239dcd4df596401f357bb5da2db.tgz
     version: 0.11.1-21d0a23fb0eeb239dcd4df596401f357bb5da2db
+  - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.11.1-054ad637b934130442154e22a2fd83cb45d14ce1.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.11.1-054ad637b934130442154e22a2fd83cb45d14ce1.tgz-meta/README.md
+      application.giantswarm.io/team: honeybadger
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.11.1-054ad637b934130442154e22a2fd83cb45d14ce1.tgz-meta/values.schema.json
+      config.giantswarm.io/version: 1.x.x
+    apiVersion: v2
+    appVersion: v0.14.1
+    created: "2025-02-09T13:16:55.089022789Z"
+    dependencies:
+    - condition: bitwarden-sdk-server.enabled
+      name: bitwarden-sdk-server
+      repository: oci://ghcr.io/external-secrets/charts
+      version: v0.3.1
+    description: External secret management for Kubernetes
+    digest: f598c1aca97712d58cf54cea5ddb73b46f4bcca60b95f862fa0ba16af334764a
+    home: https://github.com/giantswarm/external-secrets
+    icon: https://s.giantswarm.io/app-icons/external-secrets/1/light.svg
+    keywords:
+    - kubernetes-external-secrets
+    - secrets
+    kubeVersion: '>= 1.19.0-0'
+    name: external-secrets
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.11.1-054ad637b934130442154e22a2fd83cb45d14ce1.tgz
+    version: 0.11.1-054ad637b934130442154e22a2fd83cb45d14ce1
   falco:
   - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/falco-0.10.0-bdbbe7e2b59c16de03f0f102fda5c245b196d82c.tgz-meta/main.yaml
@@ -17124,4 +17151,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.0.1-0e14abfd878d83639c1853526778e188e9110c5d.tgz
     version: 2.0.1-0e14abfd878d83639c1853526778e188e9110c5d
-generated: "2025-02-08T10:43:47.430040727Z"
+generated: "2025-02-09T13:16:55.083341883Z"
