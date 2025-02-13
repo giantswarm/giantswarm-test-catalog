@@ -261,6 +261,32 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.7.0-353e37dafdb49616120f46140b399dfab52f5b23.tgz
     version: 0.7.0-353e37dafdb49616120f46140b399dfab52f5b23
+  - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.7.0-1213d1385373e50106ed8c3568713a3081e35cdc.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.7.0-1213d1385373e50106ed8c3568713a3081e35cdc.tgz-meta/README.md
+      application.giantswarm.io/team: atlas
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.7.0-1213d1385373e50106ed8c3568713a3081e35cdc.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: v1.5.1
+    created: "2025-02-13T14:34:16.949753369Z"
+    dependencies:
+    - condition: alloy.enabled
+      name: alloy
+      repository: https://grafana.github.io/helm-charts
+      version: 0.10.1
+    description: Grafana Alloy OpenTelemetry Collector
+    digest: e36935995ea2b29714029ef4efaee03c78ef6d33a7c5ffe90356746bde28f3f8
+    home: https://github.com/giantswarm/alloy-app
+    icon: https://s.giantswarm.io/app-icons/grafana-alloy/1/light.png
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: alloy
+    sources:
+    - https://github.com/grafana/alloy/tree/main/operations/helm/charts/alloy
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.7.0-1213d1385373e50106ed8c3568713a3081e35cdc.tgz
+    version: 0.7.0-1213d1385373e50106ed8c3568713a3081e35cdc
   athena:
   - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/athena-1.13.0-bd2ab7fa2630cae7fdec10c67061829f432bfc6b.tgz-meta/main.yaml
@@ -19090,4 +19116,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.0.1-0e14abfd878d83639c1853526778e188e9110c5d.tgz
     version: 2.0.1-0e14abfd878d83639c1853526778e188e9110c5d
-generated: "2025-02-13T14:31:47.506578608Z"
+generated: "2025-02-13T14:34:16.944710628Z"
