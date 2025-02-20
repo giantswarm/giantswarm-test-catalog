@@ -1,0 +1,77 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "amiOwner": {
+            "type": "integer"
+        },
+        "baseOS": {
+            "type": "string"
+        },
+        "clusterName": {
+            "type": "string"
+        },
+        "clusterRegion": {
+            "type": "string"
+        },
+        "k8sVersion": {
+            "type": "string"
+        },
+        "nodePools": {
+            "type": "object",
+            "properties": {
+                "def00": {
+                    "type": "object",
+                    "properties": {
+                        "amiId": {
+                            "type": "string"
+                        },
+                        "libVolumeSizeGB": {
+                            "type": "integer"
+                        },
+                        "limits": {
+                            "type": "object",
+                            "properties": {
+                                "cpu": {
+                                    "type": "string"
+                                },
+                                "memory": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "logVolumeSizeGB": {
+                            "type": "integer"
+                        },
+                        "requirements": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "key": {
+                                        "type": "string"
+                                    },
+                                    "operator": {
+                                        "type": "string"
+                                    },
+                                    "values": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "rootVolumeSizeGB": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
+        },
+        "toolingVersion": {
+            "type": "string"
+        }
+    }
+}
