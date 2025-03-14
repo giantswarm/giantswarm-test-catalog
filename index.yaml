@@ -2609,6 +2609,30 @@ entries:
     version: 0.2.0-0d8368ac611488aefef96a731725b98203ab1dd5
   external-dns-app:
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-3.2.0-4041d89283ff3ef838053d8239fd68b0dfec59cb.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-3.2.0-4041d89283ff3ef838053d8239fd68b0dfec59cb.tgz-meta/README.md
+      application.giantswarm.io/team: team-cabbage
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-3.2.0-4041d89283ff3ef838053d8239fd68b0dfec59cb.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: v0.11.0
+    created: "2025-03-14T17:14:20.739277035Z"
+    dependencies:
+    - condition: crd.install
+      name: crd
+      repository: ""
+      version: 0.1.0
+    description: Configure external DNS servers for Kubernetes Ingresses and Services
+    digest: 1707d8fe6e2441533aab34b8bc75bd7abaf93814f40bd2e0e8e2dbe8d1857ba4
+    home: https://github.com/giantswarm/external-dns-app
+    icon: https://s.giantswarm.io/app-icons/external-dns/1/dark.png
+    kubeVersion: '>=1.19.0-0'
+    name: external-dns-app
+    sources:
+    - https://github.com/kubernetes-sigs/external-dns
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-3.2.0-4041d89283ff3ef838053d8239fd68b0dfec59cb.tgz
+    version: 3.2.0-4041d89283ff3ef838053d8239fd68b0dfec59cb
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-3.1.0-68f6ffd9d56677a4f033b9949ca37949cfd6d47a.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-3.1.0-68f6ffd9d56677a4f033b9949ca37949cfd6d47a.tgz-meta/README.md
       application.giantswarm.io/team: team-cabbage
@@ -17932,4 +17956,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.0.1-530099f07db0005f253773dfcc50bfd884c373ed.tgz
     version: 2.0.1-530099f07db0005f253773dfcc50bfd884c373ed
-generated: "2025-03-14T17:10:30.366745494Z"
+generated: "2025-03-14T17:14:20.737616652Z"
