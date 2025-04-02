@@ -6984,6 +6984,38 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/kong-app-4.5.1-30d93fb0832d1a03fe25b521c029c33a9c8de0fd.tgz
     version: 4.5.1-30d93fb0832d1a03fe25b521c029c33a9c8de0fd
+  - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-4.5.1-1bb14669741c2d819e61dc13c6e2d54b0703f3a5.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-4.5.1-1bb14669741c2d819e61dc13c6e2d54b0703f3a5.tgz-meta/README.md
+      application.giantswarm.io/team: cabbage
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-4.5.1-1bb14669741c2d819e61dc13c6e2d54b0703f3a5.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: 3.8.0
+    created: "2025-04-02T15:29:48.403857127Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 11.9.13
+    - condition: ingressController.enabled
+      name: kubectl-apply-job
+      repository: oci://giantswarmpublic.azurecr.io/giantswarm-playground-catalog
+      version: 0.9.1
+    description: The Cloud-Native Ingress and API-management
+    digest: 9ae452ddb522988d25c4b7e5b4aebf584e8a9d8ff322f3d68c6e601df6a46db3
+    home: https://github.com/giantswarm/kong-app
+    icon: https://s.giantswarm.io/app-icons/kong/1/light.svg
+    kubeVersion: '>=1.26.0-0'
+    maintainers:
+    - email: team-k8s@konghq.com
+      name: team-k8s-bot
+    name: kong-app
+    sources:
+    - https://github.com/giantswarm/kong-app
+    - https://github.com/Kong/charts/tree/main/charts/kong
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/kong-app-4.5.1-1bb14669741c2d819e61dc13c6e2d54b0703f3a5.tgz
+    version: 4.5.1-1bb14669741c2d819e61dc13c6e2d54b0703f3a5
   kratix:
   - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/kratix-0.1.0-df09bf55cf6c9f2a35b8a40974517e6c54e880bf.tgz-meta/main.yaml
@@ -12044,4 +12076,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.0.1-2a126f1727f7450d2620269c928e97fcb983ac81.tgz
     version: 2.0.1-2a126f1727f7450d2620269c928e97fcb983ac81
-generated: "2025-04-02T15:00:39.860758313Z"
+generated: "2025-04-02T15:29:48.393618561Z"
