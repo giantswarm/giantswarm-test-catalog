@@ -2,6 +2,32 @@ apiVersion: v1
 entries:
   alloy:
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.9.0-d8b8d14cedaa55af1b67dc8ea70ab6fb43abbad4.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.9.0-d8b8d14cedaa55af1b67dc8ea70ab6fb43abbad4.tgz-meta/README.md
+      application.giantswarm.io/team: atlas
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.9.0-d8b8d14cedaa55af1b67dc8ea70ab6fb43abbad4.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: v1.7.4
+    created: "2025-04-11T14:26:24.327946511Z"
+    dependencies:
+    - condition: alloy.enabled
+      name: alloy
+      repository: https://grafana.github.io/helm-charts
+      version: 1.0.1
+    description: Grafana Alloy OpenTelemetry Collector
+    digest: 83f84d4fad712883e097644a69c0ba4b2c09b864b776a3f0f3f5ee34b8a77314
+    home: https://github.com/giantswarm/alloy-app
+    icon: https://s.giantswarm.io/app-icons/grafana-alloy/1/light.png
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: alloy
+    sources:
+    - https://github.com/grafana/alloy/tree/main/operations/helm/charts/alloy
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.9.0-d8b8d14cedaa55af1b67dc8ea70ab6fb43abbad4.tgz
+    version: 0.9.0-d8b8d14cedaa55af1b67dc8ea70ab6fb43abbad4
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.9.0-d3e7999d5705b9688c99d0df0ae226379822e87b.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.9.0-d3e7999d5705b9688c99d0df0ae226379822e87b.tgz-meta/README.md
       application.giantswarm.io/team: atlas
@@ -17356,4 +17382,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.0.1-2a126f1727f7450d2620269c928e97fcb983ac81.tgz
     version: 2.0.1-2a126f1727f7450d2620269c928e97fcb983ac81
-generated: "2025-04-11T13:52:58.830619416Z"
+generated: "2025-04-11T14:26:24.323636251Z"
