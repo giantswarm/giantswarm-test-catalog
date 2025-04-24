@@ -314,6 +314,32 @@ entries:
     - https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.9.0-628966e076096e8ac8d72fa1cf82a5ce630e1f72.tgz
     version: 0.9.0-628966e076096e8ac8d72fa1cf82a5ce630e1f72
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.9.0-52e1897a3f1f60834f10fd9cb153ccd837b393f0.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.9.0-52e1897a3f1f60834f10fd9cb153ccd837b393f0.tgz-meta/README.md
+      application.giantswarm.io/team: atlas
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.9.0-52e1897a3f1f60834f10fd9cb153ccd837b393f0.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: v1.8.2
+    created: "2025-04-24T12:16:41.136377594Z"
+    dependencies:
+    - condition: alloy.enabled
+      name: alloy
+      repository: https://grafana.github.io/helm-charts
+      version: 1.0.2
+    description: Grafana Alloy OpenTelemetry Collector
+    digest: 79bcf287141fb905f5b4df68341c5e3d3146b820a102271622df3c879d4b4ba4
+    home: https://github.com/giantswarm/alloy-app
+    icon: https://s.giantswarm.io/app-icons/grafana-alloy/1/light.png
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: alloy
+    sources:
+    - https://github.com/grafana/alloy/tree/main/operations/helm/charts/alloy
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.9.0-52e1897a3f1f60834f10fd9cb153ccd837b393f0.tgz
+    version: 0.9.0-52e1897a3f1f60834f10fd9cb153ccd837b393f0
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.9.0-4fd62c1d435c4ceb6b2e603e34866887b6a1e6d3.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/alloy-0.9.0-4fd62c1d435c4ceb6b2e603e34866887b6a1e6d3.tgz-meta/README.md
       application.giantswarm.io/team: atlas
@@ -20534,4 +20560,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.0.1-2a126f1727f7450d2620269c928e97fcb983ac81.tgz
     version: 2.0.1-2a126f1727f7450d2620269c928e97fcb983ac81
-generated: "2025-04-24T12:15:29.363956332Z"
+generated: "2025-04-24T12:16:41.132734476Z"
