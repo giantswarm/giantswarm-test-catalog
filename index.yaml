@@ -6504,6 +6504,46 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/falco-0.10.0-1ef881f7e4d4990688b08cc65611f8451f4ce0cc.tgz
     version: 0.10.0-1ef881f7e4d4990688b08cc65611f8451f4ce0cc
+  - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/falco-0.10.0-12d957a0309424d6ad80481487f4e76868737b38.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/falco-0.10.0-12d957a0309424d6ad80481487f4e76868737b38.tgz-meta/README.md
+      application.giantswarm.io/team: shield
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/falco-0.10.0-12d957a0309424d6ad80481487f4e76868737b38.tgz-meta/values.schema.json
+      config.giantswarm.io/version: 1.x.x
+      ui.giantswarm.io/logo: https://s.giantswarm.io/app-icons/falco/2/logo_dark.svg
+    apiVersion: v2
+    appVersion: 0.40.0
+    created: "2025-04-30T14:38:55.587983114Z"
+    dependencies:
+    - condition: falco.enabled
+      name: falco
+      repository: ""
+      version: 4.19.0
+    - condition: falco-exporter.enabled
+      name: falco-exporter
+      repository: ""
+      version: 0.12.1
+    - condition: falcosidekick.enabled
+      name: falcosidekick
+      repository: ""
+      version: 0.9.5
+    - condition: k8s-metacollector.enabled
+      name: k8s-metacollector
+      repository: ""
+      version: 0.1.10
+    description: A Helm chart for falco
+    digest: d8fc546e53c56d2f4d9d1bc8292f7e30c3ee5e8c165da566b90c10e70e8852aa
+    home: https://github.com/giantswarm/falco-app
+    icon: https://s.giantswarm.io/app-icons/falco/2/icon_dark.svg
+    maintainers:
+    - name: Giant Swarm applications team
+      url: https://github.com/giantswarm/falco-app
+    name: falco
+    sources:
+    - https://github.com/giantswarm/falco-app
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/falco-0.10.0-12d957a0309424d6ad80481487f4e76868737b38.tgz
+    version: 0.10.0-12d957a0309424d6ad80481487f4e76868737b38
   fluent-logshipping-app:
   - annotations:
       application.giantswarm.io/team: atlas
@@ -26869,4 +26909,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.0.1-2a126f1727f7450d2620269c928e97fcb983ac81.tgz
     version: 2.0.1-2a126f1727f7450d2620269c928e97fcb983ac81
-generated: "2025-04-30T12:22:56.446635032Z"
+generated: "2025-04-30T14:38:55.575875796Z"
