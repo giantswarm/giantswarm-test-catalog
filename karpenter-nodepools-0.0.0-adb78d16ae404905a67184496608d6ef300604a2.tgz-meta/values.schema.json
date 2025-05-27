@@ -1,0 +1,92 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "amiOwner": {
+            "type": "integer"
+        },
+        "baseOS": {
+            "type": "string"
+        },
+        "clusterName": {
+            "type": "string"
+        },
+        "clusterRegion": {
+            "type": "string"
+        },
+        "instanceMetadataHttpTokens": {
+            "type": "string",
+            "title": "HTTP tokens",
+            "description": "The state of token usage for your instance metadata requests. If you set this parameter to `optional`, you can use either IMDSv1 or IMDSv2. If you set this parameter to `required`, you must use a IMDSv2 to access the instance metadata endpoint. Learn more at [What’s new in IMDSv2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html).",
+            "enum": [
+                "optional",
+                "required"
+            ],
+            "default": "required"
+        },
+        "k8sVersion": {
+            "type": "string"
+        },
+        "nodePools": {
+            "type": "object",
+            "properties": {
+                "def00": {
+                    "type": "object",
+                    "properties": {
+                        "customNodeLabels": {
+                            "type": "array",
+                            "title": "Custom node labels",
+                            "items": {
+                                "type": "string",
+                                "title": "Label"
+                            }
+                        },
+                        "libVolumeSizeGB": {
+                            "type": "integer"
+                        },
+                        "limits": {
+                            "type": "object",
+                            "properties": {
+                                "cpu": {
+                                    "type": "string"
+                                },
+                                "memory": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "logVolumeSizeGB": {
+                            "type": "integer"
+                        },
+                        "requirements": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "key": {
+                                        "type": "string"
+                                    },
+                                    "operator": {
+                                        "type": "string"
+                                    },
+                                    "values": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "rootVolumeSizeGB": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
+        },
+        "toolingVersion": {
+            "type": "string"
+        }
+    }
+}
