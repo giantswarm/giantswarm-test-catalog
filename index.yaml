@@ -10772,6 +10772,33 @@ entries:
     - https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.11.1-97f28b4ed5d1ead54c890b3634e888db3dcf429b.tgz
     version: 0.11.1-97f28b4ed5d1ead54c890b3634e888db3dcf429b
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.11.1-8960b14f2a5e8552b2932d1f90d3ecb44f82fba4.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.11.1-8960b14f2a5e8552b2932d1f90d3ecb44f82fba4.tgz-meta/README.md
+      application.giantswarm.io/team: honeybadger
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.11.1-8960b14f2a5e8552b2932d1f90d3ecb44f82fba4.tgz-meta/values.schema.json
+      config.giantswarm.io/version: 1.x.x
+    apiVersion: v2
+    appVersion: v0.10.5
+    created: "2025-06-11T18:49:58.236975178Z"
+    dependencies:
+    - condition: bitwarden-sdk-server.enabled
+      name: bitwarden-sdk-server
+      repository: oci://ghcr.io/external-secrets/charts
+      version: v0.3.2
+    description: External secret management for Kubernetes
+    digest: fc581a412e380b30b441f581d474a291a7a505c612ae0923c83cb7b9662f9f5b
+    home: https://github.com/giantswarm/external-secrets
+    icon: https://s.giantswarm.io/app-icons/external-secrets/1/light.svg
+    keywords:
+    - kubernetes-external-secrets
+    - secrets
+    kubeVersion: '>= 1.19.0-0'
+    name: external-secrets
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.11.1-8960b14f2a5e8552b2932d1f90d3ecb44f82fba4.tgz
+    version: 0.11.1-8960b14f2a5e8552b2932d1f90d3ecb44f82fba4
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.11.1-8176ac11ba1c0a8db83d043fb6a0041a9f0195c7.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.11.1-8176ac11ba1c0a8db83d043fb6a0041a9f0195c7.tgz-meta/README.md
       application.giantswarm.io/team: honeybadger
@@ -49266,4 +49293,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.0.1-2a126f1727f7450d2620269c928e97fcb983ac81.tgz
     version: 2.0.1-2a126f1727f7450d2620269c928e97fcb983ac81
-generated: "2025-06-11T18:48:11.851395951Z"
+generated: "2025-06-11T18:49:58.230235003Z"
