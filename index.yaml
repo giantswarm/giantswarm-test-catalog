@@ -1670,6 +1670,40 @@ entries:
     version: 0.6.0-0c01d278313aded85dfdf7c697d81964585d18e8
   cert-manager-app:
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.9.1-ff0650f0f2ea1c9d92365a0322b44ec0094114ea.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.9.1-ff0650f0f2ea1c9d92365a0322b44ec0094114ea.tgz-meta/README.md
+      application.giantswarm.io/team: shield
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.9.1-ff0650f0f2ea1c9d92365a0322b44ec0094114ea.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: v1.16.2
+    created: "2025-07-09T13:51:16.309445882Z"
+    dependencies:
+    - alias: giantSwarmClusterIssuer
+      name: cert-manager-giantswarm-clusterissuer
+      repository: ""
+      version: 2.0.0
+    - condition: giantswarmNetworkPolicy.enabled
+      name: cert-manager-giantswarm-netpol
+      repository: ""
+      version: 0.1.0
+    - condition: ciliumNetworkPolicy.enabled
+      name: cert-manager-giantswarm-ciliumnetworkpolicies
+      repository: ""
+      version: 0.1.0
+    description: Simplifies the process of obtaining, renewing and using certificates.
+    digest: 40b7dc92eae8d031e478fee92cc73abf047e2f87d61d668df870837ca4e75d9c
+    home: https://github.com/giantswarm/cert-manager-app
+    icon: https://s.giantswarm.io/app-icons/cert-manager/1/light.svg
+    kubeVersion: '>=1.22.0-0'
+    maintainers:
+    - name: Shield
+    name: cert-manager-app
+    sources:
+    - https://github.com/cert-manager/cert-manager
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.9.1-ff0650f0f2ea1c9d92365a0322b44ec0094114ea.tgz
+    version: 3.9.1-ff0650f0f2ea1c9d92365a0322b44ec0094114ea
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.9.1-f4082f8913d15db897c24896fe86b486d0786e4b.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.9.1-f4082f8913d15db897c24896fe86b486d0786e4b.tgz-meta/README.md
       application.giantswarm.io/team: shield
@@ -27207,4 +27241,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.1.0-11ddb3c360d5abb3e53457de1981452008c35c84.tgz
     version: 2.1.0-11ddb3c360d5abb3e53457de1981452008c35c84
-generated: "2025-07-09T13:37:49.303140968Z"
+generated: "2025-07-09T13:51:16.302145693Z"
