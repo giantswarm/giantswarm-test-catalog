@@ -11352,6 +11352,33 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/flux-app-1.5.1-152157c57a1875a7c7ed03ef7029297f6f9e0365.tgz
     version: 1.5.1-152157c57a1875a7c7ed03ef7029297f6f9e0365
+  flux-operator:
+  - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/flux-operator-0.0.0-7bb71b7f5d5cf7c07b03353f2ce56c9e92beeb3d.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/flux-operator-0.0.0-7bb71b7f5d5cf7c07b03353f2ce56c9e92beeb3d.tgz-meta/README.md
+      application.giantswarm.io/team: honeybadger
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/flux-operator-0.0.0-7bb71b7f5d5cf7c07b03353f2ce56c9e92beeb3d.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: v0.26.0
+    created: "2025-07-31T15:54:01.663480798Z"
+    dependencies:
+    - condition: fluxoperator.enabled
+      name: flux-operator
+      repository: oci://ghcr.io/controlplaneio-fluxcd/charts
+      version: 0.26.0
+    description: A Helm Chart for ControlPlane's Flux Operator.
+    digest: 135430b70e0ad77321a04ab8fd70a8a80e2fbc7fdc09538caabff2f083158857
+    home: https://github.com/giantswarm/flux-operator-app
+    icon: https://s.giantswarm.io/app-icons/flux/2/icon_light.svg
+    maintainers:
+    - email: team-honeybadger@giantswarm.io
+      name: giantswarm/team-honeybadger
+    name: flux-operator
+    sources:
+    - hhttps://github.com/controlplaneio-fluxcd/charts/tree/main/charts/flux-operator
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/flux-operator-0.0.0-7bb71b7f5d5cf7c07b03353f2ce56c9e92beeb3d.tgz
+    version: 0.0.0-7bb71b7f5d5cf7c07b03353f2ce56c9e92beeb3d
   gateway-api-bundle:
   - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/gateway-api-bundle-0.5.0-efff1f5b44b9156fe3c54b5096063ce193463c01.tgz-meta/main.yaml
@@ -37794,4 +37821,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.1.0-11ddb3c360d5abb3e53457de1981452008c35c84.tgz
     version: 2.1.0-11ddb3c360d5abb3e53457de1981452008c35c84
-generated: "2025-07-31T13:19:16.622834515Z"
+generated: "2025-07-31T15:54:01.661650934Z"
