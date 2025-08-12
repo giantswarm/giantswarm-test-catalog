@@ -6892,6 +6892,32 @@ entries:
     version: 1.7.1-860cdda39e72a7e4c188eca8d343306a7efee21a
   flux-operator:
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/flux-operator-0.0.0-aceafa12f5de796273865cd7e34a11bacf6d0d07.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/flux-operator-0.0.0-aceafa12f5de796273865cd7e34a11bacf6d0d07.tgz-meta/README.md
+      application.giantswarm.io/team: honeybadger
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/flux-operator-0.0.0-aceafa12f5de796273865cd7e34a11bacf6d0d07.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: v0.26.0
+    created: "2025-08-12T10:41:12.435158485Z"
+    dependencies:
+    - condition: fluxoperator.enabled
+      name: flux-operator
+      repository: oci://ghcr.io/controlplaneio-fluxcd/charts
+      version: 0.26.0
+    description: A Helm Chart for ControlPlane's Flux Operator.
+    digest: d9faaaf8367b093663be81109b55c6444e68eaa1933cd99d413bf9bd8e68ca5b
+    home: https://github.com/giantswarm/flux-operator-app
+    icon: https://s.giantswarm.io/app-icons/flux/2/icon_light.svg
+    maintainers:
+    - email: team-honeybadger@giantswarm.io
+      name: giantswarm/team-honeybadger
+    name: flux-operator
+    sources:
+    - https://github.com/controlplaneio-fluxcd/charts/tree/main/charts/flux-operator
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/flux-operator-0.0.0-aceafa12f5de796273865cd7e34a11bacf6d0d07.tgz
+    version: 0.0.0-aceafa12f5de796273865cd7e34a11bacf6d0d07
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/flux-operator-0.0.0-8de385a88db73e3cb1f866035fb48ae02737bf71.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/flux-operator-0.0.0-8de385a88db73e3cb1f866035fb48ae02737bf71.tgz-meta/README.md
       application.giantswarm.io/team: honeybadger
@@ -25836,4 +25862,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.2.1-001659de7ac9a0f5df3bef8cb72f191ae3751f99.tgz
     version: 2.2.1-001659de7ac9a0f5df3bef8cb72f191ae3751f99
-generated: "2025-08-12T09:56:14.252378063Z"
+generated: "2025-08-12T10:41:12.432932451Z"
