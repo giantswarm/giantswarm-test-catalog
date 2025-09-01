@@ -7316,6 +7316,39 @@ entries:
     - https://giantswarm.github.io/giantswarm-test-catalog/grafana-2.25.2-1f3819608663255c9b408f0ca410d0e2e095403a.tgz
     version: 2.25.2-1f3819608663255c9b408f0ca410d0e2e095403a
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/grafana-2.25.2-05dbb0c4eacd6ff98a24b9e8f5316c6d7c138070.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/grafana-2.25.2-05dbb0c4eacd6ff98a24b9e8f5316c6d7c138070.tgz-meta/README.md
+      application.giantswarm.io/team: atlas
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/grafana-2.25.2-05dbb0c4eacd6ff98a24b9e8f5316c6d7c138070.tgz-meta/values.schema.json
+      config.giantswarm.io/version: 1.x.x
+    apiVersion: v2
+    appVersion: 12.1.1
+    created: "2025-09-01T07:45:39.955713375Z"
+    dependencies:
+    - name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: 9.4.3
+    - alias: pgClusterRecoveryTest
+      condition: pgClusterRecoveryTest.enabled
+      name: pg-cluster-recovery-test
+      repository: https://giantswarm.github.io/giantswarm-catalog
+      version: 0.2.3
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: ee09e4b5dc61e8055a3309bbb611d80b9c3bf6db6d2d7779a2089406cd19b8df
+    home: https://github.com/giantswarm/grafana-app
+    icon: https://s.giantswarm.io/app-icons/grafana/1/light.svg
+    kubeVersion: ^1.8.0-0
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: grafana
+    sources:
+    - https://github.com/grafana/helm-charts/tree/main/charts/grafana
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/grafana-2.25.2-05dbb0c4eacd6ff98a24b9e8f5316c6d7c138070.tgz
+    version: 2.25.2-05dbb0c4eacd6ff98a24b9e8f5316c6d7c138070
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/grafana-2.25.1.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/grafana-2.25.1.tgz-meta/README.md
       application.giantswarm.io/team: atlas
@@ -23657,4 +23690,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.3.0-12ef6e299c3244a39509fd18fa75c9037491c60b.tgz
     version: 2.3.0-12ef6e299c3244a39509fd18fa75c9037491c60b
-generated: "2025-09-01T07:42:28.352260374Z"
+generated: "2025-09-01T07:45:39.948636597Z"
