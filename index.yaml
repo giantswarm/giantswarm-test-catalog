@@ -5900,6 +5900,42 @@ entries:
     - https://giantswarm.github.io/giantswarm-test-catalog/falco-0.10.1-5b95a529de0527fa6b3e0abdf67b51fe34f0b35b.tgz
     version: 0.10.1-5b95a529de0527fa6b3e0abdf67b51fe34f0b35b
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/falco-0.10.1-531d5aac787711ebbea3aaf01f93c7f505a057ac.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/falco-0.10.1-531d5aac787711ebbea3aaf01f93c7f505a057ac.tgz-meta/README.md
+      application.giantswarm.io/team: shield
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/falco-0.10.1-531d5aac787711ebbea3aaf01f93c7f505a057ac.tgz-meta/values.schema.json
+      config.giantswarm.io/version: 1.x.x
+      ui.giantswarm.io/logo: https://s.giantswarm.io/app-icons/falco/2/logo_dark.svg
+    apiVersion: v2
+    appVersion: 0.41.3
+    created: "2025-09-03T13:36:46.930556544Z"
+    dependencies:
+    - condition: falco.enabled
+      name: falco
+      repository: ""
+      version: 6.2.5
+    - condition: falcosidekick.enabled
+      name: falcosidekick
+      repository: ""
+      version: 0.10.2
+    - condition: k8s-metacollector.enabled
+      name: k8s-metacollector
+      repository: ""
+      version: 0.1.10
+    description: A Helm chart for falco
+    digest: b162b57f95f43a9b06e2b5e2f75f2cadeb121cffc7b4bec7059f1a58bdecd875
+    home: https://github.com/giantswarm/falco-app
+    icon: https://s.giantswarm.io/app-icons/falco/2/icon_dark.svg
+    maintainers:
+    - name: Giant Swarm applications team
+      url: https://github.com/giantswarm/falco-app
+    name: falco
+    sources:
+    - https://github.com/giantswarm/falco-app
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/falco-0.10.1-531d5aac787711ebbea3aaf01f93c7f505a057ac.tgz
+    version: 0.10.1-531d5aac787711ebbea3aaf01f93c7f505a057ac
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/falco-0.10.1-5288d8c02755f93284258365c09a6ff345ac1acf.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/falco-0.10.1-5288d8c02755f93284258365c09a6ff345ac1acf.tgz-meta/README.md
       application.giantswarm.io/team: shield
@@ -26943,4 +26979,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.3.0-12ef6e299c3244a39509fd18fa75c9037491c60b.tgz
     version: 2.3.0-12ef6e299c3244a39509fd18fa75c9037491c60b
-generated: "2025-09-03T13:36:22.782628662Z"
+generated: "2025-09-03T13:36:46.902710645Z"
