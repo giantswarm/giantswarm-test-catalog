@@ -12114,6 +12114,34 @@ entries:
     version: 0.1.5-24db1ae687ec8fdca9e6e9d0f92a49e3284921f2
   loki:
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/loki-0.33.0.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/loki-0.33.0.tgz-meta/README.md
+      application.giantswarm.io/team: atlas
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/loki-0.33.0.tgz-meta/values.schema.json
+      ui.giantswarm.io/logo: https://s.giantswarm.io/app-icons/grafana-loki/2/dark.svg
+    apiVersion: v2
+    appVersion: 3.5.4
+    created: "2025-10-02T13:16:56.287031422Z"
+    dependencies:
+    - condition: loki.enabled
+      name: loki
+      repository: https://grafana.github.io/helm-charts
+      version: 6.39.0
+    description: Helm chart for Grafana Loki in simple, scalable mode
+    digest: da23222bfcb3bcde0f39075b3e0c49ddc755cd343011a18616ebca101ca83f57
+    home: https://github.com/giantswarm/loki-app
+    icon: https://s.giantswarm.io/app-icons/loki-stack/1/dark.svg
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: loki
+    sources:
+    - https://github.com/giantswarm/loki-app
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/loki-0.33.0.tgz
+    version: 0.33.0
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/loki-0.32.0.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/loki-0.32.0.tgz-meta/README.md
       application.giantswarm.io/team: atlas
@@ -18000,4 +18028,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.3.1-037635a8f8be387b2bcdfe9fba84f358b08af433.tgz
     version: 2.3.1-037635a8f8be387b2bcdfe9fba84f358b08af433
-generated: "2025-10-02T13:16:32.359604249Z"
+generated: "2025-10-02T13:16:56.266869529Z"
