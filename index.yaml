@@ -15147,6 +15147,35 @@ entries:
     version: 0.0.0-3a8ecba339cb5e2062ef28df8be0d9924350ed80
   kubescape:
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/kubescape-0.0.2-6bfe233e95907436e400af4a311db0a5da2865d6.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/kubescape-0.0.2-6bfe233e95907436e400af4a311db0a5da2865d6.tgz-meta/README.md
+      application.giantswarm.io/team: shield
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/kubescape-0.0.2-6bfe233e95907436e400af4a311db0a5da2865d6.tgz-meta/values.schema.json
+    apiVersion: v2
+    created: "2025-10-21T15:16:14.949975845Z"
+    dependencies:
+    - condition: exceptions.enabled
+      name: exceptions
+      repository: ""
+      version: 0.0.0
+    - name: dependency_chart
+      repository: ""
+      version: 0.0.0
+    - name: kubescape-operator
+      repository: ""
+      version: 1.28.0
+    description: This chart contains the kubescape operator chart and custom Giant
+      Swarm resources.
+    digest: faaf2400b209d643ebe76e44c7045e3abfb536da43acf4b72eebf377a5156584
+    home: https://github.com/giantswarm/kubescape
+    icon: https://s.giantswarm.io/app-icons/kubescape/1/color.svg
+    name: kubescape
+    sources:
+    - https://github.com/kubescape/helm-charts
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/kubescape-0.0.2-6bfe233e95907436e400af4a311db0a5da2865d6.tgz
+    version: 0.0.2-6bfe233e95907436e400af4a311db0a5da2865d6
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/kubescape-0.0.1-f73f71a9aba100725efed504d7c2aad379889a4d.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/kubescape-0.0.1-f73f71a9aba100725efed504d7c2aad379889a4d.tgz-meta/README.md
       application.giantswarm.io/team: shield
@@ -27224,4 +27253,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.3.1-037635a8f8be387b2bcdfe9fba84f358b08af433.tgz
     version: 2.3.1-037635a8f8be387b2bcdfe9fba84f358b08af433
-generated: "2025-10-21T15:13:58.742064573Z"
+generated: "2025-10-21T15:16:14.940491686Z"
