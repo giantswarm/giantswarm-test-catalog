@@ -1,0 +1,187 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "cronjob": {
+            "type": "object",
+            "properties": {
+                "backoffLimit": {
+                    "type": "integer"
+                },
+                "configMap": {
+                    "type": "object",
+                    "properties": {
+                        "defaultMode": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "containerSecurityContext": {
+                    "type": "object",
+                    "properties": {
+                        "allowPrivilegeEscalation": {
+                            "type": "boolean"
+                        },
+                        "capabilities": {
+                            "type": "object",
+                            "properties": {
+                                "drop": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "privileged": {
+                            "type": "boolean"
+                        },
+                        "readOnlyRootFilesystem": {
+                            "type": "boolean"
+                        },
+                        "runAsNonRoot": {
+                            "type": "boolean"
+                        },
+                        "seccompProfile": {
+                            "type": "object",
+                            "properties": {
+                                "type": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "failedJobsHistoryLimit": {
+                    "type": "integer"
+                },
+                "image": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "pullPolicy": {
+                            "type": "string"
+                        },
+                        "tag": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "podSecurityContext": {
+                    "type": "object",
+                    "properties": {
+                        "fsGroup": {
+                            "type": "integer"
+                        },
+                        "runAsUser": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "resources": {
+                    "type": "object"
+                },
+                "schedule": {
+                    "type": "string"
+                },
+                "serviceAccount": {
+                    "type": "object",
+                    "properties": {
+                        "create": {
+                            "type": "boolean"
+                        },
+                        "name": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "successfulJobsHistoryLimit": {
+                    "type": "integer"
+                },
+                "testTimeout": {
+                    "type": "integer"
+                },
+                "waitTimeout": {
+                    "type": "string"
+                }
+            }
+        },
+        "global": {
+            "type": "object",
+            "properties": {
+                "customer": {
+                    "type": "string"
+                },
+                "provider": {
+                    "type": "string"
+                },
+                "registry": {
+                    "type": "string"
+                }
+            }
+        },
+        "pgCluster": {
+            "type": "object",
+            "properties": {
+                "backupCluster": {
+                    "type": "object",
+                    "properties": {
+                        "azureSecret": {
+                            "type": "object",
+                            "properties": {
+                                "key": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "secretName": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "destinationPath": {
+                            "type": "string"
+                        },
+                        "name": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "image": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "tag": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "instances": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "namespace": {
+                    "type": "string"
+                },
+                "serviceAccount": {
+                    "type": "object",
+                    "properties": {
+                        "annotations": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "storageSize": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
