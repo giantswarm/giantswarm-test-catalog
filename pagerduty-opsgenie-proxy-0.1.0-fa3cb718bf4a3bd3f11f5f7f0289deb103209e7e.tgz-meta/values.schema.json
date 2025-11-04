@@ -1,0 +1,36 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "image": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "tag": {
+                    "type": "string"
+                }
+            }
+        },
+        "registry": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "type": "string"
+                }
+            }
+        },
+        "env": {
+            "type": "object",
+            "properties": {
+                "pagerdutyApiKey": { "type": "string" },
+                "pagerdutyServiceId": { "type": "string" },
+                "pagerdutyFromEmail": { "type": "string" },
+                "pagerdutyWebhookSecret": { "type": "string" },
+                "opsgenieApiKey": { "type": "string" },
+                "opsgenieIntegrationId": { "type": "string" }
+            }
+        }
+    }
+}
