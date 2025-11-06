@@ -1,0 +1,85 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "image": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "tag": {
+                    "type": "string"
+                }
+            }
+        },
+        "registry": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "type": "string"
+                }
+            }
+        },
+        "env": {
+            "type": "object",
+            "properties": {
+                "pagerdutyApiKey": { "type": "string" },
+                "pagerdutyServiceId": { "type": "string" },
+                "pagerdutyFromEmail": { "type": "string" },
+                "pagerdutyWebhookSecret": { "type": "string" },
+                "opsgenieApiKey": { "type": "string" },
+                "opsgenieIntegrationId": { "type": "string" }
+            }
+        },
+        "service": {
+            "type": "object",
+            "properties": {
+                "type": { "type": "string", "enum": ["ClusterIP", "NodePort", "LoadBalancer"] },
+                "port": { "type": "integer", "minimum": 1, "maximum": 65535 },
+                "targetPort": { "type": "integer", "minimum": 1, "maximum": 65535 },
+                "annotations": { "type": "object", "additionalProperties": { "type": "string" } }
+            }
+        },
+        "ingress": {
+            "type": "object",
+            "properties": {
+                "enabled": { "type": "boolean" },
+                "className": { "type": "string" },
+                "annotations": { "type": "object", "additionalProperties": { "type": "string" } },
+                "hosts": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "host": { "type": "string" },
+                            "paths": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "path": { "type": "string" },
+                                        "pathType": { "type": "string", "enum": ["Prefix", "Exact", "ImplementationSpecific"] }
+                                    },
+                                    "required": ["path", "pathType"]
+                                }
+                            }
+                        },
+                        "required": ["host", "paths"]
+                    }
+                },
+                "tls": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "hosts": { "type": "array", "items": { "type": "string" } },
+                            "secretName": { "type": "string" }
+                        },
+                        "required": ["hosts", "secretName"]
+                    }
+                }
+            }
+        }
+    }
+}
