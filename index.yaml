@@ -5654,6 +5654,35 @@ entries:
     - https://giantswarm.github.io/giantswarm-test-catalog/envoy-gateway-1.1.0-82fcb5e9d732844c277267c12bc3298cb83e9a62.tgz
     version: 1.1.0-82fcb5e9d732844c277267c12bc3298cb83e9a62
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/envoy-gateway-1.1.0-5fb230c2b794bd91a2defa57d786d42330dddc0a.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/envoy-gateway-1.1.0-5fb230c2b794bd91a2defa57d786d42330dddc0a.tgz-meta/README.md
+      application.giantswarm.io/team: cabbage
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/envoy-gateway-1.1.0-5fb230c2b794bd91a2defa57d786d42330dddc0a.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: v1.5.4
+    created: "2025-11-07T16:36:09.69229006Z"
+    dependencies:
+    - condition: kubectlApplyJob.enabled
+      name: kubectl-apply-job
+      repository: oci://giantswarmpublic.azurecr.io/giantswarm-playground-test-catalog
+      version: 0.11.0-27709f40c9f30209b7b88b650ec2df151e6f8a05
+    description: The Helm chart for Envoy Gateway
+    digest: 806425684da23562e613f35f24b855ed97b225d62e5a7ecd721bd0867b20b394
+    home: https://github.com/giantswarm/envoy-gateway-app
+    icon: https://s.giantswarm.io/app-icons/giantswarm/1/light.svg
+    keywords:
+    - gateway-api
+    - envoyproxy
+    - envoy-gateway
+    - eg
+    name: envoy-gateway
+    sources:
+    - https://github.com/envoyproxy/gateway
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/envoy-gateway-1.1.0-5fb230c2b794bd91a2defa57d786d42330dddc0a.tgz
+    version: 1.1.0-5fb230c2b794bd91a2defa57d786d42330dddc0a
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/envoy-gateway-1.1.0-5515d5d9caa4d833b605fdbed0f14c302e3edf0f.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/envoy-gateway-1.1.0-5515d5d9caa4d833b605fdbed0f14c302e3edf0f.tgz-meta/README.md
       application.giantswarm.io/team: cabbage
@@ -32123,4 +32152,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.3.3-0014cc19ed37b58e5d90f76d0820e27c4caecd40.tgz
     version: 2.3.3-0014cc19ed37b58e5d90f76d0820e27c4caecd40
-generated: "2025-11-07T13:39:42.003670341Z"
+generated: "2025-11-07T16:36:09.676270713Z"
