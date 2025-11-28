@@ -8769,6 +8769,30 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-3.2.0-1204e4c1481d229c6a49798fa2d41708c163c75c.tgz
     version: 3.2.0-1204e4c1481d229c6a49798fa2d41708c163c75c
+  - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-3.2.0-0a9fe9a5fc115a2569f8df42732dfdf3591817be.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-3.2.0-0a9fe9a5fc115a2569f8df42732dfdf3591817be.tgz-meta/README.md
+      application.giantswarm.io/team: team-cabbage
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-3.2.0-0a9fe9a5fc115a2569f8df42732dfdf3591817be.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: 0.20.0
+    created: "2025-11-28T07:36:52.803798234Z"
+    dependencies:
+    - condition: crd.install
+      name: kubectl-apply-job
+      repository: oci://giantswarmpublic.azurecr.io/giantswarm-playground-catalog
+      version: 0.11.0
+    description: Configure external DNS servers for Kubernetes Ingresses and Services
+    digest: 1e5899a74937ec3dde25c0cd90d8043e0142f9a81a4336ede07d03cce109d248
+    home: https://github.com/giantswarm/external-dns-app
+    icon: https://s.giantswarm.io/app-icons/external-dns/1/dark.png
+    kubeVersion: '>=1.19.0-0'
+    name: external-dns-app
+    sources:
+    - https://github.com/kubernetes-sigs/external-dns
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-3.2.0-0a9fe9a5fc115a2569f8df42732dfdf3591817be.tgz
+    version: 3.2.0-0a9fe9a5fc115a2569f8df42732dfdf3591817be
   external-dns-crossplane-resources:
   - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-crossplane-resources-0.1.6-f115b570deda9e7b75589920294be5b801837473.tgz-meta/main.yaml
@@ -41070,4 +41094,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.3.3-0014cc19ed37b58e5d90f76d0820e27c4caecd40.tgz
     version: 2.3.3-0014cc19ed37b58e5d90f76d0820e27c4caecd40
-generated: "2025-11-28T04:55:17.728509399Z"
+generated: "2025-11-28T07:36:52.801550312Z"
