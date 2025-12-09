@@ -1,0 +1,32 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "required": [
+        "stateStores",
+        "destinations",
+        "additionalResources"
+    ],
+    "properties": {
+        "additionalResources": {
+            "type": "array",
+            "title": "additionalResources",
+            "description": "Array extra K8s resources to deploy",
+            "items": {}
+        },
+        "destinations": {
+            "type": "array",
+            "title": "destinations",
+            "items": {}
+        },
+        "global": {
+            "type": "object",
+            "title": "global",
+            "description": "Global values are values that can be accessed from any chart or subchart by exactly the same name."
+        },
+        "stateStores": {
+            "type": "array",
+            "title": "stateStores",
+            "items": {}
+        }
+    }
+}
