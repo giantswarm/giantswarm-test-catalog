@@ -35028,6 +35028,32 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/teleport-tbot-0.3.1-2481b31327d49c6efe41858e5f1e3077b4e3dd74.tgz
     version: 0.3.1-2481b31327d49c6efe41858e5f1e3077b4e3dd74
+  valkey:
+  - annotations:
+      config.giantswarm.io/version: 1.x.x
+      io.giantswarm.application.audience: all
+      io.giantswarm.application.managed: "false"
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/valkey-0.1.1-fd158fb45f36cb4dd1255e16e66767b197d0c2fa.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/valkey-app/refs/tags/v0.1.1-fd158fb45f36cb4dd1255e16e66767b197d0c2fa/README.md
+      io.giantswarm.application.team: planeteers
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/valkey-app/refs/tags/v0.1.1-fd158fb45f36cb4dd1255e16e66767b197d0c2fa/helm/valkey/values.schema.json
+    apiVersion: v2
+    appVersion: 8.1.4
+    created: "2025-12-10T00:26:01.463394281Z"
+    dependencies:
+    - name: valkey
+      repository: file://charts/valkey
+      version: 0.8.1
+    description: A Giant Swarm app for deploying Valkey (a Redis alternative) on Kubernetes.
+    digest: 906b3166244ecfdc7a7383f3bd8fe3d21e18a7aea48934ea12b532d52d3db902
+    home: https://github.com/giantswarm/valkey-app
+    icon: https://dyltqmyl993wv.cloudfront.net/assets/stacks/valkey/img/valkey-stack-220x234.png
+    name: valkey
+    sources:
+    - https://github.com/valkey-io/valkey-helm
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/valkey-0.1.1-fd158fb45f36cb4dd1255e16e66767b197d0c2fa.tgz
+    version: 0.1.1-fd158fb45f36cb4dd1255e16e66767b197d0c2fa
   zot:
   - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/zot-2.4.0.tgz-meta/main.yaml
@@ -36040,4 +36066,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.3.3-0014cc19ed37b58e5d90f76d0820e27c4caecd40.tgz
     version: 2.3.3-0014cc19ed37b58e5d90f76d0820e27c4caecd40
-generated: "2025-12-09T21:33:17.918928062Z"
+generated: "2025-12-10T00:26:01.460136831Z"
