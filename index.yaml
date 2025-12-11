@@ -8935,6 +8935,33 @@ entries:
     - https://giantswarm.github.io/giantswarm-test-catalog/flux-operator-0.1.0-e0c8a474206227a1a711bc55dcae3cf4ff1fa922.tgz
     version: 0.1.0-e0c8a474206227a1a711bc55dcae3cf4ff1fa922
   - annotations:
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/flux-operator-0.1.0-b5d21cfe4d3289e2cc9f67c0e4c21949bcfe2eb4.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/flux-operator-app/refs/tags/v0.1.0-b5d21cfe4d3289e2cc9f67c0e4c21949bcfe2eb4/README.md
+      io.giantswarm.application.restrictions.cluster-singleton: "True"
+      io.giantswarm.application.team: honeybadger
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/flux-operator-app/refs/tags/v0.1.0-b5d21cfe4d3289e2cc9f67c0e4c21949bcfe2eb4/helm/flux-operator/values.schema.json
+    apiVersion: v2
+    appVersion: v0.26.0
+    created: "2025-12-11T11:56:15.894745249Z"
+    dependencies:
+    - condition: fluxoperator.enabled
+      name: flux-operator
+      repository: oci://ghcr.io/controlplaneio-fluxcd/charts
+      version: 0.26.0
+    description: A Helm Chart for ControlPlane's Flux Operator.
+    digest: 6bc2d169b01368957c7117448beb50b5bce4fb0b5e6b4045ac060b50be266061
+    home: https://github.com/giantswarm/flux-operator-app
+    icon: https://s.giantswarm.io/app-icons/flux/2/icon_light.svg
+    maintainers:
+    - email: team-honeybadger@giantswarm.io
+      name: giantswarm/team-honeybadger
+    name: flux-operator
+    sources:
+    - https://github.com/controlplaneio-fluxcd/charts/tree/main/charts/flux-operator
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/flux-operator-0.1.0-b5d21cfe4d3289e2cc9f67c0e4c21949bcfe2eb4.tgz
+    version: 0.1.0-b5d21cfe4d3289e2cc9f67c0e4c21949bcfe2eb4
+  - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/flux-operator-0.1.0-9f824339891872e98eaa696ef5af19026762d721.tgz-meta/main.yaml
       application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/flux-operator-0.1.0-9f824339891872e98eaa696ef5af19026762d721.tgz-meta/README.md
       application.giantswarm.io/team: honeybadger
@@ -37956,4 +37983,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.3.3-0014cc19ed37b58e5d90f76d0820e27c4caecd40.tgz
     version: 2.3.3-0014cc19ed37b58e5d90f76d0820e27c4caecd40
-generated: "2025-12-11T11:33:58.852639911Z"
+generated: "2025-12-11T11:56:15.892798213Z"
