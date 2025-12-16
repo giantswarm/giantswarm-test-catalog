@@ -39424,6 +39424,32 @@ entries:
     - https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-crd-18.0.0-a98bfb789bd0129c1565b30ba47356ec346ebe4d.tgz
     version: 18.0.0-a98bfb789bd0129c1565b30ba47356ec346ebe4d
   - annotations:
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-crd-18.0.0-9cc4dcad8fc2899120bbfe8f78ef38604ee601df.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/prometheus-operator-crd/refs/tags/v18.0.0-9cc4dcad8fc2899120bbfe8f78ef38604ee601df/README.md
+      io.giantswarm.application.restrictions.cluster-singleton: "true"
+      io.giantswarm.application.team: atlas
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/prometheus-operator-crd/refs/tags/v18.0.0-9cc4dcad8fc2899120bbfe8f78ef38604ee601df/helm/prometheus-operator-crd/values.schema.json
+    apiVersion: v2
+    appVersion: v0.87.1
+    created: "2025-12-16T11:38:15.815832053Z"
+    dependencies:
+    - name: prometheus-operator-crds
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 25.0.1
+    description: kube-prometheus-stack CustomResourceDefinitions.
+    digest: eecbd02d302c7f676930b44ce99bf4260443b9983bb82ac80cb3a0e8fa96e964
+    home: https://github.com/giantswarm/prometheus-operator-crd
+    icon: https://s.giantswarm.io/app-icons/prometheus-operator/2/light.svg
+    kubeVersion: '>=1.19.0-0'
+    name: prometheus-operator-crd
+    sources:
+    - https://github.com/prometheus-community/helm-charts
+    - https://github.com/prometheus-operator/kube-prometheus
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-crd-18.0.0-9cc4dcad8fc2899120bbfe8f78ef38604ee601df.tgz
+    version: 18.0.0-9cc4dcad8fc2899120bbfe8f78ef38604ee601df
+  - annotations:
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-crd-18.0.0-8e7ced217bc4d2f122c51c06bb4b13ba4c77f40c.tgz-meta/main.yaml
       io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/prometheus-operator-crd/refs/tags/v18.0.0-8e7ced217bc4d2f122c51c06bb4b13ba4c77f40c/README.md
       io.giantswarm.application.restrictions.cluster-singleton: "true"
@@ -45536,4 +45562,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.3.3-0014cc19ed37b58e5d90f76d0820e27c4caecd40.tgz
     version: 2.3.3-0014cc19ed37b58e5d90f76d0820e27c4caecd40
-generated: "2025-12-16T11:37:33.817246719Z"
+generated: "2025-12-16T11:38:15.794180009Z"
