@@ -1,0 +1,191 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "properties": {
+    "replicaCount": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "repository": {
+          "type": "string"
+        },
+        "tag": {
+          "type": "string"
+        },
+        "pullPolicy": {
+          "type": "string"
+        }
+      },
+      "required": ["repository"]
+    },
+    "service": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "port": {
+          "type": "integer"
+        }
+      }
+    },
+    "podSecurityContext": {
+      "type": "object",
+      "properties": {
+        "runAsUser": { "type": "integer" },
+        "runAsGroup": { "type": "integer" },
+        "fsGroup": { "type": "integer" },
+        "runAsNonRoot": { "type": "boolean" }
+      }
+    },
+    "securityContext": {
+      "type": "object",
+      "properties": {
+        "allowPrivilegeEscalation": { "type": "boolean" },
+        "readOnlyRootFilesystem": { "type": "boolean" },
+        "capabilities": {
+          "type": "object",
+          "properties": {
+            "drop": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "resources": {
+      "type": "object",
+      "properties": {
+        "requests": {
+          "type": "object",
+          "properties": {
+            "cpu": { "type": "string" },
+            "memory": { "type": "string" }
+          }
+        },
+        "limits": {
+          "type": "object",
+          "properties": {
+            "memory": { "type": "string" }
+          }
+        }
+      }
+    },
+    "nodeSelector": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "tolerations": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "affinity": {
+      "type": "object"
+    },
+    "proxy": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "type": "object",
+          "properties": {
+            "listen_host": {
+              "type": "string"
+            },
+            "listen_port": {
+              "type": "integer"
+            },
+            "forward_timeout_seconds": {
+              "type": "number"
+            },
+            "webhook_signing_secret": {
+              "type": "string"
+            },
+            "allowed_events": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "routes": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/route"
+              }
+            },
+            "default_targets": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/forwardTarget"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "forwardTarget": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "headers": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "timeout_seconds": {
+          "type": "number"
+        }
+      },
+      "required": ["url"]
+    },
+    "matchRule": {
+      "type": "object",
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "equals": {},
+        "any_of": {
+          "type": "array"
+        },
+        "contains": {
+          "type": "string"
+        }
+      },
+      "required": ["field"]
+    },
+    "route": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "match": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/matchRule"
+          }
+        },
+        "targets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/forwardTarget"
+          }
+        }
+      },
+      "required": ["name", "targets"]
+    }
+  }
+}
