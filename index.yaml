@@ -15764,6 +15764,47 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/k8s-dns-node-cache-app-2.9.1-00ffec70538571815f4da047d89c9ea9e7b3224d.tgz
     version: 2.9.1-00ffec70538571815f4da047d89c9ea9e7b3224d
+  kamaji-etcd:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: feat
+          description: custom certmanager object names and customisations
+      artifacthub.io/links: |
+        - name: CLASTIX
+          url: https://clastix.io
+        - name: Kamaji
+          url: https://kamaji.clastix.io
+        - name: support
+          url: https://clastix.io/support
+      artifacthub.io/operator: "true"
+      artifacthub.io/operatorCapabilities: Full Lifecycle
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/kamaji-etcd-0.0.0-a40297602ebcd667e48cc1f6fd626b1bc09277da.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/clastix/kamaji-etcd/refs/tags/v0.0.0-a40297602ebcd667e48cc1f6fd626b1bc09277da/README.md
+      io.giantswarm.application.team: rocket
+      io.giantswarm.application.upstream: https://github.com/clastix/kamaji-etcd
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/clastix/kamaji-etcd/refs/tags/v0.0.0-a40297602ebcd667e48cc1f6fd626b1bc09277da/helm/kamaji-etcd/values.schema.json
+    apiVersion: v2
+    appVersion: 3.5.17
+    created: "2026-01-08T07:49:46.627000413Z"
+    description: Helm chart for deploying a multi-tenant `etcd` cluster.
+    digest: 101cee4a48b80945d90aa5bc07766820b1c7ca30c5a58d053355d9ba5aabc068
+    home: https://github.com/clastix/kamaji-etcd
+    icon: https://github.com/clastix/kamaji/raw/master/assets/logo-colored.png
+    kubeVersion: '>=1.22.0-0'
+    maintainers:
+    - email: adriano@clastix.io
+      name: Adriano Pezzuto
+      url: https://clastix.io
+    - email: dario@clastix.io
+      name: Dario Tranchitella
+      url: https://clastix.io
+    name: kamaji-etcd
+    sources:
+    - https://github.com/clastix/kamaji-etcd
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/kamaji-etcd-0.0.0-a40297602ebcd667e48cc1f6fd626b1bc09277da.tgz
+    version: 0.0.0-a40297602ebcd667e48cc1f6fd626b1bc09277da
   keda:
   - annotations:
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/keda-3.1.0-e2a2ae1c878ba0a855402bfb4b922bf56e55fbf1.tgz-meta/main.yaml
@@ -39268,4 +39309,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.4.0-063a3537dc9c2d2650a3b6eaaf34e9e9d1a51b13.tgz
     version: 2.4.0-063a3537dc9c2d2650a3b6eaaf34e9e9d1a51b13
-generated: "2026-01-08T05:46:38.94829014Z"
+generated: "2026-01-08T07:49:46.624423644Z"
