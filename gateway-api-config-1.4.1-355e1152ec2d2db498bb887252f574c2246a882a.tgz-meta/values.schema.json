@@ -1,0 +1,389 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "baseDomain": {
+            "type": "string"
+        },
+        "gatewayClasses": {
+            "type": "object",
+            "properties": {
+                "default": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "envoyProxy": {
+                            "type": "object",
+                            "properties": {
+                                "enabled": {
+                                    "type": "boolean"
+                                },
+                                "envoyDeployment": {
+                                    "type": "object",
+                                    "properties": {
+                                        "patch": {
+                                            "type": "object",
+                                            "properties": {
+                                                "type": {
+                                                    "type": "string"
+                                                },
+                                                "value": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "spec": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "template": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "spec": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "containers": {
+                                                                                    "type": "array",
+                                                                                    "items": {
+                                                                                        "type": "object",
+                                                                                        "properties": {
+                                                                                            "name": {
+                                                                                                "type": "string"
+                                                                                            },
+                                                                                            "securityContext": {
+                                                                                                "type": "object",
+                                                                                                "properties": {
+                                                                                                    "allowPrivilegeEscalation": {
+                                                                                                        "type": "boolean"
+                                                                                                    },
+                                                                                                    "capabilities": {
+                                                                                                        "type": "object",
+                                                                                                        "properties": {
+                                                                                                            "drop": {
+                                                                                                                "type": "array",
+                                                                                                                "items": {
+                                                                                                                    "type": "string"
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
+                                                                                                    },
+                                                                                                    "readOnlyRootFilesystem": {
+                                                                                                        "type": "boolean"
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                },
+                                                                                "securityContext": {
+                                                                                    "type": "object",
+                                                                                    "properties": {
+                                                                                        "runAsGroup": {
+                                                                                            "type": "integer"
+                                                                                        },
+                                                                                        "runAsNonRoot": {
+                                                                                            "type": "boolean"
+                                                                                        },
+                                                                                        "runAsUser": {
+                                                                                            "type": "integer"
+                                                                                        },
+                                                                                        "seccompProfile": {
+                                                                                            "type": "object",
+                                                                                            "properties": {
+                                                                                                "type": {
+                                                                                                    "type": "string"
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "envoyHpa": {
+                                    "type": "object"
+                                },
+                                "envoyPDB": {
+                                    "type": "object"
+                                },
+                                "envoyService": {
+                                    "type": "object"
+                                },
+                                "envoyServiceAccount": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "name": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "gateways": {
+            "type": "object",
+            "properties": {
+                "default": {
+                    "type": "object",
+                    "properties": {
+                        "className": {
+                            "type": "string"
+                        },
+                        "dnsName": {
+                            "type": "string"
+                        },
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "envoyProxy": {
+                            "type": "object",
+                            "properties": {
+                                "enabled": {
+                                    "type": "boolean"
+                                },
+                                "envoyDeployment": {
+                                    "type": "object",
+                                    "properties": {
+                                        "container": {
+                                            "type": "object",
+                                            "properties": {
+                                                "imageRepository": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "envoyHpa": {
+                                    "type": "object",
+                                    "properties": {
+                                        "maxReplicas": {
+                                            "type": "integer"
+                                        },
+                                        "minReplicas": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                },
+                                "envoyPDB": {
+                                    "type": "object",
+                                    "properties": {
+                                        "maxUnavailable": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "envoyServiceAccount": {
+                                    "type": "object"
+                                },
+                                "shutdown": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "listeners": {
+                            "type": "object",
+                            "properties": {
+                                "http": {
+                                    "type": "object",
+                                    "properties": {
+                                        "allowedRoutes": {
+                                            "type": "object",
+                                            "properties": {
+                                                "namespaces": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "from": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "httpsRedirectEnabled": {
+                                            "type": "boolean"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "port": {
+                                            "type": "integer"
+                                        },
+                                        "protocol": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "https": {
+                                    "type": "object",
+                                    "properties": {
+                                        "allowedRoutes": {
+                                            "type": "object",
+                                            "properties": {
+                                                "namespaces": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "from": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "certificate": {
+                                            "type": "object",
+                                            "properties": {
+                                                "enabled": {
+                                                    "type": "boolean"
+                                                },
+                                                "issuer": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "kind": {
+                                                            "type": "string"
+                                                        },
+                                                        "name": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "dnsEndpoints": {
+                                            "type": "object",
+                                            "properties": {
+                                                "annotations": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "giantswarm.io/external-dns": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "enabled": {
+                                                    "type": "boolean"
+                                                }
+                                            }
+                                        },
+                                        "hostname": {
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "port": {
+                                            "type": "integer"
+                                        },
+                                        "protocol": {
+                                            "type": "string"
+                                        },
+                                        "subdomains": {
+                                            "type": "array"
+                                        },
+                                        "tls": {
+                                            "type": "object",
+                                            "properties": {
+                                                "certificateRefs": {
+                                                    "type": "array"
+                                                },
+                                                "mode": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "overrideBaseDomain": {
+                            "type": "string"
+                        },
+                        "provider": {
+                            "type": "object",
+                            "properties": {
+                                "aws": {
+                                    "type": "object",
+                                    "properties": {
+                                        "useNetworkLoadBalancer": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "service": {
+                            "type": "object",
+                            "properties": {
+                                "annotations": {
+                                    "type": "object"
+                                },
+                                "externalTrafficPolicy": {
+                                    "type": "string"
+                                },
+                                "labels": {
+                                    "type": "object"
+                                },
+                                "loadBalancerClass": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "tlsIssuer": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                },
+                                "enabled": {
+                                    "type": "boolean"
+                                },
+                                "gateway": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "kyvernoPolicies": {
+            "type": "object",
+            "properties": {
+                "observability": {
+                    "type": "object",
+                    "properties": {
+                        "resourceName": {
+                            "type": "string"
+                        },
+                        "resourceNamespace": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "preconditions": {
+                    "type": "object",
+                    "properties": {
+                        "key": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
