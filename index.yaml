@@ -7568,6 +7568,40 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.9.4-820c67593f9f2267c8de81f694e4ed93b39fd5dd.tgz
     version: 3.9.4-820c67593f9f2267c8de81f694e4ed93b39fd5dd
+  - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.9.4-42cda72a6da408873edeaa342eb661cf1ac727af.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.9.4-42cda72a6da408873edeaa342eb661cf1ac727af.tgz-meta/README.md
+      application.giantswarm.io/team: shield
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.9.4-42cda72a6da408873edeaa342eb661cf1ac727af.tgz-meta/values.schema.json
+    apiVersion: v2
+    appVersion: v1.18.2
+    created: "2026-01-19T13:07:33.492908184Z"
+    dependencies:
+    - alias: giantSwarmClusterIssuer
+      name: cert-manager-giantswarm-clusterissuer
+      repository: ""
+      version: 2.0.0
+    - condition: giantswarmNetworkPolicy.enabled
+      name: cert-manager-giantswarm-netpol
+      repository: ""
+      version: 0.1.0
+    - condition: ciliumNetworkPolicy.enabled
+      name: cert-manager-giantswarm-ciliumnetworkpolicies
+      repository: ""
+      version: 0.1.0
+    description: Simplifies the process of obtaining, renewing and using certificates.
+    digest: b8b10cc63b0d9e5a7ff39c1ef0fdb54d61538d55101a5a024241e8d12e28be71
+    home: https://github.com/giantswarm/cert-manager-app
+    icon: https://s.giantswarm.io/app-icons/cert-manager/1/light.svg
+    kubeVersion: '>=1.22.0-0'
+    maintainers:
+    - name: Shield
+    name: cert-manager-app
+    sources:
+    - https://github.com/cert-manager/cert-manager
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.9.4-42cda72a6da408873edeaa342eb661cf1ac727af.tgz
+    version: 3.9.4-42cda72a6da408873edeaa342eb661cf1ac727af
   cilium-healthcheck:
   - annotations:
       application.giantswarm.io/team: phoenix
@@ -51666,4 +51700,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.4.0-063a3537dc9c2d2650a3b6eaaf34e9e9d1a51b13.tgz
     version: 2.4.0-063a3537dc9c2d2650a3b6eaaf34e9e9d1a51b13
-generated: "2026-01-19T13:07:18.609082481Z"
+generated: "2026-01-19T13:07:33.484166526Z"
