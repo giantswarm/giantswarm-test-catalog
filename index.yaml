@@ -13367,6 +13367,35 @@ entries:
     - https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.20.4-e9b2532d8833b59cdcdc89b7af8141706a54f318.tgz
     version: 0.20.4-e9b2532d8833b59cdcdc89b7af8141706a54f318
   - annotations:
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.20.4-e7e555ee83226b20be3adc1260c6661df53d5247.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/external-secrets/e7e555ee83226b20be3adc1260c6661df53d5247/README.md
+      io.giantswarm.application.restrictions.cluster-singleton: "true"
+      io.giantswarm.application.restrictions.namespace-singleton: "true"
+      io.giantswarm.application.team: honeybadger
+      io.giantswarm.application.upstream-chart-version: 0.20.4
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/external-secrets/e7e555ee83226b20be3adc1260c6661df53d5247/helm/external-secrets/values.schema.json
+    apiVersion: v2
+    appVersion: v0.20.4
+    created: "2026-01-20T13:52:20.361870698Z"
+    dependencies:
+    - condition: bitwarden-sdk-server.enabled
+      name: bitwarden-sdk-server
+      repository: oci://ghcr.io/external-secrets/charts
+      version: v0.4.2
+    description: External secret management for Kubernetes
+    digest: 3b77a46fb7928df6203dedfe7a9cb33e07eb5e71aeda215a0091bfcf9fd980ef
+    home: https://github.com/giantswarm/external-secrets
+    icon: https://s.giantswarm.io/app-icons/external-secrets/1/light.svg
+    keywords:
+    - kubernetes-external-secrets
+    - secrets
+    kubeVersion: '>= 1.30.0-0'
+    name: external-secrets
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.20.4-e7e555ee83226b20be3adc1260c6661df53d5247.tgz
+    version: 0.20.4-e7e555ee83226b20be3adc1260c6661df53d5247
+  - annotations:
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.20.4-e6369417fc6883f7a8c8d2d120f97bcf6dcd7727.tgz-meta/main.yaml
       io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/external-secrets/refs/tags/v0.20.4-e6369417fc6883f7a8c8d2d120f97bcf6dcd7727/README.md
       io.giantswarm.application.restrictions.cluster-singleton: "true"
@@ -56693,4 +56722,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.4.0-063a3537dc9c2d2650a3b6eaaf34e9e9d1a51b13.tgz
     version: 2.4.0-063a3537dc9c2d2650a3b6eaaf34e9e9d1a51b13
-generated: "2026-01-20T13:50:41.231267956Z"
+generated: "2026-01-20T13:52:20.346760077Z"
