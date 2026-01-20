@@ -9924,6 +9924,28 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/descheduler-1.0.2-535f7acf4bbb896fcadb150e74781d0e85d085d2.tgz
     version: 1.0.2-535f7acf4bbb896fcadb150e74781d0e85d085d2
+  - annotations:
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/descheduler-1.0.2-3bccd94255fcc00312b9c6dba9acaed56416a2cf.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/descheduler-app/3bccd94255fcc00312b9c6dba9acaed56416a2cf/README.md
+      io.giantswarm.application.restrictions.cluster-singleton: "true"
+      io.giantswarm.application.restrictions.fixed-namespace: kube-system
+      io.giantswarm.application.restrictions.gpu-instances: "false"
+      io.giantswarm.application.team: phoenix
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/descheduler-app/3bccd94255fcc00312b9c6dba9acaed56416a2cf/helm/descheduler/values.schema.json
+    apiVersion: v1
+    appVersion: v1.0.0
+    created: "2026-01-20T14:28:20.072284943Z"
+    description: Descheduler for Kubernetes is used to rebalance clusters by evicting
+      pods that can potentially be scheduled on better nodes. In the current implementation,
+      descheduler does not schedule replacement of evicted pods but relies on the
+      default scheduler for that.
+    digest: aa9e4c8a72373599809071f0a551ed7d32c42d95cc32fe8f9596fcae346b4c4d
+    home: https://github.com/giantswarm/descheduler-app
+    icon: https://s.giantswarm.io/app-icons/1/png/k8s-initiator-app-light.png
+    name: descheduler
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/descheduler-1.0.2-3bccd94255fcc00312b9c6dba9acaed56416a2cf.tgz
+    version: 1.0.2-3bccd94255fcc00312b9c6dba9acaed56416a2cf
   dex-app:
   - annotations:
       application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/dex-app-2.1.5-e56c03175756aefa6464bc84973ba5ca61bafede.tgz-meta/main.yaml
@@ -57269,4 +57291,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.4.0-063a3537dc9c2d2650a3b6eaaf34e9e9d1a51b13.tgz
     version: 2.4.0-063a3537dc9c2d2650a3b6eaaf34e9e9d1a51b13
-generated: "2026-01-20T14:28:06.687413024Z"
+generated: "2026-01-20T14:28:20.070992971Z"
