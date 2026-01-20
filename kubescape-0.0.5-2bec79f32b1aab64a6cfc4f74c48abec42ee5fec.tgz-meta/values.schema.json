@@ -1,0 +1,307 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "exceptions": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "namespace": {
+                    "type": "string"
+                }
+            }
+        },
+        "image": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "tag": {
+                    "type": "string"
+                }
+            }
+        },
+        "kubescape-operator": {
+            "type": "object",
+            "properties": {
+                "capabilities": {
+                    "type": "object",
+                    "properties": {
+                        "configurationScan": {
+                            "type": "string"
+                        },
+                        "continuousScan": {
+                            "type": "string"
+                        },
+                        "malwareDetection": {
+                            "type": "string"
+                        },
+                        "networkPolicyService": {
+                            "type": "string"
+                        },
+                        "nodeProfileService": {
+                            "type": "string"
+                        },
+                        "nodeScan": {
+                            "type": "string"
+                        },
+                        "relevancy": {
+                            "type": "string"
+                        },
+                        "runtimeDetection": {
+                            "type": "string"
+                        },
+                        "runtimeObservability": {
+                            "type": "string"
+                        },
+                        "seccompProfileService": {
+                            "type": "string"
+                        },
+                        "vulnerabilityScan": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "clamav": {
+                    "type": "object",
+                    "properties": {
+                        "image": {
+                            "type": "object",
+                            "properties": {
+                                "repository": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "hostScanner": {
+                    "type": "object",
+                    "properties": {
+                        "image": {
+                            "type": "object",
+                            "properties": {
+                                "repository": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "kubescape": {
+                    "type": "object",
+                    "properties": {
+                        "image": {
+                            "type": "object",
+                            "properties": {
+                                "repository": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "kubescapeScheduler": {
+                    "type": "object",
+                    "properties": {
+                        "image": {
+                            "type": "object",
+                            "properties": {
+                                "repository": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "kubevuln": {
+                    "type": "object",
+                    "properties": {
+                        "image": {
+                            "type": "object",
+                            "properties": {
+                                "repository": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "kubevulnScheduler": {
+                    "type": "object",
+                    "properties": {
+                        "image": {
+                            "type": "object",
+                            "properties": {
+                                "repository": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "nodeAgent": {
+                    "type": "object",
+                    "properties": {
+                        "config": {
+                            "type": "object",
+                            "properties": {
+                                "learningPeriod": {
+                                    "type": "string"
+                                },
+                                "maxLearningPeriod": {
+                                    "type": "string"
+                                },
+                                "prometheusExporter": {
+                                    "type": "string"
+                                },
+                                "stdoutExporter": {
+                                    "type": "boolean"
+                                },
+                                "updatePeriod": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "image": {
+                            "type": "object",
+                            "properties": {
+                                "repository": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "serviceMonitor": {
+                            "type": "object",
+                            "properties": {
+                                "additionalLabels": {
+                                    "type": "object",
+                                    "properties": {
+                                        "application.giantswarm.io/team": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "enabled": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "operator": {
+                    "type": "object",
+                    "properties": {
+                        "image": {
+                            "type": "object",
+                            "properties": {
+                                "repository": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "otelCollector": {
+                    "type": "object",
+                    "properties": {
+                        "image": {
+                            "type": "object",
+                            "properties": {
+                                "repository": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "prometheusExporter": {
+                    "type": "object",
+                    "properties": {
+                        "image": {
+                            "type": "object",
+                            "properties": {
+                                "repository": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "registryScanScheduler": {
+                    "type": "object",
+                    "properties": {
+                        "image": {
+                            "type": "object",
+                            "properties": {
+                                "repository": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "serviceDiscovery": {
+                    "type": "object",
+                    "properties": {
+                        "configMapUpdate": {
+                            "type": "object",
+                            "properties": {
+                                "image": {
+                                    "type": "object",
+                                    "properties": {
+                                        "repository": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "urlDiscovery": {
+                            "type": "object",
+                            "properties": {
+                                "image": {
+                                    "type": "object",
+                                    "properties": {
+                                        "repository": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "storage": {
+                    "type": "object",
+                    "properties": {
+                        "image": {
+                            "type": "object",
+                            "properties": {
+                                "repository": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "synchronizer": {
+                    "type": "object",
+                    "properties": {
+                        "image": {
+                            "type": "object",
+                            "properties": {
+                                "repository": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
