@@ -1,0 +1,849 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "replicaCount": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "registry": {
+          "type": "string"
+        },
+        "repository": {
+          "type": "string"
+        },
+        "pullPolicy": {
+          "type": "string",
+          "enum": ["Always", "Never", "IfNotPresent"]
+        },
+        "tag": {
+          "type": "string"
+        }
+      },
+      "required": ["registry", "repository", "pullPolicy"]
+    },
+    "imagePullSecrets": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "nameOverride": {
+      "type": "string"
+    },
+    "fullnameOverride": {
+      "type": "string"
+    },
+    "serviceAccount": {
+      "type": "object",
+      "properties": {
+        "create": {
+          "type": "boolean"
+        },
+        "automount": {
+          "type": "boolean"
+        },
+        "annotations": {
+          "type": "object"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "rbac": {
+      "type": "object",
+      "description": "RBAC configuration for the ServiceAccount",
+      "properties": {
+        "create": {
+          "type": "boolean",
+          "description": "Create RBAC resources (ClusterRole and ClusterRoleBinding)"
+        },
+        "profile": {
+          "type": "string",
+          "description": "RBAC profile: minimal (no permissions), readonly (read-only, no secrets), standard (read/write including secrets), admin (requires adminConfirmation)",
+          "enum": ["minimal", "readonly", "standard", "admin"]
+        },
+        "adminConfirmation": {
+          "type": "boolean",
+          "description": "REQUIRED when using admin profile. Must be set to true to acknowledge the dangerous permissions (RBAC management, pod exec, webhook configuration)"
+        },
+        "custom": {
+          "type": "object",
+          "description": "Custom RBAC rules. WARNING: Overrides profile safety controls when enabled - use with caution",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "Enable custom RBAC rules"
+            },
+            "rules": {
+              "type": "array",
+              "description": "Custom RBAC rules to apply",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "apiGroups": {
+                    "type": "array",
+                    "items": {"type": "string"}
+                  },
+                  "resources": {
+                    "type": "array",
+                    "items": {"type": "string"}
+                  },
+                  "verbs": {
+                    "type": "array",
+                    "items": {"type": "string"}
+                  }
+                },
+                "required": ["apiGroups", "resources", "verbs"]
+              }
+            }
+          }
+        }
+      }
+    },
+    "podAnnotations": {
+      "type": "object"
+    },
+    "podLabels": {
+      "type": "object"
+    },
+    "podSecurityContext": {
+      "type": "object",
+      "properties": {
+        "runAsUser": {
+          "type": "integer"
+        },
+        "runAsGroup": {
+          "type": "integer"
+        },
+        "runAsNonRoot": {
+          "type": "boolean"
+        },
+        "fsGroup": {
+          "type": "integer"
+        }
+      }
+    },
+    "securityContext": {
+      "type": "object",
+      "properties": {
+        "readOnlyRootFilesystem": {
+          "type": "boolean"
+        },
+        "allowPrivilegeEscalation": {
+          "type": "boolean"
+        },
+        "runAsUser": {
+          "type": "integer"
+        },
+        "runAsGroup": {
+          "type": "integer"
+        },
+        "runAsNonRoot": {
+          "type": "boolean"
+        },
+        "seccompProfile": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            }
+          }
+        },
+        "capabilities": {
+          "type": "object",
+          "properties": {
+            "drop": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "service": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["ClusterIP", "NodePort", "LoadBalancer", "ExternalName"]
+        },
+        "port": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65535
+        }
+      },
+      "required": ["type", "port"]
+    },
+    "ingress": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "className": {
+          "type": "string"
+        },
+        "annotations": {
+          "type": "object"
+        },
+        "hosts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "host": {
+                "type": "string"
+              },
+              "paths": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string"
+                    },
+                    "pathType": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tls": {
+          "type": "array"
+        }
+      }
+    },
+    "gatewayAPI": {
+      "type": "object",
+      "description": "Gateway API configuration for HTTPRoute and BackendTrafficPolicy resources",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable Gateway API resources (HTTPRoute)"
+        },
+        "httpRoute": {
+          "type": "object",
+          "description": "HTTPRoute configuration",
+          "properties": {
+            "parentRefs": {
+              "type": "array",
+              "description": "Parent gateway references (required when gatewayAPI.enabled is true)",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the parent Gateway"
+                  },
+                  "namespace": {
+                    "type": "string",
+                    "description": "Namespace of the parent Gateway"
+                  },
+                  "sectionName": {
+                    "type": "string",
+                    "description": "Specific listener on the Gateway (optional)"
+                  }
+                },
+                "required": ["name"]
+              }
+            },
+            "hostnames": {
+              "type": "array",
+              "description": "Hostnames for the route",
+              "items": {
+                "type": "string"
+              }
+            },
+            "rules": {
+              "type": "array",
+              "description": "Custom routing rules (defaults to PathPrefix / if not specified)",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "matches": {
+                    "type": "array",
+                    "description": "Path and header matching rules"
+                  },
+                  "filters": {
+                    "type": "array",
+                    "description": "Request/response filters"
+                  },
+                  "timeouts": {
+                    "type": "object",
+                    "description": "Per-rule timeout configuration"
+                  }
+                }
+              }
+            },
+            "annotations": {
+              "type": "object",
+              "description": "Additional annotations for the HTTPRoute"
+            },
+            "labels": {
+              "type": "object",
+              "description": "Additional labels for the HTTPRoute"
+            }
+          }
+        },
+        "backendTrafficPolicy": {
+          "type": "object",
+          "description": "BackendTrafficPolicy configuration (Envoy Gateway specific)",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "Enable BackendTrafficPolicy resource"
+            },
+            "timeout": {
+              "type": "string",
+              "description": "Request timeout for backend connections (e.g., '300s')",
+              "pattern": "^[0-9]+(s|m|h)$"
+            },
+            "annotations": {
+              "type": "object",
+              "description": "Additional annotations for the BackendTrafficPolicy"
+            },
+            "labels": {
+              "type": "object",
+              "description": "Additional labels for the BackendTrafficPolicy"
+            }
+          }
+        }
+      }
+    },
+    "resources": {
+      "type": "object"
+    },
+    "autoscaling": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "minReplicas": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "maxReplicas": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "targetCPUUtilizationPercentage": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "targetMemoryUtilizationPercentage": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        }
+      }
+    },
+    "volumes": {
+      "type": "array"
+    },
+    "volumeMounts": {
+      "type": "array"
+    },
+    "nodeSelector": {
+      "type": "object"
+    },
+    "tolerations": {
+      "type": "array"
+    },
+    "affinity": {
+      "type": "object"
+    },
+    "mcpKubernetes": {
+      "type": "object",
+      "properties": {
+        "debug": {
+          "type": "boolean",
+          "description": "Enable debug mode. WARNING: May expose sensitive information in logs. Only for development/troubleshooting, never in production.",
+          "default": false
+        },
+        "kubernetes": {
+          "type": "object",
+          "properties": {
+            "inCluster": {
+              "type": "boolean"
+            },
+            "kubeconfig": {
+              "type": "string"
+            }
+          }
+        },
+        "oauth": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "baseURL": {
+              "type": "string"
+            },
+            "googleClientID": {
+              "type": "string"
+            },
+            "googleClientSecret": {
+              "type": "string"
+            },
+            "registrationToken": {
+              "type": "string"
+            },
+            "registrationAccessToken": {
+              "type": "string"
+            },
+            "allowPublicRegistration": {
+              "type": "boolean"
+            },
+            "allowInsecureAuthWithoutState": {
+              "type": "boolean"
+            },
+            "allowPrivateURLs": {
+              "type": "boolean",
+              "description": "Allow OAuth URLs that resolve to private/internal IP addresses (for internal deployments)"
+            },
+            "maxClientsPerIP": {
+              "type": "integer"
+            },
+            "encryptionKey": {
+              "type": "boolean"
+            },
+            "encryptionKeyValue": {
+              "type": "string"
+            },
+            "disableStreaming": {
+              "type": "boolean"
+            },
+            "existingSecret": {
+              "type": "string"
+            },
+            "provider": {
+              "type": "string",
+              "enum": ["dex", "google"],
+              "description": "OAuth provider: dex or google"
+            },
+            "dex": {
+              "type": "object",
+              "description": "Dex OIDC provider configuration",
+              "properties": {
+                "issuerURL": {
+                  "type": "string",
+                  "description": "Dex OIDC issuer URL"
+                },
+                "clientID": {
+                  "type": "string",
+                  "description": "Dex OAuth Client ID"
+                },
+                "clientSecret": {
+                  "type": "string",
+                  "description": "Dex OAuth Client Secret"
+                },
+                "connectorID": {
+                  "type": "string",
+                  "description": "Dex connector ID to bypass connector selection screen"
+                },
+                "kubernetesAuthenticatorClientID": {
+                  "type": "string",
+                  "description": "Kubernetes authenticator client ID for cross-client audience tokens"
+                },
+                "caSecret": {
+                  "type": "object",
+                  "description": "CA certificate secret for Dex TLS verification",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "key": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "enableDownstreamOAuth": {
+              "type": "boolean",
+              "description": "Enable downstream OAuth token passthrough to Kubernetes API"
+            },
+            "redirectURISecurity": {
+              "type": "object",
+              "description": "Redirect URI security configuration. All settings default to secure values.",
+              "properties": {
+                "disableProductionMode": {
+                  "type": "boolean",
+                  "description": "Disable production mode (allows HTTP, private IPs). WARNING: Significantly weakens security."
+                },
+                "allowLocalhostRedirectURIs": {
+                  "type": "boolean",
+                  "description": "Allow http://localhost redirect URIs for native apps (RFC 8252)"
+                },
+                "allowPrivateIPRedirectURIs": {
+                  "type": "boolean",
+                  "description": "Allow private IP addresses (10.x, 172.16.x, 192.168.x) in redirect URIs. WARNING: SSRF risk."
+                },
+                "allowLinkLocalRedirectURIs": {
+                  "type": "boolean",
+                  "description": "Allow link-local addresses (169.254.x.x) in redirect URIs. WARNING: Cloud metadata SSRF risk."
+                },
+                "disableDNSValidation": {
+                  "type": "boolean",
+                  "description": "Disable DNS validation of redirect URI hostnames. WARNING: Allows DNS rebinding attacks."
+                },
+                "disableDNSValidationStrict": {
+                  "type": "boolean",
+                  "description": "Disable fail-closed DNS validation. WARNING: Allows validation bypass via DNS failures."
+                },
+                "disableAuthorizationTimeValidation": {
+                  "type": "boolean",
+                  "description": "Disable redirect URI validation at authorization time. WARNING: Allows TOCTOU attacks."
+                }
+              }
+            },
+            "trustedPublicRegistrationSchemes": {
+              "type": "array",
+              "description": "URI schemes allowed for unauthenticated client registration (e.g., cursor, vscode). Enables MCP clients that don't support registration tokens.",
+              "items": {
+                "type": "string"
+              }
+            },
+            "disableStrictSchemeMatching": {
+              "type": "boolean",
+              "description": "Allow mixed redirect URI schemes with trusted scheme registration. WARNING: Reduces security."
+            },
+            "enableCIMD": {
+              "type": "boolean",
+              "description": "Enable Client ID Metadata Documents (CIMD) per MCP 2025-11-25. Allows clients to use HTTPS URLs as client identifiers for decentralized registration. Default: true."
+            },
+            "cimd": {
+              "type": "object",
+              "description": "CIMD (Client ID Metadata Documents) configuration",
+              "properties": {
+                "allowPrivateIPs": {
+                  "type": "boolean",
+                  "description": "Allow CIMD metadata URLs that resolve to private/internal IP addresses. WARNING: Reduces SSRF protection. Only for internal deployments. Default: false."
+                }
+              }
+            },
+            "trustedAudiences": {
+              "type": "array",
+              "description": "Trusted audiences for SSO token forwarding. When configured, tokens with these audience claims are validated via JWKS signature verification, enabling SSO from upstream aggregators.",
+              "items": {
+                "type": "string"
+              },
+              "default": [],
+              "examples": [["muster-client", "my-aggregator-client"]]
+            },
+            "sso": {
+              "type": "object",
+              "description": "SSO security configuration (mcp-oauth v0.2.40+)",
+              "additionalProperties": false,
+              "properties": {
+                "allowPrivateIPs": {
+                  "type": "boolean",
+                  "description": "Allow JWKS endpoints to resolve to private IPs during SSO token validation. Required for private IdP deployments (e.g., Dex on internal networks). WARNING: reduces SSRF protection. Has no effect for Google OAuth (JWKS is always public).",
+                  "default": false
+                }
+              }
+            }
+          }
+        },
+        "env": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            },
+            "required": ["name"]
+          }
+        },
+        "metrics": {
+          "type": "object",
+          "description": "Metrics server configuration. Runs on a separate port for security.",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "Enable the dedicated metrics server (default: true)"
+            },
+            "port": {
+              "type": "integer",
+              "description": "Port for the metrics server (default: 9090)",
+              "minimum": 1,
+              "maximum": 65535
+            }
+          }
+        }
+      }
+    },
+    "capiMode": {
+      "type": "object",
+      "description": "CAPI Mode configuration for multi-cluster federation",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable CAPI federation mode"
+        },
+        "cache": {
+          "type": "object",
+          "description": "Client cache settings for workload cluster connections",
+          "properties": {
+            "ttl": {
+              "type": "string",
+              "description": "Time-to-live for cached clients (e.g., '10m')",
+              "pattern": "^[0-9]+(s|m|h)$"
+            },
+            "maxEntries": {
+              "type": "integer",
+              "description": "Maximum number of cached (cluster, user) pairs",
+              "minimum": 1,
+              "maximum": 10000
+            },
+            "cleanupInterval": {
+              "type": "string",
+              "description": "How often to clean up expired entries (e.g., '1m')",
+              "pattern": "^[0-9]+(s|m|h)$"
+            }
+          }
+        },
+        "connectivity": {
+          "type": "object",
+          "description": "Connectivity settings for workload clusters",
+          "properties": {
+            "timeout": {
+              "type": "string",
+              "description": "Timeout for initial TCP connection (e.g., '5s')",
+              "pattern": "^[0-9]+(s|m|h)$"
+            },
+            "retryAttempts": {
+              "type": "integer",
+              "description": "Number of retry attempts for transient failures",
+              "minimum": 0,
+              "maximum": 10
+            },
+            "retryBackoff": {
+              "type": "string",
+              "description": "Initial backoff between retries (e.g., '1s')",
+              "pattern": "^[0-9]+(s|m|h)$"
+            },
+            "requestTimeout": {
+              "type": "string",
+              "description": "Request timeout for API operations (e.g., '30s')",
+              "pattern": "^[0-9]+(s|m|h)$"
+            },
+            "qps": {
+              "type": "integer",
+              "description": "QPS rate limit for Kubernetes client",
+              "minimum": 1,
+              "maximum": 1000
+            },
+            "burst": {
+              "type": "integer",
+              "description": "Burst limit for Kubernetes client",
+              "minimum": 1,
+              "maximum": 2000
+            }
+          }
+        },
+        "output": {
+          "type": "object",
+          "description": "Output processing limits for fleet-scale operations",
+          "properties": {
+            "maxItems": {
+              "type": "integer",
+              "description": "Maximum items per query (absolute max: 1000)",
+              "minimum": 1,
+              "maximum": 1000
+            },
+            "maxClusters": {
+              "type": "integer",
+              "description": "Maximum clusters in fleet-wide queries (absolute max: 100)",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "maxResponseBytes": {
+              "type": "integer",
+              "description": "Maximum response size in bytes (absolute max: 2MB)",
+              "minimum": 1024,
+              "maximum": 2097152
+            },
+            "slimOutput": {
+              "type": "boolean",
+              "description": "Enable slim output (removes verbose fields)"
+            },
+            "maskSecrets": {
+              "type": "boolean",
+              "description": "Mask secret data with ***REDACTED***"
+            }
+          }
+        },
+        "rbac": {
+          "type": "object",
+          "description": "RBAC configuration for CAPI mode",
+          "properties": {
+            "create": {
+              "type": "boolean",
+              "description": "Create CAPI-specific RBAC resources"
+            },
+            "allowedNamespaces": {
+              "type": "array",
+              "description": "Namespaces to grant kubeconfig secret access",
+              "items": {
+                "type": "string"
+              }
+            },
+            "clusterWideSecrets": {
+              "type": "boolean",
+              "description": "Grant cluster-wide secret access (NOT recommended)"
+            }
+          }
+        },
+        "workloadClusterAuth": {
+          "type": "object",
+          "description": "Workload cluster authentication configuration",
+          "properties": {
+            "mode": {
+              "type": "string",
+              "enum": ["impersonation", "sso-passthrough"],
+              "description": "Authentication mode: 'impersonation' (default) uses admin credentials with user impersonation headers; 'sso-passthrough' forwards user's SSO token directly to WC API servers"
+            },
+            "caConfigMapSuffix": {
+              "type": "string",
+              "description": "ConfigMap suffix for CA certificates in sso-passthrough mode (e.g., '-ca-public'). These ConfigMaps contain the cluster's public CA certificate.",
+              "pattern": "^-[a-z0-9-]+$"
+            },
+            "disableCaching": {
+              "type": "boolean",
+              "description": "Disable client caching in sso-passthrough mode. Each request creates a fresh client with current SSO token. Recommended for high-security deployments to ensure token revocation takes effect immediately."
+            }
+          }
+        }
+      }
+    },
+    "grafanaDashboards": {
+      "type": "object",
+      "description": "Grafana dashboard provisioning configuration. Prerequisites: Prometheus scraping metrics, Grafana sidecar watching for ConfigMaps, Prometheus datasource configured.",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable Grafana dashboard provisioning via ConfigMaps. When enabled, creates ConfigMaps for each dashboard that Grafana's sidecar can discover.",
+          "default": false
+        },
+        "namespace": {
+          "type": "string",
+          "description": "Namespace for the dashboard ConfigMaps. Defaults to release namespace. Override when Grafana sidecar watches a specific namespace (common in multi-tenant setups where Grafana runs in a shared monitoring namespace).",
+          "default": ""
+        },
+        "labels": {
+          "type": "object",
+          "description": "Labels to add to dashboard ConfigMaps. The 'grafana_dashboard: 1' label is required for standard Grafana sidecar discovery.",
+          "default": {"grafana_dashboard": "1"}
+        },
+        "annotations": {
+          "type": "object",
+          "description": "Additional annotations to add to dashboard ConfigMaps",
+          "default": {}
+        },
+        "folder": {
+          "type": "string",
+          "description": "Grafana folder name where dashboards will appear. The folder is created automatically by the Grafana sidecar if it doesn't exist.",
+          "default": "mcp-kubernetes"
+        },
+        "dashboards": {
+          "type": "object",
+          "description": "Individual dashboard toggles. Each enabled dashboard creates a ConfigMap named <release>-mcp-kubernetes-dashboard-<name>.",
+          "properties": {
+            "administrator": {
+              "type": "object",
+              "description": "Platform Administrator Dashboard - Monitor service health, performance, and Kubernetes operations. ConfigMap suffix: -dashboard-administrator",
+              "properties": {
+                "enabled": {
+                  "type": "boolean",
+                  "description": "Enable the Platform Administrator dashboard",
+                  "default": true
+                }
+              }
+            },
+            "security": {
+              "type": "object",
+              "description": "Security Operations Dashboard - Incident investigation, audit trails, and anomaly detection. ConfigMap suffix: -dashboard-security",
+              "properties": {
+                "enabled": {
+                  "type": "boolean",
+                  "description": "Enable the Security Operations dashboard",
+                  "default": true
+                }
+              }
+            },
+            "clusterOperator": {
+              "type": "object",
+              "description": "Cluster Operator Dashboard - Multi-cluster federation visibility and workload cluster operations. ConfigMap suffix: -dashboard-cluster-operator",
+              "properties": {
+                "enabled": {
+                  "type": "boolean",
+                  "description": "Enable the Cluster Operator dashboard",
+                  "default": true
+                }
+              }
+            }
+          }
+        },
+        "giantswarm": {
+          "type": "object",
+          "description": "Giant Swarm specific configuration for dashboard integration. See: https://docs.giantswarm.io/overview/observability/dashboard-management/dashboard-creation/",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "Enable Giant Swarm dashboard integration. When enabled, adds the required label (app.giantswarm.io/kind: dashboard) for automatic detection by Giant Swarm's observability stack.",
+              "default": false
+            },
+            "organization": {
+              "type": "string",
+              "description": "Organization name for Grafana organization targeting. REQUIRED when giantswarm.enabled is true. The dashboard will be provisioned to this Grafana organization. Must match an existing organization's display name in Giant Swarm Grafana. If left empty when giantswarm.enabled is true, the dashboard goes to the default org (likely not intended).",
+              "default": ""
+            }
+          }
+        }
+      }
+    },
+    "ciliumNetworkPolicy": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "labels": {
+          "type": "object"
+        },
+        "annotations": {
+          "type": "object"
+        }
+      },
+      "required": ["enabled"]
+    }
+  },
+  "required": [
+    "replicaCount",
+    "image",
+    "serviceAccount",
+    "service",
+    "mcpKubernetes",
+    "ciliumNetworkPolicy"
+  ]
+}
