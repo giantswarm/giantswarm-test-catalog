@@ -15883,6 +15883,35 @@ entries:
   flux-operator:
   - annotations:
       io.giantswarm.application.audience: all
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/flux-operator-0.1.1-078caa68ab63fe783b651887086792d8b456d4b0.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/flux-operator-app/078caa68ab63fe783b651887086792d8b456d4b0/README.md
+      io.giantswarm.application.restrictions.cluster-singleton: "true"
+      io.giantswarm.application.team: honeybadger
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/flux-operator-app/078caa68ab63fe783b651887086792d8b456d4b0/helm/flux-operator/values.schema.json
+    apiVersion: v2
+    appVersion: v0.26.0
+    created: "2026-01-23T11:37:14.814929929Z"
+    dependencies:
+    - condition: fluxoperator.enabled
+      name: flux-operator
+      repository: oci://ghcr.io/controlplaneio-fluxcd/charts
+      version: 0.40.0
+    description: Flux Operator is a Kubernetes CRD controller that manages the lifecycle
+      of Flux CD
+    digest: 523528b4e56bde35e1af2f14387d2587bc45384eb7f6cc54c105471d3ceecf42
+    home: https://github.com/giantswarm/flux-operator-app
+    icon: https://s.giantswarm.io/app-icons/flux/2/icon_light.svg
+    keywords:
+    - flux
+    - gitops
+    name: flux-operator
+    sources:
+    - https://github.com/controlplaneio-fluxcd/charts/tree/main/charts/flux-operator
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/flux-operator-0.1.1-078caa68ab63fe783b651887086792d8b456d4b0.tgz
+    version: 0.1.1-078caa68ab63fe783b651887086792d8b456d4b0
+  - annotations:
+      io.giantswarm.application.audience: all
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/flux-operator-0.1.0-ffc6daaed9fb7da9ab2c3e8e02821a28ae09fdb3.tgz-meta/main.yaml
       io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/flux-operator-app/ffc6daaed9fb7da9ab2c3e8e02821a28ae09fdb3/README.md
       io.giantswarm.application.restrictions.cluster-singleton: "true"
@@ -66065,4 +66094,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.4.0-063a3537dc9c2d2650a3b6eaaf34e9e9d1a51b13.tgz
     version: 2.4.0-063a3537dc9c2d2650a3b6eaaf34e9e9d1a51b13
-generated: "2026-01-23T11:37:04.571589576Z"
+generated: "2026-01-23T11:37:14.812795746Z"
