@@ -1,0 +1,570 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["image", "service", "muster"],
+  "properties": {
+    "replicaCount": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Number of muster replicas"
+    },
+    "image": {
+      "type": "object",
+      "required": ["registry", "repository"],
+      "properties": {
+        "registry": {
+          "type": "string",
+          "description": "Container image registry"
+        },
+        "repository": {
+          "type": "string",
+          "description": "Container image repository"
+        },
+        "tag": {
+          "type": "string",
+          "description": "Container image tag (defaults to appVersion)"
+        },
+        "pullPolicy": {
+          "type": "string",
+          "enum": ["Always", "IfNotPresent", "Never"],
+          "description": "Image pull policy"
+        }
+      }
+    },
+    "imagePullSecrets": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Image pull secrets"
+    },
+    "nameOverride": {
+      "type": "string",
+      "description": "Override chart name"
+    },
+    "fullnameOverride": {
+      "type": "string",
+      "description": "Override full chart name"
+    },
+    "serviceAccount": {
+      "type": "object",
+      "properties": {
+        "create": {
+          "type": "boolean",
+          "description": "Create service account"
+        },
+        "automount": {
+          "type": "boolean",
+          "description": "Automount service account token"
+        },
+        "annotations": {
+          "type": "object",
+          "description": "Service account annotations"
+        },
+        "name": {
+          "type": "string",
+          "description": "Service account name"
+        }
+      }
+    },
+    "rbac": {
+      "type": "object",
+      "properties": {
+        "create": {
+          "type": "boolean",
+          "description": "Create RBAC resources (ClusterRole and ClusterRoleBinding)"
+        }
+      }
+    },
+    "podAnnotations": {
+      "type": "object",
+      "description": "Pod annotations"
+    },
+    "podLabels": {
+      "type": "object",
+      "description": "Pod labels"
+    },
+    "podSecurityContext": {
+      "type": "object",
+      "description": "Pod security context"
+    },
+    "securityContext": {
+      "type": "object",
+      "description": "Container security context"
+    },
+    "service": {
+      "type": "object",
+      "required": ["type", "port"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["ClusterIP", "NodePort", "LoadBalancer"],
+          "description": "Service type"
+        },
+        "port": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65535,
+          "description": "Service port"
+        }
+      }
+    },
+    "ingress": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable ingress"
+        },
+        "className": {
+          "type": "string",
+          "description": "Ingress class name"
+        },
+        "annotations": {
+          "type": "object",
+          "description": "Ingress annotations"
+        },
+        "hosts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "host": {
+                "type": "string"
+              },
+              "paths": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string"
+                    },
+                    "pathType": {
+                      "type": "string",
+                      "enum": ["Prefix", "Exact", "ImplementationSpecific"]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tls": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "gatewayAPI": {
+      "type": "object",
+      "description": "Gateway API configuration (successor to Ingress)",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable Gateway API HTTPRoute"
+        },
+        "httpRoute": {
+          "type": "object",
+          "description": "HTTPRoute configuration",
+          "properties": {
+            "parentRefs": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Gateway name"
+                  },
+                  "namespace": {
+                    "type": "string",
+                    "description": "Gateway namespace"
+                  }
+                }
+              },
+              "description": "Parent gateway references"
+            },
+            "hostnames": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Route hostnames"
+            },
+            "rules": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              },
+              "description": "Custom routing rules"
+            },
+            "annotations": {
+              "type": "object",
+              "description": "HTTPRoute annotations"
+            },
+            "labels": {
+              "type": "object",
+              "description": "HTTPRoute labels"
+            }
+          }
+        },
+        "backendTrafficPolicy": {
+          "type": "object",
+          "description": "Envoy Gateway BackendTrafficPolicy configuration",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "Enable BackendTrafficPolicy creation"
+            },
+            "timeout": {
+              "type": "string",
+              "description": "Request timeout (e.g., 300s, 5m)"
+            },
+            "annotations": {
+              "type": "object",
+              "description": "BackendTrafficPolicy annotations"
+            },
+            "labels": {
+              "type": "object",
+              "description": "BackendTrafficPolicy labels"
+            }
+          }
+        }
+      }
+    },
+    "resources": {
+      "type": "object",
+      "properties": {
+        "limits": {
+          "type": "object",
+          "properties": {
+            "cpu": {
+              "type": "string"
+            },
+            "memory": {
+              "type": "string"
+            }
+          }
+        },
+        "requests": {
+          "type": "object",
+          "properties": {
+            "cpu": {
+              "type": "string"
+            },
+            "memory": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "autoscaling": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable HPA"
+        },
+        "minReplicas": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "maxReplicas": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "targetCPUUtilizationPercentage": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "targetMemoryUtilizationPercentage": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        }
+      }
+    },
+    "podDisruptionBudget": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable PodDisruptionBudget"
+        },
+        "minAvailable": {
+          "type": ["integer", "string"],
+          "description": "Minimum number/percentage of pods that must remain available"
+        },
+        "maxUnavailable": {
+          "type": ["integer", "string"],
+          "description": "Maximum number/percentage of pods that can be unavailable"
+        }
+      }
+    },
+    "volumes": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "volumeMounts": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "nodeSelector": {
+      "type": "object"
+    },
+    "tolerations": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "affinity": {
+      "type": "object"
+    },
+    "muster": {
+      "type": "object",
+      "required": ["aggregator"],
+      "properties": {
+        "aggregator": {
+          "type": "object",
+          "required": ["port", "transport"],
+          "properties": {
+            "port": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 65535,
+              "description": "MCP aggregator port"
+            },
+            "transport": {
+              "type": "string",
+              "enum": ["streamable-http", "sse"],
+              "description": "MCP transport protocol"
+            }
+          }
+        },
+        "namespace": {
+          "type": "string",
+          "description": "Namespace for CRD discovery"
+        },
+        "debug": {
+          "type": "boolean",
+          "description": "Enable debug logging"
+        },
+        "oauth": {
+          "type": "object",
+          "description": "OAuth proxy configuration for remote MCP server authentication",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "Enable OAuth proxy functionality"
+            },
+            "publicUrl": {
+              "type": "string",
+              "description": "Publicly accessible URL of the Muster Server for OAuth callbacks"
+            },
+            "clientId": {
+              "type": "string",
+              "description": "OAuth client identifier (CIMD URL)"
+            },
+            "callbackPath": {
+              "type": "string",
+              "description": "Path for the OAuth proxy callback endpoint",
+              "default": "/oauth/proxy/callback"
+            },
+            "cimdPath": {
+              "type": "string",
+              "description": "Path for serving the Client ID Metadata Document (CIMD)",
+              "default": "/.well-known/oauth-client.json"
+            },
+            "cimdScopes": {
+              "type": "string",
+              "description": "OAuth scopes to advertise in the self-hosted CIMD for SSO token forwarding",
+              "default": "openid profile email offline_access"
+            }
+          }
+        },
+        "oauthServer": {
+          "type": "object",
+          "description": "OAuth server configuration for protecting the Muster Server itself (ADR 005)",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "Enable OAuth server protection"
+            },
+            "baseUrl": {
+              "type": "string",
+              "description": "Base URL of the Muster Server (used as OAuth issuer)"
+            },
+            "provider": {
+              "type": "string",
+              "enum": ["dex", "google"],
+              "description": "OAuth provider type"
+            },
+            "dex": {
+              "type": "object",
+              "description": "Dex OIDC provider configuration",
+              "properties": {
+                "issuerUrl": {
+                  "type": "string",
+                  "description": "Dex OIDC issuer URL"
+                },
+                "clientId": {
+                  "type": "string",
+                  "description": "OAuth client ID registered in Dex"
+                },
+                "clientSecret": {
+                  "type": "string",
+                  "description": "OAuth client secret"
+                },
+                "connectorId": {
+                  "type": "string",
+                  "description": "Optional connector ID to bypass Dex connector selection"
+                },
+                "caFile": {
+                  "type": "string",
+                  "description": "Path to CA certificate file for Dex TLS verification"
+                },
+                "kubernetesAuthenticatorClientId": {
+                  "type": "string",
+                  "description": "Client ID of Kubernetes authenticator in Dex"
+                }
+              }
+            },
+            "google": {
+              "type": "object",
+              "description": "Google OAuth provider configuration",
+              "properties": {
+                "clientId": {
+                  "type": "string",
+                  "description": "Google OAuth client ID"
+                },
+                "clientSecret": {
+                  "type": "string",
+                  "description": "Google OAuth client secret"
+                }
+              }
+            },
+            "existingSecret": {
+              "type": "string",
+              "description": "Use an existing secret for OAuth credentials"
+            },
+            "storage": {
+              "type": "object",
+              "description": "Token storage backend configuration",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["memory", "valkey"],
+                  "description": "Storage backend type"
+                },
+                "valkey": {
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "description": "Valkey server URL"
+                    },
+                    "password": {
+                      "type": "string",
+                      "description": "Valkey password (use existingSecret for production)"
+                    },
+                    "tls": {
+                      "type": "object",
+                      "properties": {
+                        "enabled": {
+                          "type": "boolean",
+                          "description": "Enable TLS for Valkey connection"
+                        }
+                      }
+                    },
+                    "keyPrefix": {
+                      "type": "string",
+                      "description": "Key prefix for stored data"
+                    },
+                    "db": {
+                      "type": "integer",
+                      "description": "Valkey database number"
+                    },
+                    "existingSecret": {
+                      "type": "string",
+                      "description": "Use an existing secret for Valkey password"
+                    },
+                    "secretKeyPassword": {
+                      "type": "string",
+                      "description": "Key in the secret containing the Valkey password"
+                    }
+                  }
+                }
+              }
+            },
+            "registrationToken": {
+              "type": "string",
+              "description": "Registration token for dynamic client registration"
+            },
+            "allowPublicClientRegistration": {
+              "type": "boolean",
+              "description": "Allow unauthenticated dynamic client registration"
+            },
+            "encryptionKey": {
+              "type": "boolean",
+              "description": "Enable token encryption at rest"
+            },
+            "encryptionKeyValue": {
+              "type": "string",
+              "description": "AES-256 encryption key for tokens at rest (base64)"
+            },
+            "trustedPublicRegistrationSchemes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "URI schemes allowed for unauthenticated client registration"
+            },
+            "enableCIMD": {
+              "type": "boolean",
+              "description": "Enable Client ID Metadata Documents"
+            },
+            "allowLocalhostRedirectURIs": {
+              "type": "boolean",
+              "description": "Allow localhost/loopback redirect URIs for native apps (RFC 8252)"
+            }
+          }
+        }
+      }
+    },
+    "crds": {
+      "type": "object",
+      "properties": {
+        "install": {
+          "type": "boolean",
+          "description": "Install CRDs"
+        }
+      }
+    },
+    "ciliumNetworkPolicy": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable CiliumNetworkPolicy"
+        },
+        "labels": {
+          "type": "object"
+        },
+        "annotations": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}
+
