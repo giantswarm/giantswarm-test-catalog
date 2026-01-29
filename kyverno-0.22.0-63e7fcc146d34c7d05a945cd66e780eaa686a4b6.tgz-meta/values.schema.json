@@ -1,0 +1,5332 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "properties": {
+    "ciliumNetworkPolicy": {
+      "description": "Create CiliumNetworkPolicy",
+      "properties": {
+        "admissionControllerExtraEgress": {
+          "properties": {
+            "dnsSelector": {
+              "properties": {
+                "rules": {
+                  "items": {
+                    "required": []
+                  },
+                  "required": [],
+                  "title": "rules",
+                  "type": "array"
+                }
+              },
+              "required": [
+                "rules"
+              ],
+              "title": "dnsSelector",
+              "type": "object"
+            },
+            "enabled": {
+              "default": false,
+              "required": [],
+              "title": "enabled",
+              "type": "boolean"
+            },
+            "fqdnsConnection": {
+              "properties": {
+                "port": {
+                  "default": "443",
+                  "required": [],
+                  "title": "port",
+                  "type": "string"
+                },
+                "protocol": {
+                  "default": "TCP",
+                  "required": [],
+                  "title": "protocol",
+                  "type": "string"
+                },
+                "rules": {
+                  "items": {
+                    "required": []
+                  },
+                  "required": [],
+                  "title": "rules",
+                  "type": "array"
+                }
+              },
+              "required": [
+                "port",
+                "protocol",
+                "rules"
+              ],
+              "title": "fqdnsConnection",
+              "type": "object"
+            }
+          },
+          "required": [
+            "enabled",
+            "dnsSelector",
+            "fqdnsConnection"
+          ],
+          "title": "admissionControllerExtraEgress",
+          "type": "object"
+        },
+        "enabled": {
+          "default": true,
+          "required": [],
+          "title": "enabled",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "enabled",
+        "admissionControllerExtraEgress"
+      ],
+      "title": "ciliumNetworkPolicy",
+      "type": "object"
+    },
+    "cleanupPolicies": {
+      "properties": {
+        "trivyOperator": {
+          "properties": {
+            "enabled": {
+              "default": "false",
+              "description": "Enable Trivy cleanup policy to delete old Trivy Operator reports",
+              "required": [],
+              "title": "enabled"
+            },
+            "olderThan": {
+              "default": "336h",
+              "description": "Reports older than this duration will be deleted. Needs to be specified in hours. Defaults to 2 weeks (336 hours).",
+              "required": [],
+              "title": "olderThan"
+            },
+            "schedule": {
+              "default": "37 * * * *",
+              "description": "Cleanup schedule",
+              "required": [],
+              "title": "schedule"
+            }
+          },
+          "required": [],
+          "title": "trivyOperator",
+          "type": "object"
+        }
+      },
+      "required": [
+        "trivyOperator"
+      ],
+      "title": "cleanupPolicies",
+      "type": "object"
+    },
+    "crds": {
+      "description": "We install CRDs through a Job with the helm specific crd folder.",
+      "properties": {
+        "install": {
+          "default": false,
+          "required": [],
+          "title": "install",
+          "type": "boolean"
+        },
+        "resources": {
+          "properties": {
+            "limits": {
+              "properties": {
+                "cpu": {
+                  "default": "750m",
+                  "required": [],
+                  "title": "cpu",
+                  "type": "string"
+                },
+                "memory": {
+                  "default": "1024Mi",
+                  "required": [],
+                  "title": "memory",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "cpu",
+                "memory"
+              ],
+              "title": "limits",
+              "type": "object"
+            },
+            "requests": {
+              "properties": {
+                "cpu": {
+                  "default": "100m",
+                  "required": [],
+                  "title": "cpu",
+                  "type": "string"
+                },
+                "memory": {
+                  "default": "256Mi",
+                  "required": [],
+                  "title": "memory",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "cpu",
+                "memory"
+              ],
+              "title": "requests",
+              "type": "object"
+            }
+          },
+          "required": [
+            "requests",
+            "limits"
+          ],
+          "title": "resources",
+          "type": "object"
+        }
+      },
+      "required": [
+        "install",
+        "resources"
+      ],
+      "title": "crds",
+      "type": "object"
+    },
+    "global": {
+      "description": "Create PSPs for every component including the CRD install job",
+      "properties": {
+        "image": {
+          "properties": {
+            "registry": {
+              "default": "gsoci.azurecr.io",
+              "required": [],
+              "title": "registry",
+              "type": "string"
+            }
+          },
+          "required": [
+            "registry"
+          ],
+          "title": "image",
+          "type": "object"
+        },
+        "podSecurityStandards": {
+          "properties": {
+            "enforced": {
+              "default": true,
+              "required": [],
+              "title": "enforced",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "enforced"
+          ],
+          "title": "podSecurityStandards",
+          "type": "object"
+        }
+      },
+      "required": [
+        "podSecurityStandards",
+        "image"
+      ],
+      "title": "global",
+      "type": "object"
+    },
+    "image": {
+      "properties": {
+        "registry": {
+          "default": "gsoci.azurecr.io",
+          "required": [],
+          "title": "registry",
+          "type": "string"
+        },
+        "repository": {
+          "default": "giantswarm/kubectl",
+          "description": "Tag for kubectl image",
+          "required": [],
+          "title": "repository",
+          "type": "string"
+        },
+        "tag": {
+          "default": "v1.34.3",
+          "description": "Image tag Defaults to `latest` if omitted",
+          "required": [],
+          "title": "tag"
+        }
+      },
+      "required": [
+        "registry",
+        "repository"
+      ],
+      "title": "image",
+      "type": "object"
+    },
+    "kyverno": {
+      "description": "Additional options defined in charts/kyverno/values.yaml. Upstream docs: https://github.com/kyverno/kyverno",
+      "properties": {
+        "admissionController": {
+          "properties": {
+            "antiAffinity": {
+              "properties": {
+                "enabled": {
+                  "default": "true",
+                  "description": "Pod antiAffinities toggle. Enabled by default but can be disabled if you want to schedule pods to the same node.",
+                  "required": [],
+                  "title": "enabled"
+                }
+              },
+              "required": [],
+              "title": "antiAffinity",
+              "type": "object"
+            },
+            "apiPriorityAndFairness": {
+              "default": "true",
+              "description": "Change `apiPriorityAndFairness` to `true` if you want to insulate the API calls made by Kyverno admission controller activities. This will help ensure Kyverno stability in busy clusters. Ref: https://kubernetes.io/docs/concepts/cluster-administration/flow-control/",
+              "required": [],
+              "title": "apiPriorityAndFairness"
+            },
+            "autoscaling": {
+              "properties": {
+                "behavior": {
+                  "description": "Configurable scaling behavior",
+                  "required": [],
+                  "title": "behavior"
+                },
+                "enabled": {
+                  "default": "false",
+                  "description": "Enable horizontal pod autoscaling",
+                  "required": [],
+                  "title": "enabled"
+                },
+                "maxReplicas": {
+                  "default": "10",
+                  "description": "Maximum number of pods",
+                  "required": [],
+                  "title": "maxReplicas"
+                },
+                "minReplicas": {
+                  "default": "1",
+                  "description": "Minimum number of pods",
+                  "required": [],
+                  "title": "minReplicas"
+                },
+                "targetCPUUtilizationPercentage": {
+                  "default": "80",
+                  "description": "Target CPU utilization percentage",
+                  "required": [],
+                  "title": "targetCPUUtilizationPercentage"
+                }
+              },
+              "required": [],
+              "title": "autoscaling",
+              "type": "object"
+            },
+            "container": {
+              "properties": {
+                "extraArgs": {
+                  "description": "Additional container args.",
+                  "required": [],
+                  "title": "extraArgs"
+                },
+                "extraEnvVars": {
+                  "description": "Additional container environment variables.",
+                  "items": {
+                    "required": []
+                  },
+                  "required": [],
+                  "title": "extraEnvVars"
+                },
+                "image": {
+                  "properties": {
+                    "pullPolicy": {
+                      "default": "IfNotPresent",
+                      "description": "Image pull policy",
+                      "required": [],
+                      "title": "pullPolicy"
+                    },
+                    "registry": {
+                      "default": "gsoci.azurecr.io",
+                      "description": "Image registry",
+                      "required": [],
+                      "title": "registry"
+                    },
+                    "repository": {
+                      "default": "giantswarm/kyverno",
+                      "description": "Image repository",
+                      "required": [],
+                      "title": "repository"
+                    }
+                  },
+                  "required": [],
+                  "title": "image",
+                  "type": "object"
+                },
+                "resources": {
+                  "properties": {
+                    "limits": {
+                      "description": "Pod resource limits",
+                      "properties": {
+                        "memory": {
+                          "default": "384Mi",
+                          "required": [],
+                          "title": "memory",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "memory"
+                      ],
+                      "title": "limits"
+                    },
+                    "requests": {
+                      "description": "Pod resource requests",
+                      "properties": {
+                        "cpu": {
+                          "default": "100m",
+                          "required": [],
+                          "title": "cpu",
+                          "type": "string"
+                        },
+                        "memory": {
+                          "default": "128Mi",
+                          "required": [],
+                          "title": "memory",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "cpu",
+                        "memory"
+                      ],
+                      "title": "requests"
+                    }
+                  },
+                  "required": [],
+                  "title": "resources",
+                  "type": "object"
+                },
+                "securityContext": {
+                  "description": "Container security context",
+                  "properties": {
+                    "allowPrivilegeEscalation": {
+                      "default": false,
+                      "required": [],
+                      "title": "allowPrivilegeEscalation",
+                      "type": "boolean"
+                    },
+                    "capabilities": {
+                      "properties": {
+                        "drop": {
+                          "items": {
+                            "anyOf": [
+                              {
+                                "required": [],
+                                "type": "string"
+                              }
+                            ],
+                            "required": []
+                          },
+                          "required": [],
+                          "title": "drop",
+                          "type": "array"
+                        }
+                      },
+                      "required": [
+                        "drop"
+                      ],
+                      "title": "capabilities",
+                      "type": "object"
+                    },
+                    "privileged": {
+                      "default": false,
+                      "required": [],
+                      "title": "privileged",
+                      "type": "boolean"
+                    },
+                    "readOnlyRootFilesystem": {
+                      "default": true,
+                      "required": [],
+                      "title": "readOnlyRootFilesystem",
+                      "type": "boolean"
+                    },
+                    "runAsGroup": {
+                      "default": 65534,
+                      "required": [],
+                      "title": "runAsGroup",
+                      "type": "integer"
+                    },
+                    "runAsNonRoot": {
+                      "default": true,
+                      "required": [],
+                      "title": "runAsNonRoot",
+                      "type": "boolean"
+                    },
+                    "runAsUser": {
+                      "default": 65534,
+                      "required": [],
+                      "title": "runAsUser",
+                      "type": "integer"
+                    },
+                    "seccompProfile": {
+                      "properties": {
+                        "type": {
+                          "default": "RuntimeDefault",
+                          "required": [],
+                          "title": "type",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type"
+                      ],
+                      "title": "seccompProfile",
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "runAsUser",
+                    "runAsGroup",
+                    "runAsNonRoot",
+                    "privileged",
+                    "allowPrivilegeEscalation",
+                    "readOnlyRootFilesystem",
+                    "capabilities",
+                    "seccompProfile"
+                  ],
+                  "title": "securityContext"
+                }
+              },
+              "required": [
+                "image",
+                "resources"
+              ],
+              "title": "container",
+              "type": "object"
+            },
+            "createSelfSignedCert": {
+              "default": "false",
+              "description": "Create self-signed certificates at deployment time. The certificates won't be automatically renewed if this is set to `true`.",
+              "required": [],
+              "title": "createSelfSignedCert"
+            },
+            "extraContainers": {
+              "description": "Array of extra containers to run alongside kyverno",
+              "items": {
+                "required": []
+              },
+              "required": [],
+              "title": "extraContainers"
+            },
+            "extraInitContainers": {
+              "description": "Array of extra init containers",
+              "items": {
+                "required": []
+              },
+              "required": [],
+              "title": "extraInitContainers"
+            },
+            "featuresOverride": {
+              "description": "Overrides features defined at the root level",
+              "properties": {
+                "admissionReports": {
+                  "properties": {
+                    "backPressureThreshold": {
+                      "default": "1000",
+                      "description": "Max number of admission reports allowed in flight until the admission controller stops creating new ones",
+                      "required": [],
+                      "title": "backPressureThreshold"
+                    }
+                  },
+                  "required": [],
+                  "title": "admissionReports",
+                  "type": "object"
+                }
+              },
+              "required": [
+                "admissionReports"
+              ],
+              "title": "featuresOverride"
+            },
+            "imagePullSecrets": {
+              "description": "Image pull secrets",
+              "items": {
+                "required": []
+              },
+              "required": [],
+              "title": "imagePullSecrets"
+            },
+            "initContainer": {
+              "properties": {
+                "extraArgs": {
+                  "description": "Additional container args.",
+                  "required": [],
+                  "title": "extraArgs"
+                },
+                "extraEnvVars": {
+                  "description": "Additional container environment variables.",
+                  "items": {
+                    "required": []
+                  },
+                  "required": [],
+                  "title": "extraEnvVars"
+                },
+                "image": {
+                  "properties": {
+                    "registry": {
+                      "default": "gsoci.azurecr.io",
+                      "description": "Image registry",
+                      "required": [],
+                      "title": "registry"
+                    },
+                    "repository": {
+                      "default": "giantswarm/kyvernopre",
+                      "description": "Image repository",
+                      "required": [],
+                      "title": "repository"
+                    }
+                  },
+                  "required": [],
+                  "title": "image",
+                  "type": "object"
+                },
+                "resources": {
+                  "properties": {
+                    "limits": {
+                      "description": "Pod resource limits",
+                      "properties": {
+                        "cpu": {
+                          "default": "100m",
+                          "required": [],
+                          "title": "cpu",
+                          "type": "string"
+                        },
+                        "memory": {
+                          "default": "256Mi",
+                          "required": [],
+                          "title": "memory",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "cpu",
+                        "memory"
+                      ],
+                      "title": "limits"
+                    },
+                    "requests": {
+                      "description": "Pod resource requests",
+                      "properties": {
+                        "cpu": {
+                          "default": "10m",
+                          "required": [],
+                          "title": "cpu",
+                          "type": "string"
+                        },
+                        "memory": {
+                          "default": "64Mi",
+                          "required": [],
+                          "title": "memory",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "cpu",
+                        "memory"
+                      ],
+                      "title": "requests"
+                    }
+                  },
+                  "required": [],
+                  "title": "resources",
+                  "type": "object"
+                },
+                "securityContext": {
+                  "description": "Container security context",
+                  "properties": {
+                    "allowPrivilegeEscalation": {
+                      "default": false,
+                      "required": [],
+                      "title": "allowPrivilegeEscalation",
+                      "type": "boolean"
+                    },
+                    "capabilities": {
+                      "properties": {
+                        "drop": {
+                          "items": {
+                            "anyOf": [
+                              {
+                                "required": [],
+                                "type": "string"
+                              }
+                            ],
+                            "required": []
+                          },
+                          "required": [],
+                          "title": "drop",
+                          "type": "array"
+                        }
+                      },
+                      "required": [
+                        "drop"
+                      ],
+                      "title": "capabilities",
+                      "type": "object"
+                    },
+                    "privileged": {
+                      "default": false,
+                      "required": [],
+                      "title": "privileged",
+                      "type": "boolean"
+                    },
+                    "readOnlyRootFilesystem": {
+                      "default": true,
+                      "required": [],
+                      "title": "readOnlyRootFilesystem",
+                      "type": "boolean"
+                    },
+                    "runAsGroup": {
+                      "default": 65534,
+                      "required": [],
+                      "title": "runAsGroup",
+                      "type": "integer"
+                    },
+                    "runAsNonRoot": {
+                      "default": true,
+                      "required": [],
+                      "title": "runAsNonRoot",
+                      "type": "boolean"
+                    },
+                    "runAsUser": {
+                      "default": 65534,
+                      "required": [],
+                      "title": "runAsUser",
+                      "type": "integer"
+                    },
+                    "seccompProfile": {
+                      "properties": {
+                        "type": {
+                          "default": "RuntimeDefault",
+                          "required": [],
+                          "title": "type",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type"
+                      ],
+                      "title": "seccompProfile",
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "runAsUser",
+                    "runAsGroup",
+                    "runAsNonRoot",
+                    "privileged",
+                    "allowPrivilegeEscalation",
+                    "readOnlyRootFilesystem",
+                    "capabilities",
+                    "seccompProfile"
+                  ],
+                  "title": "securityContext"
+                }
+              },
+              "required": [
+                "image",
+                "resources"
+              ],
+              "title": "initContainer",
+              "type": "object"
+            },
+            "metering": {
+              "properties": {
+                "collector": {
+                  "default": "",
+                  "description": "Otel collector endpoint",
+                  "required": [],
+                  "title": "collector"
+                },
+                "config": {
+                  "default": "prometheus",
+                  "description": "Otel configuration, can be `prometheus` or `grpc`",
+                  "required": [],
+                  "title": "config"
+                },
+                "creds": {
+                  "default": "",
+                  "description": "Otel collector credentials",
+                  "required": [],
+                  "title": "creds"
+                },
+                "disabled": {
+                  "default": "false",
+                  "description": "Disable metrics export",
+                  "required": [],
+                  "title": "disabled"
+                },
+                "port": {
+                  "default": "8000",
+                  "description": "Prometheus endpoint port",
+                  "required": [],
+                  "title": "port"
+                }
+              },
+              "required": [],
+              "title": "metering",
+              "type": "object"
+            },
+            "metricsService": {
+              "properties": {
+                "annotations": {
+                  "description": "Service annotations.",
+                  "required": [],
+                  "title": "annotations"
+                },
+                "create": {
+                  "default": "true",
+                  "description": "Create service.",
+                  "required": [],
+                  "title": "create"
+                },
+                "port": {
+                  "default": "8000",
+                  "description": "Service port. Kyverno's metrics server will be exposed at this port.",
+                  "required": [],
+                  "title": "port"
+                },
+                "type": {
+                  "default": "ClusterIP",
+                  "description": "Service type.",
+                  "required": [],
+                  "title": "type"
+                }
+              },
+              "required": [],
+              "title": "metricsService",
+              "type": "object"
+            },
+            "networkPolicy": {
+              "properties": {
+                "enabled": {
+                  "default": "false",
+                  "description": "When true, use a NetworkPolicy to allow ingress to the webhook This is useful on clusters using Calico and/or native k8s network policies in a default-deny setup.",
+                  "required": [],
+                  "title": "enabled"
+                },
+                "ingressFrom": {
+                  "description": "A list of valid from selectors according to https://kubernetes.io/docs/concepts/services-networking/network-policies.",
+                  "items": {
+                    "required": []
+                  },
+                  "required": [],
+                  "title": "ingressFrom"
+                }
+              },
+              "required": [],
+              "title": "networkPolicy",
+              "type": "object"
+            },
+            "nodeAffinity": {
+              "description": "Node affinity constraints.",
+              "properties": {
+                "preferredDuringSchedulingIgnoredDuringExecution": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "properties": {
+                          "preference": {
+                            "properties": {
+                              "matchExpressions": {
+                                "items": {
+                                  "anyOf": [
+                                    {
+                                      "properties": {
+                                        "key": {
+                                          "default": "karpenter.sh/capacity-type",
+                                          "required": [],
+                                          "title": "key",
+                                          "type": "string"
+                                        },
+                                        "operator": {
+                                          "default": "NotIn",
+                                          "required": [],
+                                          "title": "operator",
+                                          "type": "string"
+                                        },
+                                        "values": {
+                                          "items": {
+                                            "anyOf": [
+                                              {
+                                                "required": [],
+                                                "type": "string"
+                                              }
+                                            ],
+                                            "required": []
+                                          },
+                                          "required": [],
+                                          "title": "values",
+                                          "type": "array"
+                                        }
+                                      },
+                                      "required": [
+                                        "key",
+                                        "operator",
+                                        "values"
+                                      ],
+                                      "type": "object"
+                                    }
+                                  ],
+                                  "required": []
+                                },
+                                "required": [],
+                                "title": "matchExpressions",
+                                "type": "array"
+                              }
+                            },
+                            "required": [
+                              "matchExpressions"
+                            ],
+                            "title": "preference",
+                            "type": "object"
+                          },
+                          "weight": {
+                            "default": 50,
+                            "required": [],
+                            "title": "weight",
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "weight",
+                          "preference"
+                        ],
+                        "type": "object"
+                      }
+                    ],
+                    "required": []
+                  },
+                  "required": [],
+                  "title": "preferredDuringSchedulingIgnoredDuringExecution",
+                  "type": "array"
+                }
+              },
+              "required": [
+                "preferredDuringSchedulingIgnoredDuringExecution"
+              ],
+              "title": "nodeAffinity"
+            },
+            "nodeSelector": {
+              "description": "Node labels for pod assignment",
+              "required": [],
+              "title": "nodeSelector"
+            },
+            "podAffinity": {
+              "description": "Pod affinity constraints.",
+              "required": [],
+              "title": "podAffinity"
+            },
+            "podAnnotations": {
+              "description": "Additional annotations to add to each pod",
+              "required": [],
+              "title": "podAnnotations"
+            },
+            "podAntiAffinity": {
+              "default": "See [values.yaml](values.yaml)",
+              "description": "Pod anti affinity constraints.",
+              "properties": {
+                "preferredDuringSchedulingIgnoredDuringExecution": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "properties": {
+                          "podAffinityTerm": {
+                            "properties": {
+                              "labelSelector": {
+                                "properties": {
+                                  "matchExpressions": {
+                                    "items": {
+                                      "anyOf": [
+                                        {
+                                          "properties": {
+                                            "key": {
+                                              "default": "app.kubernetes.io/component",
+                                              "required": [],
+                                              "title": "key",
+                                              "type": "string"
+                                            },
+                                            "operator": {
+                                              "default": "In",
+                                              "required": [],
+                                              "title": "operator",
+                                              "type": "string"
+                                            },
+                                            "values": {
+                                              "items": {
+                                                "anyOf": [
+                                                  {
+                                                    "required": [],
+                                                    "type": "string"
+                                                  }
+                                                ],
+                                                "required": []
+                                              },
+                                              "required": [],
+                                              "title": "values",
+                                              "type": "array"
+                                            }
+                                          },
+                                          "required": [
+                                            "key",
+                                            "operator",
+                                            "values"
+                                          ],
+                                          "type": "object"
+                                        }
+                                      ],
+                                      "required": []
+                                    },
+                                    "required": [],
+                                    "title": "matchExpressions",
+                                    "type": "array"
+                                  }
+                                },
+                                "required": [
+                                  "matchExpressions"
+                                ],
+                                "title": "labelSelector",
+                                "type": "object"
+                              },
+                              "topologyKey": {
+                                "default": "kubernetes.io/hostname",
+                                "required": [],
+                                "title": "topologyKey",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "labelSelector",
+                              "topologyKey"
+                            ],
+                            "title": "podAffinityTerm",
+                            "type": "object"
+                          },
+                          "weight": {
+                            "default": 1,
+                            "required": [],
+                            "title": "weight",
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "weight",
+                          "podAffinityTerm"
+                        ],
+                        "type": "object"
+                      }
+                    ],
+                    "required": []
+                  },
+                  "required": [],
+                  "title": "preferredDuringSchedulingIgnoredDuringExecution",
+                  "type": "array"
+                }
+              },
+              "required": [
+                "preferredDuringSchedulingIgnoredDuringExecution"
+              ],
+              "title": "podAntiAffinity"
+            },
+            "podDisruptionBudget": {
+              "properties": {
+                "minAvailable": {
+                  "default": "2",
+                  "description": "Configures the minimum available pods for disruptions. Cannot be used if `maxUnavailable` is set.",
+                  "required": [],
+                  "title": "minAvailable"
+                },
+                "unhealthyPodEvictionPolicy": {
+                  "default": "AlwaysAllow",
+                  "description": "Configures the maximum unavailable pods for disruptions. Cannot be used if `minAvailable` is set. maxUnavailable:",
+                  "required": [],
+                  "title": "unhealthyPodEvictionPolicy"
+                }
+              },
+              "required": [],
+              "title": "podDisruptionBudget",
+              "type": "object"
+            },
+            "podLabels": {
+              "description": "Additional labels to add to each pod",
+              "properties": {
+                "app.kubernetes.io/name": {
+                  "default": "kyverno",
+                  "required": [],
+                  "title": "app.kubernetes.io/name",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "app.kubernetes.io/name"
+              ],
+              "title": "podLabels"
+            },
+            "podSecurityContext": {
+              "description": "Security context for the pod",
+              "required": [],
+              "title": "podSecurityContext"
+            },
+            "priorityClassName": {
+              "default": "giantswarm-critical",
+              "description": "Optional priority class",
+              "required": [],
+              "title": "priorityClassName"
+            },
+            "profiling": {
+              "properties": {
+                "enabled": {
+                  "default": "false",
+                  "description": "Enable profiling",
+                  "required": [],
+                  "title": "enabled"
+                },
+                "port": {
+                  "default": "6060",
+                  "description": "Profiling endpoint port",
+                  "required": [],
+                  "title": "port"
+                },
+                "serviceType": {
+                  "default": "ClusterIP",
+                  "description": "Service type.",
+                  "required": [],
+                  "title": "serviceType"
+                }
+              },
+              "required": [],
+              "title": "profiling",
+              "type": "object"
+            },
+            "rbac": {
+              "properties": {
+                "clusterRole": {
+                  "properties": {
+                    "extraResources": {
+                      "description": "Extra resource permissions to add in the cluster role",
+                      "items": {
+                        "required": []
+                      },
+                      "required": [],
+                      "title": "extraResources"
+                    }
+                  },
+                  "required": [],
+                  "title": "clusterRole",
+                  "type": "object"
+                },
+                "create": {
+                  "default": "true",
+                  "description": "Create RBAC resources",
+                  "required": [],
+                  "title": "create"
+                },
+                "serviceAccount": {
+                  "properties": {
+                    "annotations": {
+                      "description": "Annotations for the ServiceAccount",
+                      "required": [],
+                      "title": "annotations"
+                    },
+                    "name": {
+                      "default": "kyverno-admission-controller",
+                      "description": "The ServiceAccount name",
+                      "required": [],
+                      "title": "name"
+                    }
+                  },
+                  "required": [],
+                  "title": "serviceAccount",
+                  "type": "object"
+                }
+              },
+              "required": [
+                "serviceAccount",
+                "clusterRole"
+              ],
+              "title": "rbac",
+              "type": "object"
+            },
+            "replicas": {
+              "default": 3,
+              "description": "Desired number of pods",
+              "required": [],
+              "title": "replicas",
+              "type": "integer"
+            },
+            "service": {
+              "properties": {
+                "annotations": {
+                  "description": "Service annotations.",
+                  "required": [],
+                  "title": "annotations"
+                },
+                "port": {
+                  "default": "443",
+                  "description": "Service port.",
+                  "required": [],
+                  "title": "port"
+                },
+                "type": {
+                  "default": "ClusterIP",
+                  "description": "Service type.",
+                  "required": [],
+                  "title": "type"
+                }
+              },
+              "required": [],
+              "title": "service",
+              "type": "object"
+            },
+            "serviceMonitor": {
+              "properties": {
+                "additionalLabels": {
+                  "description": "Additional labels",
+                  "required": [],
+                  "title": "additionalLabels"
+                },
+                "enabled": {
+                  "default": "true",
+                  "description": "Create a `ServiceMonitor` to collect Prometheus metrics.",
+                  "required": [],
+                  "title": "enabled"
+                },
+                "interval": {
+                  "default": "30s",
+                  "description": "Interval to scrape metrics",
+                  "required": [],
+                  "title": "interval"
+                },
+                "scrapeTimeout": {
+                  "default": "25s",
+                  "description": "Timeout if metrics can't be retrieved in given time interval",
+                  "required": [],
+                  "title": "scrapeTimeout"
+                },
+                "secure": {
+                  "default": "false",
+                  "description": "Is TLS required for endpoint",
+                  "required": [],
+                  "title": "secure"
+                },
+                "tlsConfig": {
+                  "description": "TLS Configuration for endpoint",
+                  "required": [],
+                  "title": "tlsConfig"
+                }
+              },
+              "required": [],
+              "title": "serviceMonitor",
+              "type": "object"
+            },
+            "sigstoreVolume": {
+              "description": "Volume to be mounted in pods for TUF/cosign work.",
+              "properties": {
+                "emptyDir": {
+                  "required": [],
+                  "title": "emptyDir",
+                  "type": "object"
+                }
+              },
+              "required": [
+                "emptyDir"
+              ],
+              "title": "sigstoreVolume"
+            },
+            "tolerations": {
+              "description": "List of node taints to tolerate",
+              "items": {
+                "required": []
+              },
+              "required": [],
+              "title": "tolerations"
+            },
+            "topologySpreadConstraints": {
+              "description": "Topology spread constraints",
+              "items": {
+                "required": []
+              },
+              "required": [],
+              "title": "topologySpreadConstraints"
+            },
+            "tracing": {
+              "properties": {
+                "address": {
+                  "default": "",
+                  "description": "Traces receiver address",
+                  "required": [],
+                  "title": "address"
+                },
+                "creds": {
+                  "default": "",
+                  "description": "Traces receiver credentials",
+                  "required": [],
+                  "title": "creds"
+                },
+                "enabled": {
+                  "default": "false",
+                  "description": "Enable tracing",
+                  "required": [],
+                  "title": "enabled"
+                },
+                "port": {
+                  "default": "",
+                  "description": "Traces receiver port",
+                  "required": [],
+                  "title": "port"
+                }
+              },
+              "required": [],
+              "title": "tracing",
+              "type": "object"
+            },
+            "tufRootMountPath": {
+              "default": "/.sigstore",
+              "description": "A writable volume to use for the TUF root initialization.",
+              "required": [],
+              "title": "tufRootMountPath"
+            },
+            "updateStrategy": {
+              "default": "See [values.yaml](values.yaml)",
+              "description": "Deployment update strategy. Ref: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy",
+              "properties": {
+                "rollingUpdate": {
+                  "properties": {
+                    "maxSurge": {
+                      "default": 1,
+                      "required": [],
+                      "title": "maxSurge",
+                      "type": "integer"
+                    },
+                    "maxUnavailable": {
+                      "default": "40%",
+                      "required": [],
+                      "title": "maxUnavailable",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "maxSurge",
+                    "maxUnavailable"
+                  ],
+                  "title": "rollingUpdate",
+                  "type": "object"
+                },
+                "type": {
+                  "default": "RollingUpdate",
+                  "required": [],
+                  "title": "type",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "rollingUpdate",
+                "type"
+              ],
+              "title": "updateStrategy"
+            }
+          },
+          "required": [
+            "autoscaling",
+            "rbac",
+            "antiAffinity",
+            "podDisruptionBudget",
+            "initContainer",
+            "container",
+            "service",
+            "metricsService",
+            "networkPolicy",
+            "serviceMonitor",
+            "tracing",
+            "metering",
+            "profiling"
+          ],
+          "title": "admissionController",
+          "type": "object"
+        },
+        "backgroundController": {
+          "description": "Background controller configuration",
+          "properties": {
+            "antiAffinity": {
+              "properties": {
+                "enabled": {
+                  "default": "true",
+                  "description": "Pod antiAffinities toggle. Enabled by default but can be disabled if you want to schedule pods to the same node.",
+                  "required": [],
+                  "title": "enabled"
+                }
+              },
+              "required": [],
+              "title": "antiAffinity",
+              "type": "object"
+            },
+            "dnsPolicy": {
+              "default": "ClusterFirst",
+              "description": "`dnsPolicy` determines the manner in which DNS resolution happens in the cluster. In case of `hostNetwork: true`, usually, the `dnsPolicy` is suitable to be `ClusterFirstWithHostNet`. For further reference: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-s-dns-policy.",
+              "required": [],
+              "title": "dnsPolicy"
+            },
+            "enabled": {
+              "default": "true",
+              "description": "Enable background controller.",
+              "required": [],
+              "title": "enabled"
+            },
+            "extraArgs": {
+              "description": "Extra arguments passed to the container on the command line",
+              "required": [],
+              "title": "extraArgs"
+            },
+            "featuresOverride": {
+              "description": "Overrides features defined at the root level",
+              "required": [],
+              "title": "featuresOverride"
+            },
+            "hostNetwork": {
+              "default": "false",
+              "description": "Change `hostNetwork` to `true` when you want the pod to share its host's network namespace. Useful for situations like when you end up dealing with a custom CNI over Amazon EKS. Update the `dnsPolicy` accordingly as well to suit the host network mode.",
+              "required": [],
+              "title": "hostNetwork"
+            },
+            "image": {
+              "properties": {
+                "pullPolicy": {
+                  "default": "IfNotPresent",
+                  "description": "Image pull policy",
+                  "required": [],
+                  "title": "pullPolicy"
+                },
+                "registry": {
+                  "default": "gsoci.azurecr.io",
+                  "description": "Image registry",
+                  "required": [],
+                  "title": "registry",
+                  "type": "string"
+                },
+                "repository": {
+                  "default": "giantswarm/background-controller",
+                  "description": "Image repository",
+                  "required": [],
+                  "title": "repository"
+                }
+              },
+              "required": [],
+              "title": "image",
+              "type": "object"
+            },
+            "imagePullSecrets": {
+              "description": "Image pull secrets",
+              "items": {
+                "required": []
+              },
+              "required": [],
+              "title": "imagePullSecrets"
+            },
+            "metering": {
+              "properties": {
+                "collector": {
+                  "default": "",
+                  "description": "Otel collector endpoint",
+                  "required": [],
+                  "title": "collector"
+                },
+                "config": {
+                  "default": "prometheus",
+                  "description": "Otel configuration, can be `prometheus` or `grpc`",
+                  "required": [],
+                  "title": "config"
+                },
+                "creds": {
+                  "default": "",
+                  "description": "Otel collector credentials",
+                  "required": [],
+                  "title": "creds"
+                },
+                "disabled": {
+                  "default": "false",
+                  "description": "Disable metrics export",
+                  "required": [],
+                  "title": "disabled"
+                },
+                "port": {
+                  "default": "8000",
+                  "description": "Prometheus endpoint port",
+                  "required": [],
+                  "title": "port"
+                }
+              },
+              "required": [],
+              "title": "metering",
+              "type": "object"
+            },
+            "metricsService": {
+              "properties": {
+                "annotations": {
+                  "description": "Service annotations.",
+                  "required": [],
+                  "title": "annotations"
+                },
+                "create": {
+                  "default": "true",
+                  "description": "Create service.",
+                  "required": [],
+                  "title": "create"
+                },
+                "port": {
+                  "default": "8000",
+                  "description": "Service port. Metrics server will be exposed at this port.",
+                  "required": [],
+                  "title": "port"
+                },
+                "type": {
+                  "default": "ClusterIP",
+                  "description": "Service type.",
+                  "required": [],
+                  "title": "type"
+                }
+              },
+              "required": [],
+              "title": "metricsService",
+              "type": "object"
+            },
+            "networkPolicy": {
+              "properties": {
+                "enabled": {
+                  "default": "false",
+                  "description": "When true, use a NetworkPolicy to allow ingress to the webhook This is useful on clusters using Calico and/or native k8s network policies in a default-deny setup.",
+                  "required": [],
+                  "title": "enabled"
+                },
+                "ingressFrom": {
+                  "description": "A list of valid from selectors according to https://kubernetes.io/docs/concepts/services-networking/network-policies.",
+                  "items": {
+                    "required": []
+                  },
+                  "required": [],
+                  "title": "ingressFrom"
+                }
+              },
+              "required": [],
+              "title": "networkPolicy",
+              "type": "object"
+            },
+            "nodeAffinity": {
+              "description": "Node affinity constraints.",
+              "required": [],
+              "title": "nodeAffinity"
+            },
+            "nodeSelector": {
+              "description": "Node labels for pod assignment",
+              "required": [],
+              "title": "nodeSelector"
+            },
+            "podAffinity": {
+              "description": "Pod affinity constraints.",
+              "required": [],
+              "title": "podAffinity"
+            },
+            "podAntiAffinity": {
+              "default": "See [values.yaml](values.yaml)",
+              "description": "Pod anti affinity constraints.",
+              "properties": {
+                "preferredDuringSchedulingIgnoredDuringExecution": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "properties": {
+                          "podAffinityTerm": {
+                            "properties": {
+                              "labelSelector": {
+                                "properties": {
+                                  "matchExpressions": {
+                                    "items": {
+                                      "anyOf": [
+                                        {
+                                          "properties": {
+                                            "key": {
+                                              "default": "app.kubernetes.io/component",
+                                              "required": [],
+                                              "title": "key",
+                                              "type": "string"
+                                            },
+                                            "operator": {
+                                              "default": "In",
+                                              "required": [],
+                                              "title": "operator",
+                                              "type": "string"
+                                            },
+                                            "values": {
+                                              "items": {
+                                                "anyOf": [
+                                                  {
+                                                    "required": [],
+                                                    "type": "string"
+                                                  }
+                                                ],
+                                                "required": []
+                                              },
+                                              "required": [],
+                                              "title": "values",
+                                              "type": "array"
+                                            }
+                                          },
+                                          "required": [
+                                            "key",
+                                            "operator",
+                                            "values"
+                                          ],
+                                          "type": "object"
+                                        }
+                                      ],
+                                      "required": []
+                                    },
+                                    "required": [],
+                                    "title": "matchExpressions",
+                                    "type": "array"
+                                  }
+                                },
+                                "required": [
+                                  "matchExpressions"
+                                ],
+                                "title": "labelSelector",
+                                "type": "object"
+                              },
+                              "topologyKey": {
+                                "default": "kubernetes.io/hostname",
+                                "required": [],
+                                "title": "topologyKey",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "labelSelector",
+                              "topologyKey"
+                            ],
+                            "title": "podAffinityTerm",
+                            "type": "object"
+                          },
+                          "weight": {
+                            "default": 1,
+                            "required": [],
+                            "title": "weight",
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "weight",
+                          "podAffinityTerm"
+                        ],
+                        "type": "object"
+                      }
+                    ],
+                    "required": []
+                  },
+                  "required": [],
+                  "title": "preferredDuringSchedulingIgnoredDuringExecution",
+                  "type": "array"
+                }
+              },
+              "required": [
+                "preferredDuringSchedulingIgnoredDuringExecution"
+              ],
+              "title": "podAntiAffinity"
+            },
+            "podDisruptionBudget": {
+              "properties": {
+                "minAvailable": {
+                  "default": "1",
+                  "description": "Configures the minimum available pods for disruptions. Cannot be used if `maxUnavailable` is set.",
+                  "required": [],
+                  "title": "minAvailable"
+                }
+              },
+              "required": [],
+              "title": "podDisruptionBudget",
+              "type": "object"
+            },
+            "podSecurityContext": {
+              "description": "Security context for the pod",
+              "required": [],
+              "title": "podSecurityContext"
+            },
+            "priorityClassName": {
+              "default": "giantswarm-critical",
+              "description": "Optional priority class",
+              "required": [],
+              "title": "priorityClassName"
+            },
+            "profiling": {
+              "properties": {
+                "enabled": {
+                  "default": "false",
+                  "description": "Enable profiling",
+                  "required": [],
+                  "title": "enabled"
+                },
+                "port": {
+                  "default": "6060",
+                  "description": "Profiling endpoint port",
+                  "required": [],
+                  "title": "port"
+                },
+                "serviceType": {
+                  "default": "ClusterIP",
+                  "description": "Service type.",
+                  "required": [],
+                  "title": "serviceType"
+                }
+              },
+              "required": [],
+              "title": "profiling",
+              "type": "object"
+            },
+            "rbac": {
+              "properties": {
+                "clusterRole": {
+                  "properties": {
+                    "extraResources": {
+                      "description": "Extra resource permissions to add in the cluster role",
+                      "items": {
+                        "required": []
+                      },
+                      "required": [],
+                      "title": "extraResources"
+                    }
+                  },
+                  "required": [],
+                  "title": "clusterRole",
+                  "type": "object"
+                },
+                "create": {
+                  "default": "true",
+                  "description": "Create RBAC resources",
+                  "required": [],
+                  "title": "create"
+                },
+                "serviceAccount": {
+                  "properties": {
+                    "annotations": {
+                      "description": "Annotations for the ServiceAccount",
+                      "required": [],
+                      "title": "annotations"
+                    },
+                    "name": {
+                      "default": "kyverno-background-controller",
+                      "description": "Service account name",
+                      "required": [],
+                      "title": "name"
+                    }
+                  },
+                  "required": [],
+                  "title": "serviceAccount",
+                  "type": "object"
+                }
+              },
+              "required": [
+                "serviceAccount",
+                "clusterRole"
+              ],
+              "title": "rbac",
+              "type": "object"
+            },
+            "resources": {
+              "properties": {
+                "limits": {
+                  "description": "Pod resource limits",
+                  "properties": {
+                    "cpu": {
+                      "default": "750m",
+                      "required": [],
+                      "title": "cpu",
+                      "type": "string"
+                    },
+                    "memory": {
+                      "default": "2Gi",
+                      "required": [],
+                      "title": "memory",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "cpu",
+                    "memory"
+                  ],
+                  "title": "limits"
+                },
+                "requests": {
+                  "description": "Pod resource requests",
+                  "properties": {
+                    "cpu": {
+                      "default": "500m",
+                      "required": [],
+                      "title": "cpu",
+                      "type": "string"
+                    },
+                    "memory": {
+                      "default": "1Gi",
+                      "required": [],
+                      "title": "memory",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "cpu",
+                    "memory"
+                  ],
+                  "title": "requests"
+                }
+              },
+              "required": [],
+              "title": "resources",
+              "type": "object"
+            },
+            "securityContext": {
+              "description": "Security context for the containers",
+              "properties": {
+                "allowPrivilegeEscalation": {
+                  "default": false,
+                  "required": [],
+                  "title": "allowPrivilegeEscalation",
+                  "type": "boolean"
+                },
+                "capabilities": {
+                  "properties": {
+                    "drop": {
+                      "items": {
+                        "anyOf": [
+                          {
+                            "required": [],
+                            "type": "string"
+                          }
+                        ],
+                        "required": []
+                      },
+                      "required": [],
+                      "title": "drop",
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "drop"
+                  ],
+                  "title": "capabilities",
+                  "type": "object"
+                },
+                "privileged": {
+                  "default": false,
+                  "required": [],
+                  "title": "privileged",
+                  "type": "boolean"
+                },
+                "readOnlyRootFilesystem": {
+                  "default": true,
+                  "required": [],
+                  "title": "readOnlyRootFilesystem",
+                  "type": "boolean"
+                },
+                "runAsGroup": {
+                  "default": 65534,
+                  "required": [],
+                  "title": "runAsGroup",
+                  "type": "integer"
+                },
+                "runAsNonRoot": {
+                  "default": true,
+                  "required": [],
+                  "title": "runAsNonRoot",
+                  "type": "boolean"
+                },
+                "runAsUser": {
+                  "default": 65534,
+                  "required": [],
+                  "title": "runAsUser",
+                  "type": "integer"
+                },
+                "seccompProfile": {
+                  "properties": {
+                    "type": {
+                      "default": "RuntimeDefault",
+                      "required": [],
+                      "title": "type",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ],
+                  "title": "seccompProfile",
+                  "type": "object"
+                }
+              },
+              "required": [
+                "runAsUser",
+                "runAsGroup",
+                "runAsNonRoot",
+                "privileged",
+                "allowPrivilegeEscalation",
+                "readOnlyRootFilesystem",
+                "capabilities",
+                "seccompProfile"
+              ],
+              "title": "securityContext"
+            },
+            "server": {
+              "description": "backgroundController server port in case you are using hostNetwork: true, you might want to change the port the backgroundController is listening to",
+              "properties": {
+                "port": {
+                  "default": 9443,
+                  "required": [],
+                  "title": "port",
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "port"
+              ],
+              "title": "server"
+            },
+            "serviceMonitor": {
+              "properties": {
+                "additionalLabels": {
+                  "description": "Additional labels",
+                  "required": [],
+                  "title": "additionalLabels"
+                },
+                "enabled": {
+                  "default": "true",
+                  "description": "Create a `ServiceMonitor` to collect Prometheus metrics.",
+                  "required": [],
+                  "title": "enabled"
+                },
+                "interval": {
+                  "default": "30s",
+                  "description": "Interval to scrape metrics",
+                  "required": [],
+                  "title": "interval"
+                },
+                "scrapeTimeout": {
+                  "default": "25s",
+                  "description": "Timeout if metrics can't be retrieved in given time interval",
+                  "required": [],
+                  "title": "scrapeTimeout"
+                },
+                "secure": {
+                  "default": "false",
+                  "description": "Is TLS required for endpoint",
+                  "required": [],
+                  "title": "secure"
+                },
+                "tlsConfig": {
+                  "description": "TLS Configuration for endpoint",
+                  "required": [],
+                  "title": "tlsConfig"
+                }
+              },
+              "required": [],
+              "title": "serviceMonitor",
+              "type": "object"
+            },
+            "tolerations": {
+              "description": "List of node taints to tolerate",
+              "items": {
+                "required": []
+              },
+              "required": [],
+              "title": "tolerations"
+            },
+            "topologySpreadConstraints": {
+              "description": "Topology spread constraints.",
+              "items": {
+                "required": []
+              },
+              "required": [],
+              "title": "topologySpreadConstraints"
+            },
+            "tracing": {
+              "properties": {
+                "address": {
+                  "default": "",
+                  "description": "Traces receiver address",
+                  "required": [],
+                  "title": "address"
+                },
+                "creds": {
+                  "default": "",
+                  "description": "Traces receiver credentials",
+                  "required": [],
+                  "title": "creds"
+                },
+                "enabled": {
+                  "default": "false",
+                  "description": "Enable tracing",
+                  "required": [],
+                  "title": "enabled"
+                },
+                "port": {
+                  "default": "",
+                  "description": "Traces receiver port",
+                  "required": [],
+                  "title": "port"
+                }
+              },
+              "required": [],
+              "title": "tracing",
+              "type": "object"
+            },
+            "updateStrategy": {
+              "default": "See [values.yaml](values.yaml)",
+              "description": "Deployment update strategy. Ref: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy",
+              "properties": {
+                "rollingUpdate": {
+                  "properties": {
+                    "maxSurge": {
+                      "default": 1,
+                      "required": [],
+                      "title": "maxSurge",
+                      "type": "integer"
+                    },
+                    "maxUnavailable": {
+                      "default": "40%",
+                      "required": [],
+                      "title": "maxUnavailable",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "maxSurge",
+                    "maxUnavailable"
+                  ],
+                  "title": "rollingUpdate",
+                  "type": "object"
+                },
+                "type": {
+                  "default": "RollingUpdate",
+                  "required": [],
+                  "title": "type",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "rollingUpdate",
+                "type"
+              ],
+              "title": "updateStrategy"
+            }
+          },
+          "required": [
+            "rbac",
+            "image",
+            "resources",
+            "antiAffinity",
+            "podDisruptionBudget",
+            "metricsService",
+            "networkPolicy",
+            "serviceMonitor",
+            "tracing",
+            "metering",
+            "profiling"
+          ],
+          "title": "backgroundController",
+          "type": "object"
+        },
+        "cleanupController": {
+          "description": "Cleanup controller configuration",
+          "properties": {
+            "antiAffinity": {
+              "properties": {
+                "enabled": {
+                  "default": "true",
+                  "description": "Pod antiAffinities toggle. Enabled by default but can be disabled if you want to schedule pods to the same node.",
+                  "required": [],
+                  "title": "enabled"
+                }
+              },
+              "required": [],
+              "title": "antiAffinity",
+              "type": "object"
+            },
+            "createSelfSignedCert": {
+              "default": "false",
+              "description": "Create self-signed certificates at deployment time. The certificates won't be automatically renewed if this is set to `true`.",
+              "required": [],
+              "title": "createSelfSignedCert"
+            },
+            "dnsPolicy": {
+              "default": "ClusterFirst",
+              "description": "`dnsPolicy` determines the manner in which DNS resolution happens in the cluster. In case of `hostNetwork: true`, usually, the `dnsPolicy` is suitable to be `ClusterFirstWithHostNet`. For further reference: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-s-dns-policy.",
+              "required": [],
+              "title": "dnsPolicy"
+            },
+            "enabled": {
+              "default": "true",
+              "description": "Enable cleanup controller.",
+              "required": [],
+              "title": "enabled"
+            },
+            "extraArgs": {
+              "description": "Extra arguments passed to the container on the command line",
+              "required": [],
+              "title": "extraArgs"
+            },
+            "featuresOverride": {
+              "description": "Overrides features defined at the root level",
+              "required": [],
+              "title": "featuresOverride"
+            },
+            "hostNetwork": {
+              "default": "false",
+              "description": "Change `hostNetwork` to `true` when you want the pod to share its host's network namespace. Useful for situations like when you end up dealing with a custom CNI over Amazon EKS. Update the `dnsPolicy` accordingly as well to suit the host network mode.",
+              "required": [],
+              "title": "hostNetwork"
+            },
+            "image": {
+              "properties": {
+                "pullPolicy": {
+                  "default": "IfNotPresent",
+                  "description": "Image pull policy",
+                  "required": [],
+                  "title": "pullPolicy"
+                },
+                "registry": {
+                  "default": "gsoci.azurecr.io",
+                  "description": "Image registry",
+                  "required": [],
+                  "title": "registry"
+                },
+                "repository": {
+                  "default": "giantswarm/cleanup-controller",
+                  "description": "Image repository",
+                  "required": [],
+                  "title": "repository"
+                }
+              },
+              "required": [],
+              "title": "image",
+              "type": "object"
+            },
+            "imagePullSecrets": {
+              "description": "Image pull secrets",
+              "items": {
+                "required": []
+              },
+              "required": [],
+              "title": "imagePullSecrets"
+            },
+            "metering": {
+              "properties": {
+                "collector": {
+                  "default": "",
+                  "description": "Otel collector endpoint",
+                  "required": [],
+                  "title": "collector"
+                },
+                "config": {
+                  "default": "prometheus",
+                  "description": "Otel configuration, can be `prometheus` or `grpc`",
+                  "required": [],
+                  "title": "config"
+                },
+                "creds": {
+                  "default": "",
+                  "description": "Otel collector credentials",
+                  "required": [],
+                  "title": "creds"
+                },
+                "disabled": {
+                  "default": "false",
+                  "description": "Disable metrics export",
+                  "required": [],
+                  "title": "disabled"
+                },
+                "port": {
+                  "default": "8000",
+                  "description": "Prometheus endpoint port",
+                  "required": [],
+                  "title": "port"
+                }
+              },
+              "required": [],
+              "title": "metering",
+              "type": "object"
+            },
+            "metricsService": {
+              "properties": {
+                "annotations": {
+                  "description": "Service annotations.",
+                  "required": [],
+                  "title": "annotations"
+                },
+                "create": {
+                  "default": "true",
+                  "description": "Create service.",
+                  "required": [],
+                  "title": "create"
+                },
+                "port": {
+                  "default": "8000",
+                  "description": "Service port. Metrics server will be exposed at this port.",
+                  "required": [],
+                  "title": "port"
+                },
+                "type": {
+                  "default": "ClusterIP",
+                  "description": "Service type.",
+                  "required": [],
+                  "title": "type"
+                }
+              },
+              "required": [],
+              "title": "metricsService",
+              "type": "object"
+            },
+            "networkPolicy": {
+              "properties": {
+                "enabled": {
+                  "default": "false",
+                  "description": "When true, use a NetworkPolicy to allow ingress to the webhook This is useful on clusters using Calico and/or native k8s network policies in a default-deny setup.",
+                  "required": [],
+                  "title": "enabled"
+                },
+                "ingressFrom": {
+                  "description": "A list of valid from selectors according to https://kubernetes.io/docs/concepts/services-networking/network-policies.",
+                  "items": {
+                    "required": []
+                  },
+                  "required": [],
+                  "title": "ingressFrom"
+                }
+              },
+              "required": [],
+              "title": "networkPolicy",
+              "type": "object"
+            },
+            "nodeAffinity": {
+              "description": "Node affinity constraints.",
+              "required": [],
+              "title": "nodeAffinity"
+            },
+            "nodeSelector": {
+              "description": "Node labels for pod assignment",
+              "required": [],
+              "title": "nodeSelector"
+            },
+            "podAffinity": {
+              "description": "Pod affinity constraints.",
+              "required": [],
+              "title": "podAffinity"
+            },
+            "podAntiAffinity": {
+              "default": "See [values.yaml](values.yaml)",
+              "description": "Pod anti affinity constraints.",
+              "properties": {
+                "preferredDuringSchedulingIgnoredDuringExecution": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "properties": {
+                          "podAffinityTerm": {
+                            "properties": {
+                              "labelSelector": {
+                                "properties": {
+                                  "matchExpressions": {
+                                    "items": {
+                                      "anyOf": [
+                                        {
+                                          "properties": {
+                                            "key": {
+                                              "default": "app.kubernetes.io/component",
+                                              "required": [],
+                                              "title": "key",
+                                              "type": "string"
+                                            },
+                                            "operator": {
+                                              "default": "In",
+                                              "required": [],
+                                              "title": "operator",
+                                              "type": "string"
+                                            },
+                                            "values": {
+                                              "items": {
+                                                "anyOf": [
+                                                  {
+                                                    "required": [],
+                                                    "type": "string"
+                                                  }
+                                                ],
+                                                "required": []
+                                              },
+                                              "required": [],
+                                              "title": "values",
+                                              "type": "array"
+                                            }
+                                          },
+                                          "required": [
+                                            "key",
+                                            "operator",
+                                            "values"
+                                          ],
+                                          "type": "object"
+                                        }
+                                      ],
+                                      "required": []
+                                    },
+                                    "required": [],
+                                    "title": "matchExpressions",
+                                    "type": "array"
+                                  }
+                                },
+                                "required": [
+                                  "matchExpressions"
+                                ],
+                                "title": "labelSelector",
+                                "type": "object"
+                              },
+                              "topologyKey": {
+                                "default": "kubernetes.io/hostname",
+                                "required": [],
+                                "title": "topologyKey",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "labelSelector",
+                              "topologyKey"
+                            ],
+                            "title": "podAffinityTerm",
+                            "type": "object"
+                          },
+                          "weight": {
+                            "default": 1,
+                            "required": [],
+                            "title": "weight",
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "weight",
+                          "podAffinityTerm"
+                        ],
+                        "type": "object"
+                      }
+                    ],
+                    "required": []
+                  },
+                  "required": [],
+                  "title": "preferredDuringSchedulingIgnoredDuringExecution",
+                  "type": "array"
+                }
+              },
+              "required": [
+                "preferredDuringSchedulingIgnoredDuringExecution"
+              ],
+              "title": "podAntiAffinity"
+            },
+            "podDisruptionBudget": {
+              "properties": {
+                "minAvailable": {
+                  "default": "1",
+                  "description": "Configures the minimum available pods for disruptions. Cannot be used if `maxUnavailable` is set.",
+                  "required": [],
+                  "title": "minAvailable"
+                }
+              },
+              "required": [],
+              "title": "podDisruptionBudget",
+              "type": "object"
+            },
+            "podSecurityContext": {
+              "description": "Security context for the pod",
+              "required": [],
+              "title": "podSecurityContext"
+            },
+            "priorityClassName": {
+              "default": "giantswarm-critical",
+              "description": "Optional priority class",
+              "required": [],
+              "title": "priorityClassName"
+            },
+            "profiling": {
+              "properties": {
+                "enabled": {
+                  "default": "false",
+                  "description": "Enable profiling",
+                  "required": [],
+                  "title": "enabled"
+                },
+                "port": {
+                  "default": "6060",
+                  "description": "Profiling endpoint port",
+                  "required": [],
+                  "title": "port"
+                },
+                "serviceType": {
+                  "default": "ClusterIP",
+                  "description": "Service type.",
+                  "required": [],
+                  "title": "serviceType"
+                }
+              },
+              "required": [],
+              "title": "profiling",
+              "type": "object"
+            },
+            "rbac": {
+              "properties": {
+                "clusterRole": {
+                  "properties": {
+                    "extraResources": {
+                      "description": "Extra resource permissions to add in the cluster role",
+                      "items": {
+                        "required": []
+                      },
+                      "required": [],
+                      "title": "extraResources"
+                    }
+                  },
+                  "required": [],
+                  "title": "clusterRole",
+                  "type": "object"
+                },
+                "create": {
+                  "default": "true",
+                  "description": "Create RBAC resources",
+                  "required": [],
+                  "title": "create"
+                },
+                "serviceAccount": {
+                  "properties": {
+                    "annotations": {
+                      "description": "Annotations for the ServiceAccount",
+                      "required": [],
+                      "title": "annotations"
+                    },
+                    "name": {
+                      "default": "kyverno-cleanup-controller",
+                      "description": "Service account name",
+                      "required": [],
+                      "title": "name"
+                    }
+                  },
+                  "required": [],
+                  "title": "serviceAccount",
+                  "type": "object"
+                }
+              },
+              "required": [
+                "serviceAccount",
+                "clusterRole"
+              ],
+              "title": "rbac",
+              "type": "object"
+            },
+            "resources": {
+              "properties": {
+                "limits": {
+                  "description": "Pod resource limits",
+                  "properties": {
+                    "cpu": {
+                      "default": "125m",
+                      "required": [],
+                      "title": "cpu",
+                      "type": "string"
+                    },
+                    "memory": {
+                      "default": "128Mi",
+                      "required": [],
+                      "title": "memory",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "cpu",
+                    "memory"
+                  ],
+                  "title": "limits"
+                },
+                "requests": {
+                  "description": "Pod resource requests",
+                  "properties": {
+                    "cpu": {
+                      "default": "100m",
+                      "required": [],
+                      "title": "cpu",
+                      "type": "string"
+                    },
+                    "memory": {
+                      "default": "64Mi",
+                      "required": [],
+                      "title": "memory",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "cpu",
+                    "memory"
+                  ],
+                  "title": "requests"
+                }
+              },
+              "required": [],
+              "title": "resources",
+              "type": "object"
+            },
+            "securityContext": {
+              "description": "Security context for the containers",
+              "properties": {
+                "allowPrivilegeEscalation": {
+                  "default": false,
+                  "required": [],
+                  "title": "allowPrivilegeEscalation",
+                  "type": "boolean"
+                },
+                "capabilities": {
+                  "properties": {
+                    "drop": {
+                      "items": {
+                        "anyOf": [
+                          {
+                            "required": [],
+                            "type": "string"
+                          }
+                        ],
+                        "required": []
+                      },
+                      "required": [],
+                      "title": "drop",
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "drop"
+                  ],
+                  "title": "capabilities",
+                  "type": "object"
+                },
+                "privileged": {
+                  "default": false,
+                  "required": [],
+                  "title": "privileged",
+                  "type": "boolean"
+                },
+                "readOnlyRootFilesystem": {
+                  "default": true,
+                  "required": [],
+                  "title": "readOnlyRootFilesystem",
+                  "type": "boolean"
+                },
+                "runAsGroup": {
+                  "default": 65534,
+                  "required": [],
+                  "title": "runAsGroup",
+                  "type": "integer"
+                },
+                "runAsNonRoot": {
+                  "default": true,
+                  "required": [],
+                  "title": "runAsNonRoot",
+                  "type": "boolean"
+                },
+                "runAsUser": {
+                  "default": 65534,
+                  "required": [],
+                  "title": "runAsUser",
+                  "type": "integer"
+                },
+                "seccompProfile": {
+                  "properties": {
+                    "type": {
+                      "default": "RuntimeDefault",
+                      "required": [],
+                      "title": "type",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ],
+                  "title": "seccompProfile",
+                  "type": "object"
+                }
+              },
+              "required": [
+                "runAsUser",
+                "runAsGroup",
+                "runAsNonRoot",
+                "privileged",
+                "allowPrivilegeEscalation",
+                "readOnlyRootFilesystem",
+                "capabilities",
+                "seccompProfile"
+              ],
+              "title": "securityContext"
+            },
+            "server": {
+              "description": "cleanupController server port in case you are using hostNetwork: true, you might want to change the port the cleanupController is listening to",
+              "properties": {
+                "port": {
+                  "default": 9443,
+                  "required": [],
+                  "title": "port",
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "port"
+              ],
+              "title": "server"
+            },
+            "service": {
+              "properties": {
+                "annotations": {
+                  "description": "Service annotations.",
+                  "required": [],
+                  "title": "annotations"
+                },
+                "port": {
+                  "default": "443",
+                  "description": "Service port.",
+                  "required": [],
+                  "title": "port"
+                },
+                "type": {
+                  "default": "ClusterIP",
+                  "description": "Service type.",
+                  "required": [],
+                  "title": "type"
+                }
+              },
+              "required": [],
+              "title": "service",
+              "type": "object"
+            },
+            "serviceMonitor": {
+              "properties": {
+                "additionalLabels": {
+                  "description": "Additional labels",
+                  "required": [],
+                  "title": "additionalLabels"
+                },
+                "enabled": {
+                  "default": "true",
+                  "description": "Create a `ServiceMonitor` to collect Prometheus metrics.",
+                  "required": [],
+                  "title": "enabled"
+                },
+                "interval": {
+                  "default": "30s",
+                  "description": "Interval to scrape metrics",
+                  "required": [],
+                  "title": "interval"
+                },
+                "scrapeTimeout": {
+                  "default": "25s",
+                  "description": "Timeout if metrics can't be retrieved in given time interval",
+                  "required": [],
+                  "title": "scrapeTimeout"
+                },
+                "secure": {
+                  "default": "false",
+                  "description": "Is TLS required for endpoint",
+                  "required": [],
+                  "title": "secure"
+                },
+                "tlsConfig": {
+                  "description": "TLS Configuration for endpoint",
+                  "required": [],
+                  "title": "tlsConfig"
+                }
+              },
+              "required": [],
+              "title": "serviceMonitor",
+              "type": "object"
+            },
+            "tolerations": {
+              "description": "List of node taints to tolerate",
+              "items": {
+                "required": []
+              },
+              "required": [],
+              "title": "tolerations"
+            },
+            "topologySpreadConstraints": {
+              "description": "Topology spread constraints.",
+              "items": {
+                "required": []
+              },
+              "required": [],
+              "title": "topologySpreadConstraints"
+            },
+            "tracing": {
+              "properties": {
+                "address": {
+                  "default": "",
+                  "description": "Traces receiver address",
+                  "required": [],
+                  "title": "address"
+                },
+                "creds": {
+                  "default": "",
+                  "description": "Traces receiver credentials",
+                  "required": [],
+                  "title": "creds"
+                },
+                "enabled": {
+                  "default": "false",
+                  "description": "Enable tracing",
+                  "required": [],
+                  "title": "enabled"
+                },
+                "port": {
+                  "default": "",
+                  "description": "Traces receiver port",
+                  "required": [],
+                  "title": "port"
+                }
+              },
+              "required": [],
+              "title": "tracing",
+              "type": "object"
+            },
+            "updateStrategy": {
+              "default": "See [values.yaml](values.yaml)",
+              "description": "Deployment update strategy. Ref: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy",
+              "properties": {
+                "rollingUpdate": {
+                  "properties": {
+                    "maxSurge": {
+                      "default": 1,
+                      "required": [],
+                      "title": "maxSurge",
+                      "type": "integer"
+                    },
+                    "maxUnavailable": {
+                      "default": "40%",
+                      "required": [],
+                      "title": "maxUnavailable",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "maxSurge",
+                    "maxUnavailable"
+                  ],
+                  "title": "rollingUpdate",
+                  "type": "object"
+                },
+                "type": {
+                  "default": "RollingUpdate",
+                  "required": [],
+                  "title": "type",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "rollingUpdate",
+                "type"
+              ],
+              "title": "updateStrategy"
+            }
+          },
+          "required": [
+            "rbac",
+            "image",
+            "resources",
+            "antiAffinity",
+            "podDisruptionBudget",
+            "service",
+            "metricsService",
+            "networkPolicy",
+            "serviceMonitor",
+            "tracing",
+            "metering",
+            "profiling"
+          ],
+          "title": "cleanupController",
+          "type": "object"
+        },
+        "config": {
+          "properties": {
+            "defaultRegistry": {
+              "default": "docker.io",
+              "description": "The registry hostname used for the image mutation.",
+              "required": [],
+              "title": "defaultRegistry"
+            },
+            "enableDefaultRegistryMutation": {
+              "default": "true",
+              "description": "Enable registry mutation for container images. Enabled by default.",
+              "required": [],
+              "title": "enableDefaultRegistryMutation"
+            },
+            "excludeKyvernoNamespace": {
+              "default": "true",
+              "description": "Exclude Kyverno namespace Determines if default Kyverno namespace exclusion is enabled for webhooks and resourceFilters",
+              "required": [],
+              "title": "excludeKyvernoNamespace"
+            },
+            "maxContextSize": {
+              "default": "2Mi",
+              "description": "Maximum cumulative size of context data during policy evaluation. Supports Kubernetes quantity format (e.g., 100Mi, 2Gi) or plain bytes (e.g., 2097152). Limits memory used by context variables to prevent unbounded growth. Increase if policies legitimately need large context data (e.g., processing large ConfigMaps). Set to 0 to disable the limit (not recommended for production).",
+              "required": [],
+              "title": "maxContextSize"
+            },
+            "resourceFiltersExclude": {
+              "description": "resourceFilters exclude list Items to exclude from config.resourceFilters",
+              "items": {
+                "required": []
+              },
+              "required": [],
+              "title": "resourceFiltersExclude"
+            },
+            "resourceFiltersExcludeNamespaces": {
+              "description": "resourceFilter namespace exclude Namespaces to exclude from the default resourceFilters",
+              "items": {
+                "required": []
+              },
+              "required": [],
+              "title": "resourceFiltersExcludeNamespaces"
+            },
+            "resourceFiltersInclude": {
+              "description": "resourceFilters include list Items to include to config.resourceFilters",
+              "items": {
+                "required": []
+              },
+              "required": [],
+              "title": "resourceFiltersInclude"
+            },
+            "resourceFiltersIncludeNamespaces": {
+              "description": "resourceFilter namespace include Namespaces to include to the default resourceFilters",
+              "items": {
+                "required": []
+              },
+              "required": [],
+              "title": "resourceFiltersIncludeNamespaces"
+            },
+            "webhooks": {
+              "description": "Defines the `namespaceSelector`/`objectSelector` in the webhook configurations. The Kyverno namespace is excluded if `excludeKyvernoNamespace` is `true` (default)",
+              "properties": {
+                "namespaceSelector": {
+                  "description": "Exclude namespaces",
+                  "properties": {
+                    "matchExpressions": {
+                      "items": {
+                        "anyOf": [
+                          {
+                            "properties": {
+                              "key": {
+                                "default": "kubernetes.io/metadata.name",
+                                "required": [],
+                                "title": "key",
+                                "type": "string"
+                              },
+                              "operator": {
+                                "default": "NotIn",
+                                "required": [],
+                                "title": "operator",
+                                "type": "string"
+                              },
+                              "values": {
+                                "items": {
+                                  "anyOf": [
+                                    {
+                                      "required": [],
+                                      "type": "string"
+                                    }
+                                  ],
+                                  "required": []
+                                },
+                                "required": [],
+                                "title": "values",
+                                "type": "array"
+                              }
+                            },
+                            "required": [
+                              "key",
+                              "operator",
+                              "values"
+                            ],
+                            "type": "object"
+                          }
+                        ],
+                        "required": []
+                      },
+                      "required": [],
+                      "title": "matchExpressions",
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "matchExpressions"
+                  ],
+                  "title": "namespaceSelector",
+                  "type": "object"
+                }
+              },
+              "required": [
+                "namespaceSelector"
+              ],
+              "title": "webhooks"
+            }
+          },
+          "required": [],
+          "title": "config",
+          "type": "object"
+        },
+        "crds": {
+          "description": "CRDs configuration",
+          "properties": {
+            "install": {
+              "default": "false",
+              "description": "We manage CRDs with an outside job so this needs to be disabled",
+              "required": [],
+              "title": "install"
+            },
+            "migration": {
+              "description": "Enable CRD migration",
+              "properties": {
+                "enabled": {
+                  "default": true,
+                  "required": [],
+                  "title": "enabled",
+                  "type": "boolean"
+                },
+                "image": {
+                  "properties": {
+                    "repository": {
+                      "default": "giantswarm/kyverno-cli",
+                      "required": [],
+                      "title": "repository",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "repository"
+                  ],
+                  "title": "image",
+                  "type": "object"
+                }
+              },
+              "required": [
+                "enabled",
+                "image"
+              ],
+              "title": "migration",
+              "type": "object"
+            }
+          },
+          "required": [
+            "migration"
+          ],
+          "title": "crds",
+          "type": "object"
+        },
+        "customLabels": {
+          "properties": {
+            "application.giantswarm.io/team": {
+              "default": "shield",
+              "required": [],
+              "title": "application.giantswarm.io/team",
+              "type": "string"
+            },
+            "giantswarm.io/service-type": {
+              "default": "managed",
+              "required": [],
+              "title": "giantswarm.io/service-type",
+              "type": "string"
+            }
+          },
+          "required": [
+            "giantswarm.io/service-type",
+            "application.giantswarm.io/team"
+          ],
+          "title": "customLabels",
+          "type": "object"
+        },
+        "features": {
+          "properties": {
+            "admissionReports": {
+              "properties": {
+                "enabled": {
+                  "default": "true",
+                  "description": "Enables the feature",
+                  "required": [],
+                  "title": "enabled"
+                }
+              },
+              "required": [],
+              "title": "admissionReports",
+              "type": "object"
+            },
+            "aggregateReports": {
+              "properties": {
+                "enabled": {
+                  "default": "true",
+                  "description": "Enables the feature",
+                  "required": [],
+                  "title": "enabled"
+                }
+              },
+              "required": [],
+              "title": "aggregateReports",
+              "type": "object"
+            },
+            "autoUpdateWebhooks": {
+              "properties": {
+                "enabled": {
+                  "default": "true",
+                  "description": "Enables the feature",
+                  "required": [],
+                  "title": "enabled"
+                }
+              },
+              "required": [],
+              "title": "autoUpdateWebhooks",
+              "type": "object"
+            },
+            "backgroundScan": {
+              "properties": {
+                "backgroundScanInterval": {
+                  "default": "1h",
+                  "description": "Background scan interval",
+                  "required": [],
+                  "title": "backgroundScanInterval"
+                },
+                "backgroundScanWorkers": {
+                  "default": "2",
+                  "description": "Number of background scan workers",
+                  "required": [],
+                  "title": "backgroundScanWorkers"
+                },
+                "enabled": {
+                  "default": "true",
+                  "description": "Enables the feature",
+                  "required": [],
+                  "title": "enabled"
+                },
+                "skipResourceFilters": {
+                  "default": "true",
+                  "description": "Skips resource filters in background scan",
+                  "required": [],
+                  "title": "skipResourceFilters"
+                }
+              },
+              "required": [],
+              "title": "backgroundScan",
+              "type": "object"
+            },
+            "configMapCaching": {
+              "properties": {
+                "enabled": {
+                  "default": "true",
+                  "description": "Enables the feature",
+                  "required": [],
+                  "title": "enabled"
+                }
+              },
+              "required": [],
+              "title": "configMapCaching",
+              "type": "object"
+            },
+            "controllerRuntimeMetrics": {
+              "properties": {
+                "bindAddress": {
+                  "default": ":8080",
+                  "description": "Bind address for controller-runtime metrics (use \"0\" to disable it)",
+                  "required": [],
+                  "title": "bindAddress"
+                }
+              },
+              "required": [],
+              "title": "controllerRuntimeMetrics",
+              "type": "object"
+            },
+            "deferredLoading": {
+              "properties": {
+                "enabled": {
+                  "default": "true",
+                  "description": "Enables the feature",
+                  "required": [],
+                  "title": "enabled"
+                }
+              },
+              "required": [],
+              "title": "deferredLoading",
+              "type": "object"
+            },
+            "dumpPatches": {
+              "properties": {
+                "enabled": {
+                  "default": "false",
+                  "description": "Enables the feature",
+                  "required": [],
+                  "title": "enabled"
+                }
+              },
+              "required": [],
+              "title": "dumpPatches",
+              "type": "object"
+            },
+            "dumpPayload": {
+              "properties": {
+                "enabled": {
+                  "default": "false",
+                  "description": "Enables the feature",
+                  "required": [],
+                  "title": "enabled"
+                }
+              },
+              "required": [],
+              "title": "dumpPayload",
+              "type": "object"
+            },
+            "forceFailurePolicyIgnore": {
+              "properties": {
+                "enabled": {
+                  "default": "false",
+                  "description": "Enables the feature",
+                  "required": [],
+                  "title": "enabled"
+                }
+              },
+              "required": [],
+              "title": "forceFailurePolicyIgnore",
+              "type": "object"
+            },
+            "generateMutatingAdmissionPolicy": {
+              "properties": {
+                "enabled": {
+                  "default": "false",
+                  "description": "Enables the feature",
+                  "required": [],
+                  "title": "enabled"
+                }
+              },
+              "required": [],
+              "title": "generateMutatingAdmissionPolicy",
+              "type": "object"
+            },
+            "generateValidatingAdmissionPolicy": {
+              "properties": {
+                "enabled": {
+                  "default": "true",
+                  "description": "Enables the feature",
+                  "required": [],
+                  "title": "enabled"
+                }
+              },
+              "required": [],
+              "title": "generateValidatingAdmissionPolicy",
+              "type": "object"
+            },
+            "globalContext": {
+              "properties": {
+                "maxApiCallResponseLength": {
+                  "default": "2000000",
+                  "description": "Maximum allowed response size from API Calls. A value of 0 bypasses checks (not recommended)",
+                  "required": [],
+                  "title": "maxApiCallResponseLength"
+                }
+              },
+              "required": [],
+              "title": "globalContext",
+              "type": "object"
+            },
+            "logging": {
+              "properties": {
+                "format": {
+                  "default": "text",
+                  "description": "Logging format",
+                  "required": [],
+                  "title": "format"
+                },
+                "verbosity": {
+                  "default": "2",
+                  "description": "Logging verbosity",
+                  "required": [],
+                  "title": "verbosity"
+                }
+              },
+              "required": [],
+              "title": "logging",
+              "type": "object"
+            },
+            "mutatingAdmissionPolicyReports": {
+              "properties": {
+                "enabled": {
+                  "default": "false",
+                  "description": "Enables the feature",
+                  "required": [],
+                  "title": "enabled"
+                }
+              },
+              "required": [],
+              "title": "mutatingAdmissionPolicyReports",
+              "type": "object"
+            },
+            "omitEvents": {
+              "properties": {
+                "eventTypes": {
+                  "description": "Events which should not be emitted (possible values `PolicyViolation`, `PolicyApplied`, `PolicyError`, and `PolicySkipped`)",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "required": [],
+                        "type": "string"
+                      },
+                      {
+                        "required": [],
+                        "type": "string"
+                      },
+                      {
+                        "required": [],
+                        "type": "string"
+                      }
+                    ],
+                    "required": []
+                  },
+                  "required": [],
+                  "title": "eventTypes"
+                }
+              },
+              "required": [],
+              "title": "omitEvents",
+              "type": "object"
+            },
+            "policyExceptions": {
+              "properties": {
+                "enabled": {
+                  "default": "true",
+                  "description": "Enables the feature",
+                  "required": [],
+                  "title": "enabled"
+                },
+                "namespace": {
+                  "default": "*",
+                  "description": "Restrict policy exceptions to a single namespace",
+                  "required": [],
+                  "title": "namespace"
+                }
+              },
+              "required": [],
+              "title": "policyExceptions",
+              "type": "object"
+            },
+            "policyReports": {
+              "properties": {
+                "enabled": {
+                  "default": "true",
+                  "description": "Enables the feature",
+                  "required": [],
+                  "title": "enabled"
+                }
+              },
+              "required": [],
+              "title": "policyReports",
+              "type": "object"
+            },
+            "protectManagedResources": {
+              "properties": {
+                "enabled": {
+                  "default": "false",
+                  "description": "Enables the feature",
+                  "required": [],
+                  "title": "enabled"
+                }
+              },
+              "required": [],
+              "title": "protectManagedResources",
+              "type": "object"
+            },
+            "registryClient": {
+              "properties": {
+                "allowInsecure": {
+                  "default": "false",
+                  "description": "Allow insecure registry",
+                  "required": [],
+                  "title": "allowInsecure"
+                },
+                "credentialHelpers": {
+                  "description": "Enable registry client helpers",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "required": [],
+                        "type": "string"
+                      },
+                      {
+                        "required": [],
+                        "type": "string"
+                      },
+                      {
+                        "required": [],
+                        "type": "string"
+                      },
+                      {
+                        "required": [],
+                        "type": "string"
+                      },
+                      {
+                        "required": [],
+                        "type": "string"
+                      }
+                    ],
+                    "required": []
+                  },
+                  "required": [],
+                  "title": "credentialHelpers"
+                }
+              },
+              "required": [],
+              "title": "registryClient",
+              "type": "object"
+            },
+            "reporting": {
+              "properties": {
+                "generate": {
+                  "default": "true",
+                  "description": "Enables the feature",
+                  "required": [],
+                  "title": "generate"
+                },
+                "imageVerify": {
+                  "default": "true",
+                  "description": "Enables the feature",
+                  "required": [],
+                  "title": "imageVerify"
+                },
+                "mutate": {
+                  "default": "true",
+                  "description": "Enables the feature",
+                  "required": [],
+                  "title": "mutate"
+                },
+                "mutateExisting": {
+                  "default": "true",
+                  "description": "Enables the feature",
+                  "required": [],
+                  "title": "mutateExisting"
+                },
+                "validate": {
+                  "default": "true",
+                  "description": "Enables the feature",
+                  "required": [],
+                  "title": "validate"
+                }
+              },
+              "required": [],
+              "title": "reporting",
+              "type": "object"
+            },
+            "ttlController": {
+              "properties": {
+                "reconciliationInterval": {
+                  "default": "1m",
+                  "description": "Reconciliation interval for the label based cleanup manager",
+                  "required": [],
+                  "title": "reconciliationInterval"
+                }
+              },
+              "required": [],
+              "title": "ttlController",
+              "type": "object"
+            },
+            "tuf": {
+              "properties": {
+                "enabled": {
+                  "default": "false",
+                  "description": "Enables the feature",
+                  "required": [],
+                  "title": "enabled"
+                },
+                "mirror": {
+                  "default": "~",
+                  "description": "Tuf mirror",
+                  "required": [],
+                  "title": "mirror",
+                  "type": ["string", "null"]
+                },
+                "root": {
+                  "default": "~",
+                  "description": "Path to Tuf root",
+                  "required": [],
+                  "title": "root",
+                  "type": ["string", "null"]
+                },
+                "rootRaw": {
+                  "default": "~",
+                  "description": "Raw Tuf root",
+                  "required": [],
+                  "title": "rootRaw",
+                  "type": ["string", "null"]
+                }
+              },
+              "required": [],
+              "title": "tuf",
+              "type": "object"
+            },
+            "validatingAdmissionPolicyReports": {
+              "properties": {
+                "enabled": {
+                  "default": "true",
+                  "description": "Enables the feature",
+                  "required": [],
+                  "title": "enabled"
+                }
+              },
+              "required": [],
+              "title": "validatingAdmissionPolicyReports",
+              "type": "object"
+            }
+          },
+          "required": [
+            "admissionReports",
+            "aggregateReports",
+            "policyReports",
+            "validatingAdmissionPolicyReports",
+            "mutatingAdmissionPolicyReports",
+            "reporting",
+            "autoUpdateWebhooks",
+            "backgroundScan",
+            "configMapCaching",
+            "controllerRuntimeMetrics",
+            "deferredLoading",
+            "dumpPayload",
+            "forceFailurePolicyIgnore",
+            "generateValidatingAdmissionPolicy",
+            "generateMutatingAdmissionPolicy",
+            "dumpPatches",
+            "globalContext",
+            "logging",
+            "omitEvents",
+            "policyExceptions",
+            "protectManagedResources",
+            "registryClient",
+            "ttlController",
+            "tuf"
+          ],
+          "title": "features",
+          "type": "object"
+        },
+        "grafana": {
+          "properties": {
+            "enabled": {
+              "default": "false",
+              "description": "Enable grafana dashboard creation.",
+              "required": [],
+              "title": "enabled"
+            },
+            "grafanaDashboard": {
+              "description": "create GrafanaDashboard custom resource referencing to the configMap.",
+              "properties": {
+                "allowCrossNamespaceImport": {
+                  "default": true,
+                  "required": [],
+                  "title": "allowCrossNamespaceImport",
+                  "type": "boolean"
+                },
+                "create": {
+                  "default": false,
+                  "required": [],
+                  "title": "create",
+                  "type": "boolean"
+                },
+                "folder": {
+                  "default": "kyverno",
+                  "required": [],
+                  "title": "folder",
+                  "type": "string"
+                },
+                "matchLabels": {
+                  "properties": {
+                    "dashboards": {
+                      "default": "grafana",
+                      "required": [],
+                      "title": "dashboards",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "dashboards"
+                  ],
+                  "title": "matchLabels",
+                  "type": "object"
+                }
+              },
+              "required": [
+                "create",
+                "folder",
+                "allowCrossNamespaceImport",
+                "matchLabels"
+              ],
+              "title": "grafanaDashboard"
+            }
+          },
+          "required": [],
+          "title": "grafana",
+          "type": "object"
+        },
+        "metricsConfig": {
+          "description": "Metrics configuration",
+          "properties": {
+            "annotations": {
+              "description": "Additional annotations to add to the configmap.",
+              "required": [],
+              "title": "annotations"
+            },
+            "bucketBoundaries": {
+              "description": "Configures the bucket boundaries for all Histogram metrics",
+              "items": {
+                "anyOf": [
+                  {
+                    "required": [],
+                    "type": "number"
+                  },
+                  {
+                    "required": [],
+                    "type": "number"
+                  },
+                  {
+                    "required": [],
+                    "type": "number"
+                  },
+                  {
+                    "required": [],
+                    "type": "number"
+                  },
+                  {
+                    "required": [],
+                    "type": "number"
+                  },
+                  {
+                    "required": [],
+                    "type": "number"
+                  },
+                  {
+                    "required": [],
+                    "type": "number"
+                  },
+                  {
+                    "required": [],
+                    "type": "integer"
+                  },
+                  {
+                    "required": [],
+                    "type": "number"
+                  },
+                  {
+                    "required": [],
+                    "type": "integer"
+                  },
+                  {
+                    "required": [],
+                    "type": "integer"
+                  },
+                  {
+                    "required": [],
+                    "type": "integer"
+                  },
+                  {
+                    "required": [],
+                    "type": "integer"
+                  },
+                  {
+                    "required": [],
+                    "type": "integer"
+                  },
+                  {
+                    "required": [],
+                    "type": "integer"
+                  }
+                ],
+                "required": []
+              },
+              "required": [],
+              "title": "bucketBoundaries",
+              "type": "array"
+            },
+            "create": {
+              "default": "true",
+              "description": "Create the configmap.",
+              "required": [],
+              "title": "create"
+            },
+            "namespaces": {
+              "properties": {
+                "exclude": {
+                  "description": "list of namespaces to NOT capture metrics for.",
+                  "items": {
+                    "required": []
+                  },
+                  "required": [],
+                  "title": "exclude"
+                },
+                "include": {
+                  "description": "List of namespaces to capture metrics for.",
+                  "items": {
+                    "required": []
+                  },
+                  "required": [],
+                  "title": "include"
+                }
+              },
+              "required": [],
+              "title": "namespaces",
+              "type": "object"
+            }
+          },
+          "required": [
+            "namespaces"
+          ],
+          "title": "metricsConfig",
+          "type": "object"
+        },
+        "openreports": {
+          "description": "Use openreports.io as the API group for reporting",
+          "properties": {
+            "enabled": {
+              "default": "false",
+              "description": "Enable OpenReports feature in controllers",
+              "required": [],
+              "title": "enabled"
+            },
+            "installCrds": {
+              "default": "false",
+              "description": "Whether to install CRDs from the upstream OpenReports chart. Setting this to true requires enabled to also be true.",
+              "required": [],
+              "title": "installCrds"
+            }
+          },
+          "required": [],
+          "title": "openreports",
+          "type": "object"
+        },
+        "reportsController": {
+          "description": "Reports controller configuration",
+          "properties": {
+            "antiAffinity": {
+              "properties": {
+                "enabled": {
+                  "default": "true",
+                  "description": "Pod antiAffinities toggle. Enabled by default but can be disabled if you want to schedule pods to the same node.",
+                  "required": [],
+                  "title": "enabled"
+                }
+              },
+              "required": [],
+              "title": "antiAffinity",
+              "type": "object"
+            },
+            "apiPriorityAndFairness": {
+              "default": "true",
+              "description": "Change `apiPriorityAndFairness` to `true` if you want to insulate the API calls made by Kyverno reports controller activities. This will help ensure Kyverno reports stability in busy clusters. Ref: https://kubernetes.io/docs/concepts/cluster-administration/flow-control/",
+              "required": [],
+              "title": "apiPriorityAndFairness"
+            },
+            "dnsPolicy": {
+              "default": "ClusterFirst",
+              "description": "`dnsPolicy` determines the manner in which DNS resolution happens in the cluster. In case of `hostNetwork: true`, usually, the `dnsPolicy` is suitable to be `ClusterFirstWithHostNet`. For further reference: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-s-dns-policy.",
+              "required": [],
+              "title": "dnsPolicy"
+            },
+            "enabled": {
+              "default": "true",
+              "description": "Enable reports controller.",
+              "required": [],
+              "title": "enabled"
+            },
+            "extraArgs": {
+              "description": "Extra arguments passed to the container on the command line",
+              "required": [],
+              "title": "extraArgs"
+            },
+            "featuresOverride": {
+              "description": "Overrides features defined at the root level",
+              "required": [],
+              "title": "featuresOverride"
+            },
+            "hostNetwork": {
+              "default": "false",
+              "description": "Change `hostNetwork` to `true` when you want the pod to share its host's network namespace. Useful for situations like when you end up dealing with a custom CNI over Amazon EKS. Update the `dnsPolicy` accordingly as well to suit the host network mode.",
+              "required": [],
+              "title": "hostNetwork"
+            },
+            "image": {
+              "properties": {
+                "pullPolicy": {
+                  "default": "IfNotPresent",
+                  "description": "Image pull policy",
+                  "required": [],
+                  "title": "pullPolicy"
+                },
+                "registry": {
+                  "default": "gsoci.azurecr.io",
+                  "description": "Image registry",
+                  "required": [],
+                  "title": "registry"
+                },
+                "repository": {
+                  "default": "giantswarm/reports-controller",
+                  "description": "Image repository",
+                  "required": [],
+                  "title": "repository"
+                }
+              },
+              "required": [],
+              "title": "image",
+              "type": "object"
+            },
+            "imagePullSecrets": {
+              "description": "Image pull secrets",
+              "items": {
+                "required": []
+              },
+              "required": [],
+              "title": "imagePullSecrets"
+            },
+            "metering": {
+              "properties": {
+                "collector": {
+                  "default": "~",
+                  "description": "Otel collector endpoint",
+                  "required": [],
+                  "title": "collector",
+                  "type": ["string", "null"]
+                },
+                "config": {
+                  "default": "prometheus",
+                  "description": "Otel configuration, can be `prometheus` or `grpc`",
+                  "required": [],
+                  "title": "config"
+                },
+                "creds": {
+                  "default": "~",
+                  "description": "Otel collector credentials",
+                  "required": [],
+                  "title": "creds",
+                  "type": ["string", "null"]
+                },
+                "disabled": {
+                  "default": "false",
+                  "description": "Disable metrics export",
+                  "required": [],
+                  "title": "disabled"
+                },
+                "port": {
+                  "default": "8000",
+                  "description": "Prometheus endpoint port",
+                  "required": [],
+                  "title": "port"
+                }
+              },
+              "required": [],
+              "title": "metering",
+              "type": "object"
+            },
+            "metricsService": {
+              "properties": {
+                "annotations": {
+                  "description": "Service annotations.",
+                  "required": [],
+                  "title": "annotations"
+                },
+                "create": {
+                  "default": "true",
+                  "description": "Create service.",
+                  "required": [],
+                  "title": "create"
+                },
+                "port": {
+                  "default": "8000",
+                  "description": "Service port. Metrics server will be exposed at this port.",
+                  "required": [],
+                  "title": "port"
+                },
+                "type": {
+                  "default": "ClusterIP",
+                  "description": "Service type.",
+                  "required": [],
+                  "title": "type"
+                }
+              },
+              "required": [],
+              "title": "metricsService",
+              "type": "object"
+            },
+            "networkPolicy": {
+              "properties": {
+                "enabled": {
+                  "default": "false",
+                  "description": "When true, use a NetworkPolicy to allow ingress to the webhook This is useful on clusters using Calico and/or native k8s network policies in a default-deny setup.",
+                  "required": [],
+                  "title": "enabled"
+                },
+                "ingressFrom": {
+                  "description": "A list of valid from selectors according to https://kubernetes.io/docs/concepts/services-networking/network-policies.",
+                  "items": {
+                    "required": []
+                  },
+                  "required": [],
+                  "title": "ingressFrom"
+                }
+              },
+              "required": [],
+              "title": "networkPolicy",
+              "type": "object"
+            },
+            "nodeAffinity": {
+              "description": "Node affinity constraints.",
+              "required": [],
+              "title": "nodeAffinity"
+            },
+            "nodeSelector": {
+              "description": "Node labels for pod assignment",
+              "required": [],
+              "title": "nodeSelector"
+            },
+            "podAffinity": {
+              "description": "Pod affinity constraints.",
+              "required": [],
+              "title": "podAffinity"
+            },
+            "podAntiAffinity": {
+              "default": "See [values.yaml](values.yaml)",
+              "description": "Pod anti affinity constraints.",
+              "properties": {
+                "preferredDuringSchedulingIgnoredDuringExecution": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "properties": {
+                          "podAffinityTerm": {
+                            "properties": {
+                              "labelSelector": {
+                                "properties": {
+                                  "matchExpressions": {
+                                    "items": {
+                                      "anyOf": [
+                                        {
+                                          "properties": {
+                                            "key": {
+                                              "default": "app.kubernetes.io/component",
+                                              "required": [],
+                                              "title": "key",
+                                              "type": "string"
+                                            },
+                                            "operator": {
+                                              "default": "In",
+                                              "required": [],
+                                              "title": "operator",
+                                              "type": "string"
+                                            },
+                                            "values": {
+                                              "items": {
+                                                "anyOf": [
+                                                  {
+                                                    "required": [],
+                                                    "type": "string"
+                                                  }
+                                                ],
+                                                "required": []
+                                              },
+                                              "required": [],
+                                              "title": "values",
+                                              "type": "array"
+                                            }
+                                          },
+                                          "required": [
+                                            "key",
+                                            "operator",
+                                            "values"
+                                          ],
+                                          "type": "object"
+                                        }
+                                      ],
+                                      "required": []
+                                    },
+                                    "required": [],
+                                    "title": "matchExpressions",
+                                    "type": "array"
+                                  }
+                                },
+                                "required": [
+                                  "matchExpressions"
+                                ],
+                                "title": "labelSelector",
+                                "type": "object"
+                              },
+                              "topologyKey": {
+                                "default": "kubernetes.io/hostname",
+                                "required": [],
+                                "title": "topologyKey",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "labelSelector",
+                              "topologyKey"
+                            ],
+                            "title": "podAffinityTerm",
+                            "type": "object"
+                          },
+                          "weight": {
+                            "default": 1,
+                            "required": [],
+                            "title": "weight",
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "weight",
+                          "podAffinityTerm"
+                        ],
+                        "type": "object"
+                      }
+                    ],
+                    "required": []
+                  },
+                  "required": [],
+                  "title": "preferredDuringSchedulingIgnoredDuringExecution",
+                  "type": "array"
+                }
+              },
+              "required": [
+                "preferredDuringSchedulingIgnoredDuringExecution"
+              ],
+              "title": "podAntiAffinity"
+            },
+            "podDisruptionBudget": {
+              "properties": {
+                "minAvailable": {
+                  "default": "1",
+                  "description": "Configures the minimum available pods for disruptions. Cannot be used if `maxUnavailable` is set.",
+                  "required": [],
+                  "title": "minAvailable"
+                }
+              },
+              "required": [],
+              "title": "podDisruptionBudget",
+              "type": "object"
+            },
+            "podSecurityContext": {
+              "description": "Security context for the pod",
+              "required": [],
+              "title": "podSecurityContext"
+            },
+            "priorityClassName": {
+              "default": "giantswarm-critical",
+              "description": "Optional priority class",
+              "required": [],
+              "title": "priorityClassName"
+            },
+            "profiling": {
+              "properties": {
+                "enabled": {
+                  "default": "false",
+                  "description": "Enable profiling",
+                  "required": [],
+                  "title": "enabled"
+                },
+                "port": {
+                  "default": "6060",
+                  "description": "Profiling endpoint port",
+                  "required": [],
+                  "title": "port"
+                },
+                "serviceType": {
+                  "default": "ClusterIP",
+                  "description": "Service type.",
+                  "required": [],
+                  "title": "serviceType"
+                }
+              },
+              "required": [],
+              "title": "profiling",
+              "type": "object"
+            },
+            "rbac": {
+              "properties": {
+                "clusterRole": {
+                  "properties": {
+                    "extraResources": {
+                      "description": "Extra resource permissions to add in the cluster role",
+                      "items": {
+                        "required": []
+                      },
+                      "required": [],
+                      "title": "extraResources"
+                    }
+                  },
+                  "required": [],
+                  "title": "clusterRole",
+                  "type": "object"
+                },
+                "create": {
+                  "default": "true",
+                  "description": "Create RBAC resources",
+                  "required": [],
+                  "title": "create"
+                },
+                "serviceAccount": {
+                  "properties": {
+                    "annotations": {
+                      "description": "Annotations for the ServiceAccount",
+                      "required": [],
+                      "title": "annotations"
+                    },
+                    "name": {
+                      "default": "kyverno-reports-controller",
+                      "description": "Service account name",
+                      "required": [],
+                      "title": "name"
+                    }
+                  },
+                  "required": [],
+                  "title": "serviceAccount",
+                  "type": "object"
+                }
+              },
+              "required": [
+                "serviceAccount",
+                "clusterRole"
+              ],
+              "title": "rbac",
+              "type": "object"
+            },
+            "resources": {
+              "properties": {
+                "limits": {
+                  "description": "Pod resource limits",
+                  "properties": {
+                    "cpu": {
+                      "default": "750m",
+                      "required": [],
+                      "title": "cpu",
+                      "type": "string"
+                    },
+                    "memory": {
+                      "default": "2Gi",
+                      "required": [],
+                      "title": "memory",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "cpu",
+                    "memory"
+                  ],
+                  "title": "limits"
+                },
+                "requests": {
+                  "description": "Pod resource requests",
+                  "properties": {
+                    "cpu": {
+                      "default": "500m",
+                      "required": [],
+                      "title": "cpu",
+                      "type": "string"
+                    },
+                    "memory": {
+                      "default": "1Gi",
+                      "required": [],
+                      "title": "memory",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "cpu",
+                    "memory"
+                  ],
+                  "title": "requests"
+                }
+              },
+              "required": [],
+              "title": "resources",
+              "type": "object"
+            },
+            "sanityChecks": {
+              "default": "true",
+              "description": "Enable sanity check for reports CRDs",
+              "required": [],
+              "title": "sanityChecks"
+            },
+            "securityContext": {
+              "description": "Security context for the containers",
+              "properties": {
+                "allowPrivilegeEscalation": {
+                  "default": false,
+                  "required": [],
+                  "title": "allowPrivilegeEscalation",
+                  "type": "boolean"
+                },
+                "capabilities": {
+                  "properties": {
+                    "drop": {
+                      "items": {
+                        "anyOf": [
+                          {
+                            "required": [],
+                            "type": "string"
+                          }
+                        ],
+                        "required": []
+                      },
+                      "required": [],
+                      "title": "drop",
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "drop"
+                  ],
+                  "title": "capabilities",
+                  "type": "object"
+                },
+                "privileged": {
+                  "default": false,
+                  "required": [],
+                  "title": "privileged",
+                  "type": "boolean"
+                },
+                "readOnlyRootFilesystem": {
+                  "default": true,
+                  "required": [],
+                  "title": "readOnlyRootFilesystem",
+                  "type": "boolean"
+                },
+                "runAsGroup": {
+                  "default": 65534,
+                  "required": [],
+                  "title": "runAsGroup",
+                  "type": "integer"
+                },
+                "runAsNonRoot": {
+                  "default": true,
+                  "required": [],
+                  "title": "runAsNonRoot",
+                  "type": "boolean"
+                },
+                "runAsUser": {
+                  "default": 65534,
+                  "required": [],
+                  "title": "runAsUser",
+                  "type": "integer"
+                },
+                "seccompProfile": {
+                  "properties": {
+                    "type": {
+                      "default": "RuntimeDefault",
+                      "required": [],
+                      "title": "type",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ],
+                  "title": "seccompProfile",
+                  "type": "object"
+                }
+              },
+              "required": [
+                "runAsUser",
+                "runAsGroup",
+                "runAsNonRoot",
+                "privileged",
+                "allowPrivilegeEscalation",
+                "readOnlyRootFilesystem",
+                "capabilities",
+                "seccompProfile"
+              ],
+              "title": "securityContext"
+            },
+            "server": {
+              "description": "reportsController server port in case you are using hostNetwork: true, you might want to change the port the reportsController is listening to",
+              "properties": {
+                "port": {
+                  "default": 9443,
+                  "required": [],
+                  "title": "port",
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "port"
+              ],
+              "title": "server"
+            },
+            "serviceMonitor": {
+              "properties": {
+                "additionalLabels": {
+                  "description": "Additional labels",
+                  "required": [],
+                  "title": "additionalLabels"
+                },
+                "enabled": {
+                  "default": "true",
+                  "description": "Create a `ServiceMonitor` to collect Prometheus metrics.",
+                  "required": [],
+                  "title": "enabled"
+                },
+                "interval": {
+                  "default": "30s",
+                  "description": "Interval to scrape metrics",
+                  "required": [],
+                  "title": "interval"
+                },
+                "scrapeTimeout": {
+                  "default": "25s",
+                  "description": "Timeout if metrics can't be retrieved in given time interval",
+                  "required": [],
+                  "title": "scrapeTimeout"
+                },
+                "secure": {
+                  "default": "false",
+                  "description": "Is TLS required for endpoint",
+                  "required": [],
+                  "title": "secure"
+                },
+                "tlsConfig": {
+                  "description": "TLS Configuration for endpoint",
+                  "required": [],
+                  "title": "tlsConfig"
+                }
+              },
+              "required": [],
+              "title": "serviceMonitor",
+              "type": "object"
+            },
+            "sigstoreVolume": {
+              "description": "Volume to be mounted in pods for TUF/cosign work.",
+              "properties": {
+                "emptyDir": {
+                  "required": [],
+                  "title": "emptyDir",
+                  "type": "object"
+                }
+              },
+              "required": [
+                "emptyDir"
+              ],
+              "title": "sigstoreVolume"
+            },
+            "tolerations": {
+              "description": "List of node taints to tolerate",
+              "items": {
+                "required": []
+              },
+              "required": [],
+              "title": "tolerations"
+            },
+            "topologySpreadConstraints": {
+              "description": "Topology spread constraints.",
+              "items": {
+                "required": []
+              },
+              "required": [],
+              "title": "topologySpreadConstraints"
+            },
+            "tracing": {
+              "properties": {
+                "address": {
+                  "default": "~",
+                  "description": "Traces receiver address",
+                  "required": [],
+                  "title": "address",
+                  "type": ["string", "null"]
+                },
+                "creds": {
+                  "default": "~",
+                  "description": "Traces receiver credentials",
+                  "required": [],
+                  "title": "creds",
+                  "type": ["string", "null"]
+                },
+                "enabled": {
+                  "default": "false",
+                  "description": "Enable tracing",
+                  "required": [],
+                  "title": "enabled"
+                },
+                "port": {
+                  "default": "~",
+                  "description": "Traces receiver port",
+                  "required": [],
+                  "title": "port",
+                  "type": ["string", "null"]
+                }
+              },
+              "required": [],
+              "title": "tracing",
+              "type": "object"
+            },
+            "tufRootMountPath": {
+              "default": "/.sigstore",
+              "description": "A writable volume to use for the TUF root initialization.",
+              "required": [],
+              "title": "tufRootMountPath"
+            },
+            "updateStrategy": {
+              "default": "See [values.yaml](values.yaml)",
+              "description": "Deployment update strategy. Ref: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy",
+              "properties": {
+                "rollingUpdate": {
+                  "properties": {
+                    "maxSurge": {
+                      "default": 1,
+                      "required": [],
+                      "title": "maxSurge",
+                      "type": "integer"
+                    },
+                    "maxUnavailable": {
+                      "default": "40%",
+                      "required": [],
+                      "title": "maxUnavailable",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "maxSurge",
+                    "maxUnavailable"
+                  ],
+                  "title": "rollingUpdate",
+                  "type": "object"
+                },
+                "type": {
+                  "default": "RollingUpdate",
+                  "required": [],
+                  "title": "type",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "rollingUpdate",
+                "type"
+              ],
+              "title": "updateStrategy"
+            }
+          },
+          "required": [
+            "rbac",
+            "image",
+            "resources",
+            "antiAffinity",
+            "podDisruptionBudget",
+            "metricsService",
+            "networkPolicy",
+            "serviceMonitor",
+            "tracing",
+            "metering",
+            "profiling"
+          ],
+          "title": "reportsController",
+          "type": "object"
+        },
+        "webhooksCleanup": {
+          "properties": {
+            "autoDeleteWebhooks": {
+              "properties": {
+                "enabled": {
+                  "default": "false",
+                  "description": "Allow webhooks controller to delete webhooks using finalizers",
+                  "required": [],
+                  "title": "enabled"
+                }
+              },
+              "required": [],
+              "title": "autoDeleteWebhooks",
+              "type": "object"
+            },
+            "enabled": {
+              "default": "true",
+              "description": "Create a helm pre-delete hook to cleanup webhooks.",
+              "required": [],
+              "title": "enabled"
+            },
+            "image": {
+              "properties": {
+                "registry": {
+                  "default": "gsoci.azurecr.io",
+                  "description": "Image registry",
+                  "required": [],
+                  "title": "registry",
+                  "type": "string"
+                },
+                "repository": {
+                  "default": "giantswarm/kubectl",
+                  "description": "Image repository",
+                  "required": [],
+                  "title": "repository"
+                },
+                "tag": {
+                  "default": "v1.34.3",
+                  "description": "Image tag Defaults to `latest` if omitted",
+                  "required": [],
+                  "title": "tag"
+                }
+              },
+              "required": [],
+              "title": "image",
+              "type": "object"
+            }
+          },
+          "required": [
+            "autoDeleteWebhooks",
+            "image"
+          ],
+          "title": "webhooksCleanup",
+          "type": "object"
+        }
+      },
+      "required": [
+        "openreports",
+        "crds",
+        "grafana",
+        "config",
+        "metricsConfig",
+        "features",
+        "customLabels",
+        "admissionController",
+        "backgroundController",
+        "cleanupController",
+        "reportsController",
+        "webhooksCleanup"
+      ],
+      "title": "kyverno",
+      "type": "object"
+    },
+    "monitoring": {
+      "properties": {
+        "podLogs": {
+          "properties": {
+            "annotations": {
+              "description": "Optional additional annotations.",
+              "required": [],
+              "title": "annotations",
+              "type": "object"
+            },
+            "enabled": {
+              "default": true,
+              "description": "Enable log collection for monitoring.",
+              "required": [],
+              "title": "enabled",
+              "type": "boolean"
+            },
+            "labels": {
+              "description": "Optional additional labels.",
+              "required": [],
+              "title": "labels",
+              "type": "object"
+            },
+            "relabelings": {
+              "description": "List of relabeling rules for logs.",
+              "items": {
+                "required": []
+              },
+              "required": [],
+              "title": "relabelings",
+              "type": "array"
+            },
+            "tenant": {
+              "default": "giantswarm",
+              "description": "Tenant to use for monitoring",
+              "required": [],
+              "title": "tenant",
+              "type": "string"
+            }
+          },
+          "required": [
+            "enabled",
+            "tenant",
+            "annotations",
+            "labels",
+            "relabelings"
+          ],
+          "title": "podLogs",
+          "type": "object"
+        }
+      },
+      "required": [
+        "podLogs"
+      ],
+      "title": "monitoring",
+      "type": "object"
+    },
+    "policy-reporter": {
+      "description": "Additional options defined in charts/policy-reporter/values.yaml. Upstream docs: https://github.com/kyverno/policy-reporter",
+      "properties": {
+        "fullnameOverride": {
+          "default": "kyverno-policy-reporter",
+          "required": [],
+          "title": "fullnameOverride",
+          "type": "string"
+        },
+        "global": {
+          "properties": {
+            "labels": {
+              "required": [],
+              "title": "labels",
+              "type": "object"
+            }
+          },
+          "required": [
+            "labels"
+          ],
+          "title": "global",
+          "type": "object"
+        },
+        "image": {
+          "properties": {
+            "registry": {
+              "default": "gsoci.azurecr.io",
+              "required": [],
+              "title": "registry",
+              "type": "string"
+            },
+            "repository": {
+              "default": "giantswarm/policy-reporter",
+              "required": [],
+              "title": "repository",
+              "type": "string"
+            }
+          },
+          "required": [
+            "registry",
+            "repository"
+          ],
+          "title": "image",
+          "type": "object"
+        },
+        "monitoring": {
+          "properties": {
+            "enabled": {
+              "default": true,
+              "required": [],
+              "title": "enabled",
+              "type": "boolean"
+            },
+            "serviceMonitor": {
+              "properties": {
+                "namespace": {
+                  "default": "kyverno",
+                  "required": [],
+                  "title": "namespace",
+                  "type": "string"
+                },
+                "relabelings": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "properties": {
+                          "action": {
+                            "default": "labeldrop",
+                            "required": [],
+                            "title": "action",
+                            "type": "string"
+                          },
+                          "regex": {
+                            "default": "pod|service|container",
+                            "required": [],
+                            "title": "regex",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "action",
+                          "regex"
+                        ],
+                        "type": "object"
+                      },
+                      {
+                        "properties": {
+                          "action": {
+                            "default": "replace",
+                            "required": [],
+                            "title": "action",
+                            "type": "string"
+                          },
+                          "replacement": {
+                            "default": "policy-reporter",
+                            "required": [],
+                            "title": "replacement",
+                            "type": "string"
+                          },
+                          "targetLabel": {
+                            "default": "instance",
+                            "required": [],
+                            "title": "targetLabel",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "targetLabel",
+                          "replacement",
+                          "action"
+                        ],
+                        "type": "object"
+                      }
+                    ],
+                    "required": []
+                  },
+                  "required": [],
+                  "title": "relabelings",
+                  "type": "array"
+                }
+              },
+              "required": [
+                "namespace",
+                "relabelings"
+              ],
+              "title": "serviceMonitor",
+              "type": "object"
+            }
+          },
+          "required": [
+            "enabled",
+            "serviceMonitor"
+          ],
+          "title": "monitoring",
+          "type": "object"
+        },
+        "plugin": {
+          "properties": {
+            "kyverno": {
+              "properties": {
+                "enabled": {
+                  "default": true,
+                  "required": [],
+                  "title": "enabled",
+                  "type": "boolean"
+                },
+                "image": {
+                  "properties": {
+                    "registry": {
+                      "default": "gsoci.azurecr.io",
+                      "required": [],
+                      "title": "registry",
+                      "type": "string"
+                    },
+                    "repository": {
+                      "default": "giantswarm/kyverno-plugin",
+                      "required": [],
+                      "title": "repository",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "registry",
+                    "repository"
+                  ],
+                  "title": "image",
+                  "type": "object"
+                },
+                "podLabels": {
+                  "properties": {
+                    "app.kubernetes.io/component": {
+                      "default": "plugin",
+                      "required": [],
+                      "title": "app.kubernetes.io/component",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "app.kubernetes.io/component"
+                  ],
+                  "title": "podLabels",
+                  "type": "object"
+                },
+                "resources": {
+                  "properties": {
+                    "limits": {
+                      "properties": {
+                        "cpu": {
+                          "default": "50m",
+                          "required": [],
+                          "title": "cpu",
+                          "type": "string"
+                        },
+                        "memory": {
+                          "default": "100Mi",
+                          "required": [],
+                          "title": "memory",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "cpu",
+                        "memory"
+                      ],
+                      "title": "limits",
+                      "type": "object"
+                    },
+                    "requests": {
+                      "properties": {
+                        "cpu": {
+                          "default": "10m",
+                          "required": [],
+                          "title": "cpu",
+                          "type": "string"
+                        },
+                        "memory": {
+                          "default": "30Mi",
+                          "required": [],
+                          "title": "memory",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "cpu",
+                        "memory"
+                      ],
+                      "title": "requests",
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "limits",
+                    "requests"
+                  ],
+                  "title": "resources",
+                  "type": "object"
+                }
+              },
+              "required": [
+                "enabled",
+                "podLabels",
+                "image",
+                "resources"
+              ],
+              "title": "kyverno",
+              "type": "object"
+            }
+          },
+          "required": [
+            "kyverno"
+          ],
+          "title": "plugin",
+          "type": "object"
+        },
+        "podLabels": {
+          "properties": {
+            "app.kubernetes.io/component": {
+              "default": "policy-reporter",
+              "required": [],
+              "title": "app.kubernetes.io/component",
+              "type": "string"
+            }
+          },
+          "required": [
+            "app.kubernetes.io/component"
+          ],
+          "title": "podLabels",
+          "type": "object"
+        },
+        "resources": {
+          "properties": {
+            "limits": {
+              "properties": {
+                "cpu": {
+                  "default": "30m",
+                  "required": [],
+                  "title": "cpu",
+                  "type": "string"
+                },
+                "memory": {
+                  "default": "100Mi",
+                  "required": [],
+                  "title": "memory",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "cpu",
+                "memory"
+              ],
+              "title": "limits",
+              "type": "object"
+            },
+            "requests": {
+              "properties": {
+                "cpu": {
+                  "default": "5m",
+                  "required": [],
+                  "title": "cpu",
+                  "type": "string"
+                },
+                "memory": {
+                  "default": "30Mi",
+                  "required": [],
+                  "title": "memory",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "cpu",
+                "memory"
+              ],
+              "title": "requests",
+              "type": "object"
+            }
+          },
+          "required": [
+            "limits",
+            "requests"
+          ],
+          "title": "resources",
+          "type": "object"
+        },
+        "serviceAccount": {
+          "properties": {
+            "name": {
+              "default": "policyreporter-sa",
+              "required": [],
+              "title": "name",
+              "type": "string"
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "title": "serviceAccount",
+          "type": "object"
+        },
+        "ui": {
+          "properties": {
+            "enabled": {
+              "default": true,
+              "required": [],
+              "title": "enabled",
+              "type": "boolean"
+            },
+            "image": {
+              "properties": {
+                "registry": {
+                  "default": "gsoci.azurecr.io",
+                  "required": [],
+                  "title": "registry",
+                  "type": "string"
+                },
+                "repository": {
+                  "default": "giantswarm/policy-reporter-ui",
+                  "required": [],
+                  "title": "repository",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "registry",
+                "repository"
+              ],
+              "title": "image",
+              "type": "object"
+            },
+            "podLabels": {
+              "properties": {
+                "app.kubernetes.io/component": {
+                  "default": "ui",
+                  "required": [],
+                  "title": "app.kubernetes.io/component",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "app.kubernetes.io/component"
+              ],
+              "title": "podLabels",
+              "type": "object"
+            },
+            "resources": {
+              "properties": {
+                "limits": {
+                  "properties": {
+                    "cpu": {
+                      "default": "10m",
+                      "required": [],
+                      "title": "cpu",
+                      "type": "string"
+                    },
+                    "memory": {
+                      "default": "16Mi",
+                      "required": [],
+                      "title": "memory",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "cpu",
+                    "memory"
+                  ],
+                  "title": "limits",
+                  "type": "object"
+                },
+                "requests": {
+                  "properties": {
+                    "cpu": {
+                      "default": "1m",
+                      "required": [],
+                      "title": "cpu",
+                      "type": "string"
+                    },
+                    "memory": {
+                      "default": "8Mi",
+                      "required": [],
+                      "title": "memory",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "cpu",
+                    "memory"
+                  ],
+                  "title": "requests",
+                  "type": "object"
+                }
+              },
+              "required": [
+                "limits",
+                "requests"
+              ],
+              "title": "resources",
+              "type": "object"
+            },
+            "serviceAccount": {
+              "properties": {
+                "create": {
+                  "default": true,
+                  "required": [],
+                  "title": "create",
+                  "type": "boolean"
+                },
+                "name": {
+                  "default": "policyreporter-ui-sa",
+                  "required": [],
+                  "title": "name",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "create",
+                "name"
+              ],
+              "title": "serviceAccount",
+              "type": "object"
+            }
+          },
+          "required": [
+            "enabled",
+            "podLabels",
+            "image",
+            "resources",
+            "serviceAccount"
+          ],
+          "title": "ui",
+          "type": "object"
+        }
+      },
+      "required": [
+        "fullnameOverride",
+        "podLabels",
+        "image",
+        "resources",
+        "serviceAccount",
+        "ui",
+        "plugin",
+        "global",
+        "monitoring"
+      ],
+      "title": "policy-reporter",
+      "type": "object"
+    },
+    "policyExceptions": {
+      "properties": {
+        "allowedPolexNamespaces": {
+          "items": {
+            "anyOf": [
+              {
+                "required": [],
+                "type": "string"
+              }
+            ],
+            "required": []
+          },
+          "required": [],
+          "title": "allowedPolexNamespaces",
+          "type": "array"
+        },
+        "enableAwsCloudControllerManagerPolex": {
+          "default": true,
+          "description": "Deploy a PolicyException for AWS Cloud Controller Manager (required for Giant Swarm clusters).",
+          "required": [],
+          "title": "enableAwsCloudControllerManagerPolex",
+          "type": "boolean"
+        },
+        "enableAwsEbsCsiDriverPolex": {
+          "default": true,
+          "description": "Deploy a PolicyException for AWS Ebs Csi Driver (required for Giant Swarm clusters).",
+          "required": [],
+          "title": "enableAwsEbsCsiDriverPolex",
+          "type": "boolean"
+        },
+        "enableAzureCloudControllerManagerPolex": {
+          "default": true,
+          "description": "Deploy a PolicyException for Azure Cloud Controller Manager (required for Giant Swarm clusters).",
+          "required": [],
+          "title": "enableAzureCloudControllerManagerPolex",
+          "type": "boolean"
+        },
+        "enableAzureCloudNodeManagerPolex": {
+          "default": true,
+          "description": "Deploy a PolicyException for Azure Cloud Node Manager (required for Giant Swarm clusters).",
+          "required": [],
+          "title": "enableAzureCloudNodeManagerPolex",
+          "type": "boolean"
+        },
+        "enableChartOperatorPolex": {
+          "default": true,
+          "description": "Deploy a PolicyException for chart-operator (required for Giant Swarm clusters).",
+          "required": [],
+          "title": "enableChartOperatorPolex",
+          "type": "boolean"
+        },
+        "enableCiliumPolex": {
+          "default": true,
+          "description": "Deploy a PolicyException for cilium (required for Giant Swarm clusters).",
+          "required": [],
+          "title": "enableCiliumPolex",
+          "type": "boolean"
+        },
+        "enableNoisyContextsPolicy": {
+          "default": "true",
+          "description": " Most Pod-level policies shouldn't depend on external calls, and the extra API calls can cause cascading issues under heavy cluster load.",
+          "required": [],
+          "title": "enableNoisyContextsPolicy"
+        },
+        "enablePolexPolicy": {
+          "default": "true",
+          "description": " If enablePolexPolicy is true, this chart will deploy an additional ClusterPolicy which rejects PolicyException objects created outside of the namespaces listed in allowedPolexNamespaces.",
+          "required": [],
+          "title": "enablePolexPolicy"
+        },
+        "enableWildcardMatchPolicy": {
+          "default": "true",
+          "description": " Matching all (*) kinds results in excessive and unnecessary admission review load.",
+          "required": [],
+          "title": "enableWildcardMatchPolicy"
+        },
+        "polexPolicyMessage": {
+          "default": "PolicyExceptions are not allowed to be created in the {{ request.namespace }} namespace. Please contact a cluster administrator for assistance.",
+          "description": " The message shown to users can be customized to direct them to an exception process.",
+          "required": [],
+          "title": "polexPolicyMessage"
+        }
+      },
+      "required": [
+        "allowedPolexNamespaces",
+        "enableChartOperatorPolex",
+        "enableCiliumPolex",
+        "enableAwsCloudControllerManagerPolex",
+        "enableAwsEbsCsiDriverPolex",
+        "enableAzureCloudControllerManagerPolex",
+        "enableAzureCloudNodeManagerPolex"
+      ],
+      "title": "policyExceptions",
+      "type": "object"
+    },
+    "upgradeJob": {
+      "description": "Upgrade job for Kyverno \u003c 1.10.0 upgrades.",
+      "properties": {
+        "enabled": {
+          "default": false,
+          "required": [],
+          "title": "enabled",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "enabled"
+      ],
+      "title": "upgradeJob",
+      "type": "object"
+    },
+    "verticalPodAutoscaler": {
+      "description": "VerticalPodAutoscaler settings for individual controllers",
+      "properties": {
+        "admissionController": {
+          "properties": {
+            "containerPolicies": {
+              "required": [],
+              "title": "containerPolicies",
+              "type": "object"
+            },
+            "enabled": {
+              "default": true,
+              "required": [],
+              "title": "enabled",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "enabled",
+            "containerPolicies"
+          ],
+          "title": "admissionController",
+          "type": "object"
+        },
+        "backgroundController": {
+          "properties": {
+            "containerPolicies": {
+              "properties": {
+                "maxAllowed": {
+                  "properties": {
+                    "cpu": {
+                      "default": 4,
+                      "required": [],
+                      "title": "cpu",
+                      "type": "integer"
+                    },
+                    "memory": {
+                      "default": "8Gi",
+                      "required": [],
+                      "title": "memory",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "cpu",
+                    "memory"
+                  ],
+                  "title": "maxAllowed",
+                  "type": "object"
+                },
+                "minAllowed": {
+                  "properties": {
+                    "cpu": {
+                      "default": "100m",
+                      "required": [],
+                      "title": "cpu",
+                      "type": "string"
+                    },
+                    "memory": {
+                      "default": "100Mi",
+                      "required": [],
+                      "title": "memory",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "cpu",
+                    "memory"
+                  ],
+                  "title": "minAllowed",
+                  "type": "object"
+                }
+              },
+              "required": [
+                "minAllowed",
+                "maxAllowed"
+              ],
+              "title": "containerPolicies",
+              "type": "object"
+            },
+            "enabled": {
+              "default": true,
+              "required": [],
+              "title": "enabled",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "enabled",
+            "containerPolicies"
+          ],
+          "title": "backgroundController",
+          "type": "object"
+        },
+        "cleanupController": {
+          "properties": {
+            "containerPolicies": {
+              "required": [],
+              "title": "containerPolicies",
+              "type": "object"
+            },
+            "enabled": {
+              "default": true,
+              "required": [],
+              "title": "enabled",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "enabled",
+            "containerPolicies"
+          ],
+          "title": "cleanupController",
+          "type": "object"
+        },
+        "kyvernoPlugin": {
+          "description": "VPA settings for Policy Reporter components",
+          "properties": {
+            "containerPolicies": {
+              "required": [],
+              "title": "containerPolicies",
+              "type": "object"
+            },
+            "enabled": {
+              "default": true,
+              "required": [],
+              "title": "enabled",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "enabled",
+            "containerPolicies"
+          ],
+          "title": "kyvernoPlugin",
+          "type": "object"
+        },
+        "policyReporter": {
+          "properties": {
+            "containerPolicies": {
+              "required": [],
+              "title": "containerPolicies",
+              "type": "object"
+            },
+            "enabled": {
+              "default": true,
+              "required": [],
+              "title": "enabled",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "enabled",
+            "containerPolicies"
+          ],
+          "title": "policyReporter",
+          "type": "object"
+        },
+        "reportsController": {
+          "properties": {
+            "containerPolicies": {
+              "properties": {
+                "maxAllowed": {
+                  "properties": {
+                    "cpu": {
+                      "default": 6,
+                      "required": [],
+                      "title": "cpu",
+                      "type": "integer"
+                    },
+                    "memory": {
+                      "default": "24Gi",
+                      "required": [],
+                      "title": "memory",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "cpu",
+                    "memory"
+                  ],
+                  "title": "maxAllowed",
+                  "type": "object"
+                },
+                "minAllowed": {
+                  "properties": {
+                    "cpu": {
+                      "default": "100m",
+                      "required": [],
+                      "title": "cpu",
+                      "type": "string"
+                    },
+                    "memory": {
+                      "default": "100Mi",
+                      "required": [],
+                      "title": "memory",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "cpu",
+                    "memory"
+                  ],
+                  "title": "minAllowed",
+                  "type": "object"
+                }
+              },
+              "required": [
+                "minAllowed",
+                "maxAllowed"
+              ],
+              "title": "containerPolicies",
+              "type": "object"
+            },
+            "enabled": {
+              "default": true,
+              "required": [],
+              "title": "enabled",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "enabled",
+            "containerPolicies"
+          ],
+          "title": "reportsController",
+          "type": "object"
+        },
+        "ui": {
+          "properties": {
+            "containerPolicies": {
+              "required": [],
+              "title": "containerPolicies",
+              "type": "object"
+            },
+            "enabled": {
+              "default": true,
+              "required": [],
+              "title": "enabled",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "enabled",
+            "containerPolicies"
+          ],
+          "title": "ui",
+          "type": "object"
+        }
+      },
+      "required": [
+        "admissionController",
+        "backgroundController",
+        "cleanupController",
+        "reportsController",
+        "kyvernoPlugin",
+        "policyReporter",
+        "ui"
+      ],
+      "title": "verticalPodAutoscaler",
+      "type": "object"
+    }
+  },
+  "required": [
+    "global",
+    "ciliumNetworkPolicy",
+    "crds",
+    "image",
+    "verticalPodAutoscaler",
+    "cleanupPolicies",
+    "policyExceptions",
+    "upgradeJob",
+    "monitoring",
+    "kyverno",
+    "policy-reporter"
+  ],
+  "type": "object"
+}
