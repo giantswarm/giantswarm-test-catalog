@@ -1,0 +1,1222 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "properties": {
+    "configFiles": {
+      "description": "If mountConfig is true the chart creates the '$CHART_RELEASE-config', if it\ndoes not exist the user is in charge of managing it (as this file includes a\nsample file you have to add it empty to handle it externally).",
+      "properties": {
+        "config.json": {
+          "default": "{\n  \"storage\": { \"rootDirectory\": \"/var/lib/registry\" },\n  \"http\": { \"address\": \"0.0.0.0\", \"port\": \"5000\" },\n  \"log\": { \"level\": \"debug\" }\n}",
+          "title": "config.json",
+          "type": "string"
+        }
+      },
+      "required": [
+        "config.json"
+      ],
+      "title": "configFiles",
+      "type": "object"
+    },
+    "deploymentAnnotations": {
+      "required": [],
+      "title": "deploymentAnnotations",
+      "type": "object"
+    },
+    "dnsConfig": {
+      "required": [],
+      "title": "dnsConfig",
+      "type": "object"
+    },
+    "dnsPolicy": {
+      "default": "ClusterFirst",
+      "title": "dnsPolicy",
+      "type": "string"
+    },
+    "env": {
+      "description": "List of environment variables to set on the container",
+      "items": {
+        "required": []
+      },
+      "title": "env",
+      "type": "array"
+    },
+    "externalSecrets": {
+      "description": "externalSecrets allows to mount external (meaning not managed by this chart)\nKubernetes secrets within the Zot container.\nThe secret is identified by its name (property \"secretName\") and should be\npresent in the same namespace. The property \"mountPath\" specifies the path\nwithin the container filesystem where the secret is mounted.\n\nBelow is an example:\n\n externalSecrets:\n - secretName: \"secret1\"\n   mountPath: \"/secrets/s1\"\n - secretName: \"secret2\"\n   mountPath: \"/secrets/s2\"",
+      "items": {
+        "required": []
+      },
+      "title": "externalSecrets",
+      "type": "array"
+    },
+    "extraArgs": {
+      "description": "Extra args to pass to the deployment's container",
+      "items": {
+        "required": []
+      },
+      "title": "extraArgs",
+      "type": "array"
+    },
+    "extraContainers": {
+      "description": "Extra Containers running alongside the main container",
+      "items": {
+        "required": []
+      },
+      "title": "extraContainers",
+      "type": "array"
+    },
+    "extraVolumeMounts": {
+      "description": "Extra Volume Mounts",
+      "items": {
+        "required": []
+      },
+      "title": "extraVolumeMounts",
+      "type": "array"
+    },
+    "extraVolumes": {
+      "description": "Extra Volumes",
+      "items": {
+        "required": []
+      },
+      "title": "extraVolumes",
+      "type": "array"
+    },
+    "giantswarm": {
+      "description": "yaml-language-server: $schema=values.schema.json\nGiant Swarm specific values and defaults",
+      "properties": {
+        "images": {
+          "properties": {
+            "alpine": {
+              "properties": {
+                "image": {
+                  "default": "giantswarm/alpine",
+                  "title": "image",
+                  "type": "string"
+                },
+                "tag": {
+                  "default": "3.18",
+                  "title": "tag",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "image",
+                "tag"
+              ],
+              "title": "alpine",
+              "type": "object"
+            },
+            "registry": {
+              "default": "gsoci.azurecr.io",
+              "title": "registry",
+              "type": "string"
+            },
+            "zot": {
+              "properties": {
+                "image": {
+                  "default": "giantswarm/zot-linux-amd64",
+                  "title": "image",
+                  "type": "string"
+                },
+                "tag": {
+                  "default": "",
+                  "description": "defaults to appVersion in chart.yaml",
+                  "title": "tag",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "image",
+                "tag"
+              ],
+              "title": "zot",
+              "type": "object"
+            }
+          },
+          "required": [
+            "registry",
+            "zot",
+            "alpine"
+          ],
+          "title": "images",
+          "type": "object"
+        },
+        "observability": {
+          "properties": {
+            "tenant": {
+              "default": "giantswarm",
+              "title": "tenant",
+              "type": "string"
+            }
+          },
+          "required": [
+            "tenant"
+          ],
+          "title": "observability",
+          "type": "object"
+        },
+        "verticalPodAutoscaler": {
+          "properties": {
+            "enabled": {
+              "default": true,
+              "title": "enabled",
+              "type": "boolean"
+            },
+            "force": {
+              "default": false,
+              "description": "Enables bypassing \"autoscaling.k8s.io/v1\" check; use with care",
+              "title": "force",
+              "type": "boolean"
+            },
+            "maxAllowed": {
+              "properties": {
+                "cpu": {
+                  "default": "750m",
+                  "title": "cpu",
+                  "type": "string"
+                },
+                "memory": {
+                  "default": "2048Mi",
+                  "title": "memory",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "cpu",
+                "memory"
+              ],
+              "title": "maxAllowed",
+              "type": "object"
+            }
+          },
+          "required": [
+            "enabled",
+            "force",
+            "maxAllowed"
+          ],
+          "title": "verticalPodAutoscaler",
+          "type": "object"
+        }
+      },
+      "required": [
+        "images",
+        "verticalPodAutoscaler",
+        "observability"
+      ],
+      "title": "giantswarm",
+      "type": "object"
+    },
+    "global": {
+      "properties": {
+        "podSecurityStandards": {
+          "properties": {
+            "enforced": {
+              "default": false,
+              "title": "enforced",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "enforced"
+          ],
+          "title": "podSecurityStandards",
+          "type": "object"
+        }
+      },
+      "required": [
+        "podSecurityStandards"
+      ],
+      "title": "global",
+      "type": "object"
+    },
+    "httpGet": {
+      "description": "By default, Kubernetes HTTP probes use HTTP 'scheme'. So if TLS is enabled\nin configuration, to prevent failures, the scheme must be set to 'HTTPS'.",
+      "properties": {
+        "port": {
+          "default": 5000,
+          "title": "port",
+          "type": "integer"
+        },
+        "scheme": {
+          "default": "HTTP",
+          "title": "scheme",
+          "type": "string"
+        }
+      },
+      "required": [
+        "scheme",
+        "port"
+      ],
+      "title": "httpGet",
+      "type": "object"
+    },
+    "image": {
+      "properties": {
+        "pullPolicy": {
+          "default": "IfNotPresent",
+          "title": "pullPolicy",
+          "type": "string"
+        },
+        "repository": {
+          "default": "gsoci.azurecr.io/giantswarm/zot-linux-amd64",
+          "title": "repository",
+          "type": "string"
+        },
+        "tag": {
+          "default": "v2.1.13",
+          "description": "Overrides the image tag whose default is the chart appVersion.",
+          "title": "tag",
+          "type": "string"
+        }
+      },
+      "required": [
+        "repository",
+        "pullPolicy",
+        "tag"
+      ],
+      "title": "image",
+      "type": "object"
+    },
+    "ingress": {
+      "description": "Enabling this will publicly expose your zot server\nOnly enable this if you have security enabled on your cluster",
+      "properties": {
+        "annotations": {
+          "required": [],
+          "title": "annotations",
+          "type": "object"
+        },
+        "className": {
+          "default": "nginx",
+          "description": "kubernetes.io/ingress.class: nginx\nkubernetes.io/tls-acme: \"true\"\nIf using nginx, disable body limits and increase read and write timeouts\nnginx.ingress.kubernetes.io/proxy-body-size: \"0\"\nnginx.ingress.kubernetes.io/proxy-read-timeout: \"600\"\nnginx.ingress.kubernetes.io/proxy-send-timeout: \"600\"",
+          "title": "className",
+          "type": "string"
+        },
+        "enabled": {
+          "default": false,
+          "title": "enabled",
+          "type": "boolean"
+        },
+        "hosts": {
+          "items": {
+            "anyOf": [
+              {
+                "properties": {
+                  "host": {
+                    "default": "chart-example.local",
+                    "title": "host",
+                    "type": "string"
+                  },
+                  "paths": {
+                    "items": {
+                      "anyOf": [
+                        {
+                          "properties": {
+                            "path": {
+                              "default": "/",
+                              "title": "path",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "path"
+                          ],
+                          "type": "object"
+                        }
+                      ],
+                      "required": []
+                    },
+                    "title": "paths",
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "host",
+                  "paths"
+                ],
+                "type": "object"
+              }
+            ],
+            "required": []
+          },
+          "title": "hosts",
+          "type": "array"
+        },
+        "pathtype": {
+          "default": "ImplementationSpecific",
+          "title": "pathtype",
+          "type": "string"
+        },
+        "tls": {
+          "items": {
+            "required": []
+          },
+          "title": "tls",
+          "type": "array"
+        }
+      },
+      "required": [
+        "enabled",
+        "annotations",
+        "className",
+        "pathtype",
+        "hosts",
+        "tls"
+      ],
+      "title": "ingress",
+      "type": "object"
+    },
+    "metrics": {
+      "description": "Metrics configuration\nNOTE: need enable metric extension in config.json",
+      "properties": {
+        "enabled": {
+          "default": false,
+          "description": "Start a prometheus exporter",
+          "title": "enabled",
+          "type": "boolean"
+        },
+        "serviceMonitor": {
+          "description": "Prometheus Operator ServiceMonitor configuration",
+          "properties": {
+            "additionalLabels": {
+              "description": "Additional labels",
+              "required": [],
+              "title": "additionalLabels",
+              "type": "object"
+            },
+            "basicAuth": {
+              "description": "- sourceLabels: [__meta_kubernetes_pod_node_name]\n  separator: ;\n  regex: ^(.*)$\n  targetLabel: nodename\n  replacement: $1\n  action: replace",
+              "required": [],
+              "title": "basicAuth",
+              "type": "object"
+            },
+            "enabled": {
+              "default": false,
+              "description": "Start a ServiceMonitor for Prometheus Operator",
+              "title": "enabled",
+              "type": "boolean"
+            },
+            "honorLabels": {
+              "default": false,
+              "description": "Let prometheus add an exported_ prefix to conflicting labels",
+              "title": "honorLabels",
+              "type": "boolean"
+            },
+            "interval": {
+              "default": "30s",
+              "description": "Specify the interval at which metrics should be scraped",
+              "title": "interval",
+              "type": "string"
+            },
+            "jobLabel": {
+              "default": "",
+              "description": "Selects the label from the associated Kubernetes `Service` object which will be used as the `job` label for all metrics.",
+              "title": "jobLabel",
+              "type": "string"
+            },
+            "metricRelabelings": {
+              "description": "Metric relabel configs to apply to samples before ingestion. [Metric Relabeling](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#metric_relabel_configs)",
+              "items": {
+                "required": []
+              },
+              "title": "metricRelabelings",
+              "type": "array"
+            },
+            "path": {
+              "default": "/metrics",
+              "description": "Namespace where you want to install ServiceMonitors",
+              "title": "path",
+              "type": "string"
+            },
+            "relabelings": {
+              "description": "- action: replace\n  regex: (.*)\n  replacement: $1\n  sourceLabels:\n  - exported_namespace\n  targetLabel: namespace\nRelabel configs to apply to samples before ingestion. [Relabeling](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config)",
+              "items": {
+                "required": []
+              },
+              "title": "relabelings",
+              "type": "array"
+            },
+            "scheme": {
+              "default": "",
+              "description": "HTTP scheme to use for scraping. If empty, Prometheus uses the default value `http`.",
+              "title": "scheme",
+              "type": "string"
+            },
+            "scrapeTimeout": {
+              "default": "25s",
+              "description": "Timeout if metrics can't be retrieved in given time interval",
+              "title": "scrapeTimeout",
+              "type": "string"
+            }
+          },
+          "required": [
+            "enabled",
+            "path",
+            "scheme",
+            "interval",
+            "scrapeTimeout",
+            "jobLabel",
+            "honorLabels",
+            "additionalLabels",
+            "metricRelabelings",
+            "relabelings",
+            "basicAuth"
+          ],
+          "title": "serviceMonitor",
+          "type": "object"
+        }
+      },
+      "required": [
+        "enabled",
+        "serviceMonitor"
+      ],
+      "title": "metrics",
+      "type": "object"
+    },
+    "mountConfig": {
+      "default": true,
+      "description": "If mountConfig is true the configMap named $CHART_RELEASE-config is mounted\non the pod's '/etc/zot' directory",
+      "title": "mountConfig",
+      "type": "boolean"
+    },
+    "mountSecret": {
+      "default": false,
+      "description": "If mountSecret is true, the Secret named $CHART_RELEASE-secret is mounted on\nthe pod's '/secret' directory (it is used to keep files with passwords, like\na `htpasswd` file)",
+      "title": "mountSecret",
+      "type": "boolean"
+    },
+    "namespace": {
+      "default": "",
+      "description": "Defaults to the release namespace if not specified",
+      "title": "namespace",
+      "type": "string"
+    },
+    "persistence": {
+      "default": true,
+      "description": "If persistence is 'true' the service uses a persistentVolumeClaim to mount a\nvolume for zot on '/var/lib/registry'; by default the pvc used is named\n'$CHART_RELEASE-pvc', but the name can be changed below",
+      "title": "persistence",
+      "type": "boolean"
+    },
+    "podAnnotations": {
+      "required": [],
+      "title": "podAnnotations",
+      "type": "object"
+    },
+    "podLabels": {
+      "required": [],
+      "title": "podLabels",
+      "type": "object"
+    },
+    "podSecurityContext": {
+      "properties": {
+        "fsGroup": {
+          "default": 1000,
+          "title": "fsGroup",
+          "type": "integer"
+        },
+        "fsGroupChangePolicy": {
+          "default": "OnRootMismatch",
+          "title": "fsGroupChangePolicy",
+          "type": "string"
+        },
+        "runAsGroup": {
+          "default": 1000,
+          "title": "runAsGroup",
+          "type": "integer"
+        },
+        "runAsNonRoot": {
+          "default": true,
+          "title": "runAsNonRoot",
+          "type": "boolean"
+        },
+        "runAsUser": {
+          "default": 1000,
+          "title": "runAsUser",
+          "type": "integer"
+        },
+        "seccompProfile": {
+          "properties": {
+            "type": {
+              "default": "RuntimeDefault",
+              "title": "type",
+              "type": "string"
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "title": "seccompProfile",
+          "type": "object"
+        }
+      },
+      "required": [
+        "runAsNonRoot",
+        "runAsUser",
+        "runAsGroup",
+        "fsGroup",
+        "fsGroupChangePolicy",
+        "seccompProfile"
+      ],
+      "title": "podSecurityContext",
+      "type": "object"
+    },
+    "priorityClassName": {
+      "default": "",
+      "title": "priorityClassName",
+      "type": "string"
+    },
+    "pvc": {
+      "description": "PVC data, only used if persistence is 'true'",
+      "properties": {
+        "accessModes": {
+          "description": "Volume access mode, if using more than one replica we need",
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              }
+            ],
+            "required": []
+          },
+          "title": "accessModes",
+          "type": "array"
+        },
+        "create": {
+          "default": true,
+          "description": "Make the chart create the PVC, this option is used with storageClasses that\ncan create volumes dynamically, if that is not the case is better to do it\nmanually and set create to false",
+          "title": "create",
+          "type": "boolean"
+        },
+        "name": {
+          "default": "",
+          "description": "Name of the PVC to use or create if persistence is enabled, if not set the\nvalue '$CHART_RELEASE-pvc' is used",
+          "required": [],
+          "title": "name",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "policyException": {
+          "properties": {
+            "enforce": {
+              "default": false,
+              "title": "enforce",
+              "type": "boolean"
+            },
+            "namespace": {
+              "default": "policy-exceptions",
+              "title": "namespace",
+              "type": "string"
+            }
+          },
+          "required": [
+            "enforce",
+            "namespace"
+          ],
+          "title": "policyException",
+          "type": "object"
+        },
+        "storage": {
+          "default": "8Gi",
+          "description": "Size of the volume requested",
+          "title": "storage",
+          "type": "string"
+        },
+        "storageClassName": {
+          "default": "",
+          "description": "Name of the storage class to use if it is different from the default one",
+          "title": "storageClassName",
+          "type": "string"
+        }
+      },
+      "required": [
+        "create",
+        "accessModes",
+        "storage",
+        "storageClassName",
+        "policyException"
+      ],
+      "title": "pvc",
+      "type": "object"
+    },
+    "replicaCount": {
+      "default": 1,
+      "description": "Default values for zot.\nThis is a YAML-formatted file.\nDeclare variables to be passed into your templates.",
+      "title": "replicaCount",
+      "type": "integer"
+    },
+    "resources": {
+      "properties": {
+        "limits": {
+          "properties": {
+            "cpu": {
+              "default": "500m",
+              "title": "cpu",
+              "type": "string"
+            },
+            "memory": {
+              "default": "1536Mi",
+              "title": "memory",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "title": "limits",
+          "type": "object"
+        },
+        "requests": {
+          "properties": {
+            "cpu": {
+              "default": "300m",
+              "title": "cpu",
+              "type": "string"
+            },
+            "memory": {
+              "default": "1024Mi",
+              "title": "memory",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "title": "requests",
+          "type": "object"
+        }
+      },
+      "required": [
+        "requests",
+        "limits"
+      ],
+      "title": "resources",
+      "type": "object"
+    },
+    "route": {
+      "description": "Gateway API Route configuration\nEnabling this will create an HTTPRoute (or other route kinds) for Gateway API\nOnly enable this if you have a Gateway API implementation installed",
+      "properties": {
+        "additionalRules": {
+          "description": "Additional custom rules that can be added to the route",
+          "items": {
+            "required": []
+          },
+          "title": "additionalRules",
+          "type": "array"
+        },
+        "annotations": {
+          "description": "Annotations to add to the route",
+          "required": [],
+          "title": "annotations",
+          "type": "object"
+        },
+        "backendTrafficPolicy": {
+          "description": "Envoy Gateway BackendTrafficPolicy configuration",
+          "properties": {
+            "annotations": {
+              "description": "Annotations to add to the BackendTrafficPolicy",
+              "required": [],
+              "title": "annotations",
+              "type": "object"
+            },
+            "enabled": {
+              "default": false,
+              "title": "enabled",
+              "type": "boolean"
+            },
+            "labels": {
+              "description": "Labels to add to the BackendTrafficPolicy",
+              "required": [],
+              "title": "labels",
+              "type": "object"
+            }
+          },
+          "required": [
+            "enabled",
+            "annotations",
+            "labels"
+          ],
+          "title": "backendTrafficPolicy",
+          "type": "object"
+        },
+        "enabled": {
+          "default": false,
+          "title": "enabled",
+          "type": "boolean"
+        },
+        "filters": {
+          "description": "Filters to apply to the route",
+          "items": {
+            "required": []
+          },
+          "title": "filters",
+          "type": "array"
+        },
+        "hostnames": {
+          "description": "Hostnames for the route (supports templating)",
+          "items": {
+            "required": []
+          },
+          "title": "hostnames",
+          "type": "array"
+        },
+        "kind": {
+          "default": "HTTPRoute",
+          "description": "Set the route kind\nValid options are GRPCRoute, HTTPRoute, TCPRoute, TLSRoute, UDPRoute",
+          "title": "kind",
+          "type": "string"
+        },
+        "labels": {
+          "description": "Labels to add to the route",
+          "required": [],
+          "title": "labels",
+          "type": "object"
+        },
+        "matches": {
+          "description": "- name: my-gateway\n  namespace: gateway-system\nMatch conditions for the route",
+          "items": {
+            "anyOf": [
+              {
+                "properties": {
+                  "path": {
+                    "properties": {
+                      "type": {
+                        "default": "PathPrefix",
+                        "title": "type",
+                        "type": "string"
+                      },
+                      "value": {
+                        "default": "/",
+                        "title": "value",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "value"
+                    ],
+                    "title": "path",
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "path"
+                ],
+                "type": "object"
+              }
+            ],
+            "required": []
+          },
+          "title": "matches",
+          "type": "array"
+        },
+        "name": {
+          "default": "",
+          "description": "Override the route name (defaults to release fullname)",
+          "required": [],
+          "title": "name",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "parentRefs": {
+          "description": "- \"{{ .Release.Name }}.example.com\"\nParent references to Gateway resources",
+          "items": {
+            "required": []
+          },
+          "title": "parentRefs",
+          "type": "array"
+        },
+        "securityPolicy": {
+          "description": "Envoy Gateway SecurityPolicy configuration",
+          "properties": {
+            "annotations": {
+              "description": "Annotations to add to the SecurityPolicy",
+              "required": [],
+              "title": "annotations",
+              "type": "object"
+            },
+            "enabled": {
+              "default": false,
+              "title": "enabled",
+              "type": "boolean"
+            },
+            "labels": {
+              "description": "Labels to add to the SecurityPolicy",
+              "required": [],
+              "title": "labels",
+              "type": "object"
+            }
+          },
+          "required": [
+            "enabled",
+            "annotations",
+            "labels"
+          ],
+          "title": "securityPolicy",
+          "type": "object"
+        }
+      },
+      "required": [
+        "enabled",
+        "kind",
+        "annotations",
+        "labels",
+        "hostnames",
+        "parentRefs",
+        "matches",
+        "filters",
+        "additionalRules",
+        "backendTrafficPolicy",
+        "securityPolicy"
+      ],
+      "title": "route",
+      "type": "object"
+    },
+    "secretFiles": {
+      "description": "If secretFiles does not exist the user is in charge of managing it, again, if\nyou want to manage it the value has to be added empty to avoid using this one",
+      "properties": {
+        "htpasswd": {
+          "default": "admin:$2y$05$vmiurPmJvHylk78HHFWuruFFVePlit9rZWGA/FbZfTEmNRneGJtha\nuser:$2y$05$L86zqQDfH5y445dcMlwu6uHv.oXFgT6AiJCwpv3ehr7idc0rI3S2G",
+          "description": "Example htpasswd with 'admin:admin' \u0026 'user:user' user:pass pairs",
+          "title": "htpasswd",
+          "type": "string"
+        }
+      },
+      "required": [
+        "htpasswd"
+      ],
+      "title": "secretFiles",
+      "type": "object"
+    },
+    "securityContext": {
+      "properties": {
+        "allowPrivilegeEscalation": {
+          "default": false,
+          "title": "allowPrivilegeEscalation",
+          "type": "boolean"
+        },
+        "capabilities": {
+          "properties": {
+            "drop": {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  }
+                ],
+                "required": []
+              },
+              "title": "drop",
+              "type": "array"
+            }
+          },
+          "required": [
+            "drop"
+          ],
+          "title": "capabilities",
+          "type": "object"
+        },
+        "readOnlyRootFilesystem": {
+          "default": true,
+          "title": "readOnlyRootFilesystem",
+          "type": "boolean"
+        },
+        "runAsGroup": {
+          "default": 1000,
+          "title": "runAsGroup",
+          "type": "integer"
+        },
+        "runAsNonRoot": {
+          "default": true,
+          "title": "runAsNonRoot",
+          "type": "boolean"
+        },
+        "runAsUser": {
+          "default": 1000,
+          "title": "runAsUser",
+          "type": "integer"
+        },
+        "seccompProfile": {
+          "properties": {
+            "type": {
+              "default": "RuntimeDefault",
+              "title": "type",
+              "type": "string"
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "title": "seccompProfile",
+          "type": "object"
+        }
+      },
+      "required": [
+        "allowPrivilegeEscalation",
+        "capabilities",
+        "readOnlyRootFilesystem",
+        "runAsNonRoot",
+        "runAsUser",
+        "runAsGroup",
+        "seccompProfile"
+      ],
+      "title": "securityContext",
+      "type": "object"
+    },
+    "service": {
+      "properties": {
+        "annotations": {
+          "description": "Annotations to add to the service",
+          "required": [],
+          "title": "annotations",
+          "type": "object"
+        },
+        "clusterIP": {
+          "default": "null",
+          "description": "Set to a static IP if a static IP is desired, only works when\ntype: ClusterIP",
+          "required": [],
+          "title": "clusterIP",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "externalTrafficPolicy": {
+          "default": "",
+          "title": "externalTrafficPolicy",
+          "type": "string"
+        },
+        "internalTrafficPolicy": {
+          "default": "",
+          "description": "Traffic policy; https://kubernetes.io/docs/reference/networking/virtual-ips/#traffic-policies",
+          "title": "internalTrafficPolicy",
+          "type": "string"
+        },
+        "nodePort": {
+          "default": 32767,
+          "title": "nodePort",
+          "type": "integer"
+        },
+        "port": {
+          "default": 5000,
+          "title": "port",
+          "type": "integer"
+        },
+        "trafficDistribution": {
+          "default": "",
+          "description": "Traffic distribution preferences; https://kubernetes.io/docs/reference/networking/virtual-ips/#traffic-distribution",
+          "title": "trafficDistribution",
+          "type": "string"
+        },
+        "type": {
+          "default": "ClusterIP",
+          "title": "type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "port",
+        "nodePort",
+        "annotations",
+        "internalTrafficPolicy",
+        "externalTrafficPolicy",
+        "trafficDistribution"
+      ],
+      "title": "service",
+      "type": "object"
+    },
+    "serviceAccount": {
+      "properties": {
+        "annotations": {
+          "description": "Annotations to add to the service account",
+          "required": [],
+          "title": "annotations",
+          "type": "object"
+        },
+        "create": {
+          "default": true,
+          "description": "Specifies whether a service account should be created",
+          "title": "create",
+          "type": "boolean"
+        },
+        "name": {
+          "default": "",
+          "description": "The name of the service account to use.\nIf not set and create is true, a name is generated using the fullname template",
+          "title": "name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "create",
+        "annotations",
+        "name"
+      ],
+      "title": "serviceAccount",
+      "type": "object"
+    },
+    "serviceHeadless": {
+      "properties": {
+        "annotations": {
+          "description": "Annotations to add to the headless service",
+          "required": [],
+          "title": "annotations",
+          "type": "object"
+        },
+        "enabled": {
+          "default": false,
+          "description": "Enable headless service, only for statefulset",
+          "title": "enabled",
+          "type": "boolean"
+        },
+        "port": {
+          "default": 5000,
+          "description": "Headless service port",
+          "title": "port",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "enabled",
+        "port",
+        "annotations"
+      ],
+      "title": "serviceHeadless",
+      "type": "object"
+    },
+    "startupProbe": {
+      "description": "By default, Kubernetes considers a Pod healthy if the liveness probe returns\nsuccessfully. However, sometimes applications need additional startup time on\ntheir first initialization. By defining a startupProbe, we can allow the\napplication to take extra time for initialization without compromising fast\nresponse to deadlocks.",
+      "properties": {
+        "failureThreshold": {
+          "default": 3,
+          "title": "failureThreshold",
+          "type": "integer"
+        },
+        "initialDelaySeconds": {
+          "default": 5,
+          "title": "initialDelaySeconds",
+          "type": "integer"
+        },
+        "periodSeconds": {
+          "default": 10,
+          "title": "periodSeconds",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "initialDelaySeconds",
+        "periodSeconds",
+        "failureThreshold"
+      ],
+      "title": "startupProbe",
+      "type": "object"
+    },
+    "strategy": {
+      "description": "Deployment strategy type",
+      "properties": {
+        "type": {
+          "default": "RollingUpdate",
+          "description": "strategy.type should be set to Recreate if local storage is used",
+          "title": "type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "title": "strategy",
+      "type": "object"
+    },
+    "testPodResources": {
+      "properties": {
+        "limits": {
+          "properties": {
+            "cpu": {
+              "default": "100m",
+              "title": "cpu",
+              "type": "string"
+            },
+            "memory": {
+              "default": "64Mi",
+              "title": "memory",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "title": "limits",
+          "type": "object"
+        },
+        "requests": {
+          "properties": {
+            "cpu": {
+              "default": "100m",
+              "title": "cpu",
+              "type": "string"
+            },
+            "memory": {
+              "default": "64Mi",
+              "title": "memory",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "title": "requests",
+          "type": "object"
+        }
+      },
+      "required": [
+        "requests",
+        "limits"
+      ],
+      "title": "testPodResources",
+      "type": "object"
+    }
+  },
+  "required": [
+    "giantswarm",
+    "resources",
+    "testPodResources",
+    "podSecurityContext",
+    "securityContext",
+    "replicaCount",
+    "image",
+    "namespace",
+    "serviceAccount",
+    "serviceHeadless",
+    "service",
+    "ingress",
+    "route",
+    "httpGet",
+    "startupProbe",
+    "mountConfig",
+    "configFiles",
+    "externalSecrets",
+    "mountSecret",
+    "secretFiles",
+    "persistence",
+    "pvc",
+    "env",
+    "extraVolumeMounts",
+    "extraVolumes",
+    "extraContainers",
+    "strategy",
+    "extraArgs",
+    "podAnnotations",
+    "podLabels",
+    "deploymentAnnotations",
+    "priorityClassName",
+    "dnsConfig",
+    "dnsPolicy",
+    "global",
+    "metrics"
+  ],
+  "type": "object"
+}
