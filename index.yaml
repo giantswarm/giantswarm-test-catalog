@@ -11225,6 +11225,36 @@ entries:
     version: 0.20.5-c88320df07c18406bb2e0cca048cab61f6d8e0d9
   - annotations:
       io.giantswarm.application.audience: all
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.20.5-b1bbd685ee785e38a24052317ec82964e32fcda2.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/external-secrets/b1bbd685ee785e38a24052317ec82964e32fcda2/README.md
+      io.giantswarm.application.restrictions.cluster-singleton: "true"
+      io.giantswarm.application.restrictions.namespace-singleton: "true"
+      io.giantswarm.application.team: honeybadger
+      io.giantswarm.application.upstream-chart-version: 0.20.4
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/external-secrets/b1bbd685ee785e38a24052317ec82964e32fcda2/helm/external-secrets/values.schema.json
+    apiVersion: v2
+    appVersion: v0.20.4
+    created: "2026-02-02T16:44:21.666401466Z"
+    dependencies:
+    - condition: bitwarden-sdk-server.enabled
+      name: bitwarden-sdk-server
+      repository: oci://ghcr.io/external-secrets/charts
+      version: v0.5.3
+    description: External secret management for Kubernetes
+    digest: c79039facf2d687158bcb06a5a9e71d7432e8c05e3b15a5f7f75fccc5ae1337e
+    home: https://github.com/giantswarm/external-secrets
+    icon: https://s.giantswarm.io/app-icons/external-secrets/1/light.svg
+    keywords:
+    - kubernetes-external-secrets
+    - secrets
+    kubeVersion: '>= 1.30.0-0'
+    name: external-secrets
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.20.5-b1bbd685ee785e38a24052317ec82964e32fcda2.tgz
+    version: 0.20.5-b1bbd685ee785e38a24052317ec82964e32fcda2
+  - annotations:
+      io.giantswarm.application.audience: all
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.20.5-7e0a199b308799fbbb32adfe0648e420ab2c0ff9.tgz-meta/main.yaml
       io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/external-secrets/7e0a199b308799fbbb32adfe0648e420ab2c0ff9/README.md
       io.giantswarm.application.restrictions.cluster-singleton: "true"
@@ -43894,4 +43924,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.5.0-10539c713a15472d4de408fb8b9469ee23709bf1.tgz
     version: 2.5.0-10539c713a15472d4de408fb8b9469ee23709bf1
-generated: "2026-02-02T16:16:03.554242779Z"
+generated: "2026-02-02T16:44:21.655079759Z"
