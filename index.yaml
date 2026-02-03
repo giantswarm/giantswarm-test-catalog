@@ -23925,6 +23925,42 @@ entries:
     version: 0.23.0-3fffabd203b0e2dc75805a14c26d39200fd6b4b9
   - annotations:
       config.giantswarm.io/version: 1.x.x
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/kyverno-0.23.0-3eb2809ab1e8957d580d9cd71baf9ef416e81f8d.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/kyverno-app/3eb2809ab1e8957d580d9cd71baf9ef416e81f8d/README.md
+      io.giantswarm.application.restrictions.cluster-singleton: "true"
+      io.giantswarm.application.team: shield
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/kyverno-app/3eb2809ab1e8957d580d9cd71baf9ef416e81f8d/helm/kyverno/values.schema.json
+    apiVersion: v2
+    appVersion: v1.16.3
+    created: "2026-02-03T13:25:12.641748737Z"
+    dependencies:
+    - name: policy-reporter
+      repository: ""
+      version: 3.7.1
+    - name: kyverno
+      repository: ""
+      version: 3.6.3
+    description: 'Kyverno is a policy engine designed for Kubernetes. It can validate,
+      mutate, and generate configurations using admission controls and background
+      scans. Kyverno policies are Kubernetes resources and do not require learning
+      a new language. '
+    digest: 532af34e48b51aa5d08f17a7bd1042ba2907f5b906d9cb7e33dd107dc5bb8363
+    home: https://github.com/giantswarm/kyverno-app
+    icon: https://s.giantswarm.io/app-icons/kyverno/1/light.svg
+    keywords:
+    - kubernetes
+    - policy-agent
+    - validating-webhook
+    - admission-controller
+    name: kyverno
+    sources:
+    - https://github.com/kyverno/kyverno
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/kyverno-0.23.0-3eb2809ab1e8957d580d9cd71baf9ef416e81f8d.tgz
+    version: 0.23.0-3eb2809ab1e8957d580d9cd71baf9ef416e81f8d
+  - annotations:
+      config.giantswarm.io/version: 1.x.x
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/kyverno-0.23.0-3d0cc6e4638aada8cd05485cbce3224f2d1fe162.tgz-meta/main.yaml
       io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/kyverno-app/3d0cc6e4638aada8cd05485cbce3224f2d1fe162/README.md
       io.giantswarm.application.restrictions.cluster-singleton: "true"
@@ -47638,4 +47674,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.5.0-10539c713a15472d4de408fb8b9469ee23709bf1.tgz
     version: 2.5.0-10539c713a15472d4de408fb8b9469ee23709bf1
-generated: "2026-02-03T13:25:06.687118236Z"
+generated: "2026-02-03T13:25:12.612458511Z"
