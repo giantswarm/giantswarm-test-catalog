@@ -23585,6 +23585,37 @@ entries:
     - https://giantswarm.github.io/giantswarm-test-catalog/kubescape-0.0.5-5c8f747d358d36b60e8be5f19f2105f6fbc691e9.tgz
     version: 0.0.5-5c8f747d358d36b60e8be5f19f2105f6fbc691e9
   - annotations:
+      io.giantswarm.application.audience: all
+      io.giantswarm.application.managed: "true"
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/kubescape-0.0.5-5b9b356a91fff7f8af02717e8856a9a9c29f4af9.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/kubescape/5b9b356a91fff7f8af02717e8856a9a9c29f4af9/README.md
+      io.giantswarm.application.team: shield
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/kubescape/5b9b356a91fff7f8af02717e8856a9a9c29f4af9/helm/kubescape/values.schema.json
+    apiVersion: v2
+    created: "2026-02-05T12:44:13.091920234Z"
+    dependencies:
+    - condition: exceptions.enabled
+      name: exceptions
+      repository: ""
+      version: 0.0.0
+    - name: dependency_chart
+      repository: ""
+      version: 0.0.0
+    - name: kubescape-operator
+      repository: ""
+      version: '>1.28.0'
+    description: This chart contains the kubescape operator chart and custom Giant
+      Swarm resources.
+    digest: c1ac4ed6551e3a250490cf368d72fec5e107ceafbad5b2edc957f48155e8d087
+    home: https://github.com/giantswarm/kubescape
+    icon: https://s.giantswarm.io/app-icons/kubescape/1/color.svg
+    name: kubescape
+    sources:
+    - https://github.com/kubescape/helm-charts
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/kubescape-0.0.5-5b9b356a91fff7f8af02717e8856a9a9c29f4af9.tgz
+    version: 0.0.5-5b9b356a91fff7f8af02717e8856a9a9c29f4af9
+  - annotations:
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/kubescape-0.0.5-52560386aa0f07070c136e09511700ab051aa7c9.tgz-meta/main.yaml
       io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/kubescape/52560386aa0f07070c136e09511700ab051aa7c9/README.md
       io.giantswarm.application.team: shield
@@ -52938,4 +52969,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.5.0-10539c713a15472d4de408fb8b9469ee23709bf1.tgz
     version: 2.5.0-10539c713a15472d4de408fb8b9469ee23709bf1
-generated: "2026-02-05T12:44:09.831204423Z"
+generated: "2026-02-05T12:44:13.083396597Z"
