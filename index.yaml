@@ -9484,6 +9484,42 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.9.4-42cda72a6da408873edeaa342eb661cf1ac727af.tgz
     version: 3.9.4-42cda72a6da408873edeaa342eb661cf1ac727af
+  - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.9.3-d3fe5d134467cd59078a7089e1c68c333c76f655.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.9.3-d3fe5d134467cd59078a7089e1c68c333c76f655.tgz-meta/README.md
+      application.giantswarm.io/team: shield
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.9.3-d3fe5d134467cd59078a7089e1c68c333c76f655.tgz-meta/values.schema.json
+      io.giantswarm.application.audience: all
+      io.giantswarm.application.managed: "true"
+    apiVersion: v2
+    appVersion: v1.18.2
+    created: "2026-02-05T12:38:13.234985486Z"
+    dependencies:
+    - alias: giantSwarmClusterIssuer
+      name: cert-manager-giantswarm-clusterissuer
+      repository: ""
+      version: 2.0.0
+    - condition: giantswarmNetworkPolicy.enabled
+      name: cert-manager-giantswarm-netpol
+      repository: ""
+      version: 0.1.0
+    - condition: ciliumNetworkPolicy.enabled
+      name: cert-manager-giantswarm-ciliumnetworkpolicies
+      repository: ""
+      version: 0.1.0
+    description: Simplifies the process of obtaining, renewing and using certificates.
+    digest: 2aafc8502919134ee08ce3143adc223e46cdeb46d61b20fb08707bbdd65af71d
+    home: https://github.com/giantswarm/cert-manager-app
+    icon: https://s.giantswarm.io/app-icons/cert-manager/1/light.svg
+    kubeVersion: '>=1.22.0-0'
+    maintainers:
+    - name: Shield
+    name: cert-manager-app
+    sources:
+    - https://github.com/cert-manager/cert-manager
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-3.9.3-d3fe5d134467cd59078a7089e1c68c333c76f655.tgz
+    version: 3.9.3-d3fe5d134467cd59078a7089e1c68c333c76f655
   cert-manager-bundle:
   - annotations:
       application.giantswarm.io/app-type: bundle
@@ -52511,4 +52547,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.5.0-10539c713a15472d4de408fb8b9469ee23709bf1.tgz
     version: 2.5.0-10539c713a15472d4de408fb8b9469ee23709bf1
-generated: "2026-02-05T12:38:03.897218831Z"
+generated: "2026-02-05T12:38:13.227280028Z"
