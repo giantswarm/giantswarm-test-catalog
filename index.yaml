@@ -14956,6 +14956,43 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/falco-0.11.0-362311e9a2294e9c602b1266d6d185302bc3a151.tgz
     version: 0.11.0-362311e9a2294e9c602b1266d6d185302bc3a151
+  - annotations:
+      io.giantswarm.application.audience: all
+      io.giantswarm.application.logo: https://s.giantswarm.io/app-icons/falco/2/logo_dark.svg
+      io.giantswarm.application.managed: "true"
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/falco-0.11.0-270254ef14cd0ba2a695c2e8c3d0e448195ea1fc.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/falco-app/270254ef14cd0ba2a695c2e8c3d0e448195ea1fc/README.md
+      io.giantswarm.application.team: shield
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/falco-app/270254ef14cd0ba2a695c2e8c3d0e448195ea1fc/helm/falco/values.schema.json
+    apiVersion: v2
+    appVersion: 0.41.3
+    created: "2026-02-05T16:32:21.945999055Z"
+    dependencies:
+    - condition: falco.enabled
+      name: falco
+      repository: ""
+      version: 6.2.5
+    - condition: falcosidekick.enabled
+      name: falcosidekick
+      repository: ""
+      version: 0.10.2
+    - condition: k8s-metacollector.enabled
+      name: k8s-metacollector
+      repository: ""
+      version: 0.1.10
+    description: A Helm chart for falco
+    digest: 13a8f569e6d1e8425c06b0427e575dba7d4be11982c0b0e07b265cb76f9ddb03
+    home: https://github.com/giantswarm/falco-app
+    icon: https://s.giantswarm.io/app-icons/falco/2/icon_dark.svg
+    maintainers:
+    - name: Giant Swarm applications team
+      url: https://github.com/giantswarm/falco-app
+    name: falco
+    sources:
+    - https://github.com/giantswarm/falco-app
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/falco-0.11.0-270254ef14cd0ba2a695c2e8c3d0e448195ea1fc.tgz
+    version: 0.11.0-270254ef14cd0ba2a695c2e8c3d0e448195ea1fc
   fluent-logshipping-app:
   - annotations:
       config.giantswarm.io/version: 1.x.x
@@ -56561,4 +56598,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.5.0-10539c713a15472d4de408fb8b9469ee23709bf1.tgz
     version: 2.5.0-10539c713a15472d4de408fb8b9469ee23709bf1
-generated: "2026-02-05T16:32:11.648230035Z"
+generated: "2026-02-05T16:32:21.933650823Z"
