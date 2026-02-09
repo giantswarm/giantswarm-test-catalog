@@ -15115,6 +15115,33 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.20.4-4e55602a5ab7272cfe99d7ede6cf1449b2268d57.tgz
     version: 0.20.4-4e55602a5ab7272cfe99d7ede6cf1449b2268d57
+  - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.18.0-4c079120142d1519aa81df45770679c9aebcde7a.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.18.0-4c079120142d1519aa81df45770679c9aebcde7a.tgz-meta/README.md
+      application.giantswarm.io/team: honeybadger
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.18.0-4c079120142d1519aa81df45770679c9aebcde7a.tgz-meta/values.schema.json
+      config.giantswarm.io/version: 1.x.x
+    apiVersion: v2
+    appVersion: v0.18.0
+    created: "2026-02-09T14:43:12.249804259Z"
+    dependencies:
+    - condition: bitwarden-sdk-server.enabled
+      name: bitwarden-sdk-server
+      repository: oci://ghcr.io/external-secrets/charts
+      version: v0.4.2
+    description: External secret management for Kubernetes
+    digest: 66ed73fcc07fcbea38e8d4e06c50be0a4f5759ff31d107c84f89f5dddf173b1c
+    home: https://github.com/giantswarm/external-secrets
+    icon: https://s.giantswarm.io/app-icons/external-secrets/1/light.svg
+    keywords:
+    - kubernetes-external-secrets
+    - secrets
+    kubeVersion: '>= 1.19.0-0'
+    name: external-secrets
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.18.0-4c079120142d1519aa81df45770679c9aebcde7a.tgz
+    version: 0.18.0-4c079120142d1519aa81df45770679c9aebcde7a
   falco:
   - annotations:
       config.giantswarm.io/version: 1.x.x
@@ -59825,4 +59852,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.5.0-10539c713a15472d4de408fb8b9469ee23709bf1.tgz
     version: 2.5.0-10539c713a15472d4de408fb8b9469ee23709bf1
-generated: "2026-02-09T13:56:49.102716268Z"
+generated: "2026-02-09T14:43:12.239936671Z"
