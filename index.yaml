@@ -14552,6 +14552,33 @@ entries:
     - https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.20.5.tgz
     version: 0.20.5
   - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.20.5-db10c108f0b6288460389c49d0a11c07aacdf5d4.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.20.5-db10c108f0b6288460389c49d0a11c07aacdf5d4.tgz-meta/README.md
+      application.giantswarm.io/team: honeybadger
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.20.5-db10c108f0b6288460389c49d0a11c07aacdf5d4.tgz-meta/values.schema.json
+      config.giantswarm.io/version: 1.x.x
+    apiVersion: v2
+    appVersion: v0.18.0
+    created: "2026-02-09T15:33:16.876255157Z"
+    dependencies:
+    - condition: bitwarden-sdk-server.enabled
+      name: bitwarden-sdk-server
+      repository: oci://ghcr.io/external-secrets/charts
+      version: v0.4.2
+    description: External secret management for Kubernetes
+    digest: 130f168371b355098d53117286aa6acd3f60c79e28fc1fbad6ed93f7cc7a9c3e
+    home: https://github.com/giantswarm/external-secrets
+    icon: https://s.giantswarm.io/app-icons/external-secrets/1/light.svg
+    keywords:
+    - kubernetes-external-secrets
+    - secrets
+    kubeVersion: '>= 1.19.0-0'
+    name: external-secrets
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.20.5-db10c108f0b6288460389c49d0a11c07aacdf5d4.tgz
+    version: 0.20.5-db10c108f0b6288460389c49d0a11c07aacdf5d4
+  - annotations:
       io.giantswarm.application.audience: all
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/external-secrets-0.20.5-d0aca0f73880d19741f990ccbd1ed525138a4253.tgz-meta/main.yaml
       io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/external-secrets/d0aca0f73880d19741f990ccbd1ed525138a4253/README.md
@@ -60159,4 +60186,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.5.0-10539c713a15472d4de408fb8b9469ee23709bf1.tgz
     version: 2.5.0-10539c713a15472d4de408fb8b9469ee23709bf1
-generated: "2026-02-09T15:07:03.376030559Z"
+generated: "2026-02-09T15:33:16.865391274Z"
