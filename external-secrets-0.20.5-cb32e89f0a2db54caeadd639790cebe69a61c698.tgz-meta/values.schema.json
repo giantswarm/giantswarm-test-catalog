@@ -1,0 +1,1801 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+        "affinity": {
+            "description": "Affinity rules for the operator pod.",
+            "type": "object",
+            "additionalProperties": false
+        },
+        "bitwarden-sdk-server": {
+            "description": "Bitwarden SDK server sub-chart configuration.",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "description": "Enable the Bitwarden SDK server sub-chart.",
+                    "type": "boolean"
+                },
+                "namespaceOverride": {
+                    "description": "Override the namespace for the Bitwarden SDK server.",
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "certController": {
+            "description": "Certificate controller configuration.",
+            "type": "object",
+            "properties": {
+                "affinity": {
+                    "description": "Affinity rules for the cert controller pod.",
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "create": {
+                    "description": "Specifies whether a certificate controller deployment be created.",
+                    "type": "boolean"
+                },
+                "deploymentAnnotations": {
+                    "description": "Annotations to add to Deployment",
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "extraArgs": {
+                    "description": "Map of extra arguments to pass to container.",
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "extraEnv": {
+                    "description": "Extra environment variables to add to container.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false
+                    }
+                },
+                "extraInitContainers": {
+                    "description": "Extra init containers to add to the pod.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false
+                    }
+                },
+                "extraVolumeMounts": {
+                    "description": "Extra volumes to mount to the container.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false
+                    }
+                },
+                "extraVolumes": {
+                    "description": "Extra volumes to pass to pod.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false
+                    }
+                },
+                "hostNetwork": {
+                    "description": "Run the certController on the host network",
+                    "type": "boolean"
+                },
+                "image": {
+                    "description": "Container image configuration for the cert controller.",
+                    "type": "object",
+                    "properties": {
+                        "flavour": {
+                            "description": "Image flavor for the cert controller.",
+                            "type": "string"
+                        },
+                        "pullPolicy": {
+                            "description": "Image pull policy for the cert controller.",
+                            "type": "string",
+                            "enum": [
+                                "Always",
+                                "IfNotPresent",
+                                "Never",
+                                ""
+                            ]
+                        },
+                        "repository": {
+                            "description": "Image repository for the cert controller.",
+                            "type": "string"
+                        },
+                        "tag": {
+                            "description": "Image tag for the cert controller.",
+                            "type": "string"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "imagePullSecrets": {
+                    "description": "Docker registry secrets for pulling cert controller images.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false
+                    }
+                },
+                "log": {
+                    "description": "Specifies Log Params to the Certificate Controller",
+                    "type": "object",
+                    "properties": {
+                        "level": {
+                            "description": "Log level for the cert controller.",
+                            "type": "string"
+                        },
+                        "timeEncoding": {
+                            "description": "Log time encoding format.",
+                            "type": "string"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "metrics": {
+                    "description": "Metrics configuration for the cert controller.",
+                    "type": "object",
+                    "properties": {
+                        "listen": {
+                            "description": "Metrics listener configuration.",
+                            "type": "object",
+                            "properties": {
+                                "port": {
+                                    "description": "Port for the metrics endpoint.",
+                                    "type": "integer"
+                                }
+                            },
+                            "additionalProperties": false
+                        },
+                        "service": {
+                            "description": "Metrics Kubernetes Service configuration.",
+                            "type": "object",
+                            "properties": {
+                                "annotations": {
+                                    "description": "Additional service annotations",
+                                    "type": "object",
+                                    "additionalProperties": false
+                                },
+                                "enabled": {
+                                    "description": "Enable if you use another monitoring tool than Prometheus to scrape the metrics",
+                                    "type": "boolean"
+                                },
+                                "port": {
+                                    "description": "Metrics service port to scrape",
+                                    "type": "integer"
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "nodeSelector": {
+                    "description": "Node selector for the cert controller pod.",
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "podAnnotations": {
+                    "description": "Annotations to add to Pod",
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "podDisruptionBudget": {
+                    "description": "Pod disruption budget - for more details see https://kubernetes.io/docs/concepts/workloads/pods/disruptions/",
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "description": "Enable pod disruption budget for the cert controller.",
+                            "type": "boolean"
+                        },
+                        "minAvailable": {
+                            "description": "Minimum number of pods that must be available.",
+                            "type": [
+                                "integer",
+                                "string"
+                            ]
+                        },
+                        "nameOverride": {
+                            "description": "Override the name of the PDB resource.",
+                            "type": "string"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "podLabels": {
+                    "description": "Extra labels to add to the cert controller pod.",
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "podSecurityContext": {
+                    "description": "Pod-level security context for the cert controller.",
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "description": "Enable pod security context.",
+                            "type": "boolean"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "priorityClassName": {
+                    "description": "Pod priority class name.",
+                    "type": "string"
+                },
+                "rbac": {
+                    "description": "RBAC configuration for the cert controller.",
+                    "type": "object",
+                    "properties": {
+                        "create": {
+                            "description": "Specifies whether role and rolebinding resources should be created.",
+                            "type": "boolean"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "readinessProbe": {
+                    "description": "Readiness probe configuration for the cert controller.",
+                    "type": "object",
+                    "properties": {
+                        "address": {
+                            "description": "Address for readiness probe",
+                            "type": "string"
+                        },
+                        "port": {
+                            "description": "ReadinessProbe port for kubelet",
+                            "type": "integer"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "replicaCount": {
+                    "description": "Number of replicas for the cert controller deployment.",
+                    "type": "integer"
+                },
+                "requeueInterval": {
+                    "description": "Requeue interval for the cert controller reconciliation loop.",
+                    "type": "string"
+                },
+                "resources": {
+                    "description": "Resource requests and limits for the cert controller container.",
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "revisionHistoryLimit": {
+                    "description": "Specifies the amount of historic ReplicaSets k8s should keep (see https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#clean-up-policy)",
+                    "type": "integer"
+                },
+                "serviceAccount": {
+                    "description": "Service account configuration for the cert controller.",
+                    "type": "object",
+                    "properties": {
+                        "annotations": {
+                            "description": "Annotations to add to the service account.",
+                            "type": "object",
+                            "additionalProperties": false
+                        },
+                        "automount": {
+                            "description": "Automounts the service account token in all containers of the pod",
+                            "type": "boolean"
+                        },
+                        "create": {
+                            "description": "Specifies whether a service account should be created.",
+                            "type": "boolean"
+                        },
+                        "extraLabels": {
+                            "description": "Extra Labels to add to the service account.",
+                            "type": "object",
+                            "additionalProperties": false
+                        },
+                        "name": {
+                            "description": "The name of the service account to use. If not set and create is true, a name is generated using the fullname template.",
+                            "type": "string"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "startupProbe": {
+                    "description": "Startup probe configuration for the cert controller.",
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "description": "Enabled determines if the startup probe should be used or not. By default it's enabled",
+                            "type": "boolean"
+                        },
+                        "port": {
+                            "description": "Port for startup probe.",
+                            "type": "string"
+                        },
+                        "useReadinessProbePort": {
+                            "description": "whether to use the readiness probe port for startup probe.",
+                            "type": "boolean"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "strategy": {
+                    "description": "Set deployment strategy",
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "tolerations": {
+                    "description": "Tolerations for the cert controller pod.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false
+                    }
+                },
+                "topologySpreadConstraints": {
+                    "description": "Topology spread constraints for the cert controller pod.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+        "commonLabels": {
+            "description": "Additional labels added to all helm chart resources.",
+            "type": "object",
+            "additionalProperties": false
+        },
+        "concurrent": {
+            "description": "Specifies the number of concurrent ExternalSecret Reconciles external-secret executes at a time.",
+            "type": "integer"
+        },
+        "controllerClass": {
+            "description": "If set external secrets will filter matching Secret Stores with the appropriate controller values.",
+            "type": "string"
+        },
+        "crds": {
+            "description": "CRD creation configuration.",
+            "type": "object",
+            "properties": {
+                "annotations": {
+                    "description": "Annotations to add to CRDs.",
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "conversion": {
+                    "description": "CRD conversion webhook settings.",
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "description": "Conversion is disabled by default as we stopped supporting v1alpha1.",
+                            "type": "boolean"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "createClusterExternalSecret": {
+                    "description": "If true, create CRDs for Cluster External Secret.",
+                    "type": "boolean"
+                },
+                "createClusterGenerator": {
+                    "description": "If true, create CRDs for Cluster Generator.",
+                    "type": "boolean"
+                },
+                "createClusterPushSecret": {
+                    "description": "If true, create CRDs for Cluster Push Secret.",
+                    "type": "boolean"
+                },
+                "createClusterSecretStore": {
+                    "description": "If true, create CRDs for Cluster Secret Store.",
+                    "type": "boolean"
+                },
+                "createPushSecret": {
+                    "description": "If true, create CRDs for Push Secret.",
+                    "type": "boolean"
+                }
+            },
+            "additionalProperties": false
+        },
+        "createOperator": {
+            "description": "Specifies whether an external secret operator deployment be created.",
+            "type": "boolean"
+        },
+        "deploymentAnnotations": {
+            "description": "Annotations to add to Deployment",
+            "type": "object",
+            "additionalProperties": false
+        },
+        "dnsConfig": {
+            "description": "Specifies `dnsOptions` to deployment",
+            "type": "object",
+            "additionalProperties": false
+        },
+        "dnsPolicy": {
+            "description": "Specifies `dnsPolicy` to deployment",
+            "type": "string",
+            "enum": [
+                "Default",
+                "ClusterFirst",
+                "ClusterFirstWithHostNet",
+                "None"
+            ]
+        },
+        "enableHTTP2": {
+            "description": "if true, HTTP2 will be enabled for the services created by all controllers, curently metrics and webhook.",
+            "type": "boolean"
+        },
+        "extendedMetricLabels": {
+            "description": "If true external secrets will use recommended kubernetes annotations as prometheus metric labels.",
+            "type": "boolean"
+        },
+        "extraArgs": {
+            "description": "Map of extra arguments to pass to container.",
+            "type": "object",
+            "additionalProperties": false
+        },
+        "extraContainers": {
+            "description": "Extra containers to add to the pod.",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false
+            }
+        },
+        "extraEnv": {
+            "description": "Extra environment variables to add to container.",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false
+            }
+        },
+        "extraInitContainers": {
+            "description": "Extra init containers to add to the pod.",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false
+            }
+        },
+        "extraObjects": {
+            "description": "Extra Kubernetes objects to deploy with the helm chart",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false
+            }
+        },
+        "extraVolumeMounts": {
+            "description": "Extra volumes to mount to the container.",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false
+            }
+        },
+        "extraVolumes": {
+            "description": "Extra volumes to pass to pod.",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false
+            }
+        },
+        "fullnameOverride": {
+            "description": "Override the full name of the chart.",
+            "type": "string"
+        },
+        "giantswarm": {
+            "description": "Giant Swarm specific configuration.",
+            "type": "object",
+            "properties": {
+                "crds": {
+                    "description": "CRD installation configuration for Giant Swarm.",
+                    "type": "object",
+                    "properties": {
+                        "install": {
+                            "description": "Whether to install CRDs via a pre-install job.",
+                            "type": "boolean"
+                        },
+                        "podName": {
+                            "description": "Name of the pod used for CRD installation.",
+                            "type": "string"
+                        },
+                        "resources": {
+                            "description": "Resource requests and limits for the CRD installation job.",
+                            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json#/definitions/io.k8s.api.core.v1.ResourceRequirements",
+                            "type": "object",
+                            "properties": {
+                                "limits": {
+                                    "type": "object",
+                                    "properties": {
+                                        "cpu": {
+                                            "type": "string"
+                                        },
+                                        "memory": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                },
+                                "requests": {
+                                    "type": "object",
+                                    "properties": {
+                                        "cpu": {
+                                            "type": "string"
+                                        },
+                                        "memory": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "images": {
+                    "description": "Container image configuration.",
+                    "type": "object",
+                    "properties": {
+                        "certController": {
+                            "description": "Certificate controller image settings.",
+                            "type": "object",
+                            "properties": {
+                                "image": {
+                                    "description": "Image repository for the cert controller.",
+                                    "type": "string"
+                                },
+                                "tag": {
+                                    "description": "Image tag override; defaults to the chart appVersion.",
+                                    "type": "string"
+                                }
+                            },
+                            "additionalProperties": false
+                        },
+                        "externalSecrets": {
+                            "description": "External Secrets operator image settings.",
+                            "type": "object",
+                            "properties": {
+                                "image": {
+                                    "description": "Image repository for the external-secrets operator.",
+                                    "type": "string"
+                                },
+                                "tag": {
+                                    "description": "Image tag override; defaults to the chart appVersion.",
+                                    "type": "string"
+                                }
+                            },
+                            "additionalProperties": false
+                        },
+                        "pullPolicy": {
+                            "description": "Image pull policy for all containers.",
+                            "type": "string",
+                            "enum": [
+                                "Always",
+                                "IfNotPresent",
+                                "Never"
+                            ]
+                        },
+                        "registry": {
+                            "description": "Container image registry.",
+                            "type": "string"
+                        },
+                        "webhook": {
+                            "description": "Webhook image settings.",
+                            "type": "object",
+                            "properties": {
+                                "image": {
+                                    "description": "Image repository for the webhook.",
+                                    "type": "string"
+                                },
+                                "tag": {
+                                    "description": "Image tag override; defaults to the chart appVersion.",
+                                    "type": "string"
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "policyExceptionNamespace": {
+                    "description": "Namespace for policy exceptions.",
+                    "type": "string"
+                },
+                "resources": {
+                    "description": "Resource requests and limits for Giant Swarm managed containers.",
+                    "type": "object",
+                    "properties": {
+                        "certController": {
+                            "description": "Resource requests and limits for the cert controller.",
+                            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json#/definitions/io.k8s.api.core.v1.ResourceRequirements",
+                            "type": "object",
+                            "properties": {
+                                "limits": {
+                                    "type": "object",
+                                    "properties": {
+                                        "cpu": {
+                                            "type": "string"
+                                        },
+                                        "memory": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                },
+                                "requests": {
+                                    "type": "object",
+                                    "properties": {
+                                        "cpu": {
+                                            "type": "string"
+                                        },
+                                        "memory": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            },
+                            "additionalProperties": false
+                        },
+                        "externalSecrets": {
+                            "description": "Resource requests and limits for the external-secrets operator.",
+                            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json#/definitions/io.k8s.api.core.v1.ResourceRequirements",
+                            "type": "object",
+                            "properties": {
+                                "limits": {
+                                    "type": "object",
+                                    "properties": {
+                                        "cpu": {
+                                            "type": "string"
+                                        },
+                                        "memory": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                },
+                                "requests": {
+                                    "type": "object",
+                                    "properties": {
+                                        "cpu": {
+                                            "type": "string"
+                                        },
+                                        "memory": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            },
+                            "additionalProperties": false
+                        },
+                        "webhook": {
+                            "description": "Resource requests and limits for the webhook.",
+                            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json#/definitions/io.k8s.api.core.v1.ResourceRequirements",
+                            "type": "object",
+                            "properties": {
+                                "limits": {
+                                    "type": "object",
+                                    "properties": {
+                                        "cpu": {
+                                            "type": "string"
+                                        },
+                                        "memory": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                },
+                                "requests": {
+                                    "type": "object",
+                                    "properties": {
+                                        "cpu": {
+                                            "type": "string"
+                                        },
+                                        "memory": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "securityContext": {
+                    "description": "Security context overrides for Giant Swarm managed containers.",
+                    "type": "object",
+                    "properties": {
+                        "certController": {
+                            "description": "Security context for the cert controller container.",
+                            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json#/definitions/io.k8s.api.core.v1.SecurityContext",
+                            "type": "object",
+                            "properties": {
+                                "allowPrivilegeEscalation": {
+                                    "type": "boolean"
+                                },
+                                "capabilities": {
+                                    "type": "object",
+                                    "properties": {
+                                        "drop": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                },
+                                "readOnlyRootFilesystem": {
+                                    "type": "boolean"
+                                },
+                                "runAsNonRoot": {
+                                    "type": "boolean"
+                                },
+                                "runAsUser": {
+                                    "type": "integer"
+                                },
+                                "seccompProfile": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            },
+                            "additionalProperties": false
+                        },
+                        "externalSecrets": {
+                            "description": "Security context for the external-secrets operator container.",
+                            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json#/definitions/io.k8s.api.core.v1.SecurityContext",
+                            "type": "object",
+                            "properties": {
+                                "allowPrivilegeEscalation": {
+                                    "type": "boolean"
+                                },
+                                "capabilities": {
+                                    "type": "object",
+                                    "properties": {
+                                        "drop": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                },
+                                "readOnlyRootFilesystem": {
+                                    "type": "boolean"
+                                },
+                                "runAsNonRoot": {
+                                    "type": "boolean"
+                                },
+                                "runAsUser": {
+                                    "type": "integer"
+                                },
+                                "seccompProfile": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            },
+                            "additionalProperties": false
+                        },
+                        "webhook": {
+                            "description": "Security context for the webhook container.",
+                            "$ref": "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.33.1/_definitions.json#/definitions/io.k8s.api.core.v1.SecurityContext",
+                            "type": "object",
+                            "properties": {
+                                "allowPrivilegeEscalation": {
+                                    "type": "boolean"
+                                },
+                                "capabilities": {
+                                    "type": "object",
+                                    "properties": {
+                                        "drop": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                },
+                                "readOnlyRootFilesystem": {
+                                    "type": "boolean"
+                                },
+                                "runAsNonRoot": {
+                                    "type": "boolean"
+                                },
+                                "runAsUser": {
+                                    "type": "integer"
+                                },
+                                "seccompProfile": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "verticalPodAutoscaler": {
+                    "description": "Vertical Pod Autoscaler configuration. Allows VPA to be used if it's installed in the cluster.",
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "description": "Enable Vertical Pod Autoscaler.",
+                            "type": "boolean"
+                        },
+                        "force": {
+                            "description": "Enables bypassing \"autoscaling.k8s.io/v1\" check; use with care.",
+                            "type": "boolean"
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false
+        },
+        "global": {
+            "description": "Global values shared across all sub-charts.",
+            "type": "object",
+            "properties": {
+                "affinity": {
+                    "description": "Affinity rules for all pods.",
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "compatibility": {
+                    "description": "Compatibility settings.",
+                    "type": "object",
+                    "properties": {
+                        "openshift": {
+                            "description": "OpenShift compatibility settings.",
+                            "type": "object",
+                            "properties": {
+                                "adaptSecurityContext": {
+                                    "description": "Manages the securityContext properties to make them compatible with OpenShift. Possible values: auto - Apply configurations if it is detected that OpenShift is the target platform. force - Always apply configurations. disabled - No modification applied.",
+                                    "type": "string",
+                                    "enum": [
+                                        "auto",
+                                        "force",
+                                        "disabled"
+                                    ]
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "nodeSelector": {
+                    "description": "Node selector for all pods.",
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "tolerations": {
+                    "description": "Tolerations for all pods.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false
+                    }
+                },
+                "topologySpreadConstraints": {
+                    "description": "Topology spread constraints for all pods.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+        "grafanaDashboard": {
+            "description": "Grafana dashboard configuration.",
+            "type": "object",
+            "properties": {
+                "annotations": {
+                    "description": "Annotations that ConfigMaps can have to get configured in Grafana, See: sidecar.dashboards.folderAnnotation for specifying the dashboard folder. https://github.com/grafana/helm-charts/tree/main/charts/grafana",
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "enabled": {
+                    "description": "If true creates a Grafana dashboard.",
+                    "type": "boolean"
+                },
+                "extraLabels": {
+                    "description": "Extra labels to add to the Grafana dashboard ConfigMap.",
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "sidecarLabel": {
+                    "description": "Label that ConfigMaps should have to be loaded as dashboards.",
+                    "type": "string"
+                },
+                "sidecarLabelValue": {
+                    "description": "Label value that ConfigMaps should have to be loaded as dashboards.",
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "hostNetwork": {
+            "description": "Run the controller on the host network",
+            "type": "boolean"
+        },
+        "image": {
+            "description": "Container image configuration for the operator.",
+            "type": "object",
+            "properties": {
+                "flavour": {
+                    "description": "Image flavor for the operator.",
+                    "type": "string"
+                },
+                "pullPolicy": {
+                    "description": "Image pull policy for the operator.",
+                    "type": "string",
+                    "enum": [
+                        "Always",
+                        "IfNotPresent",
+                        "Never",
+                        ""
+                    ]
+                },
+                "repository": {
+                    "description": "Image repository for the operator.",
+                    "type": "string"
+                },
+                "tag": {
+                    "description": "Image tag for the operator.",
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "imagePullSecrets": {
+            "description": "Docker registry secrets for pulling images.",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false
+            }
+        },
+        "leaderElect": {
+            "description": "If true, external-secrets will perform leader election between instances to ensure no more than one instance of external-secrets operates at a time.",
+            "type": "boolean"
+        },
+        "livenessProbe": {
+            "description": "Liveness probe configuration for the operator.",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "description": "Enabled determines if the liveness probe should be used or not. By default it's disabled.",
+                    "type": "boolean"
+                },
+                "spec": {
+                    "description": "The body of the liveness probe settings.",
+                    "type": "object",
+                    "properties": {
+                        "address": {
+                            "description": "Address for liveness probe.",
+                            "type": "string"
+                        },
+                        "failureThreshold": {
+                            "description": "Number of consecutive probe failures that should occur before considering the probe as failed.",
+                            "type": "integer"
+                        },
+                        "httpGet": {
+                            "description": "Handler for liveness probe.",
+                            "type": "object",
+                            "properties": {
+                                "path": {
+                                    "description": "Path for liveness probe.",
+                                    "type": "string"
+                                },
+                                "port": {
+                                    "description": "Set this value to 8082 to active liveness probes.",
+                                    "type": [
+                                        "string",
+                                        "integer"
+                                    ]
+                                }
+                            },
+                            "additionalProperties": false
+                        },
+                        "initialDelaySeconds": {
+                            "description": "Delay in seconds for the container to start before performing the initial probe.",
+                            "type": "integer"
+                        },
+                        "periodSeconds": {
+                            "description": "Period in seconds for K8s to start performing probes.",
+                            "type": "integer"
+                        },
+                        "successThreshold": {
+                            "description": "Number of successful probes to mark probe successful.",
+                            "type": "integer"
+                        },
+                        "timeoutSeconds": {
+                            "description": "Specify the maximum amount of time to wait for a probe to respond before considering it fails.",
+                            "type": "integer"
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false
+        },
+        "log": {
+            "description": "Specifies Log Params to the External Secrets Operator",
+            "type": "object",
+            "properties": {
+                "level": {
+                    "description": "Log level for the operator.",
+                    "type": "string"
+                },
+                "timeEncoding": {
+                    "description": "Log time encoding format.",
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "metrics": {
+            "description": "Metrics endpoint configuration.",
+            "type": "object",
+            "properties": {
+                "listen": {
+                    "description": "Metrics listener configuration.",
+                    "type": "object",
+                    "properties": {
+                        "port": {
+                            "description": "Port for the metrics endpoint.",
+                            "type": "integer"
+                        },
+                        "secure": {
+                            "description": "Secure metrics endpoint configuration.",
+                            "type": "object",
+                            "properties": {
+                                "certDir": {
+                                    "description": "if those are not set or invalid, self-signed certs will be generated",
+                                    "type": "string"
+                                },
+                                "certFile": {
+                                    "description": "TLS cert file path",
+                                    "type": "string"
+                                },
+                                "enabled": {
+                                    "description": "Enable TLS for the metrics endpoint.",
+                                    "type": "boolean"
+                                },
+                                "keyFile": {
+                                    "description": "TLS key file path",
+                                    "type": "string"
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "service": {
+                    "description": "Metrics Kubernetes Service configuration.",
+                    "type": "object",
+                    "properties": {
+                        "annotations": {
+                            "description": "Additional service annotations",
+                            "type": "object",
+                            "additionalProperties": false
+                        },
+                        "enabled": {
+                            "description": "Enable if you use another monitoring tool than Prometheus to scrape the metrics",
+                            "type": "boolean"
+                        },
+                        "port": {
+                            "description": "Metrics service port to scrape",
+                            "type": "integer"
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false
+        },
+        "nameOverride": {
+            "description": "Override the name of the chart.",
+            "type": "string"
+        },
+        "namespaceOverride": {
+            "description": "Override the namespace for the chart.",
+            "type": "string"
+        },
+        "nodeSelector": {
+            "description": "Node selector for the operator pod.",
+            "type": "object",
+            "additionalProperties": false
+        },
+        "openshiftFinalizers": {
+            "description": "If true the OpenShift finalizer permissions will be added to RBAC",
+            "type": "boolean"
+        },
+        "podAnnotations": {
+            "description": "Annotations to add to Pod",
+            "type": "object",
+            "additionalProperties": false
+        },
+        "podDisruptionBudget": {
+            "description": "Pod disruption budget - for more details see https://kubernetes.io/docs/concepts/workloads/pods/disruptions/",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "description": "Enable pod disruption budget.",
+                    "type": "boolean"
+                },
+                "minAvailable": {
+                    "description": "Minimum number of pods that must be available.",
+                    "type": [
+                        "integer",
+                        "string"
+                    ]
+                },
+                "nameOverride": {
+                    "description": "Override the name of the PDB resource.",
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "podLabels": {
+            "description": "Extra labels to add to Pod.",
+            "type": "object",
+            "additionalProperties": false
+        },
+        "podSecurityContext": {
+            "description": "Pod-level security context for the operator.",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "description": "Enable pod security context.",
+                    "type": "boolean"
+                }
+            },
+            "additionalProperties": false
+        },
+        "podSpecExtra": {
+            "description": "Additional pod spec fields to add to the operator pod.",
+            "type": "object",
+            "additionalProperties": false
+        },
+        "priorityClassName": {
+            "description": "Pod priority class name.",
+            "type": "string"
+        },
+        "processClusterExternalSecret": {
+            "description": "if true, the operator will process cluster external secret. Else, it will ignore them. When enabled, this adds update/patch permissions on namespaces to handle finalizers for proper cleanup during namespace deletion, preventing race conditions with ExternalSecrets.",
+            "type": "boolean"
+        },
+        "processClusterGenerator": {
+            "description": "if true, the operator will process cluster generator. Else, it will ignore them.",
+            "type": "boolean"
+        },
+        "processClusterPushSecret": {
+            "description": "if true, the operator will process cluster push secret. Else, it will ignore them.",
+            "type": "boolean"
+        },
+        "processClusterStore": {
+            "description": "if true, the operator will process cluster store. Else, it will ignore them.",
+            "type": "boolean"
+        },
+        "processPushSecret": {
+            "description": "if true, the operator will process push secret. Else, it will ignore them.",
+            "type": "boolean"
+        },
+        "rbac": {
+            "description": "RBAC configuration for the operator.",
+            "type": "object",
+            "properties": {
+                "aggregateToEdit": {
+                    "description": "Specifies whether permissions are aggregated to the edit ClusterRole",
+                    "type": "boolean"
+                },
+                "aggregateToView": {
+                    "description": "Specifies whether permissions are aggregated to the view ClusterRole",
+                    "type": "boolean"
+                },
+                "create": {
+                    "description": "Specifies whether role and rolebinding resources should be created.",
+                    "type": "boolean"
+                },
+                "servicebindings": {
+                    "description": "Service bindings RBAC settings.",
+                    "type": "object",
+                    "properties": {
+                        "create": {
+                            "description": "Specifies whether a clusterrole to give servicebindings read access should be created.",
+                            "type": "boolean"
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false
+        },
+        "replicaCount": {
+            "description": "Number of replicas for the external-secrets operator deployment.",
+            "type": "integer"
+        },
+        "resources": {
+            "description": "Resource requests and limits for the operator container.",
+            "type": "object",
+            "additionalProperties": false
+        },
+        "revisionHistoryLimit": {
+            "description": "Specifies the amount of historic ReplicaSets k8s should keep (see https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#clean-up-policy)",
+            "type": "integer"
+        },
+        "scopedNamespace": {
+            "description": "If set external secrets are only reconciled in the provided namespace",
+            "type": "string"
+        },
+        "scopedRBAC": {
+            "description": "Must be used with scopedNamespace. If true, create scoped RBAC roles under the scoped namespace and implicitly disable cluster stores and cluster external secrets",
+            "type": "boolean"
+        },
+        "service": {
+            "description": "Kubernetes Service configuration for the operator.",
+            "type": "object",
+            "properties": {
+                "ipFamilies": {
+                    "description": "Sets the families that should be supported and the order in which they should be applied to ClusterIP as well. Can be IPv4 and/or IPv6.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "ipFamilyPolicy": {
+                    "description": "Set the ip family policy to configure dual-stack see [Configure dual-stack](https://kubernetes.io/docs/concepts/services-networking/dual-stack/#services)",
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "serviceAccount": {
+            "description": "Service account configuration for the operator.",
+            "type": "object",
+            "properties": {
+                "annotations": {
+                    "description": "Annotations to add to the service account.",
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "automount": {
+                    "description": "Automounts the service account token in all containers of the pod",
+                    "type": "boolean"
+                },
+                "create": {
+                    "description": "Specifies whether a service account should be created.",
+                    "type": "boolean"
+                },
+                "extraLabels": {
+                    "description": "Extra Labels to add to the service account.",
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "name": {
+                    "description": "The name of the service account to use. If not set and create is true, a name is generated using the fullname template.",
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "serviceMonitor": {
+            "description": "ServiceMonitor configuration for Prometheus metrics collection.",
+            "type": "object",
+            "properties": {
+                "additionalLabels": {
+                    "description": "Additional labels",
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "enabled": {
+                    "description": "Specifies whether to create a ServiceMonitor resource for collecting Prometheus metrics",
+                    "type": "boolean"
+                },
+                "honorLabels": {
+                    "description": "Let prometheus add an exported_ prefix to conflicting labels",
+                    "type": "boolean"
+                },
+                "interval": {
+                    "description": "Interval to scrape metrics",
+                    "type": "string"
+                },
+                "metricRelabelings": {
+                    "description": "Metric relabel configs to apply to samples before ingestion. [Metric Relabeling](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#metric_relabel_configs)",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false
+                    }
+                },
+                "namespace": {
+                    "description": "namespace where you want to install ServiceMonitors",
+                    "type": "string"
+                },
+                "relabelings": {
+                    "description": "Relabel configs to apply to samples before ingestion. [Relabeling](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config)",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false
+                    }
+                },
+                "renderMode": {
+                    "description": "How should we react to missing CRD \"`monitoring.coreos.com/v1/ServiceMonitor`\"  Possible values: - `skipIfMissing`: Only render ServiceMonitor resources if CRD is present, skip if missing. - `failIfMissing`: Fail Helm install if CRD is not present. - `alwaysRender` : Always render ServiceMonitor resources, do not check for CRD.",
+                    "type": "string",
+                    "enum": [
+                        "skipIfMissing",
+                        "failIfMissing",
+                        "alwaysRender"
+                    ]
+                },
+                "scrapeTimeout": {
+                    "description": "Timeout if metrics can't be retrieved in given time interval",
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "strategy": {
+            "description": "Set deployment strategy",
+            "type": "object",
+            "additionalProperties": false
+        },
+        "systemAuthDelegator": {
+            "description": "If true the system:auth-delegator ClusterRole will be added to RBAC",
+            "type": "boolean"
+        },
+        "tolerations": {
+            "description": "Tolerations for the operator pod.",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false
+            }
+        },
+        "topologySpreadConstraints": {
+            "description": "Topology spread constraints for the operator pod.",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false
+            }
+        },
+        "webhook": {
+            "description": "Webhook configuration.",
+            "type": "object",
+            "properties": {
+                "affinity": {
+                    "description": "Affinity rules for the webhook pod.",
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "annotations": {
+                    "description": "Annotations to place on validating webhook configuration.",
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "certCheckInterval": {
+                    "description": "Specifies the time to check if the cert is valid",
+                    "type": "string"
+                },
+                "certDir": {
+                    "description": "Directory for TLS certificates.",
+                    "type": "string"
+                },
+                "certManager": {
+                    "description": "Cert-manager integration for webhook TLS certificates.",
+                    "type": "object",
+                    "properties": {
+                        "addInjectorAnnotations": {
+                            "description": "Automatically add the cert-manager.io/inject-ca-from annotation to the webhooks and CRDs. As long as you have the cert-manager CA Injector enabled, this will automatically setup your webhook's CA to the one used by cert-manager. See https://cert-manager.io/docs/concepts/ca-injector",
+                            "type": "boolean"
+                        },
+                        "cert": {
+                            "description": "Certificate resource configuration.",
+                            "type": "object",
+                            "properties": {
+                                "annotations": {
+                                    "description": "Add extra annotations to the Certificate resource.",
+                                    "type": "object",
+                                    "additionalProperties": false
+                                },
+                                "create": {
+                                    "description": "Create a certificate resource within this chart. See https://cert-manager.io/docs/usage/certificate/",
+                                    "type": "boolean"
+                                },
+                                "duration": {
+                                    "description": "Set the requested duration (i.e. lifetime) of the Certificate. See https://cert-manager.io/docs/reference/api-docs/#cert-manager.io/v1.CertificateSpec One year by default.",
+                                    "type": "string"
+                                },
+                                "issuerRef": {
+                                    "description": "For the Certificate created by this chart, setup the issuer. See https://cert-manager.io/docs/reference/api-docs/#cert-manager.io/v1.IssuerSpec",
+                                    "type": "object",
+                                    "properties": {
+                                        "group": {
+                                            "description": "Issuer API group.",
+                                            "type": "string"
+                                        },
+                                        "kind": {
+                                            "description": "Kind of the issuer (Issuer or ClusterIssuer).",
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "description": "Name of the issuer to use.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                },
+                                "renewBefore": {
+                                    "description": "How long before the currently issued certificate's expiry cert-manager should renew the certificate. See https://cert-manager.io/docs/reference/api-docs/#cert-manager.io/v1.CertificateSpec Note that renewBefore should be greater than .webhook.lookaheadInterval since the webhook will check this far in advance that the certificate is valid.",
+                                    "type": "string"
+                                },
+                                "revisionHistoryLimit": {
+                                    "description": "Set the revisionHistoryLimit on the Certificate. See https://cert-manager.io/docs/reference/api-docs/#cert-manager.io/v1.CertificateSpec Defaults to 0 (ignored).",
+                                    "type": "integer"
+                                }
+                            },
+                            "additionalProperties": false
+                        },
+                        "enabled": {
+                            "description": "Enabling cert-manager support will disable the built in secret and switch to using cert-manager (installed separately) to automatically issue and renew the webhook certificate. This chart does not install cert-manager for you, See https://cert-manager.io/docs/",
+                            "type": "boolean"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "create": {
+                    "description": "Specifies whether a webhook deployment be created. If set to false, crds.conversion.enabled should also be set to false otherwise the kubeapi will be hammered because the conversion is looking for a webhook endpoint.",
+                    "type": "boolean"
+                },
+                "deploymentAnnotations": {
+                    "description": "Annotations to add to Deployment",
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "extraArgs": {
+                    "description": "Map of extra arguments to pass to container.",
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "extraEnv": {
+                    "description": "Extra environment variables to add to container.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false
+                    }
+                },
+                "extraInitContainers": {
+                    "description": "Extra init containers to add to the pod.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false
+                    }
+                },
+                "extraVolumeMounts": {
+                    "description": "Extra volumes to mount to the container.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false
+                    }
+                },
+                "extraVolumes": {
+                    "description": "Extra volumes to pass to pod.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false
+                    }
+                },
+                "failurePolicy": {
+                    "description": "Specifies whether validating webhooks should be created with failurePolicy: Fail or Ignore",
+                    "type": "string",
+                    "enum": [
+                        "Fail",
+                        "Ignore"
+                    ]
+                },
+                "hostNetwork": {
+                    "description": "Specifies if webhook pod should use hostNetwork or not.",
+                    "type": "boolean"
+                },
+                "image": {
+                    "description": "Container image configuration for the webhook.",
+                    "type": "object",
+                    "properties": {
+                        "flavour": {
+                            "description": "Image flavor for the webhook.",
+                            "type": "string"
+                        },
+                        "pullPolicy": {
+                            "description": "Image pull policy for the webhook.",
+                            "type": "string",
+                            "enum": [
+                                "Always",
+                                "IfNotPresent",
+                                "Never",
+                                ""
+                            ]
+                        },
+                        "repository": {
+                            "description": "Image repository for the webhook.",
+                            "type": "string"
+                        },
+                        "tag": {
+                            "description": "Image tag for the webhook.",
+                            "type": "string"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "imagePullSecrets": {
+                    "description": "Docker registry secrets for pulling webhook images.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false
+                    }
+                },
+                "log": {
+                    "description": "Specifies Log Params to the Webhook",
+                    "type": "object",
+                    "properties": {
+                        "level": {
+                            "description": "Log level for the webhook.",
+                            "type": "string"
+                        },
+                        "timeEncoding": {
+                            "description": "Log time encoding format.",
+                            "type": "string"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "lookaheadInterval": {
+                    "description": "Specifies the lookaheadInterval for certificate validity",
+                    "type": "string"
+                },
+                "metrics": {
+                    "description": "Metrics configuration for the webhook.",
+                    "type": "object",
+                    "properties": {
+                        "listen": {
+                            "description": "Metrics listener configuration.",
+                            "type": "object",
+                            "properties": {
+                                "port": {
+                                    "description": "Port for the metrics endpoint.",
+                                    "type": "integer"
+                                }
+                            },
+                            "additionalProperties": false
+                        },
+                        "service": {
+                            "description": "Metrics Kubernetes Service configuration.",
+                            "type": "object",
+                            "properties": {
+                                "annotations": {
+                                    "description": "Additional service annotations",
+                                    "type": "object",
+                                    "additionalProperties": false
+                                },
+                                "enabled": {
+                                    "description": "Enable if you use another monitoring tool than Prometheus to scrape the metrics",
+                                    "type": "boolean"
+                                },
+                                "port": {
+                                    "description": "Metrics service port to scrape",
+                                    "type": "integer"
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "nodeSelector": {
+                    "description": "Node selector for the webhook pod.",
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "podAnnotations": {
+                    "description": "Annotations to add to Pod",
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "podDisruptionBudget": {
+                    "description": "Pod disruption budget - for more details see https://kubernetes.io/docs/concepts/workloads/pods/disruptions/",
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "description": "Enable pod disruption budget for the webhook.",
+                            "type": "boolean"
+                        },
+                        "minAvailable": {
+                            "description": "Minimum number of pods that must be available.",
+                            "type": [
+                                "integer",
+                                "string"
+                            ]
+                        },
+                        "nameOverride": {
+                            "description": "Override the name of the PDB resource.",
+                            "type": "string"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "podLabels": {
+                    "description": "Extra labels to add to the webhook pod.",
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "podSecurityContext": {
+                    "description": "Pod-level security context for the webhook.",
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "description": "Enable pod security context.",
+                            "type": "boolean"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "port": {
+                    "description": "The port the webhook will listen to",
+                    "type": "integer"
+                },
+                "priorityClassName": {
+                    "description": "Pod priority class name.",
+                    "type": "string"
+                },
+                "readinessProbe": {
+                    "description": "Readiness probe configuration for the webhook.",
+                    "type": "object",
+                    "properties": {
+                        "address": {
+                            "description": "Address for readiness probe",
+                            "type": "string"
+                        },
+                        "port": {
+                            "description": "ReadinessProbe port for kubelet",
+                            "type": "integer"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "replicaCount": {
+                    "description": "Number of replicas for the webhook deployment.",
+                    "type": "integer"
+                },
+                "resources": {
+                    "description": "Resource requests and limits for the webhook container.",
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "revisionHistoryLimit": {
+                    "description": "Specifies the amount of historic ReplicaSets k8s should keep (see https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#clean-up-policy)",
+                    "type": "integer"
+                },
+                "secretAnnotations": {
+                    "description": "Annotations to add to Secret",
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "service": {
+                    "description": "Manage the service through which the webhook is reached.",
+                    "type": "object",
+                    "properties": {
+                        "annotations": {
+                            "description": "Custom annotations for the webhook service.",
+                            "type": "object",
+                            "additionalProperties": false
+                        },
+                        "enabled": {
+                            "description": "Whether the service object should be enabled or not (it is expected to exist).",
+                            "type": "boolean"
+                        },
+                        "labels": {
+                            "description": "Custom labels for the webhook service.",
+                            "type": "object",
+                            "additionalProperties": false
+                        },
+                        "loadBalancerIP": {
+                            "description": "If the webhook service type is LoadBalancer, you can assign a specific load balancer IP here. Check the documentation of your load balancer provider to see if/how this should be used.",
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "The service type of the webhook service.",
+                            "type": "string"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "serviceAccount": {
+                    "description": "Service account configuration for the webhook.",
+                    "type": "object",
+                    "properties": {
+                        "annotations": {
+                            "description": "Annotations to add to the service account.",
+                            "type": "object",
+                            "additionalProperties": false
+                        },
+                        "automount": {
+                            "description": "Automounts the service account token in all containers of the pod",
+                            "type": "boolean"
+                        },
+                        "create": {
+                            "description": "Specifies whether a service account should be created.",
+                            "type": "boolean"
+                        },
+                        "extraLabels": {
+                            "description": "Extra Labels to add to the service account.",
+                            "type": "object",
+                            "additionalProperties": false
+                        },
+                        "name": {
+                            "description": "The name of the service account to use. If not set and create is true, a name is generated using the fullname template.",
+                            "type": "string"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "strategy": {
+                    "description": "Set deployment strategy",
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "tolerations": {
+                    "description": "Tolerations for the webhook pod.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false
+                    }
+                },
+                "topologySpreadConstraints": {
+                    "description": "Topology spread constraints for the webhook pod.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    "additionalProperties": false
+}
