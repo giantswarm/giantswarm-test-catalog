@@ -16880,6 +16880,35 @@ entries:
     version: 0.1.1-f59f4bbf238ac94b69d02fc71dd251e66385ae13
   - annotations:
       io.giantswarm.application.audience: all
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/flux-operator-0.1.1-cfa7b70a018e724c697a6d63056e27b730372d3d.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/flux-operator-app/cfa7b70a018e724c697a6d63056e27b730372d3d/README.md
+      io.giantswarm.application.restrictions.cluster-singleton: "true"
+      io.giantswarm.application.team: honeybadger
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/flux-operator-app/cfa7b70a018e724c697a6d63056e27b730372d3d/helm/flux-operator/values.schema.json
+    apiVersion: v2
+    appVersion: v0.26.0
+    created: "2026-02-12T01:29:53.510502523Z"
+    dependencies:
+    - condition: fluxoperator.enabled
+      name: flux-operator
+      repository: oci://ghcr.io/controlplaneio-fluxcd/charts
+      version: 0.41.1
+    description: Flux Operator is a Kubernetes CRD controller that manages the lifecycle
+      of Flux CD
+    digest: aa36914c8b28254670a2f5f65b8c9aa39a1cee3d5e882789d4a2cc78028acb15
+    home: https://github.com/giantswarm/flux-operator-app
+    icon: https://s.giantswarm.io/app-icons/flux/2/icon_light.svg
+    keywords:
+    - flux
+    - gitops
+    name: flux-operator
+    sources:
+    - https://github.com/controlplaneio-fluxcd/charts/tree/main/charts/flux-operator
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/flux-operator-0.1.1-cfa7b70a018e724c697a6d63056e27b730372d3d.tgz
+    version: 0.1.1-cfa7b70a018e724c697a6d63056e27b730372d3d
+  - annotations:
+      io.giantswarm.application.audience: all
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/flux-operator-0.1.1-c3a69cdf1c9e2f26d6ee54fa599ee22b99593852.tgz-meta/main.yaml
       io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/flux-operator-app/c3a69cdf1c9e2f26d6ee54fa599ee22b99593852/README.md
       io.giantswarm.application.restrictions.cluster-singleton: "true"
@@ -64180,4 +64209,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.5.0-10539c713a15472d4de408fb8b9469ee23709bf1.tgz
     version: 2.5.0-10539c713a15472d4de408fb8b9469ee23709bf1
-generated: "2026-02-11T22:10:51.876427495Z"
+generated: "2026-02-12T01:29:53.508311726Z"
