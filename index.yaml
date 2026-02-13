@@ -26671,6 +26671,40 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/kong-app-5.2.0-197e7b6c70b7cc49b6777414abb9f223b34749cf.tgz
     version: 5.2.0-197e7b6c70b7cc49b6777414abb9f223b34749cf
+  - annotations:
+      application.giantswarm.io/metadata: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-5.2.0-0c2b924e12043704da3014e6a75f6263feb2929b.tgz-meta/main.yaml
+      application.giantswarm.io/readme: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-5.2.0-0c2b924e12043704da3014e6a75f6263feb2929b.tgz-meta/README.md
+      application.giantswarm.io/values-schema: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-5.2.0-0c2b924e12043704da3014e6a75f6263feb2929b.tgz-meta/values.schema.json
+      io.giantswarm.application.audience: all
+      io.giantswarm.application.managed: "false"
+      io.giantswarm.application.team: cabbage
+    apiVersion: v2
+    appVersion: 3.8.0
+    created: "2026-02-13T09:00:45.212526433Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 11.9.13
+    - condition: ingressController.enabled
+      name: kubectl-apply-job
+      repository: oci://giantswarmpublic.azurecr.io/giantswarm-playground-catalog
+      version: 0.11.0
+    description: The Cloud-Native Ingress and API-management
+    digest: 6989fa03b66b609029d7c4129c1a249bbed5704181e414866fef70481bd51f74
+    home: https://github.com/giantswarm/kong-app
+    icon: https://s.giantswarm.io/app-icons/kong/1/light.svg
+    kubeVersion: '>=1.26.0-0'
+    maintainers:
+    - email: team-k8s@konghq.com
+      name: team-k8s-bot
+    name: kong-app
+    sources:
+    - https://github.com/giantswarm/kong-app
+    - https://github.com/Kong/charts/tree/main/charts/kong
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/kong-app-5.2.0-0c2b924e12043704da3014e6a75f6263feb2929b.tgz
+    version: 5.2.0-0c2b924e12043704da3014e6a75f6263feb2929b
   kube-prometheus-stack:
   - annotations:
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/kube-prometheus-stack-19.0.2.tgz-meta/main.yaml
@@ -67090,4 +67124,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.5.0-10539c713a15472d4de408fb8b9469ee23709bf1.tgz
     version: 2.5.0-10539c713a15472d4de408fb8b9469ee23709bf1
-generated: "2026-02-13T09:00:36.218471014Z"
+generated: "2026-02-13T09:00:45.19104168Z"
