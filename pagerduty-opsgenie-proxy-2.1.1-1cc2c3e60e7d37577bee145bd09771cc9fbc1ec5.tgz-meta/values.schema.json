@@ -1,0 +1,94 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "image": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "tag": {
+                    "type": "string"
+                }
+            }
+        },
+        "registry": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "type": "string"
+                }
+            }
+        },
+        "env": {
+            "type": "object",
+            "properties": {
+                "pagerdutyApiKey": { "type": "string" },
+                "pagerdutyServiceId": { "type": "string" },
+                "pagerdutyEmail": { "type": "string" },
+                "pagerdutyUser": { "type": "string" },
+                "pagerdutyWebhookSecret": { "type": "string" },
+                "opsgenieApiKey": { "type": "string" },
+                "opsgenieIntegrationId": { "type": "string" }
+            }
+        },
+        "service": {
+            "type": "object",
+            "properties": {
+                "type": { "type": "string", "enum": ["ClusterIP", "NodePort", "LoadBalancer"] },
+                "port": { "type": "integer", "minimum": 1, "maximum": 65535 },
+                "targetPort": { "type": "integer", "minimum": 1, "maximum": 65535 },
+                "annotations": { "type": "object", "additionalProperties": { "type": "string" } }
+            }
+        },
+        "route": {
+            "type": "object",
+            "properties": {
+                "enabled": { "type": "boolean" },
+                "name": { "type": "string" },
+                "kind": { "type": "string", "enum": ["GRPCRoute", "HTTPRoute", "TCPRoute", "TLSRoute", "UDPRoute"] },
+                "annotations": { "type": "object", "additionalProperties": { "type": "string" } },
+                "labels": { "type": "object", "additionalProperties": { "type": "string" } },
+                "hostnames": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                },
+                "parentRefs": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": { "type": "string" },
+                            "namespace": { "type": "string" },
+                            "sectionName": { "type": "string" }
+                        }
+                    }
+                },
+                "matches": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "path": {
+                                "type": "object",
+                                "properties": {
+                                    "type": { "type": "string", "enum": ["PathPrefix", "Exact", "RegularExpression"] },
+                                    "value": { "type": "string" }
+                                }
+                            }
+                        }
+                    }
+                },
+                "filters": { "type": "array" },
+                "additionalRules": { "type": "array" }
+            }
+        },
+        "prometheusRule": {
+            "type": "object",
+            "properties": {
+                "team": { "type": "string" }
+            }
+        }
+    }
+}
