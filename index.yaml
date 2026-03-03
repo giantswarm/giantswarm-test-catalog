@@ -49867,6 +49867,31 @@ entries:
     version: 0.0.4-10eaacfe65e880224e86614fc2052538844a57ae
   prometheus-operator-crd:
   - annotations:
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-crd-20.0.0.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/prometheus-operator-crd/refs/tags/v20.0.0/README.md
+      io.giantswarm.application.team: atlas
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/prometheus-operator-crd/refs/tags/v20.0.0/helm/prometheus-operator-crd/values.schema.json
+    apiVersion: v2
+    appVersion: v0.89.0
+    created: "2026-03-03T08:54:09.165750003Z"
+    dependencies:
+    - name: prometheus-operator-crds
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 27.0.0
+    description: kube-prometheus-stack CustomResourceDefinitions.
+    digest: 054e0e6bcfc91195e7f9809a35f6c2f8d2f77cba8b8f34c8e454d638e40e1b41
+    home: https://github.com/giantswarm/prometheus-operator-crd
+    icon: https://s.giantswarm.io/app-icons/prometheus-operator/2/light.svg
+    kubeVersion: '>=1.19.0-0'
+    name: prometheus-operator-crd
+    sources:
+    - https://github.com/prometheus-community/helm-charts
+    - https://github.com/prometheus-operator/kube-prometheus
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-crd-20.0.0.tgz
+    version: 20.0.0
+  - annotations:
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/prometheus-operator-crd-19.0.1.tgz-meta/main.yaml
       io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/prometheus-operator-crd/refs/tags/v19.0.1/README.md
       io.giantswarm.application.team: atlas
@@ -55993,4 +56018,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.6.2-0fd254ab67d4124a6327d5715e8a4e6235b81302.tgz
     version: 2.6.2-0fd254ab67d4124a6327d5715e8a4e6235b81302
-generated: "2026-03-03T08:54:00.120591702Z"
+generated: "2026-03-03T08:54:09.14056256Z"
