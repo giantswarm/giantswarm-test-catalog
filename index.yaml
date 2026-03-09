@@ -40517,6 +40517,34 @@ entries:
     version: 0.1.0
   loki:
   - annotations:
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/loki-0.41.0.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/loki-app/refs/tags/v0.41.0/README.md
+      io.giantswarm.application.team: atlas
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/loki-app/refs/tags/v0.41.0/helm/loki/values.schema.json
+      ui.giantswarm.io/logo: https://s.giantswarm.io/app-icons/grafana-loki/2/dark.svg
+    apiVersion: v2
+    appVersion: 3.6.5
+    created: "2026-03-09T08:59:25.912498442Z"
+    dependencies:
+    - condition: loki.enabled
+      name: loki
+      repository: https://grafana.github.io/helm-charts
+      version: 6.53.0
+    description: Helm chart for Grafana Loki in simple, scalable mode
+    digest: 3970031d3e29c0f1fdfbf79a356ca603093f3eb85bb9ef477ad5dba8df4503f8
+    home: https://github.com/giantswarm/loki-app
+    icon: https://s.giantswarm.io/app-icons/loki-stack/1/dark.svg
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: loki
+    sources:
+    - https://github.com/giantswarm/loki-app
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/loki-0.41.0.tgz
+    version: 0.41.0
+  - annotations:
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/loki-0.40.0-ee18e0e8f834adb939b72c4a7c3a92c392bde512.tgz-meta/main.yaml
       io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/loki-app/ee18e0e8f834adb939b72c4a7c3a92c392bde512/README.md
       io.giantswarm.application.team: atlas
@@ -64770,4 +64798,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.6.2-0fd254ab67d4124a6327d5715e8a4e6235b81302.tgz
     version: 2.6.2-0fd254ab67d4124a6327d5715e8a4e6235b81302
-generated: "2026-03-09T08:59:08.064252648Z"
+generated: "2026-03-09T08:59:25.8912081Z"
