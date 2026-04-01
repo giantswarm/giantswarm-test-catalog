@@ -1,0 +1,420 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "baseDomain": {
+            "type": "string"
+        },
+        "gatewayClasses": {
+            "type": "object",
+            "properties": {
+                "default": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "errorPages": {
+                            "type": "object",
+                            "description": "Per-gatewayclass error pages configuration. Per-gateway errorPages override these defaults.",
+                            "properties": {
+                                "enabled": {
+                                    "type": "boolean"
+                                },
+                                "statusCodes": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "oneOf": [
+                                            {
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "const": "Value"
+                                                    },
+                                                    "value": {
+                                                        "type": "integer",
+                                                        "minimum": 100,
+                                                        "maximum": 599
+                                                    }
+                                                },
+                                                "required": ["type", "value"],
+                                                "additionalProperties": false
+                                            },
+                                            {
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "const": "Range"
+                                                    },
+                                                    "range": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "start": {
+                                                                "type": "integer",
+                                                                "minimum": 100,
+                                                                "maximum": 599
+                                                            },
+                                                            "end": {
+                                                                "type": "integer",
+                                                                "minimum": 100,
+                                                                "maximum": 599
+                                                            }
+                                                        },
+                                                        "required": ["start", "end"],
+                                                        "additionalProperties": false
+                                                    }
+                                                },
+                                                "required": ["type", "range"],
+                                                "additionalProperties": false
+                                            }
+                                        ]
+                                    }
+                                },
+                                "contentType": {
+                                    "type": "string"
+                                },
+                                "body": {
+                                    "type": "string"
+                                },
+                                "existingConfigMapName": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "envoyProxy": {
+                            "type": "object",
+                            "properties": {
+                                "enabled": {
+                                    "type": "boolean"
+                                },
+                                "envoyDeployment": {
+                                    "type": "object"
+                                },
+                                "envoyHpa": {
+                                    "type": "object"
+                                },
+                                "envoyPDB": {
+                                    "type": "object"
+                                },
+                                "envoyService": {
+                                    "type": "object"
+                                },
+                                "envoyServiceAccount": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "name": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "gateways": {
+            "type": "object",
+            "properties": {
+                "default": {
+                    "type": "object",
+                    "properties": {
+                        "className": {
+                            "type": "string"
+                        },
+                        "dnsName": {
+                            "type": "string"
+                        },
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "errorPages": {
+                            "type": "object",
+                            "description": "Per-gateway error pages overrides. All fields are optional and inherit from gatewayClass errorPages.",
+                            "properties": {
+                                "enabled": {
+                                    "type": "boolean"
+                                },
+                                "statusCodes": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "oneOf": [
+                                            {
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "const": "Value"
+                                                    },
+                                                    "value": {
+                                                        "type": "integer",
+                                                        "minimum": 100,
+                                                        "maximum": 599
+                                                    }
+                                                },
+                                                "required": ["type", "value"],
+                                                "additionalProperties": false
+                                            },
+                                            {
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "const": "Range"
+                                                    },
+                                                    "range": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "start": {
+                                                                "type": "integer",
+                                                                "minimum": 100,
+                                                                "maximum": 599
+                                                            },
+                                                            "end": {
+                                                                "type": "integer",
+                                                                "minimum": 100,
+                                                                "maximum": 599
+                                                            }
+                                                        },
+                                                        "required": ["start", "end"],
+                                                        "additionalProperties": false
+                                                    }
+                                                },
+                                                "required": ["type", "range"],
+                                                "additionalProperties": false
+                                            }
+                                        ]
+                                    }
+                                },
+                                "contentType": {
+                                    "type": "string"
+                                },
+                                "body": {
+                                    "type": "string"
+                                },
+                                "existingConfigMapName": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "envoyProxy": {
+                            "type": "object",
+                            "properties": {
+                                "enabled": {
+                                    "type": "boolean"
+                                },
+                                "envoyDeployment": {
+                                    "type": "object"
+                                },
+                                "envoyHpa": {
+                                    "type": "object"
+                                },
+                                "envoyPDB": {
+                                    "type": "object"
+                                },
+                                "envoyService": {
+                                    "type": "object"
+                                },
+                                "envoyServiceAccount": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "listeners": {
+                            "type": "object",
+                            "properties": {
+                                "http": {
+                                    "type": "object",
+                                    "properties": {
+                                        "allowedRoutes": {
+                                            "type": "object",
+                                            "properties": {
+                                                "namespaces": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "from": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "httpsRedirectEnabled": {
+                                            "type": "boolean"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "port": {
+                                            "type": "integer"
+                                        },
+                                        "protocol": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "https": {
+                                    "type": "object",
+                                    "properties": {
+                                        "allowedRoutes": {
+                                            "type": "object",
+                                            "properties": {
+                                                "namespaces": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "from": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "certificate": {
+                                            "type": "object",
+                                            "properties": {
+                                                "enabled": {
+                                                    "type": "boolean"
+                                                },
+                                                "issuer": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "kind": {
+                                                            "type": "string"
+                                                        },
+                                                        "name": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "wildcard": {
+                                                    "type": "boolean"
+                                                }
+                                            }
+                                        },
+                                        "dnsEndpoints": {
+                                            "type": "object",
+                                            "properties": {
+                                                "annotations": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "giantswarm.io/external-dns": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "enabled": {
+                                                    "type": "boolean"
+                                                }
+                                            }
+                                        },
+                                        "hostname": {
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "port": {
+                                            "type": "integer"
+                                        },
+                                        "protocol": {
+                                            "type": "string"
+                                        },
+                                        "subdomains": {
+                                            "type": "array"
+                                        },
+                                        "tls": {
+                                            "type": "object",
+                                            "properties": {
+                                                "certificateRefs": {
+                                                    "type": "array"
+                                                },
+                                                "mode": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "overrideBaseDomain": {
+                            "type": "string"
+                        },
+                        "provider": {
+                            "type": "object",
+                            "properties": {
+                                "aws": {
+                                    "type": "object",
+                                    "properties": {
+                                        "useNetworkLoadBalancer": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "service": {
+                            "type": "object",
+                            "properties": {
+                                "annotations": {
+                                    "type": "object"
+                                },
+                                "externalTrafficPolicy": {
+                                    "type": "string"
+                                },
+                                "labels": {
+                                    "type": "object"
+                                },
+                                "loadBalancerClass": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "tlsIssuer": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                },
+                                "enabled": {
+                                    "type": "boolean"
+                                },
+                                "gateway": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "kyvernoPolicies": {
+            "type": "object",
+            "properties": {
+                "observability": {
+                    "type": "object",
+                    "properties": {
+                        "resourceName": {
+                            "type": "string"
+                        },
+                        "resourceNamespace": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "preconditions": {
+                    "type": "object",
+                    "properties": {
+                        "key": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
