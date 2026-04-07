@@ -11096,6 +11096,35 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/flux-operator-0.1.1-44444d28643e49712c76f5e89663ab3337329a0c.tgz
     version: 0.1.1-44444d28643e49712c76f5e89663ab3337329a0c
+  - annotations:
+      io.giantswarm.application.audience: all
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/flux-operator-0.1.1-01a6ba4e4b677cf02fd7f1887bb20d758fc46699.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/flux-operator-app/01a6ba4e4b677cf02fd7f1887bb20d758fc46699/README.md
+      io.giantswarm.application.restrictions.cluster-singleton: "true"
+      io.giantswarm.application.team: honeybadger
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/flux-operator-app/01a6ba4e4b677cf02fd7f1887bb20d758fc46699/helm/flux-operator/values.schema.json
+    apiVersion: v2
+    appVersion: v0.26.0
+    created: "2026-04-07T21:42:08.040017192Z"
+    dependencies:
+    - condition: fluxoperator.enabled
+      name: flux-operator
+      repository: oci://ghcr.io/controlplaneio-fluxcd/charts
+      version: 0.46.0
+    description: Flux Operator is a Kubernetes CRD controller that manages the lifecycle
+      of Flux CD
+    digest: 38a8dcdc39840989edc660e4e9b8883a836a8454920aab32ada346837ee0657a
+    home: https://github.com/giantswarm/flux-operator-app
+    icon: https://s.giantswarm.io/app-icons/flux/2/icon_light.svg
+    keywords:
+    - flux
+    - gitops
+    name: flux-operator
+    sources:
+    - https://github.com/controlplaneio-fluxcd/charts/tree/main/charts/flux-operator
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/flux-operator-0.1.1-01a6ba4e4b677cf02fd7f1887bb20d758fc46699.tgz
+    version: 0.1.1-01a6ba4e4b677cf02fd7f1887bb20d758fc46699
   gateway-api-bundle:
   - annotations:
       io.giantswarm.application.audience: all
@@ -63180,4 +63209,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.6.2-06642f960249db8d840a8d7191e9c3bce552ba9c.tgz
     version: 2.6.2-06642f960249db8d840a8d7191e9c3bce552ba9c
-generated: "2026-04-07T21:27:42.706717063Z"
+generated: "2026-04-07T21:42:08.037990172Z"
