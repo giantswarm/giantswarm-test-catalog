@@ -137,6 +137,7 @@ Default test suites are embedded in the binary from `internal/testsuite/testdata
 ### Bundled Suites
 
 - **kubernetes-cka-v2** -- 100 Kubernetes CKA exam questions
+- **giant-swarm-docs-v1** -- 100 questions based on Giant Swarm docs
 
 ## Development
 
