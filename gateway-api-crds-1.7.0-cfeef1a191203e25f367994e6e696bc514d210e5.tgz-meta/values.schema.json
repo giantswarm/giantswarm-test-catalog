@@ -1,0 +1,67 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "install": {
+            "type": "object",
+            "properties": {
+                "backendtlspolicies": {
+                    "type": "string",
+                    "enum": ["standard", "experimental", ""]
+                },
+                "gatewayclasses": {
+                    "type": "string",
+                    "enum": ["standard", "experimental", ""]
+                },
+                "gateways": {
+                    "type": "string",
+                    "enum": ["standard", "experimental", ""]
+                },
+                "grpcroutes": {
+                    "type": "string",
+                    "enum": ["standard", "experimental", ""]
+                },
+                "httproutes": {
+                    "type": "string",
+                    "enum": ["standard", "experimental", ""]
+                },
+                "referencegrants": {
+                    "type": "string",
+                    "enum": ["standard", "experimental", ""]
+                },
+                "tcproutes": {
+                    "type": "string",
+                    "enum": ["experimental", ""]
+                },
+                "tlsroutes": {
+                    "type": "string",
+                    "enum": ["experimental", ""]
+                },
+                "udproutes": {
+                    "type": "string",
+                    "enum": ["experimental", ""]
+                },
+                "xbackendtrafficpolicies": {
+                    "type": "string",
+                    "enum": ["experimental", ""]
+                },
+                "xlistenersets": {
+                    "type": "string",
+                    "enum": ["experimental", ""]
+                },
+                "xmeshes": {
+                    "type": "string",
+                    "enum": ["experimental", ""]
+                },
+                "inferencepools": {
+                    "type": "string",
+                    "enum": ["standard", "experimental", ""]
+                },
+                "inferenceobjectives": {
+                    "type": "string",
+                    "enum": ["experimental", ""]
+                }
+            }
+        }
+    }
+}
