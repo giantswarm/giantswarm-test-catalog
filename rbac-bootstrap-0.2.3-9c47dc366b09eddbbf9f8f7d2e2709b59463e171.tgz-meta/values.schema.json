@@ -1,0 +1,46 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "clusterReader": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "bindings": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "role"
+                ],
+                "properties": {
+                    "groups": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "namespaces": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "role": {
+                        "type": "string"
+                    },
+                    "users": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
