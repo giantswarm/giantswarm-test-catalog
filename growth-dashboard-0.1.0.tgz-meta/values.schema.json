@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "image": {
+      "type": "object",
+      "description": "Container image configuration",
+      "properties": {
+        "registry": {
+          "type": "string",
+          "description": "Image registry"
+        },
+        "name": {
+          "type": "string",
+          "description": "Image name"
+        },
+        "tag": {
+          "type": "string",
+          "description": "Image tag"
+        }
+      },
+      "required": ["registry", "name", "tag"]
+    },
+    "route": {
+      "type": "object",
+      "description": "HTTPRoute configuration for Gateway API",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable HTTPRoute for external access"
+        },
+        "hostnames": {
+          "type": "array",
+          "description": "Hostnames to expose the dashboard on",
+          "items": {
+            "type": "string"
+          }
+        },
+        "parentRefs": {
+          "type": "array",
+          "description": "Gateway parent references",
+          "items": {
+            "type": "object",
+            "properties": {
+              "group": { "type": "string" },
+              "kind": { "type": "string" },
+              "name": { "type": "string" },
+              "namespace": { "type": "string" },
+              "sectionName": { "type": "string" }
+            }
+          }
+        }
+      },
+      "required": ["enabled"]
+    }
+  },
+  "required": ["image"]
+}
