@@ -1,0 +1,85 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "coredns": {
+            "type": "object",
+            "properties": {
+                "cluster": {
+                    "type": "object",
+                    "properties": {
+                        "calico": {
+                            "type": "object",
+                            "properties": {
+                                "CIDR": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "kubernetes": {
+                            "type": "object",
+                            "properties": {
+                                "API": {
+                                    "type": "object",
+                                    "properties": {
+                                        "clusterIPRange": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "clusterDomain": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "configmap": {
+                    "type": "object",
+                    "properties": {
+                        "autopath": {
+                            "type": "string"
+                        },
+                        "custom": {
+                            "type": "string"
+                        },
+                        "forward": {
+                            "type": "string"
+                        },
+                        "forwardOptions": {
+                            "type": "string"
+                        },
+                        "log": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "loadbalancePolicy": {
+                    "type": "string"
+                },
+                "additionalLocalZones": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "ports": {
+                    "type": "object",
+                    "properties": {
+                        "dns": {
+                            "type": "object",
+                            "properties": {
+                                "targetPort": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "prometheus": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
