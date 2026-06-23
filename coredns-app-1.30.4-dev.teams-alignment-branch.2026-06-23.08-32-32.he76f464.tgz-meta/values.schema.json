@@ -1,0 +1,804 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "definitions": {
+        "cache": {
+            "description": "CoreDNS cache plugin configuration for a zone.",
+            "type": "object",
+            "properties": {
+                "ttl": {
+                    "description": "Top-level TTL cap applied to all cached entries (seconds).",
+                    "type": "integer"
+                },
+                "zones": {
+                    "description": "Zones the cache applies to (cache 'ZONES'). If empty, the zones from the server block are used.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "success": {
+                    "description": "Configuration for caching positive (success) responses.",
+                    "type": "object",
+                    "properties": {
+                        "capacity": {
+                            "description": "Maximum number of positive responses to cache.",
+                            "type": "integer"
+                        },
+                        "ttl": {
+                            "description": "Max TTL for positive responses (seconds). Defaults to configmap.cache for backward compatibility.",
+                            "type": "integer"
+                        },
+                        "minTTL": {
+                            "description": "Min TTL for positive responses (seconds).",
+                            "type": "integer"
+                        }
+                    }
+                },
+                "denial": {
+                    "description": "Configuration for caching negative (NXDOMAIN/NODATA) responses.",
+                    "type": "object",
+                    "properties": {
+                        "capacity": {
+                            "description": "Maximum number of negative responses to cache.",
+                            "type": "integer"
+                        },
+                        "ttl": {
+                            "description": "Max TTL for NXDOMAIN/NODATA responses (seconds).",
+                            "type": "integer"
+                        },
+                        "minTTL": {
+                            "description": "Min TTL for denial responses (seconds).",
+                            "type": "integer"
+                        }
+                    }
+                },
+                "prefetch": {
+                    "description": "Prefetch popular cache entries before they expire.",
+                    "type": "object",
+                    "properties": {
+                        "amount": {
+                            "description": "Prefetch entries accessed at least this many times. Required to enable prefetch.",
+                            "type": "integer"
+                        },
+                        "duration": {
+                            "description": "Only prefetch if the entry was requested within this duration (e.g. 1m).",
+                            "type": "string"
+                        },
+                        "percentage": {
+                            "description": "Only prefetch if this percentage of TTL remains. Requires duration.",
+                            "type": "integer"
+                        }
+                    }
+                },
+                "serveStale": {
+                    "description": "Serve stale (expired) cache entries while fetching a fresh answer.",
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "description": "Enable serving stale cache entries while refreshing.",
+                            "type": "boolean"
+                        },
+                        "duration": {
+                            "description": "How long stale answers may be served (e.g. 1h).",
+                            "type": "string"
+                        },
+                        "refreshMode": {
+                            "description": "Refresh mode for stale entries. 'immediate' serves the stale entry before checking the source; 'verify' confirms the entry is still unavailable first.",
+                            "type": "string",
+                            "enum": ["immediate", "verify"]
+                        },
+                        "verifyTimeout": {
+                            "description": "Only valid with refreshMode 'verify'. Bounds how long the cache waits for the upstream verify before falling back to the stale entry (e.g. 100ms). Default 0 waits for the upstream's own timeout.",
+                            "type": "string"
+                        }
+                    }
+                },
+                "servfail": {
+                    "description": "Configuration for caching SERVFAIL responses.",
+                    "type": "object",
+                    "properties": {
+                        "duration": {
+                            "description": "How long to cache SERVFAIL responses (e.g. 5s). Set to 0 to disable.",
+                            "type": "string"
+                        }
+                    }
+                },
+                "disable": {
+                    "description": "Disable caching for specific response types.",
+                    "type": "object",
+                    "properties": {
+                        "success": {
+                            "description": "Disable caching of positive responses.",
+                            "type": "boolean"
+                        },
+                        "successZones": {
+                            "description": "Limit the success-cache disable to these zones (disable success 'ZONES'). Omit to disable for all zones.",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "denial": {
+                            "description": "Disable caching of NXDOMAIN/NODATA responses.",
+                            "type": "boolean"
+                        },
+                        "denialZones": {
+                            "description": "Limit the denial-cache disable to these zones (disable denial 'ZONES'). Omit to disable for all zones.",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "keepttl": {
+                    "description": "Preserve original TTLs in cached responses instead of counting down.",
+                    "type": "boolean"
+                }
+            }
+        },
+        "forward": {
+            "description": "Structured forward directive, mirroring the CoreDNS forward block. 'to' holds the upstream targets (FROM is always '.') and the remaining keys are forward plugin parameters. Only a representative subset is exposed; extend by adding keys here and in the coredns.forwardBlock helper.",
+            "type": "object",
+            "properties": {
+                "to": {
+                    "description": "List of upstream DNS server addresses (the forward 'TO...' targets). Empty list falls back to /etc/resolv.conf.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "policy": {
+                    "description": "Upstream selection policy (forward 'policy').",
+                    "type": "string",
+                    "enum": ["random", "round_robin", "sequential"]
+                },
+                "forceTCP": {
+                    "description": "Always use TCP to the upstream (forward 'force_tcp').",
+                    "type": "boolean"
+                },
+                "preferUDP": {
+                    "description": "Try UDP first even for queries received over TCP (forward 'prefer_udp').",
+                    "type": "boolean"
+                },
+                "maxFails": {
+                    "description": "Consecutive failed health checks before an upstream is considered down (forward 'max_fails').",
+                    "type": "integer"
+                },
+                "maxConnectAttempts": {
+                    "description": "Cap on total upstream connect attempts per request (forward 'max_connect_attempts'). 0 means no cap.",
+                    "type": "integer"
+                },
+                "maxIdleConns": {
+                    "description": "Maximum idle connections cached per upstream for reuse (forward 'max_idle_conns'). 0 means unlimited.",
+                    "type": "integer"
+                },
+                "healthCheck": {
+                    "description": "Upstream health-check configuration (forward 'health_check'), e.g. '0.2s', '0.2s no_rec', or '5s domain example.org'.",
+                    "type": "string"
+                },
+                "dohMethod": {
+                    "description": "HTTP method for DoH requests (forward 'doh_method').",
+                    "type": "string",
+                    "enum": ["GET", "POST"]
+                },
+                "tls": {
+                    "description": "TLS configuration for the upstream connection (forward 'tls'). Provide cert+key (client auth), ca (custom server verification), all three, or set enabled for a bare 'tls' using system CAs.",
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "description": "Emit a bare 'tls' directive (system CAs, no client auth) when no cert/key/ca are set.",
+                            "type": "boolean"
+                        },
+                        "cert": {
+                            "description": "Client certificate file path.",
+                            "type": "string"
+                        },
+                        "key": {
+                            "description": "Client key file path.",
+                            "type": "string"
+                        },
+                        "ca": {
+                            "description": "CA certificate file path used to verify the server certificate.",
+                            "type": "string"
+                        }
+                    }
+                },
+                "tlsServername": {
+                    "description": "Server name expected in the upstream TLS certificate (forward 'tls_servername'), e.g. 'dns.quad9.net'. Strongly recommended when forwarding over TLS.",
+                    "type": "string"
+                },
+                "expire": {
+                    "description": "Close idle upstream connections after this duration (forward 'expire'), e.g. '10s'.",
+                    "type": "string"
+                },
+                "maxConcurrent": {
+                    "description": "Maximum number of concurrent queries to forward (forward 'max_concurrent').",
+                    "type": "integer"
+                },
+                "next": {
+                    "description": "Response codes that cause the next forward plugin to be executed (forward 'next'), e.g. ['NXDOMAIN'].",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "nextOnNodata": {
+                    "description": "Execute the next forward plugin when the upstream returns NOERROR with an empty answer (forward 'next_on_nodata').",
+                    "type": "boolean"
+                },
+                "failfastAllUnhealthyUpstreams": {
+                    "description": "Immediately return SERVFAIL when all upstreams are unhealthy instead of spraying to a random upstream (forward 'failfast_all_unhealthy_upstreams').",
+                    "type": "boolean"
+                },
+                "failover": {
+                    "description": "Response codes that trigger a retry on the next upstream (forward 'failover'), e.g. ['SERVFAIL', 'REFUSED']. NOERROR is not allowed.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "resolver": {
+                    "description": "DNS resolver addresses used to resolve hostname-based 'to' endpoints at startup (forward 'resolver'), each a bare IP or IP:PORT.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "except": {
+                    "description": "Domain names to pass through unforwarded (forward 'except').",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "kubernetes": {
+            "description": "Structured kubernetes plugin parameters, mirroring the CoreDNS kubernetes block. Only a representative subset is exposed; extend by adding keys here and in the coredns.kubernetesBlock helper.",
+            "type": "object",
+            "properties": {
+                "endpoint": {
+                    "description": "URL of a remote k8s API endpoint (kubernetes 'endpoint'). Omit to connect in-cluster. Ignored when kubeconfig is set.",
+                    "type": "string"
+                },
+                "tls": {
+                    "description": "TLS cert, key and CA cert file paths for a remote k8s connection (kubernetes 'tls'). Ignored when connecting in-cluster.",
+                    "type": "object",
+                    "properties": {
+                        "cert": {
+                            "description": "Client certificate file path.",
+                            "type": "string"
+                        },
+                        "key": {
+                            "description": "Client key file path.",
+                            "type": "string"
+                        },
+                        "ca": {
+                            "description": "CA certificate file path.",
+                            "type": "string"
+                        }
+                    }
+                },
+                "kubeconfig": {
+                    "description": "Authenticate to a remote k8s cluster using a kubeconfig file (kubernetes 'kubeconfig').",
+                    "type": "object",
+                    "properties": {
+                        "path": {
+                            "description": "Path to the kubeconfig file.",
+                            "type": "string"
+                        },
+                        "context": {
+                            "description": "Optional kubeconfig context. Defaults to the current context.",
+                            "type": "string"
+                        }
+                    }
+                },
+                "apiserverQPS": {
+                    "description": "Maximum queries-per-second rate limit for API server requests (kubernetes 'apiserver_qps').",
+                    "type": "integer"
+                },
+                "apiserverBurst": {
+                    "description": "Maximum burst size for API server requests (kubernetes 'apiserver_burst').",
+                    "type": "integer"
+                },
+                "apiserverMaxInflight": {
+                    "description": "Maximum number of concurrent in-flight API server requests (kubernetes 'apiserver_max_inflight').",
+                    "type": "integer"
+                },
+                "pods": {
+                    "description": "Pod A record handling mode (kubernetes 'pods').",
+                    "type": "string",
+                    "enum": ["disabled", "insecure", "verified"]
+                },
+                "ttl": {
+                    "description": "Custom response TTL in seconds, range 0–3600 (kubernetes 'ttl').",
+                    "type": "integer"
+                },
+                "endpointPodNames": {
+                    "description": "Use the pod name instead of the dashed IP in endpoint records (kubernetes 'endpoint_pod_names').",
+                    "type": "boolean"
+                },
+                "noendpoints": {
+                    "description": "Disable serving endpoint records (kubernetes 'noendpoints').",
+                    "type": "boolean"
+                },
+                "namespaces": {
+                    "description": "Expose only the listed namespaces (kubernetes 'namespaces').",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "namespaceLabels": {
+                    "description": "Expose only namespaces matching this label selector expression (kubernetes 'namespace_labels').",
+                    "type": "string"
+                },
+                "labels": {
+                    "description": "Expose only objects matching this label selector expression (kubernetes 'labels').",
+                    "type": "string"
+                },
+                "ignoreEmptyService": {
+                    "description": "Return NXDOMAIN for services without ready endpoints (kubernetes 'ignore empty_service').",
+                    "type": "boolean"
+                },
+                "fallthrough": {
+                    "description": "Pass unresolved queries to the next plugin for all authoritative zones (kubernetes 'fallthrough'). Ignored when fallthroughZones is set.",
+                    "type": "boolean"
+                },
+                "fallthroughZones": {
+                    "description": "Limit fallthrough to these zones (kubernetes 'fallthrough ZONES'), e.g. ['in-addr.arpa', 'ip6.arpa'].",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "multicluster": {
+                    "description": "Multicluster zones served via the MCS-API (kubernetes 'multicluster'). The plugin must be authoritative for these zones.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "startupTimeout": {
+                    "description": "Time to wait for the informer cache to sync at startup (kubernetes 'startup_timeout'), e.g. '5s'.",
+                    "type": "string"
+                }
+            }
+        },
+        "log": {
+            "description": "List of CoreDNS log classes to emit for a zone. Omit to fall back to denial+error.",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": ["all", "success", "denial", "error", "stdout", "stderr"]
+            }
+        },
+        "loadbalance": {
+            "description": "Load balancing policy applied to a zone's DNS responses with multiple A/AAAA records. Omit to fall back to round_robin.",
+            "type": "string",
+            "enum": ["round_robin", "random"]
+        }
+    },
+    "properties": {
+        "name": {
+            "description": "Name used for all chart resources.",
+            "type": "string"
+        },
+        "namespace": {
+            "description": "Namespace to deploy all chart resources into.",
+            "type": "string"
+        },
+        "serviceType": {
+            "description": "Giant Swarm service type label value.",
+            "type": "string"
+        },
+        "securityContext": {
+            "description": "Pod-level security context for CoreDNS containers.",
+            "type": "object",
+            "properties": {
+                "runAsUser": {
+                    "description": "UID to run the CoreDNS container as.",
+                    "type": "integer"
+                },
+                "runAsGroup": {
+                    "description": "GID to run the CoreDNS container as.",
+                    "type": "integer"
+                }
+            }
+        },
+        "service": {
+            "description": "Settings for the CoreDNS ClusterIP Service.",
+            "type": "object",
+            "properties": {
+                "clusterIP": {
+                    "description": "Fixed ClusterIP assigned to the CoreDNS service. Must be within the cluster service CIDR.",
+                    "type": "string"
+                }
+            }
+        },
+        "image": {
+            "description": "CoreDNS container image coordinates.",
+            "type": "object",
+            "properties": {
+                "registry": {
+                    "description": "Container registry hostname.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Image repository path.",
+                    "type": "string"
+                },
+                "tag": {
+                    "description": "Image tag (version).",
+                    "type": "string"
+                }
+            }
+        },
+        "ports": {
+            "description": "Network ports used by CoreDNS. Shared across the Corefile, Deployments, and NetworkPolicy.",
+            "type": "object",
+            "properties": {
+                "dns": {
+                    "description": "DNS service port configuration.",
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "description": "Port name used in Service and container port definitions.",
+                            "type": "string"
+                        },
+                        "port": {
+                            "description": "Service port (external-facing, typically 53).",
+                            "type": "integer"
+                        },
+                        "targetPort": {
+                            "description": "Container port CoreDNS listens on (typically 1053 to avoid requiring CAP_NET_BIND_SERVICE).",
+                            "type": "integer"
+                        }
+                    }
+                },
+                "metrics": {
+                    "description": "Prometheus metrics port configuration.",
+                    "type": "object",
+                    "properties": {
+                        "port": {
+                            "description": "Port CoreDNS exposes Prometheus metrics on.",
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
+        },
+        "resources": {
+            "description": "CPU and memory resource requests and limits for CoreDNS containers.",
+            "type": "object",
+            "properties": {
+                "limits": {
+                    "type": "object",
+                    "properties": {
+                        "memory": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "requests": {
+                    "type": "object",
+                    "properties": {
+                        "cpu": {
+                            "type": "string"
+                        },
+                        "memory": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "updateStrategy": {
+            "description": "Deployment update strategy.",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "rollingUpdate": {
+                    "type": "object",
+                    "properties": {
+                        "maxUnavailable": {
+                            "type": ["string", "integer"]
+                        }
+                    }
+                }
+            }
+        },
+        "podDisruptionBudget": {
+            "description": "PodDisruptionBudget spec. Only created when hpa.maxReplicas > 1.",
+            "type": "object",
+            "properties": {
+                "maxUnavailable": {
+                    "type": "string"
+                }
+            }
+        },
+        "hpa": {
+            "description": "HorizontalPodAutoscaler configuration for the workers Deployment.",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "description": "Enable the HorizontalPodAutoscaler.",
+                    "type": "boolean"
+                },
+                "minReplicas": {
+                    "description": "Minimum number of CoreDNS replicas.",
+                    "type": "integer"
+                },
+                "maxReplicas": {
+                    "description": "Maximum number of CoreDNS replicas.",
+                    "type": "integer"
+                },
+                "targetCPUUtilizationPercentage": {
+                    "description": "Target CPU utilization percentage for scaling. Set to 0 to disable CPU-based scaling.",
+                    "type": "integer"
+                },
+                "targetMemoryUtilizationPercentage": {
+                    "description": "Target memory utilization percentage for scaling. Set to 0 to disable memory-based scaling.",
+                    "type": "integer"
+                },
+                "metrics": {
+                    "description": "Additional custom HPA metrics.",
+                    "type": "array"
+                },
+                "behavior": {
+                    "description": "HPA scaling behavior configuration.",
+                    "type": "object",
+                    "properties": {
+                        "scaleDown": {
+                            "type": "object",
+                            "properties": {
+                                "stabilizationWindowSeconds": {
+                                    "description": "Seconds to wait before scaling down after a scale-up event. Increase for large clusters to avoid flapping.",
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "controlPlane": {
+            "description": "Configuration for the CoreDNS Deployment targeting control-plane nodes.",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "description": "Deploy a dedicated CoreDNS instance on control-plane nodes. When unset, inherits mastersInstance.enabled for backward compatibility.",
+                    "type": "boolean"
+                },
+                "nodeSelector": {
+                    "description": "Node selector labels used to schedule the control-plane CoreDNS pods.",
+                    "type": "object"
+                }
+            }
+        },
+        "coredns": {
+            "description": "CoreDNS Corefile configuration. Cache, logging, and load balancing are configured per zone.",
+            "type": "object",
+            "properties": {
+                "public": {
+                    "description": "Configuration for the '.' (catch-all) forward zone that handles external DNS lookups.",
+                    "type": "object",
+                    "properties": {
+                        "cache": {
+                            "description": "Per-zone cache configuration for the '.' zone.",
+                            "$ref": "#/definitions/cache"
+                        },
+                        "forward": {
+                            "$ref": "#/definitions/forward"
+                        },
+                        "log": {
+                            "description": "Per-zone log classes for the '.' zone.",
+                            "$ref": "#/definitions/log"
+                        },
+                        "loadbalance": {
+                            "description": "Per-zone load balancing policy for the '.' zone.",
+                            "$ref": "#/definitions/loadbalance"
+                        },
+                        "autopath": {
+                            "description": "Autopath plugin arguments (e.g. '@kubernetes'). Leave empty to disable.",
+                            "type": "string"
+                        }
+                    }
+                },
+                "cluster": {
+                    "description": "Configuration for the cluster-local DNS zone (kubernetes plugin).",
+                    "type": "object",
+                    "properties": {
+                        "domains": {
+                            "description": "List of local cluster domains served by the kubernetes plugin.",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "serviceCIDR": {
+                            "description": "Kubernetes service IP range (--service-cluster-ip-range). Used by the kubernetes plugin for PTR record handling.",
+                            "type": "string"
+                        },
+                        "podCIDR": {
+                            "description": "Pod network CIDR (--pod-network-cidr). Used by the kubernetes plugin for PTR record handling.",
+                            "type": "string"
+                        },
+                        "cache": {
+                            "description": "Per-zone cache configuration for the cluster-local zone.",
+                            "$ref": "#/definitions/cache"
+                        },
+                        "kubernetes": {
+                            "$ref": "#/definitions/kubernetes"
+                        },
+                        "log": {
+                            "description": "Per-zone log classes for the cluster-local zone.",
+                            "$ref": "#/definitions/log"
+                        },
+                        "loadbalance": {
+                            "description": "Per-zone load balancing policy for the cluster-local zone.",
+                            "$ref": "#/definitions/loadbalance"
+                        }
+                    }
+                },
+                "additionalZones": {
+                    "description": "Additional local DNS zones, each rendered as its own fully-templated CoreDNS server block.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": ["names"],
+                        "properties": {
+                            "names": {
+                                "description": "Zone names served by this server block.",
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "cidrs": {
+                                "description": "Optional reverse (PTR) ranges, appended to the zone line and the kubernetes directive args.",
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "cache": {
+                                "description": "Optional per-zone cache configuration. Omit to use built-in defaults.",
+                                "$ref": "#/definitions/cache"
+                            },
+                            "forward": {
+                                "$ref": "#/definitions/forward"
+                            },
+                            "kubernetes": {
+                                "$ref": "#/definitions/kubernetes"
+                            },
+                            "log": {
+                                "description": "Optional per-zone log classes. Omit to use built-in defaults.",
+                                "$ref": "#/definitions/log"
+                            },
+                            "loadbalance": {
+                                "description": "Optional per-zone load balancing policy. Omit to use built-in defaults.",
+                                "$ref": "#/definitions/loadbalance"
+                            }
+                        }
+                    }
+                },
+                "custom": {
+                    "description": "Raw Corefile content appended verbatim at the end of the generated Corefile. Use for plugins or directives not covered by the structured values.",
+                    "type": "string"
+                }
+            }
+        },
+        "adopter": {
+            "description": "One-shot Job that adopts existing CoreDNS resources during initial chart installation.",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "description": "Run the adopter Job on install.",
+                    "type": "boolean"
+                },
+                "image": {
+                    "description": "Full image reference (registry/name:tag) for the adopter Job container.",
+                    "type": "string"
+                }
+            }
+        },
+        "userID": {
+            "description": "DEPRECATED: use securityContext.runAsUser",
+            "type": "integer"
+        },
+        "groupID": {
+            "description": "DEPRECATED: use securityContext.runAsGroup",
+            "type": "integer"
+        },
+        "mastersInstance": {
+            "description": "DEPRECATED: use controlPlane",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "nodeSelector": {
+                    "type": "object"
+                }
+            }
+        },
+        "loadbalancePolicy": {
+            "description": "DEPRECATED: use coredns.<zone>.loadbalance (per-zone)",
+            "type": "string"
+        },
+        "cluster": {
+            "description": "DEPRECATED: use coredns.cluster.* and service.clusterIP",
+            "type": "object",
+            "properties": {
+                "calico": {
+                    "type": "object",
+                    "properties": {
+                        "CIDR": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "kubernetes": {
+                    "type": "object",
+                    "properties": {
+                        "API": {
+                            "type": "object",
+                            "properties": {
+                                "clusterIPRange": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "DNS": {
+                            "type": "object",
+                            "properties": {
+                                "IP": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "clusterDomain": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "configmap": {
+            "description": "DEPRECATED: use coredns.* instead",
+            "type": "object",
+            "properties": {
+                "cache": {
+                    "description": "DEPRECATED: use coredns.public.cache.success.ttl / coredns.cluster.cache.success.ttl",
+                    "type": "integer"
+                },
+                "log": {
+                    "description": "DEPRECATED: use coredns.<zone>.log (per-zone)",
+                    "type": "string"
+                },
+                "custom": {
+                    "description": "DEPRECATED: use coredns.custom",
+                    "type": "string"
+                },
+                "forward": {
+                    "description": "DEPRECATED: use coredns.public.forward.to",
+                    "type": "string"
+                },
+                "forwardOptions": {
+                    "description": "DEPRECATED: use coredns.public.forward",
+                    "type": "string"
+                },
+                "autopath": {
+                    "description": "DEPRECATED: use coredns.public.autopath",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
