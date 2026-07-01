@@ -1,0 +1,244 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "replicaCount": {
+            "type": "integer"
+        },
+        "image": {
+            "type": "object",
+            "properties": {
+                "registry": {
+                    "type": "string"
+                },
+                "repository": {
+                    "type": "string"
+                },
+                "pullPolicy": {
+                    "type": "string"
+                },
+                "tag": {
+                    "type": "string"
+                }
+            }
+        },
+        "imagePullSecrets": {
+            "type": "array"
+        },
+        "nameOverride": {
+            "type": "string"
+        },
+        "fullnameOverride": {
+            "type": "string"
+        },
+        "serviceAccount": {
+            "type": "object",
+            "properties": {
+                "create": {
+                    "type": "boolean"
+                },
+                "labels": {
+                    "type": "object"
+                },
+                "annotations": {
+                    "type": "object"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "automountServiceAccountToken": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "podAnnotations": {
+            "type": "object"
+        },
+        "podLabels": {
+            "type": "object"
+        },
+        "deployment": {
+            "type": "object",
+            "properties": {
+                "labels": {
+                    "type": "object"
+                }
+            }
+        },
+        "portName": {
+            "type": "string"
+        },
+        "containerPort": {
+            "type": "integer"
+        },
+        "podSecurityContext": {
+            "type": "object",
+            "properties": {
+                "runAsNonRoot": {
+                    "const": true
+                },
+                "runAsUser": {
+                    "type": "integer",
+                    "minimum": 1
+                }
+            }
+        },
+        "securityContext": {
+            "type": "object",
+            "properties": {
+                "allowPrivilegeEscalation": {
+                    "const": false
+                },
+                "privileged": {
+                    "const": false
+                },
+                "runAsNonRoot": {
+                    "const": true
+                },
+                "runAsUser": {
+                    "type": "integer",
+                    "minimum": 1
+                }
+            }
+        },
+        "service": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "port": {
+                    "type": "integer"
+                },
+                "annotations": {
+                    "type": "object"
+                }
+            }
+        },
+        "testConnection": {
+            "type": "boolean"
+        },
+        "ingress": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "className": {
+                    "type": "string"
+                },
+                "annotations": {
+                    "type": "object"
+                },
+                "hosts": {
+                    "type": "array"
+                },
+                "tls": {
+                    "type": "array"
+                }
+            }
+        },
+        "resources": {
+            "type": "object"
+        },
+        "nodeSelector": {
+            "type": "object"
+        },
+        "priorityClassName": {
+            "type": ["string", "null"]
+        },
+        "tolerations": {
+            "type": "array"
+        },
+        "affinity": {
+            "type": "object"
+        },
+        "podDisruptionBudget": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "minAvailable": {
+                    "type": ["integer", "string"]
+                },
+                "maxUnavailable": {
+                    "type": ["integer", "string"]
+                },
+                "unhealthyPodEvictionPolicy": {
+                    "type": "string"
+                }
+            }
+        },
+        "extraEnv": {
+            "type": "array"
+        },
+        "extraEnvFrom": {
+            "type": "array"
+        },
+        "extraArgs": {
+            "type": "object"
+        },
+        "extraVolumeMounts": {
+            "type": "array"
+        },
+        "extraVolumes": {
+            "type": "array"
+        },
+        "lifecycle": {
+            "type": "object"
+        },
+        "aws": {
+            "type": "object",
+            "properties": {
+                "role": {
+                    "type": ["string", "null"]
+                },
+                "secret": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": ["string", "null"]
+                        },
+                        "includesSessionToken": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "aws_access_key_id": {
+                    "type": ["string", "null"]
+                },
+                "aws_secret_access_key": {
+                    "type": ["string", "null"]
+                }
+            }
+        },
+        "serviceMonitor": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "prometheusRule": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "configMap": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "config": {
+            "type": "string"
+        }
+    }
+}
