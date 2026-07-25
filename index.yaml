@@ -65175,6 +65175,44 @@ entries:
     - https://giantswarm.github.io/giantswarm-test-catalog/grafana-2.38.1-dev.renovate-architect-9-x.2026-06-01.22-01-11.tgz
     version: 2.38.1-dev.renovate-architect-9-x.2026-06-01.22-01-11
   - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Support
+          url: https://github.com/giantswarm/grafana-app/issues
+        - name: Upstream project
+          url: https://github.com/grafana-community/helm-charts/tree/main/charts/grafana
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/grafana-2.38.1-dev.main.2026-07-25.10-21-06.h932c719.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/grafana-app/refs/tags/v2.38.1-dev.main.2026-07-25.10-21-06.h932c719/README.md
+      io.giantswarm.application.team: atlas
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/grafana-app/refs/tags/v2.38.1-dev.main.2026-07-25.10-21-06.h932c719/helm/grafana/values.schema.json
+    apiVersion: v2
+    appVersion: 13.0.1
+    created: "2026-07-25T10:21:59.039603864Z"
+    dependencies:
+    - name: grafana
+      repository: https://grafana-community.github.io/helm-charts
+      version: 12.3.0
+    - alias: pgClusterRecoveryTest
+      condition: pgClusterRecoveryTest.enabled
+      name: pg-cluster-recovery-test
+      repository: https://giantswarm.github.io/giantswarm-catalog
+      version: 0.5.0
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: 581de6e55ef68edc1e00cf0c756cf7ef13dc2eb8aaebcec993622098979eb4d1
+    home: https://github.com/giantswarm/grafana-app
+    icon: https://s.giantswarm.io/app-icons/grafana/1/light.svg
+    kubeVersion: ^1.25.0-0
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: grafana
+    sources:
+    - https://github.com/grafana-community/helm-charts/tree/main/charts/grafana
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/grafana-2.38.1-dev.main.2026-07-25.10-21-06.h932c719.tgz
+    version: 2.38.1-dev.main.2026-07-25.10-21-06.h932c719
+  - annotations:
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/grafana-2.38.1-dev.main.2026-07-19.17-01-52.h959c17a.tgz-meta/main.yaml
       io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/grafana-app/refs/tags/v2.38.1-dev.main.2026-07-19.17-01-52.h959c17a/README.md
       io.giantswarm.application.team: atlas
@@ -152928,4 +152966,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.7.0-0be96db1c05f68eca1de47ec1639359ef6723b62.tgz
     version: 2.7.0-0be96db1c05f68eca1de47ec1639359ef6723b62
-generated: "2026-07-25T10:21:41.759164371Z"
+generated: "2026-07-25T10:21:59.031130379Z"
