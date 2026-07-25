@@ -63345,6 +63345,44 @@ entries:
     - https://giantswarm.github.io/giantswarm-test-catalog/grafana-2.38.1-dev.teams-alignment-branch.2026-06-10.08-22-24.h5eb8799.tgz
     version: 2.38.1-dev.teams-alignment-branch.2026-06-10.08-22-24.h5eb8799
   - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Support
+          url: https://github.com/giantswarm/grafana-app/issues
+        - name: Upstream project
+          url: https://github.com/grafana-community/helm-charts/tree/main/charts/grafana
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/grafana-2.38.1-dev.renovate-grafana-12-x.2026-07-25.10-25-10.h0ec90e6.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/grafana-app/refs/tags/v2.38.1-dev.renovate-grafana-12-x.2026-07-25.10-25-10.h0ec90e6/README.md
+      io.giantswarm.application.team: atlas
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/grafana-app/refs/tags/v2.38.1-dev.renovate-grafana-12-x.2026-07-25.10-25-10.h0ec90e6/helm/grafana/values.schema.json
+    apiVersion: v2
+    appVersion: 13.0.1
+    created: "2026-07-25T10:25:58.8300445Z"
+    dependencies:
+    - name: grafana
+      repository: https://grafana-community.github.io/helm-charts
+      version: 12.8.0
+    - alias: pgClusterRecoveryTest
+      condition: pgClusterRecoveryTest.enabled
+      name: pg-cluster-recovery-test
+      repository: https://giantswarm.github.io/giantswarm-catalog
+      version: 0.5.0
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: bdfa347e288f44b65968ff9322c4a4dfbf9b37edaf8b7e5376edc68f75d689e9
+    home: https://github.com/giantswarm/grafana-app
+    icon: https://s.giantswarm.io/app-icons/grafana/1/light.svg
+    kubeVersion: ^1.25.0-0
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: grafana
+    sources:
+    - https://github.com/grafana-community/helm-charts/tree/main/charts/grafana
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/grafana-2.38.1-dev.renovate-grafana-12-x.2026-07-25.10-25-10.h0ec90e6.tgz
+    version: 2.38.1-dev.renovate-grafana-12-x.2026-07-25.10-25-10.h0ec90e6
+  - annotations:
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/grafana-2.38.1-dev.renovate-grafana-12-x.2026-07-22.01-17-19.h874e2be.tgz-meta/main.yaml
       io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/grafana-app/refs/tags/v2.38.1-dev.renovate-grafana-12-x.2026-07-22.01-17-19.h874e2be/README.md
       io.giantswarm.application.team: atlas
@@ -152966,4 +153004,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.7.0-0be96db1c05f68eca1de47ec1639359ef6723b62.tgz
     version: 2.7.0-0be96db1c05f68eca1de47ec1639359ef6723b62
-generated: "2026-07-25T10:21:59.031130379Z"
+generated: "2026-07-25T10:25:58.821336575Z"
