@@ -140616,6 +140616,43 @@ entries:
     - https://giantswarm.github.io/giantswarm-test-catalog/strimzi-kafka-operator-0.1.2-dev.update-readme.2026-06-25.12-28-49.h5b9a00a.tgz
     version: 0.1.2-dev.update-readme.2026-06-25.12-28-49.h5b9a00a
   - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Support
+          url: https://github.com/giantswarm/strimzi-kafka-operator/issues
+        - name: Upstream project
+          url: https://github.com/strimzi/strimzi-kafka-operator
+      io.giantswarm.application.audience: all
+      io.giantswarm.application.managed: "true"
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/strimzi-kafka-operator-0.1.2-dev.teams-alignment-branch.2026-07-27.15-36-29.h90cdc22.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/strimzi-kafka-operator/refs/tags/v0.1.2-dev.teams-alignment-branch.2026-07-27.15-36-29.h90cdc22/README.md
+      io.giantswarm.application.team: atlas
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/strimzi-kafka-operator/refs/tags/v0.1.2-dev.teams-alignment-branch.2026-07-27.15-36-29.h90cdc22/helm/strimzi-kafka-operator/values.schema.json
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2026-07-27T15:37:07.992379075Z"
+    dependencies:
+    - condition: strimzi-kafka-operator.enabled
+      name: strimzi-kafka-operator
+      repository: ""
+      version: 1.0.0
+    description: 'Giant Swarm app wrapping the Strimzi Kafka Operator, which manages
+      Apache Kafka clusters natively on Kubernetes via custom resources. '
+    digest: 09bc6243340547d4b3ccd820344e36e047e8282d995089d9444bfecde52fa1c2
+    home: https://github.com/giantswarm/strimzi-kafka-operator
+    icon: https://s.giantswarm.io/app-icons/giantswarm/1/light.svg
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: strimzi-kafka-operator
+    sources:
+    - https://github.com/strimzi/strimzi-kafka-operator
+    - https://github.com/giantswarm/strimzi-kafka-operator
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/strimzi-kafka-operator-0.1.2-dev.teams-alignment-branch.2026-07-27.15-36-29.h90cdc22.tgz
+    version: 0.1.2-dev.teams-alignment-branch.2026-07-27.15-36-29.h90cdc22
+  - annotations:
       io.giantswarm.application.audience: all
       io.giantswarm.application.managed: "true"
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/strimzi-kafka-operator-0.1.2-dev.teams-alignment-branch.2026-07-11.19-47-02.h759f5ea.tgz-meta/main.yaml
@@ -154624,4 +154661,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.7.0-0be96db1c05f68eca1de47ec1639359ef6723b62.tgz
     version: 2.7.0-0be96db1c05f68eca1de47ec1639359ef6723b62
-generated: "2026-07-27T15:36:20.572091992Z"
+generated: "2026-07-27T15:37:07.983475627Z"
