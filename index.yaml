@@ -4673,6 +4673,51 @@ entries:
           url: https://github.com/cert-manager/cert-manager
       io.giantswarm.application.audience: all
       io.giantswarm.application.managed: "true"
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-4.1.2-dev.renovate-k8s-modules.2026-08-06.17-28-15.hd56170f.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/cert-manager-app/refs/tags/v4.1.2-dev.renovate-k8s-modules.2026-08-06.17-28-15.hd56170f/README.md
+      io.giantswarm.application.team: shield
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/cert-manager-app/refs/tags/v4.1.2-dev.renovate-k8s-modules.2026-08-06.17-28-15.hd56170f/helm/cert-manager/values.schema.json
+    apiVersion: v2
+    appVersion: 4.1.2-dev.renovate-k8s-modules.2026-08-06.17-28-15.hd56170f
+    created: "2026-08-06T17:28:43.777601302Z"
+    dependencies:
+    - name: cert-manager
+      repository: ""
+      version: v1.20.3
+    - alias: giantSwarmClusterIssuer
+      name: cert-manager-giantswarm-clusterissuer
+      repository: ""
+      version: 2.0.0
+    - condition: giantswarmNetworkPolicy.enabled
+      name: cert-manager-giantswarm-netpol
+      repository: ""
+      version: 0.1.0
+    - condition: ciliumNetworkPolicy.enabled
+      name: cert-manager-giantswarm-ciliumnetworkpolicies
+      repository: ""
+      version: 0.1.0
+    description: Simplifies the process of obtaining, renewing and using certificates.
+    digest: 2bdebcc3dce6a76e5a7db0830887741b745a0c94a80e81a225e939f6a85b4f3c
+    home: https://github.com/giantswarm/cert-manager-app
+    icon: https://s.giantswarm.io/app-icons/cert-manager/1/light.svg
+    kubeVersion: '>=1.22.0-0'
+    maintainers:
+    - name: Shield
+    name: cert-manager-app
+    sources:
+    - https://github.com/cert-manager/cert-manager
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-4.1.2-dev.renovate-k8s-modules.2026-08-06.17-28-15.hd56170f.tgz
+    version: 4.1.2-dev.renovate-k8s-modules.2026-08-06.17-28-15.hd56170f
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Support
+          url: https://github.com/giantswarm/cert-manager-app/issues
+        - name: Upstream project
+          url: https://github.com/cert-manager/cert-manager
+      io.giantswarm.application.audience: all
+      io.giantswarm.application.managed: "true"
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/cert-manager-app-4.1.2-dev.renovate-k8s-modules.2026-07-27.16-37-07.hf135c30.tgz-meta/main.yaml
       io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/cert-manager-app/refs/tags/v4.1.2-dev.renovate-k8s-modules.2026-07-27.16-37-07.hf135c30/README.md
       io.giantswarm.application.team: shield
@@ -44487,4 +44532,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.8.1-dev.images-fix.2026-07-17.11-59-03.h183bd7d.tgz
     version: 2.8.1-dev.images-fix.2026-07-17.11-59-03.h183bd7d
-generated: "2026-08-06T17:27:49.720192633Z"
+generated: "2026-08-06T17:28:43.766900157Z"
