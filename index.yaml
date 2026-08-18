@@ -19290,6 +19290,41 @@ entries:
     version: 1.10.3-dev.ljakimczuk-patch-1.2026-08-04.12-06-53.hdf3c7df
   flux-operator:
   - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Support
+          url: https://github.com/giantswarm/flux-operator-app/issues
+        - name: Upstream project
+          url: https://github.com/controlplaneio-fluxcd/charts/tree/main/charts/flux-operator
+      io.giantswarm.application.audience: all
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/flux-operator-0.6.1-dev.renovate-architect-10-x.2026-08-18.18-05-54.h3f0d8cd.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/flux-operator-app/refs/tags/v0.6.1-dev.renovate-architect-10-x.2026-08-18.18-05-54.h3f0d8cd/README.md
+      io.giantswarm.application.restrictions.cluster-singleton: "true"
+      io.giantswarm.application.team: honeybadger
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/flux-operator-app/refs/tags/v0.6.1-dev.renovate-architect-10-x.2026-08-18.18-05-54.h3f0d8cd/helm/flux-operator/values.schema.json
+    apiVersion: v2
+    appVersion: 0.6.1-dev.renovate-architect-10-x.2026-08-18.18-05-54.h3f0d8cd
+    created: "2026-08-18T18:06:24.286435659Z"
+    dependencies:
+    - condition: fluxoperator.enabled
+      name: flux-operator
+      repository: oci://ghcr.io/controlplaneio-fluxcd/charts
+      version: 0.58.0
+    description: Flux Operator is a Kubernetes CRD controller that manages the lifecycle
+      of Flux CD
+    digest: df970a570865f187829d7aa6b0bbb634aa2dca8940bc35a6c73de6001edcc8e8
+    home: https://github.com/giantswarm/flux-operator-app
+    icon: https://s.giantswarm.io/app-icons/flux/2/icon_light.svg
+    keywords:
+    - flux
+    - gitops
+    name: flux-operator
+    sources:
+    - https://github.com/controlplaneio-fluxcd/charts/tree/main/charts/flux-operator
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/flux-operator-0.6.1-dev.renovate-architect-10-x.2026-08-18.18-05-54.h3f0d8cd.tgz
+    version: 0.6.1-dev.renovate-architect-10-x.2026-08-18.18-05-54.h3f0d8cd
+  - annotations:
       io.giantswarm.application.audience: all
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/flux-operator-0.5.1-dev.renovate-fl--perator-0-x.2026-08-12.09-01-37.hbc46d16.tgz-meta/main.yaml
       io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/flux-operator-app/refs/tags/v0.5.1-dev.renovate-fl--perator-0-x.2026-08-12.09-01-37.hbc46d16/README.md
@@ -57465,4 +57500,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.8.1-dev.images-fix.2026-07-17.11-59-03.h183bd7d.tgz
     version: 2.8.1-dev.images-fix.2026-07-17.11-59-03.h183bd7d
-generated: "2026-08-18T18:05:53.476964685Z"
+generated: "2026-08-18T18:06:24.284395121Z"
