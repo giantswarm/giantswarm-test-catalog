@@ -1,0 +1,458 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "affinity": {
+            "type": "object",
+            "additionalProperties": false
+        },
+        "anthropicApiKey": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "secretKey": {
+                    "type": "string"
+                },
+                "secretName": {
+                    "type": "string"
+                }
+            }
+        },
+        "baseDomain": {
+            "type": "string"
+        },
+        "bootstrapMode": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "chartOperator": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "ciliumNetworkPolicy": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "claude": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "activeAgent": {
+                    "type": "string"
+                },
+                "addDirs": {
+                    "type": "array",
+                    "description": "Extension directories -- addDirs are additional directories to search for .claude/ subdirectories (skills, agents)."
+                },
+                "agentFiles": {
+                    "type": "object",
+                    "description": "Inline subagent files (markdown format) -- These are mounted as .claude/agents/<name>.md files. Claude Code discovers them and makes them available for delegation via the Task tool, and for selection as the main agent via activeAgent or the MCP agent parameter. Subagents defined here have lower priority than those in `agents` (JSON). See https://code.claude.com/docs/en/sub-agents Example: agentFiles: researcher: content: | name: researcher description: Research agent that gathers information tools: Read, Grep, Glob You are a research agent...",
+                    "additionalProperties": false
+                },
+                "agents": {
+                    "type": "object",
+                    "description": "Subagents (JSON format, highest priority) -- Subagents are specialized AI assistants that the main Claude Code agent can delegate work to via the built-in \"Task\" tool. Each runs in its own context window with its own prompt, tools, model, and permissions. These have the highest priority and override agent files with the same name. See https://code.claude.com/docs/en/sub-agents Example: agents: reviewer: description: \"Reviews code changes. Use proactively after edits.\" prompt: \"You are a senior code reviewer...\" tools: [\"Read\", \"Grep\", \"Glob\", \"Bash\"] model: \"sonnet\" deployer: description: \"Handles deployments\" prompt: \"You are a deployment specialist...\"",
+                    "additionalProperties": false
+                },
+                "allowedTools": {
+                    "type": "array"
+                },
+                "appendSystemPrompt": {
+                    "type": "string"
+                },
+                "disallowedTools": {
+                    "type": "array"
+                },
+                "effort": {
+                    "type": "string"
+                },
+                "fallbackModel": {
+                    "type": "string"
+                },
+                "hookScripts": {
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "hooks": {
+                    "type": "object",
+                    "description": "Hooks -- hooks defines Claude Code lifecycle hooks, rendered to settings.json. Mutually exclusive with settingsFile. Example: hooks: PreToolUse: - matcher: \"Bash\" hooks: - type: command command: /etc/klaus/hooks/block-dangerous.sh",
+                    "additionalProperties": false
+                },
+                "includePartialMessages": {
+                    "type": "boolean",
+                    "description": "Streaming -- includePartialMessages emits partial message chunks during streaming. Enables progress tracking with message count, tool call count, and last activity."
+                },
+                "jsonSchema": {
+                    "type": "string",
+                    "description": "Structured output -- jsonSchema constrains the output to conform to a JSON Schema (JSON string)."
+                },
+                "loadAdditionalDirsMemory": {
+                    "type": "boolean"
+                },
+                "maxBudgetUSD": {
+                    "type": "integer",
+                    "description": "Operational controls -- maxBudgetUSD caps the maximum dollar spend per invocation; 0 means no limit."
+                },
+                "maxMcpOutputTokens": {
+                    "type": "integer"
+                },
+                "maxTurns": {
+                    "type": "integer"
+                },
+                "mcpConfig": {
+                    "type": "string"
+                },
+                "mcpServerSecrets": {
+                    "type": "array"
+                },
+                "mcpServers": {
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "mcpTimeout": {
+                    "type": "integer"
+                },
+                "mode": {
+                    "type": "string",
+                    "description": "Operating mode -- mode selects the operating mode: \"agent\" or \"chat\". (autonomous coding, no disk I/O for sessions). chat: uses a PersistentProcess subprocess (bidirectional stream-json) with sessions saved to disk (interactive multi-turn chat)."
+                },
+                "model": {
+                    "type": "string"
+                },
+                "permissionMode": {
+                    "type": "string"
+                },
+                "pluginDirs": {
+                    "type": "array",
+                    "description": "Plugin support -- pluginDirs are directories to load plugins from."
+                },
+                "plugins": {
+                    "type": "array",
+                    "description": "Plugins -- plugins references Klaus plugins stored in OCI registries, delivered via Kubernetes OCI image volumes (beta since Kubernetes 1.33, KEP-4639). Each plugin is a versioned, distributable package of skills, hooks, agents, and MCP servers. See giantswarm/klaus-operator#6 for the OCI artifact format. Example: plugins: - repository: gsoci.azurecr.io/giantswarm/klaus-plugins/gs-base tag: v0.6.0 - repository: gsoci.azurecr.io/giantswarm/klaus-plugins/security digest: sha256:abc123..."
+                },
+                "settingSources": {
+                    "type": "string"
+                },
+                "settingsFile": {
+                    "type": "string",
+                    "description": "Settings -- settingsFile is a path to a settings JSON file inside the container."
+                },
+                "skills": {
+                    "type": "object",
+                    "description": "Inline skills -- Supported frontmatter fields: description, disableModelInvocation, userInvocable, allowedTools, model, context, agent, argumentHint. Example: skills: api-conventions: description: \"API design patterns\" content: | When writing API endpoints...",
+                    "additionalProperties": false
+                },
+                "strictMcpConfig": {
+                    "type": "boolean"
+                },
+                "systemPrompt": {
+                    "type": "string"
+                },
+                "tools": {
+                    "type": "array",
+                    "description": "Tool control -- tools controls the base set of built-in tools available. Empty list means all default tools. Use [\"Bash\",\"Edit\",\"Read\"] to restrict."
+                }
+            }
+        },
+        "cluster": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "clusterCA": {
+            "type": "string"
+        },
+        "clusterCIDR": {
+            "type": "string"
+        },
+        "clusterDNSIP": {
+            "type": "string"
+        },
+        "clusterID": {
+            "type": "string"
+        },
+        "gcpProject": {
+            "type": "string"
+        },
+        "global": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "podSecurityStandards": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "enforced": {
+                            "type": "boolean"
+                        }
+                    }
+                }
+            }
+        },
+        "image": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "tag": {
+                    "type": "string"
+                }
+            }
+        },
+        "nodeSelector": {
+            "type": "object",
+            "additionalProperties": false
+        },
+        "owner": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "subject": {
+                    "type": "string"
+                }
+            }
+        },
+        "podSecurityContext": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "fsGroup": {
+                    "type": "integer"
+                },
+                "runAsGroup": {
+                    "type": "integer"
+                },
+                "runAsNonRoot": {
+                    "type": "boolean"
+                },
+                "runAsUser": {
+                    "type": "integer"
+                },
+                "seccompProfile": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "type": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "port": {
+            "type": "integer"
+        },
+        "provider": {
+            "type": "string"
+        },
+        "registry": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "domain": {
+                    "type": "string"
+                }
+            }
+        },
+        "replicaCount": {
+            "type": "integer"
+        },
+        "resources": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "limits": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "cpu": {
+                            "type": "string"
+                        },
+                        "memory": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "requests": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "cpu": {
+                            "type": "string"
+                        },
+                        "memory": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "securityContext": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "allowPrivilegeEscalation": {
+                    "type": "boolean"
+                },
+                "capabilities": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "drop": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "readOnlyRootFilesystem": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "serviceAccount": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "create": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "subscriptionID": {
+            "type": "string"
+        },
+        "telemetry": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "includeAccountUuid": {
+                    "type": "boolean"
+                },
+                "includeSessionId": {
+                    "type": "boolean"
+                },
+                "includeVersion": {
+                    "type": "boolean"
+                },
+                "logToolDetails": {
+                    "type": "boolean"
+                },
+                "logUserPrompts": {
+                    "type": "boolean"
+                },
+                "logsExportIntervalMs": {
+                    "type": "integer"
+                },
+                "logsExporter": {
+                    "type": "string"
+                },
+                "metricExportIntervalMs": {
+                    "type": "integer"
+                },
+                "metricsExporter": {
+                    "type": "string"
+                },
+                "otlp": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "endpoint": {
+                            "type": "string"
+                        },
+                        "headers": {
+                            "type": "string"
+                        },
+                        "protocol": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "resourceAttributes": {
+                    "type": "string"
+                },
+                "scrapeAnnotations": {
+                    "type": "boolean"
+                },
+                "serviceMonitor": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "interval": {
+                            "type": "string"
+                        },
+                        "namespaceSelector": {
+                            "type": "object",
+                            "additionalProperties": false
+                        },
+                        "scrapeTimeout": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "tolerations": {
+            "type": "array"
+        },
+        "toolchainImage": {
+            "type": "string"
+        },
+        "workspace": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "existingClaim": {
+                    "type": "string"
+                },
+                "gitDepth": {
+                    "type": "integer"
+                },
+                "gitImage": {
+                    "type": "string"
+                },
+                "gitRef": {
+                    "type": "string"
+                },
+                "gitRepo": {
+                    "type": "string"
+                },
+                "gitResources": {
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "gitSecretName": {
+                    "type": "string"
+                },
+                "gitTimeout": {
+                    "type": "integer"
+                },
+                "size": {
+                    "type": "string"
+                },
+                "storageClass": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
