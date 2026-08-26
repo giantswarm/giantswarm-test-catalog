@@ -21947,6 +21947,47 @@ entries:
       io.giantswarm.application.audience: all
       io.giantswarm.application.logo: https://s.giantswarm.io/app-icons/falco/2/logo_dark.svg
       io.giantswarm.application.managed: "true"
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/falco-0.12.2-dev.teams-alignment-branch.2026-08-26.13-26-19.h202f01d.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/falco-app/refs/tags/v0.12.2-dev.teams-alignment-branch.2026-08-26.13-26-19.h202f01d/README.md
+      io.giantswarm.application.team: shield
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/falco-app/refs/tags/v0.12.2-dev.teams-alignment-branch.2026-08-26.13-26-19.h202f01d/helm/falco/values.schema.json
+    apiVersion: v2
+    appVersion: 0.12.2-dev.teams-alignment-branch.2026-08-26.13-26-19.h202f01d
+    created: "2026-08-26T13:41:30.757618915Z"
+    dependencies:
+    - condition: falco.enabled
+      name: falco
+      repository: ""
+      version: 9.0.0
+    - condition: falcosidekick.enabled
+      name: falcosidekick
+      repository: ""
+      version: 0.13.1
+    - condition: k8s-metacollector.enabled
+      name: k8s-metacollector
+      repository: ""
+      version: 0.3.0
+    description: A Helm chart for falco
+    digest: 137ecad32aa4071ed954758e4f551a4d496338e06f703d45bd8149612b3eae2d
+    home: https://github.com/giantswarm/falco-app
+    icon: https://s.giantswarm.io/app-icons/falco/2/icon_dark.svg
+    maintainers:
+    - name: Giant Swarm applications team
+      url: https://github.com/giantswarm/falco-app
+    name: falco
+    sources:
+    - https://github.com/giantswarm/falco-app
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/falco-0.12.2-dev.teams-alignment-branch.2026-08-26.13-26-19.h202f01d.tgz
+    version: 0.12.2-dev.teams-alignment-branch.2026-08-26.13-26-19.h202f01d
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Support
+          url: https://github.com/giantswarm/falco-app/issues
+      io.giantswarm.application.audience: all
+      io.giantswarm.application.logo: https://s.giantswarm.io/app-icons/falco/2/logo_dark.svg
+      io.giantswarm.application.managed: "true"
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/falco-0.12.2-dev.teams-alignment-branch.2026-08-25.16-39-19.h944d113.tgz-meta/main.yaml
       io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/falco-app/refs/tags/v0.12.2-dev.teams-alignment-branch.2026-08-25.16-39-19.h944d113/README.md
       io.giantswarm.application.team: shield
@@ -80608,4 +80649,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.8.1-dev.images-fix.2026-07-17.11-59-03.h183bd7d.tgz
     version: 2.8.1-dev.images-fix.2026-07-17.11-59-03.h183bd7d
-generated: "2026-08-26T13:41:17.977575269Z"
+generated: "2026-08-26T13:41:30.738915922Z"
