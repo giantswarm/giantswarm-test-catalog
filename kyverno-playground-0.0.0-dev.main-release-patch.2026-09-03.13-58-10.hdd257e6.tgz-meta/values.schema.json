@@ -1,0 +1,612 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "fullnameOverride": {
+            "type": "string",
+            "description": "Full name override"
+        },
+        "global": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "description": "Global values shared between all subcharts",
+            "$comment": "Added automatically by 'helm schema' to allow this chart to be used as a Helm dependency, as this schema would otherwise not allow Helm's special 'global' values key."
+        },
+        "kyverno-playground": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "affinity": {
+                    "type": "object",
+                    "description": "Affinity",
+                    "additionalProperties": false
+                },
+                "autoscaling": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean",
+                            "description": "Enable autoscaling"
+                        },
+                        "maxReplicas": {
+                            "type": "integer",
+                            "description": "Max number of replicas"
+                        },
+                        "minReplicas": {
+                            "type": "integer",
+                            "description": "Min number of replicas"
+                        },
+                        "targetCPUUtilizationPercentage": {
+                            "type": "integer",
+                            "description": "Target CPU utilisation"
+                        },
+                        "targetMemoryUtilizationPercentage": {
+                            "type": "null",
+                            "description": "Target Memory utilisation"
+                        }
+                    }
+                },
+                "clusterRoles": {
+                    "type": "array",
+                    "description": "Cluster roles"
+                },
+                "config": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "cluster": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "enabled": {
+                                    "type": "boolean",
+                                    "description": "Enable connected cluster mode"
+                                }
+                            }
+                        },
+                        "engine": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "builtinCrds": {
+                                    "type": "array",
+                                    "description": "Builtin CRDs enabled (`argocd`, `cert-manager`, `prometheus-operator`, `tekton-pipelines`)"
+                                },
+                                "localCrds": {
+                                    "type": "array",
+                                    "description": "Paths to folders containing yaml definitions for CRDs"
+                                }
+                            }
+                        },
+                        "gin": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "cors": {
+                                    "type": "boolean",
+                                    "description": "Gin cors middleware"
+                                },
+                                "logger": {
+                                    "type": "boolean",
+                                    "description": "Gin logger middleware"
+                                },
+                                "maxBodySize": {
+                                    "type": "integer",
+                                    "description": "Gin max body size"
+                                },
+                                "mode": {
+                                    "type": "string",
+                                    "description": "Gin mode (`release` or `debug`)"
+                                }
+                            }
+                        },
+                        "server": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "host": {
+                                    "type": "string",
+                                    "description": "Server host"
+                                },
+                                "port": {
+                                    "type": "integer",
+                                    "description": "Server port"
+                                }
+                            }
+                        },
+                        "ui": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "sponsor": {
+                                    "type": "string",
+                                    "description": "Sponsor name"
+                                }
+                            }
+                        },
+                        "versions": {
+                            "type": "array",
+                            "description": "list of additional Kyverno Playground versions"
+                        }
+                    }
+                },
+                "extraArgs": {
+                    "type": "object",
+                    "description": "Additonal container arguments",
+                    "additionalProperties": false
+                },
+                "fullnameOverride": {
+                    "type": "string",
+                    "description": "Full name override"
+                },
+                "global": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "labels": {
+                            "type": "object",
+                            "description": "additional labels added on each resource",
+                            "additionalProperties": false,
+                            "properties": {
+                                "application.giantswarm.io/team": {
+                                    "type": "string"
+                                },
+                                "giantswarm.io/service-type": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "httproute": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "annotations": {
+                            "type": "object",
+                            "description": "Additional HTTPRoute annotations",
+                            "additionalProperties": false
+                        },
+                        "enabled": {
+                            "type": "boolean",
+                            "description": "Enable HTTPRoute resource (Gateway API alternative to Ingress) Requires Gateway API CRDs (v1) installed in cluster https://gateway-api.sigs.k8s.io/"
+                        },
+                        "hostnames": {
+                            "type": "array",
+                            "description": "List of hostnames for HTTPRoute"
+                        },
+                        "labels": {
+                            "type": "object",
+                            "description": "Additional HTTPRoute labels",
+                            "additionalProperties": false
+                        },
+                        "parentRefs": {
+                            "type": "array",
+                            "description": "Gateway API parentRefs (list of Gateway references) Must reference an existing Gateway resource"
+                        },
+                        "rules": {
+                            "type": "array",
+                            "description": "HTTPRoute rules configuration Allows advanced routing with matches and filters",
+                            "items": {
+                                "type": "object",
+                                "additionalProperties": false,
+                                "properties": {
+                                    "matches": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "path": {
+                                                    "type": "object",
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "type": {
+                                                            "type": "string"
+                                                        },
+                                                        "value": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "image": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "pullPolicy": {
+                            "type": "string",
+                            "description": "Image pull policy"
+                        },
+                        "registry": {
+                            "type": "string",
+                            "description": "Image registry"
+                        },
+                        "repository": {
+                            "type": "string",
+                            "description": "Image repository"
+                        },
+                        "tag": {
+                            "type": "null",
+                            "description": "Image tag (will default to app version if not set)"
+                        }
+                    }
+                },
+                "imagePullSecrets": {
+                    "type": "array",
+                    "description": "Image pull secrets"
+                },
+                "ingress": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "annotations": {
+                            "type": "object",
+                            "description": "Ingress annotations",
+                            "additionalProperties": false
+                        },
+                        "className": {
+                            "type": "string",
+                            "description": "Ingress class name"
+                        },
+                        "enabled": {
+                            "type": "boolean",
+                            "description": "Enable ingress"
+                        },
+                        "hosts": {
+                            "type": "array",
+                            "description": "Ingress hosts"
+                        },
+                        "tls": {
+                            "type": "array",
+                            "description": "Ingress tls"
+                        }
+                    }
+                },
+                "livenessProbe": {
+                    "type": "object",
+                    "description": "Liveness probe",
+                    "additionalProperties": false,
+                    "properties": {
+                        "httpGet": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "path": {
+                                    "type": "string"
+                                },
+                                "port": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "mcp": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean",
+                            "description": "Enable the MCP server deployment"
+                        },
+                        "httproute": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "annotations": {
+                                    "type": "object",
+                                    "description": "Additional HTTPRoute annotations",
+                                    "additionalProperties": false
+                                },
+                                "enabled": {
+                                    "type": "boolean",
+                                    "description": "Enable HTTPRoute resource (Gateway API alternative to Ingress) Requires Gateway API CRDs (v1) installed in cluster https://gateway-api.sigs.k8s.io/"
+                                },
+                                "hostnames": {
+                                    "type": "array",
+                                    "description": "List of hostnames for HTTPRoute"
+                                },
+                                "labels": {
+                                    "type": "object",
+                                    "description": "Additional HTTPRoute labels",
+                                    "additionalProperties": false
+                                },
+                                "parentRefs": {
+                                    "type": "array",
+                                    "description": "Gateway API parentRefs (list of Gateway references) Must reference an existing Gateway resource"
+                                },
+                                "rules": {
+                                    "type": "array",
+                                    "description": "HTTPRoute rules configuration Allows advanced routing with matches and filters",
+                                    "items": {
+                                        "type": "object",
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "matches": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "path": {
+                                                            "type": "object",
+                                                            "additionalProperties": false,
+                                                            "properties": {
+                                                                "type": {
+                                                                    "type": "string"
+                                                                },
+                                                                "value": {
+                                                                    "type": "string"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "ingress": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "annotations": {
+                                    "type": "object",
+                                    "description": "Ingress annotations",
+                                    "additionalProperties": false
+                                },
+                                "className": {
+                                    "type": "string",
+                                    "description": "Ingress class name"
+                                },
+                                "enabled": {
+                                    "type": "boolean",
+                                    "description": "Enable MCP ingress"
+                                },
+                                "hosts": {
+                                    "type": "array",
+                                    "description": "Ingress hosts"
+                                },
+                                "tls": {
+                                    "type": "array",
+                                    "description": "Ingress tls"
+                                }
+                            }
+                        },
+                        "port": {
+                            "type": "integer",
+                            "description": "MCP server port"
+                        },
+                        "replicaCount": {
+                            "type": "integer",
+                            "description": "Number of MCP server pod replicas"
+                        },
+                        "resources": {
+                            "type": "object",
+                            "description": "MCP container resource limits/requests",
+                            "additionalProperties": false,
+                            "properties": {
+                                "limits": {
+                                    "type": "object",
+                                    "additionalProperties": false
+                                },
+                                "requests": {
+                                    "type": "object",
+                                    "additionalProperties": false
+                                }
+                            }
+                        },
+                        "service": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "type": {
+                                    "type": "string",
+                                    "description": "MCP service type"
+                                },
+                                "port": {
+                                    "type": "integer",
+                                    "description": "MCP service port"
+                                }
+                            }
+                        }
+                    }
+                },
+                "nameOverride": {
+                    "type": "string",
+                    "description": "Name override"
+                },
+                "networkPolicy": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "allowClusterDNS": {
+                            "type": "boolean",
+                            "description": "Allow DNS to in-cluster CoreDNS while keeping app egress internet-only"
+                        },
+                        "enabled": {
+                            "type": "boolean",
+                            "description": "Enable egress restriction for the playground pods"
+                        }
+                    }
+                },
+                "nodeSelector": {
+                    "type": "object",
+                    "description": "Node selector",
+                    "additionalProperties": false
+                },
+                "podAnnotations": {
+                    "type": "object",
+                    "description": "Pod annotations",
+                    "additionalProperties": false
+                },
+                "podLabels": {
+                    "type": "object",
+                    "description": "Additional labels to add to each pod",
+                    "additionalProperties": false
+                },
+                "podSecurityContext": {
+                    "type": "object",
+                    "description": "Pod security context",
+                    "additionalProperties": false,
+                    "properties": {
+                        "fsGroup": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "priorityClassName": {
+                    "type": "string",
+                    "description": "Priority class name"
+                },
+                "readinessProbe": {
+                    "type": "object",
+                    "description": "Readiness probe",
+                    "additionalProperties": false,
+                    "properties": {
+                        "httpGet": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "path": {
+                                    "type": "string"
+                                },
+                                "port": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "replicaCount": {
+                    "type": "integer",
+                    "description": "Number of pod replicas"
+                },
+                "resources": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "limits": {
+                            "type": "null",
+                            "description": "Container resource limits"
+                        },
+                        "requests": {
+                            "type": "null",
+                            "description": "Container resource requests"
+                        }
+                    }
+                },
+                "roles": {
+                    "type": "array",
+                    "description": "Cluster roles"
+                },
+                "securityContext": {
+                    "type": "object",
+                    "description": "Container security context",
+                    "additionalProperties": false,
+                    "properties": {
+                        "allowPrivilegeEscalation": {
+                            "type": "boolean"
+                        },
+                        "capabilities": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "drop": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "privileged": {
+                            "type": "boolean"
+                        },
+                        "readOnlyRootFilesystem": {
+                            "type": "boolean"
+                        },
+                        "runAsNonRoot": {
+                            "type": "boolean"
+                        },
+                        "runAsUser": {
+                            "type": "integer"
+                        },
+                        "seccompProfile": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "type": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "service": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "description": "Service type"
+                        },
+                        "port": {
+                            "type": "integer",
+                            "description": "Service port"
+                        }
+                    }
+                },
+                "serviceAccount": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "annotations": {
+                            "type": "object",
+                            "description": "Service account annotations",
+                            "additionalProperties": false
+                        },
+                        "create": {
+                            "type": "boolean",
+                            "description": "Create service account"
+                        },
+                        "name": {
+                            "type": "string",
+                            "description": "Service account name (required if `serviceAccount.create` is `false`)"
+                        }
+                    }
+                },
+                "sponsor": {
+                    "type": "string",
+                    "description": "Optional sponsor text"
+                },
+                "tolerations": {
+                    "type": "array",
+                    "description": "Tolerations"
+                },
+                "tufRootMountPath": {
+                    "type": "string",
+                    "description": "A writable volume to use for the TUF root initialization."
+                }
+            }
+        },
+        "nameOverride": {
+            "type": "string",
+            "description": "Name override"
+        }
+    }
+}
