@@ -25065,6 +25065,40 @@ entries:
   - annotations:
       io.giantswarm.application.audience: all
       io.giantswarm.application.logo: https://s.giantswarm.io/app-icons/flux/2/logo_dark.svg
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/flux-app-1.11.1-dev.bump-kube--trics-7-8-1.2026-09-04.15-30-02.h46e3d1f.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/flux-app/refs/tags/v1.11.1-dev.bump-kube--trics-7-8-1.2026-09-04.15-30-02.h46e3d1f/README.md
+      io.giantswarm.application.restrictions.cluster-singleton: "true"
+      io.giantswarm.application.team: honeybadger
+      io.giantswarm.application.two-step-install: "true"
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/flux-app/refs/tags/v1.11.1-dev.bump-kube--trics-7-8-1.2026-09-04.15-30-02.h46e3d1f/helm/flux-app/values.schema.json
+    apiVersion: v2
+    appVersion: 1.11.1-dev.bump-kube--trics-7-8-1.2026-09-04.15-30-02.h46e3d1f
+    created: "2026-09-04T15:30:46.133676111Z"
+    dependencies:
+    - alias: kubeStateMetrics
+      condition: kubeStateMetrics.enabled
+      name: kube-state-metrics
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 7.8.1
+    description: 'Flux is a collection of tools for keeping Kubernetes clusters in
+      sync with sources of configuration (like Git repositories), and automating updates
+      to configuration when there is new code to deploy. '
+    digest: b438b1e56beb730983a86cafdbeb7e6131627cb1e23a9974802fbefe599ab253
+    home: https://github.com/giantswarm/flux-app
+    icon: https://s.giantswarm.io/app-icons/flux/2/icon_light.svg
+    keywords:
+    - gitops
+    - flux
+    name: flux-app
+    sources:
+    - https://github.com/fluxcd/flux2
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/flux-app-1.11.1-dev.bump-kube--trics-7-8-1.2026-09-04.15-30-02.h46e3d1f.tgz
+    version: 1.11.1-dev.bump-kube--trics-7-8-1.2026-09-04.15-30-02.h46e3d1f
+  - annotations:
+      io.giantswarm.application.audience: all
+      io.giantswarm.application.logo: https://s.giantswarm.io/app-icons/flux/2/logo_dark.svg
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/flux-app-1.11.1-dev.bump-kube--trics-7-8-1.2026-09-04.15-27-36.hbc543b6.tgz-meta/main.yaml
       io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/flux-app/refs/tags/v1.11.1-dev.bump-kube--trics-7-8-1.2026-09-04.15-27-36.hbc543b6/README.md
       io.giantswarm.application.restrictions.cluster-singleton: "true"
@@ -78996,4 +79030,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.9.1-dev.bump-zot-to-v2-1-20.2026-09-03.07-31-48.hce482ff.tgz
     version: 2.9.1-dev.bump-zot-to-v2-1-20.2026-09-03.07-31-48.hce482ff
-generated: "2026-09-04T15:30:20.08832864Z"
+generated: "2026-09-04T15:30:46.126542668Z"
