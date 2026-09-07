@@ -1,0 +1,885 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "affinity": {
+            "type": "object",
+            "description": "Affinity.",
+            "additionalProperties": true
+        },
+        "backend": {
+            "type": "string",
+            "description": "Serving backend driver: `ollama` (host Ollama — laptop/agentlab dev loop), `kserve` (KServe/vLLM on GPU installs: InferenceServices from serving presets, per-node Hugging Face cache, pre-warm download Jobs, fit checks) or `lemonade` (a Lemonade Server on the host — FastFlowLM on AMD Ryzen AI NPUs, llama.cpp on GPU and CPU; the same proxying shape as ollama). The API reports the backend and its capability flags at /api/v1/backend. The one-backend form of `backends`."
+        },
+        "backends": {
+            "type": "array",
+            "description": "Serving backends to run at once, in the operator's order — one process in front of several servers, for example `[ollama, lemonade]` on a host running both. Each driver at most once; every listed driver reads its own block (`ollama.*`, `lemonade.*`, `kserve.*`). The first is the default backend: the one `GET /api/v1/backend` describes and an unqualified pull goes to; every model, job and node the API returns names its backend, every request may name one (`GET /api/v1/backends` lists them). Empty runs `backend` alone.",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "ollama",
+                    "kserve",
+                    "lemonade"
+                ]
+            },
+            "uniqueItems": true
+        },
+        "baseDomain": {
+            "type": "string"
+        },
+        "bootstrapMode": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "chartOperator": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "ciliumNetworkPolicy": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "cluster": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "clusterCA": {
+            "type": "string"
+        },
+        "clusterCIDR": {
+            "type": "string"
+        },
+        "clusterDNSIP": {
+            "type": "string"
+        },
+        "clusterID": {
+            "type": "string"
+        },
+        "extraArgs": {
+            "type": "array",
+            "description": "Extra container arguments."
+        },
+        "extraEnv": {
+            "type": "array",
+            "description": "Extra environment variables.",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    },
+                    "valueFrom": {
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                }
+            }
+        },
+        "fullnameOverride": {
+            "type": "string",
+            "description": "Override the fully qualified release name (the umbrella chart pins the Service name through this)."
+        },
+        "gcpProject": {
+            "type": "string"
+        },
+        "global": {
+            "type": "object",
+            "description": "Platform-wide values an umbrella chart (agent-platform-standalone) shares with every component; Helm forwards them to this chart. `oauth.*` reads the identity contract as its defaults: `global.identity.issuerUrl`, `global.identity.clientId`, `global.identity.existingSecret`, `global.identity.ca.secretName` / `.key`, and `global.domain` for the OAuth base URL. Empty here; a standalone install sets `oauth.*` directly.",
+            "additionalProperties": true
+        },
+        "httpRoute": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "description": "Annotations on the HTTPRoute.",
+                    "additionalProperties": true
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Expose the service through a Gateway API HTTPRoute."
+                },
+                "hostnames": {
+                    "type": "array",
+                    "description": "Hostnames matched by the route."
+                },
+                "labels": {
+                    "type": "object",
+                    "description": "Labels on the HTTPRoute.",
+                    "additionalProperties": true
+                },
+                "parentRefs": {
+                    "type": "array",
+                    "description": "parentRefs of the HTTPRoute (required when enabled).",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "group": {
+                                "type": "string"
+                            },
+                            "kind": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "namespace": {
+                                "type": "string"
+                            },
+                            "port": {
+                                "type": "integer"
+                            },
+                            "sectionName": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "image": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "pullPolicy": {
+                    "type": "string",
+                    "description": "Image pull policy."
+                },
+                "registry": {
+                    "type": "string",
+                    "description": "Image registry."
+                },
+                "repository": {
+                    "type": "string",
+                    "description": "Image repository."
+                },
+                "tag": {
+                    "type": "string",
+                    "description": "Image tag. Defaults to the chart appVersion."
+                }
+            }
+        },
+        "imagePullSecrets": {
+            "type": "array",
+            "description": "Image pull secrets."
+        },
+        "kagent": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "apiVersion": {
+                    "type": "string",
+                    "description": "kagent.dev API version for ModelConfigs; `auto` discovers the server's preferred version."
+                },
+                "autoWire": {
+                    "type": "boolean",
+                    "description": "Create a ModelConfig automatically when a pull completes or a model is loaded."
+                },
+                "disableWiring": {
+                    "type": "boolean",
+                    "description": "Disable all ModelConfig management; the `wire` capability reports false. A release that runs the kserve backend keeps its Kubernetes access (ServiceAccount token, RBAC) regardless — it needs the API for InferenceServices, Jobs and nodes; only releases with the ollama and lemonade backends alone run without the API when wiring is off."
+                },
+                "modelConfigPrefix": {
+                    "type": "string",
+                    "description": "Prefix for generated ModelConfig names (empty: the sanitized model name, e.g. smollm2:135m -> smollm2-135m)."
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "Namespace where kagent ModelConfigs are created (RBAC is scoped here)."
+                }
+            }
+        },
+        "kserve": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "budget": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "defaultOverheadGiB": {
+                            "type": "integer",
+                            "description": "Serving overhead (KV cache, activations, runtime) added to the weights when the preset has no `requirements.overheadGiB`."
+                        },
+                        "source": {
+                            "type": "string",
+                            "description": "Node memory budget for fit checks: `auto` (GPU memory from the nvidia.com/gpu.memory x gpu.count labels when present, else allocatable memory — unified-memory nodes), `gpu-labels`, `allocatable`. A node annotation `model-manager.giantswarm.io/memory-budget-gib: \"96\"` (GiB) overrides the budget of that node whatever the source (reported as `budgetSource: annotation`)."
+                        }
+                    }
+                },
+                "cache": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "claimName": {
+                            "type": "string",
+                            "description": "PersistentVolumeClaim of the Hugging Face cache in the serving namespace; empty takes the discovery value (default `hf-cache`)."
+                        },
+                        "indexConfigMap": {
+                            "type": "string",
+                            "description": "ConfigMap in the serving namespace that remembers which Hugging Face repository filled which cache directory: recorded while an InferenceService serves from the directory (its name), kept after the InferenceService is gone, so the directory keeps its repository and preset in the inventory. The kserve Role grants `create` on ConfigMaps and `update`/`patch` on this name."
+                        },
+                        "mountPath": {
+                            "type": "string",
+                            "description": "Where predictors mount the cache; empty takes the discovery value (default `/mnt/models`)."
+                        },
+                        "nodes": {
+                            "type": "array",
+                            "description": "Nodes that hold the cache. Empty derives them from the node affinity of the PersistentVolume bound to the claim (a static local PV pins the cache to its node)."
+                        }
+                    }
+                },
+                "discovery": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "configMap": {
+                            "type": "string",
+                            "description": "Name of the platform's model-serving discovery ConfigMap (kind `ModelServingConfig`, key `config.yaml`) that carries the runtime, GPU resource name, cache claim and preset selector. Empty `kserve.*` overrides below take their value from it."
+                        },
+                        "namespace": {
+                            "type": "string",
+                            "description": "Namespace of the discovery ConfigMap and, by default, of the preset ConfigMaps. Empty means the release namespace."
+                        }
+                    }
+                },
+                "download": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "ignorePatterns": {
+                            "type": "array",
+                            "description": "File patterns downloads skip (fnmatch, passed as STORAGE_IGNORE_PATTERNS). Empty downloads the whole repository like an InferenceService does."
+                        },
+                        "image": {
+                            "type": "object",
+                            "description": "Image of the pre-warm download Job. The KServe storage-initializer downloads exactly what an InferenceService would, so a later start finds the files and skips the download.",
+                            "additionalProperties": false,
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "registry": {
+                                    "type": "string"
+                                },
+                                "tag": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "jobTTL": {
+                            "type": "string",
+                            "description": "ttlSecondsAfterFinished of download Jobs."
+                        }
+                    }
+                },
+                "gpuResourceName": {
+                    "type": "string",
+                    "description": "Accelerator resource name; empty takes the discovery value (default `nvidia.com/gpu`)."
+                },
+                "hf": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "endpoint": {
+                            "type": "string",
+                            "description": "Hugging Face Hub base URL (search, repository metadata, sizes)."
+                        },
+                        "token": {
+                            "type": "string",
+                            "description": "Render the token Secret (`kserve.hf.tokenSecret.name`, in the serving namespace) from this value. Prefer a pre-created Secret; this is for installs whose values are already secret-managed."
+                        },
+                        "tokenSecret": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "key": {
+                                    "type": "string",
+                                    "description": "Key of the token in that Secret."
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "description": "Secret in the serving namespace holding a Hugging Face token for gated repositories (read by model-manager, mounted into download Jobs). Empty: anonymous hub access, gated models refused."
+                                }
+                            }
+                        }
+                    }
+                },
+                "inventory": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "agent": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "nodeSelector": {
+                                    "type": "object",
+                                    "description": "Node selector of the DaemonSet. A node-local cache claim (static local PV, local-path) can only be mounted on its node: select it.",
+                                    "additionalProperties": true
+                                },
+                                "podAnnotations": {
+                                    "type": "object",
+                                    "description": "Annotations on the agent pods.",
+                                    "additionalProperties": true
+                                },
+                                "podLabels": {
+                                    "type": "object",
+                                    "description": "Extra labels on the agent pods.",
+                                    "additionalProperties": true
+                                },
+                                "port": {
+                                    "type": "integer",
+                                    "description": "Port the cache agent listens on."
+                                },
+                                "resources": {
+                                    "type": "object",
+                                    "description": "Resources of the agent container (a scan walks file metadata only).",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "limits": {
+                                            "type": "object",
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "cpu": {
+                                                    "type": "string"
+                                                },
+                                                "memory": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "requests": {
+                                            "type": "object",
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "cpu": {
+                                                    "type": "string"
+                                                },
+                                                "memory": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "tolerations": {
+                                    "type": "array",
+                                    "description": "Tolerations of the agent pods (GPU node taints).",
+                                    "items": {
+                                        "type": "object",
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "effect": {
+                                                "type": "string"
+                                            },
+                                            "key": {
+                                                "type": "string"
+                                            },
+                                            "operator": {
+                                                "type": "string"
+                                            },
+                                            "tolerationSeconds": {
+                                                "type": "integer"
+                                            },
+                                            "value": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "image": {
+                            "type": "object",
+                            "description": "Image that creates cache directories (download Job init container) and scans / cleans the cache (short-lived pods); needs sh, find, stat, awk (busybox).",
+                            "additionalProperties": false,
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "registry": {
+                                    "type": "string"
+                                },
+                                "tag": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "mode": {
+                            "type": "string",
+                            "description": "How the per-node cache contents are read. `pod`: a short-lived scan pod per cache node whenever the inventory is older than `ttl` (no long-running pods, but pod churn in the serving namespace). `daemonset`: the chart renders a DaemonSet (`kserve.inventory.agent.*`) in the serving namespace running `model-manager cache-agent`, which mounts the cache claim read-only and serves its contents over HTTP; model-manager asks the agent on the node instead of creating pods. Requires `kserve.cache.claimName` (the DaemonSet mounts the claim; the chart cannot read the discovery ConfigMap). Deletes still use a one-shot pod."
+                        },
+                        "timeout": {
+                            "type": "string",
+                            "description": "Time budget of one scan (scan pod, or cache-agent request)."
+                        },
+                        "ttl": {
+                            "type": "string",
+                            "description": "How long one cache scan is reused before a node is scanned again."
+                        }
+                    }
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "Serving namespace: InferenceServices, download Jobs, cache-tool pods and the cache claim live here and the kserve RBAC Role is created here. Must match the platform's `components.modelServing.namespace.name`."
+                },
+                "presets": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "labelSelector": {
+                            "type": "string",
+                            "description": "Label selector of the serving-preset ConfigMaps; empty takes the discovery value (default `agent-platform.giantswarm.io/serving-preset=true`)."
+                        },
+                        "namespace": {
+                            "type": "string",
+                            "description": "Namespace of the serving-preset ConfigMaps; empty takes the discovery value, else `kserve.discovery.namespace`."
+                        }
+                    }
+                },
+                "readyTimeout": {
+                    "type": "string",
+                    "description": "How long a load job waits for an InferenceService to become ready before it gives up on wiring."
+                },
+                "runtime": {
+                    "type": "string",
+                    "description": "ClusterServingRuntime for presets that name none; empty takes the discovery value (default `kserve-vllm`)."
+                }
+            }
+        },
+        "lemonade": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "agentHost": {
+                    "type": "string",
+                    "description": "Lemonade Server base URL as reached by agent pods, written into kagent ModelConfigs as the OpenAI-compatible `openAI.baseUrl` with `/api/v1` appended; reported as `agentEndpoint` by `GET /api/v1/backend`. Empty means the same as `lemonade.endpoint`."
+                },
+                "endpoint": {
+                    "type": "string",
+                    "description": "Lemonade Server base URL as reached from pods (its API is under `/api/v1`; Lemonade listens on 13305 by default). Bind Lemonade to every interface (`lemonade config set host=0.0.0.0`, or `host` in its config.json) so the kind docker network gateway reaches it, for example http://172.21.0.1:13305; Docker Desktop resolves host.docker.internal."
+                }
+            }
+        },
+        "logging": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "verbose": {
+                    "type": "boolean",
+                    "description": "Enable debug logging."
+                }
+            }
+        },
+        "mcp": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Serve the MCP streamable-HTTP endpoint alongside the REST API."
+                },
+                "path": {
+                    "type": "string",
+                    "description": "MCP endpoint path."
+                }
+            }
+        },
+        "muster": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "mcpServer": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "description": {
+                            "type": "string",
+                            "description": "Human-readable description shown by muster."
+                        },
+                        "auth": {
+                            "type": "object",
+                            "description": "How muster authenticates to this server; rendered only with `oauth.enabled`. `forwardToken` makes muster forward the session's IdP id_token byte-identical (the SSO path this chart trusts through its trusted audiences). `requiredAudiences` are extra audiences that token must carry — the Dex cross-client audience the kube-apiserver trusts (`dex-k8s-authenticator` on Giant Swarm clusters; agentlab's is `kubernetes`) so `oauth.downstream` works; muster requests them at login, so users re-login after a change. They are trusted as bearer audiences by construction, since the server's trusted audiences are `oauth.trustedAudiences` plus this list. A Google IdP has no cross-client audiences: leave the list empty.",
+                            "additionalProperties": false,
+                            "properties": {
+                                "forwardToken": {
+                                    "type": "boolean"
+                                },
+                                "requiredAudiences": {
+                                    "type": "array"
+                                }
+                            }
+                        },
+                        "autoStart": {
+                            "type": "boolean",
+                            "description": "Start the server connection when muster initializes."
+                        },
+                        "enabled": {
+                            "type": "boolean",
+                            "description": "Register this server with muster by rendering an `mcpservers.muster.giantswarm.io` CR in the release namespace. Tools then appear as `x_<name>_<tool>`."
+                        },
+                        "labels": {
+                            "type": "object",
+                            "description": "Extra labels on the MCPServer CR.",
+                            "additionalProperties": true
+                        },
+                        "name": {
+                            "type": "string",
+                            "description": "MCPServer CR name (drives the tool prefix)."
+                        }
+                    }
+                }
+            }
+        },
+        "nameOverride": {
+            "type": "string",
+            "description": "Override the chart name."
+        },
+        "networkPolicy": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "allowKubeAPI": {
+                    "type": "boolean",
+                    "description": "Allow egress to the Kubernetes API server (needed for wiring and by the kserve backend)."
+                },
+                "egressCIDRs": {
+                    "type": "array",
+                    "description": "Extra egress CIDRs (the host Ollama or Lemonade endpoint, e.g. 172.21.0.1/32)."
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Create a Kubernetes NetworkPolicy for the pod."
+                },
+                "ingressNamespaces": {
+                    "type": "array",
+                    "description": "Namespaces allowed to reach the API (label kubernetes.io/metadata.name). Empty allows ingress from the release namespace only."
+                }
+            }
+        },
+        "nodeSelector": {
+            "type": "object",
+            "description": "Node selector.",
+            "additionalProperties": true
+        },
+        "oauth": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "allowPublicClientRegistration": {
+                    "type": "boolean",
+                    "description": "Accept unauthenticated dynamic client registration (labs only)."
+                },
+                "baseURL": {
+                    "type": "string",
+                    "description": "Public base URL of this server: the issuer of its own OAuth metadata (https, or http on loopback). Empty derives `https://<fullname>.<global.domain>` when `global.domain` is set."
+                },
+                "dex": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "allowPrivateURLs": {
+                            "type": "boolean",
+                            "description": "Let the issuer resolve to a private or loopback address (an in-cluster Dex)."
+                        },
+                        "caSecret": {
+                            "type": "object",
+                            "description": "Secret with the CA of a Dex that serves a private certificate; `global.identity.ca.secretName` / `global.identity.ca.key`.",
+                            "additionalProperties": false,
+                            "properties": {
+                                "key": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "clientID": {
+                            "type": "string",
+                            "description": "Dex OAuth client ID. Empty falls back to `global.identity.clientId`."
+                        },
+                        "clientSecret": {
+                            "type": "string",
+                            "description": "Dex OAuth client secret (prefer `oauth.existingSecret`)."
+                        },
+                        "issuerURL": {
+                            "type": "string",
+                            "description": "Dex issuer URL. Empty falls back to `global.identity.issuerUrl`."
+                        }
+                    }
+                },
+                "downstream": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean",
+                            "description": "Call the Kubernetes API as the caller: everything a request does (InferenceServices, download Jobs, cache scans, ModelConfigs) presents the caller's IdP token, so the caller's RBAC governs — the apiserver must trust the IdP and the token's audience (a Dex install lists that audience in `muster.mcpServer.auth.requiredAudiences`; a Google install's holds no permissions: the chart renders none of its Roles and ClusterRoles (`rbac.create` is moot), work without a caller (download adoption after a restart, the wiring reconciler) is off, and a job that outlives its caller's token fails on the apiserver's 401 instead of continuing with other credentials."
+                        }
+                    }
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Make model-manager an OAuth 2.1 resource server (mcp-oauth): the MCP endpoint and the REST API require a bearer token the platform identity provider issued, and every call carries the caller's identity (logged, recorded as `requestedBy` on jobs). On the Agent Platform muster forwards the session's IdP id_token to this server (MCPServer `auth.forwardToken`, rendered below) and the portal sends the signed-in user's id_token through the gateway; both are validated against the IdP's JWKS when their audience is in `trustedAudiences`. Off: anonymous, acting as the ServiceAccount — only for a server nothing but a trusted proxy can reach."
+                },
+                "existingSecret": {
+                    "type": "string",
+                    "description": "Existing Secret with the provider credentials: `dex-client-secret` (dex) or `google-client-secret` (+ optional `google-client-id`) (google). Empty falls back to `global.identity.existingSecret`, whose `dex-client-secret` is the platform client's; without that, the chart renders a Secret from the values above."
+                },
+                "google": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "clientID": {
+                            "type": "string",
+                            "description": "Google OAuth client ID (not secret; may also come from the Secret key `google-client-id` when empty)."
+                        },
+                        "clientSecret": {
+                            "type": "string",
+                            "description": "Google OAuth client secret (prefer `oauth.existingSecret`)."
+                        }
+                    }
+                },
+                "provider": {
+                    "type": "string",
+                    "description": "Identity provider: `dex` or `google`."
+                },
+                "sso": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "allowPrivateIPs": {
+                            "type": "boolean",
+                            "description": "Let the IdP's JWKS endpoint resolve to a private address when validating forwarded tokens (an in-cluster Dex)."
+                        }
+                    }
+                },
+                "trustedAudiences": {
+                    "type": "array",
+                    "description": "OAuth client IDs whose IdP id_tokens are accepted as bearer tokens (SSO token forwarding). Empty falls back to `[global.identity.clientId]`, the platform client MCP clients and the muster CLI log in with. The server trusts the union of this list and `muster.mcpServer.auth.requiredAudiences` (in that order, without duplicates): every token muster forwards carries the required audiences by construction and they are what the kube-apiserver trusts, so a portal session — whose id_token carries them but not the platform client — is accepted without listing its client here."
+                }
+            }
+        },
+        "ollama": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "agentHost": {
+                    "type": "string",
+                    "description": "Ollama host written into kagent ModelConfigs, as reached by agent pods; reported as `agentEndpoint` by `GET /api/v1/backend`. Empty means the same as `ollama.endpoint`."
+                },
+                "endpoint": {
+                    "type": "string",
+                    "description": "Ollama API base URL as reached from pods. On kind this is the docker network gateway (for example http://172.21.0.1:11434 — agentlab sets it); Docker Desktop resolves host.docker.internal."
+                },
+                "memoryBudgetGiB": {
+                    "type": [
+                        "number",
+                        "string"
+                    ],
+                    "description": "Memory budget of the proxied host in GiB (a number; decimals allowed, `GET /api/v1/nodes` with `budgetSource: override` instead of `MemTotal` of the pod's `/proc/meminfo` (`host-meminfo`). Set it where the pod's view is not the host's: Docker Desktop or another VM-backed runtime (the pod sees the VM's memory), an Ollama on another machine. 0 is off; a value that is not a positive number of GiB is ignored and named in the node's `message`. The ollama counterpart of the kserve node annotation `model-manager.giantswarm.io/memory-budget-gib`.",
+                    "minimum": 0
+                }
+            }
+        },
+        "podAnnotations": {
+            "type": "object",
+            "description": "Annotations on the pod.",
+            "additionalProperties": true
+        },
+        "podLabels": {
+            "type": "object",
+            "description": "Labels on the pod.",
+            "additionalProperties": true
+        },
+        "podSecurityContext": {
+            "type": "object",
+            "description": "Pod security context.",
+            "additionalProperties": false,
+            "properties": {
+                "fsGroup": {
+                    "type": "integer"
+                },
+                "runAsGroup": {
+                    "type": "integer"
+                },
+                "runAsNonRoot": {
+                    "type": "boolean"
+                },
+                "runAsUser": {
+                    "type": "integer"
+                },
+                "seccompProfile": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "type": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "provider": {
+            "type": "string"
+        },
+        "rbac": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "create": {
+                    "type": "boolean",
+                    "description": "Create the Role/RoleBinding for ModelConfigs and Secrets in `kagent.namespace` (and, when kserve is among the backends, the Role in the serving namespace, the Role for the discovery/preset ConfigMaps and the ClusterRole for nodes and PersistentVolumes) — the ServiceAccount's own permissions. Ignored with `oauth.downstream.enabled`: the ServiceAccount then gets no RBAC at all."
+                }
+            }
+        },
+        "replicaCount": {
+            "type": "integer",
+            "description": "Number of replicas. Jobs are tracked in memory, so keep this at 1 unless clients pin to one pod."
+        },
+        "resources": {
+            "type": "object",
+            "description": "Container resources.",
+            "additionalProperties": false,
+            "properties": {
+                "limits": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "cpu": {
+                            "type": "string"
+                        },
+                        "memory": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "requests": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "cpu": {
+                            "type": "string"
+                        },
+                        "memory": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "securityContext": {
+            "type": "object",
+            "description": "Container security context.",
+            "additionalProperties": false,
+            "properties": {
+                "allowPrivilegeEscalation": {
+                    "type": "boolean"
+                },
+                "capabilities": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "drop": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "readOnlyRootFilesystem": {
+                    "type": "boolean"
+                },
+                "runAsGroup": {
+                    "type": "integer"
+                },
+                "runAsNonRoot": {
+                    "type": "boolean"
+                },
+                "runAsUser": {
+                    "type": "integer"
+                },
+                "seccompProfile": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "type": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "service": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "description": "Service type."
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "Service port (container listens on 8080)."
+                }
+            }
+        },
+        "serviceAccount": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "description": "Annotations on the ServiceAccount.",
+                    "additionalProperties": true
+                },
+                "create": {
+                    "type": "boolean",
+                    "description": "Create a ServiceAccount."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "ServiceAccount name (generated when empty)."
+                }
+            }
+        },
+        "subscriptionID": {
+            "type": "string"
+        },
+        "tolerations": {
+            "type": "array",
+            "description": "Tolerations.",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "effect": {
+                        "type": "string"
+                    },
+                    "key": {
+                        "type": "string"
+                    },
+                    "operator": {
+                        "type": "string"
+                    },
+                    "tolerationSeconds": {
+                        "type": "integer"
+                    },
+                    "value": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
