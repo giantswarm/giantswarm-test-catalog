@@ -43156,6 +43156,49 @@ entries:
           url: https://github.com/Kong/charts/tree/main/charts/kong
       io.giantswarm.application.audience: all
       io.giantswarm.application.managed: "true"
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-5.2.4-dev.renovate-ku--ply-job-0-x.2026-09-07.17-14-56.h37d174e.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/kong-app/refs/tags/v5.2.4-dev.renovate-ku--ply-job-0-x.2026-09-07.17-14-56.h37d174e/README.md
+      io.giantswarm.application.team: cabbage
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/kong-app/refs/tags/v5.2.4-dev.renovate-ku--ply-job-0-x.2026-09-07.17-14-56.h37d174e/helm/kong-app/values.schema.json
+    apiVersion: v2
+    appVersion: 3.8.0
+    created: "2026-09-07T17:15:46.637279562Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 11.9.13
+    - condition: ingressController.enabled
+      name: kubectl-apply-job
+      repository: oci://gsoci.azurecr.io/charts/giantswarm
+      version: 0.13.0
+    description: The Cloud-Native Ingress and API-management
+    digest: 7aa50ca8ad6c6b208f84c9d6bce4bfc486b412863c637e7a0864365d4229259d
+    home: https://github.com/giantswarm/kong-app
+    icon: https://s.giantswarm.io/app-icons/kong/1/light.svg
+    keywords:
+    - networking
+    - gateway
+    kubeVersion: '>=1.26.0-0'
+    maintainers:
+    - email: team-k8s@konghq.com
+      name: team-k8s-bot
+    name: kong-app
+    sources:
+    - https://github.com/giantswarm/kong-app
+    - https://github.com/Kong/charts/tree/main/charts/kong
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/kong-app-5.2.4-dev.renovate-ku--ply-job-0-x.2026-09-07.17-14-56.h37d174e.tgz
+    version: 5.2.4-dev.renovate-ku--ply-job-0-x.2026-09-07.17-14-56.h37d174e
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Support
+          url: https://github.com/giantswarm/kong-app/issues
+        - name: Upstream project
+          url: https://github.com/Kong/charts/tree/main/charts/kong
+      io.giantswarm.application.audience: all
+      io.giantswarm.application.managed: "true"
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/kong-app-5.2.4-dev.renovate-ku--ply-job-0-x.2026-09-07.07-58-40.h129f154.tgz-meta/main.yaml
       io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/kong-app/refs/tags/v5.2.4-dev.renovate-ku--ply-job-0-x.2026-09-07.07-58-40.h129f154/README.md
       io.giantswarm.application.team: cabbage
@@ -89588,4 +89631,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.9.1-dev.bump-zot-to-v2-1-20.2026-09-03.07-31-48.hce482ff.tgz
     version: 2.9.1-dev.bump-zot-to-v2-1-20.2026-09-03.07-31-48.hce482ff
-generated: "2026-09-07T17:15:30.801644168Z"
+generated: "2026-09-07T17:15:46.618678543Z"
