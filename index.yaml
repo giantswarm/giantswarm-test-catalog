@@ -29456,6 +29456,40 @@ entries:
   - annotations:
       io.giantswarm.application.audience: all
       io.giantswarm.application.logo: https://s.giantswarm.io/app-icons/flux/2/logo_dark.svg
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/flux-app-1.12.1-dev.release-v1--ase-v1-11-1.2026-09-08.13-05-11.ha607eb0.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/flux-app/refs/tags/v1.12.1-dev.release-v1--ase-v1-11-1.2026-09-08.13-05-11.ha607eb0/README.md
+      io.giantswarm.application.restrictions.cluster-singleton: "true"
+      io.giantswarm.application.team: honeybadger
+      io.giantswarm.application.two-step-install: "true"
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/flux-app/refs/tags/v1.12.1-dev.release-v1--ase-v1-11-1.2026-09-08.13-05-11.ha607eb0/helm/flux-app/values.schema.json
+    apiVersion: v2
+    appVersion: 1.12.1-dev.release-v1--ase-v1-11-1.2026-09-08.13-05-11.ha607eb0
+    created: "2026-09-08T13:05:46.772867713Z"
+    dependencies:
+    - alias: kubeStateMetrics
+      condition: kubeStateMetrics.enabled
+      name: kube-state-metrics
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 7.8.1
+    description: 'Flux is a collection of tools for keeping Kubernetes clusters in
+      sync with sources of configuration (like Git repositories), and automating updates
+      to configuration when there is new code to deploy. '
+    digest: e2a55f97c8b61a25bdb066bc1e0b9b38d5aaee87c5279fb748bd9aa4e35e27c3
+    home: https://github.com/giantswarm/flux-app
+    icon: https://s.giantswarm.io/app-icons/flux/2/icon_light.svg
+    keywords:
+    - gitops
+    - flux
+    name: flux-app
+    sources:
+    - https://github.com/fluxcd/flux2
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/flux-app-1.12.1-dev.release-v1--ase-v1-11-1.2026-09-08.13-05-11.ha607eb0.tgz
+    version: 1.12.1-dev.release-v1--ase-v1-11-1.2026-09-08.13-05-11.ha607eb0
+  - annotations:
+      io.giantswarm.application.audience: all
+      io.giantswarm.application.logo: https://s.giantswarm.io/app-icons/flux/2/logo_dark.svg
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/flux-app-1.12.1-dev.release-v1--ase-v1-11-1.2026-09-08.12-55-03.h1ec8d9f.tgz-meta/main.yaml
       io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/flux-app/refs/tags/v1.12.1-dev.release-v1--ase-v1-11-1.2026-09-08.12-55-03.h1ec8d9f/README.md
       io.giantswarm.application.restrictions.cluster-singleton: "true"
@@ -93142,4 +93176,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.9.1-dev.bump-zot-to-v2-1-20.2026-09-03.07-31-48.hce482ff.tgz
     version: 2.9.1-dev.bump-zot-to-v2-1-20.2026-09-03.07-31-48.hce482ff
-generated: "2026-09-08T12:55:45.198897699Z"
+generated: "2026-09-08T13:05:46.764450338Z"
