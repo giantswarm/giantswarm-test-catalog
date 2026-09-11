@@ -1,0 +1,1493 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "agent-manager": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "agent-platform-mcps": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "agentManager": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "agentSandbox": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "agentgateway": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "backstage": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "baseDomain": {
+            "type": "string"
+        },
+        "bootstrapMode": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "chartOperator": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "ciliumNetworkPolicy": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "cloudnative-pg": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "cluster": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "clusterCA": {
+            "type": "string"
+        },
+        "clusterCIDR": {
+            "type": "string"
+        },
+        "clusterDNSIP": {
+            "type": "string"
+        },
+        "clusterID": {
+            "type": "string"
+        },
+        "components": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "agent-manager": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "agent-platform-mcps": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "agent-sandbox": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "agentgateway": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "backstage": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "cloudnative-pg": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "kagent": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "klaus-gateway": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "kserve-crd": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "kserve-llmisvc-crd": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "kserve-llmisvc-resources": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "kserve-resources": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "mcp-kubernetes": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "model-manager": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "modelServing": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                }
+            }
+        },
+        "dicebear": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "extraObjects": {
+            "type": "array"
+        },
+        "gateway": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "gatewayClassName": {
+                    "type": "string"
+                },
+                "jwksEgress": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "namespace": {
+                            "type": "string"
+                        },
+                        "podSelector": {
+                            "type": "object",
+                            "additionalProperties": false
+                        },
+                        "port": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "listeners": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "allowedRoutes": {
+                                "type": "object",
+                                "additionalProperties": false,
+                                "properties": {
+                                    "namespaces": {
+                                        "type": "object",
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "from": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "port": {
+                                "type": "integer"
+                            },
+                            "protocol": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "parameters": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "containerSecurityContext": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "allowPrivilegeEscalation": {
+                                    "type": "boolean"
+                                },
+                                "capabilities": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "drop": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "readOnlyRootFilesystem": {
+                                    "type": "boolean"
+                                },
+                                "runAsNonRoot": {
+                                    "type": "boolean"
+                                },
+                                "seccompProfile": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "dataPlaneEnv": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "additionalProperties": false,
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "dataPlaneResources": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "limits": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "ephemeral-storage": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "requests": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "ephemeral-storage": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "dataPlaneVolumeMounts": {
+                            "type": "array"
+                        },
+                        "dataPlaneVolumes": {
+                            "type": "array"
+                        },
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "podSecurityContext": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "runAsNonRoot": {
+                                    "type": "boolean"
+                                },
+                                "seccompProfile": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "serviceType": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "gatewayApi": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "gateway": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "create": {
+                            "type": "boolean"
+                        },
+                        "serviceType": {
+                            "type": "string"
+                        },
+                        "tls": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "secretName": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "gcpProject": {
+            "type": "string"
+        },
+        "global": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "domain": {
+                    "type": "string"
+                },
+                "gatewayApi": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "parentRefs": {
+                            "type": "array"
+                        }
+                    }
+                },
+                "identity": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "ca": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "key": {
+                                    "type": "string"
+                                },
+                                "secretName": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "clientId": {
+                            "type": "string"
+                        },
+                        "existingSecret": {
+                            "type": "string"
+                        },
+                        "issuerUrl": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "imagePullSecrets": {
+                    "type": "array"
+                },
+                "observability": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "metrics": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "serviceMonitor": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "enabled": {
+                                            "type": [
+                                                "boolean",
+                                                "string"
+                                            ],
+                                            "description": "`auto` (default) renders the monitor objects when monitoring.coreos.com/v1 is served on the cluster (an offline `helm template` resolves to false unless the API is passed in); `true` / `false` force them on or off.",
+                                            "enum": [
+                                                "auto",
+                                                true,
+                                                false
+                                            ]
+                                        },
+                                        "interval": {
+                                            "type": "string"
+                                        },
+                                        "labels": {
+                                            "type": "object",
+                                            "additionalProperties": true
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "traces": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "otlp": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "endpoint": {
+                                            "type": "string"
+                                        },
+                                        "headers": {
+                                            "type": "object",
+                                            "additionalProperties": true
+                                        },
+                                        "protocol": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "registry": {
+                    "type": "string"
+                }
+            }
+        },
+        "hooks": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "kubectlImage": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "registry": {
+                            "type": "string"
+                        },
+                        "repository": {
+                            "type": "string"
+                        },
+                        "tag": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "opensslImage": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "registry": {
+                            "type": "string"
+                        },
+                        "repository": {
+                            "type": "string"
+                        },
+                        "tag": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "ingress": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "backendTrafficPolicy": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "annotations": {
+                            "type": "object",
+                            "additionalProperties": false
+                        },
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "labels": {
+                            "type": "object",
+                            "additionalProperties": false
+                        },
+                        "timeout": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "hostnames": {
+                    "type": "array"
+                },
+                "httpRoute": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "annotations": {
+                            "type": "object",
+                            "additionalProperties": false
+                        },
+                        "labels": {
+                            "type": "object",
+                            "additionalProperties": false
+                        },
+                        "mcp": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "annotations": {
+                                    "type": "object",
+                                    "additionalProperties": false
+                                },
+                                "labels": {
+                                    "type": "object",
+                                    "additionalProperties": false
+                                }
+                            }
+                        },
+                        "muster": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "annotations": {
+                                    "type": "object",
+                                    "additionalProperties": false
+                                },
+                                "labels": {
+                                    "type": "object",
+                                    "additionalProperties": false
+                                }
+                            }
+                        },
+                        "timeouts": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                },
+                "mode": {
+                    "type": "string"
+                },
+                "parentRefs": {
+                    "type": "array"
+                }
+            }
+        },
+        "kagent": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "kagent-crds": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "klausGateway": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "kserve-crd": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "kserve-llmisvc-crd": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "kserve-llmisvc-resources": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "kserve-resources": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "kyvernoPolicies": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": [
+                        "boolean",
+                        "string"
+                    ],
+                    "description": "`auto` (default) renders the Kyverno objects when kyverno.io/v1 is served on the cluster (an offline `helm template` resolves to false unless the API is passed in); `true` / `false` force them on or off.",
+                    "enum": [
+                        "auto",
+                        true,
+                        false
+                    ]
+                },
+                "policyExceptionNamespace": {
+                    "type": "string"
+                },
+                "rules": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                        "adding-capabilities": {
+                            "type": "string"
+                        },
+                        "adding-capabilities-strict": {
+                            "type": "string"
+                        },
+                        "app-armor": {
+                            "type": "string"
+                        },
+                        "check-seccomp": {
+                            "type": "string"
+                        },
+                        "check-seccomp-strict": {
+                            "type": "string"
+                        },
+                        "host-path": {
+                            "type": "string"
+                        },
+                        "host-ports-none": {
+                            "type": "string"
+                        },
+                        "privilege-escalation": {
+                            "type": "string"
+                        },
+                        "privileged-containers": {
+                            "type": "string"
+                        },
+                        "require-drop-all": {
+                            "type": "string"
+                        },
+                        "restricted-volumes": {
+                            "type": "string"
+                        },
+                        "run-as-non-root": {
+                            "type": "string"
+                        },
+                        "run-as-non-root-user": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "llmRouting": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "backend": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "provider": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "listener": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "port": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "metricLabels": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "expression": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "modelCatalog": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "key": {
+                            "type": "string"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "providers": {
+                            "type": "object",
+                            "additionalProperties": true,
+                            "properties": {
+                                "anthropic": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "models": {
+                                            "type": "object",
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "claude-fable-5-1": {
+                                                    "type": "object",
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "rates": {
+                                                            "type": "object",
+                                                            "additionalProperties": false,
+                                                            "properties": {
+                                                                "cacheRead": {
+                                                                    "type": "string"
+                                                                },
+                                                                "cacheWrite": {
+                                                                    "type": "string"
+                                                                },
+                                                                "input": {
+                                                                    "type": "string"
+                                                                },
+                                                                "output": {
+                                                                    "type": "string"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "claude-haiku-4-5": {
+                                                    "type": "object",
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "rates": {
+                                                            "type": "object",
+                                                            "additionalProperties": false,
+                                                            "properties": {
+                                                                "cacheRead": {
+                                                                    "type": "string"
+                                                                },
+                                                                "cacheWrite": {
+                                                                    "type": "string"
+                                                                },
+                                                                "input": {
+                                                                    "type": "string"
+                                                                },
+                                                                "output": {
+                                                                    "type": "string"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "claude-opus-4-5": {
+                                                    "type": "object",
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "rates": {
+                                                            "type": "object",
+                                                            "additionalProperties": false,
+                                                            "properties": {
+                                                                "cacheRead": {
+                                                                    "type": "string"
+                                                                },
+                                                                "cacheWrite": {
+                                                                    "type": "string"
+                                                                },
+                                                                "input": {
+                                                                    "type": "string"
+                                                                },
+                                                                "output": {
+                                                                    "type": "string"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "claude-opus-5": {
+                                                    "type": "object",
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "rates": {
+                                                            "type": "object",
+                                                            "additionalProperties": false,
+                                                            "properties": {
+                                                                "cacheRead": {
+                                                                    "type": "string"
+                                                                },
+                                                                "cacheWrite": {
+                                                                    "type": "string"
+                                                                },
+                                                                "input": {
+                                                                    "type": "string"
+                                                                },
+                                                                "output": {
+                                                                    "type": "string"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "claude-sonnet-4-5": {
+                                                    "type": "object",
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "rates": {
+                                                            "type": "object",
+                                                            "additionalProperties": false,
+                                                            "properties": {
+                                                                "cacheRead": {
+                                                                    "type": "string"
+                                                                },
+                                                                "cacheWrite": {
+                                                                    "type": "string"
+                                                                },
+                                                                "input": {
+                                                                    "type": "string"
+                                                                },
+                                                                "output": {
+                                                                    "type": "string"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "claude-sonnet-4-6": {
+                                                    "type": "object",
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "rates": {
+                                                            "type": "object",
+                                                            "additionalProperties": false,
+                                                            "properties": {
+                                                                "cacheRead": {
+                                                                    "type": "string"
+                                                                },
+                                                                "cacheWrite": {
+                                                                    "type": "string"
+                                                                },
+                                                                "input": {
+                                                                    "type": "string"
+                                                                },
+                                                                "output": {
+                                                                    "type": "string"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "claude-sonnet-5": {
+                                                    "type": "object",
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "rates": {
+                                                            "type": "object",
+                                                            "additionalProperties": false,
+                                                            "properties": {
+                                                                "cacheRead": {
+                                                                    "type": "string"
+                                                                },
+                                                                "cacheWrite": {
+                                                                    "type": "string"
+                                                                },
+                                                                "input": {
+                                                                    "type": "string"
+                                                                },
+                                                                "output": {
+                                                                    "type": "string"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "pathPrefixes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "routes": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                        "*": {
+                            "type": "string"
+                        },
+                        "/v1/messages": {
+                            "type": "string"
+                        },
+                        "/v1/messages/count_tokens": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "mcp-kubernetes": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "model-manager": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "modelManager": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "modelServing": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "muster": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "networkPolicy": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "additionalEgressCIDRs": {
+                    "type": "array"
+                },
+                "additionalEgressFQDNs": {
+                    "type": "array"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "flavor": {
+                    "type": "string",
+                    "description": "`auto` (default) selects `cilium` when cilium.io/v2 is served on the cluster and `kubernetes` otherwise; `cilium` / `kubernetes` force the flavor.",
+                    "enum": [
+                        "auto",
+                        "cilium",
+                        "kubernetes"
+                    ]
+                },
+                "kubernetes": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "apiServerCIDR": {
+                            "type": "string"
+                        },
+                        "worldExcludedCIDRs": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "musterInClusterMcpPorts": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            }
+        },
+        "postgres": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "applicationDatabase": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "owner": {
+                            "type": "string"
+                        },
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "backup": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "crossplane": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "aws": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "accountId": {
+                                            "type": "string"
+                                        },
+                                        "bucketName": {
+                                            "type": "string"
+                                        },
+                                        "lifecycleDays": {
+                                            "type": "integer"
+                                        },
+                                        "oidcProvider": {
+                                            "type": "string"
+                                        },
+                                        "roleName": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "azure": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "containerName": {
+                                            "type": "string"
+                                        },
+                                        "lifecycleDays": {
+                                            "type": "integer"
+                                        },
+                                        "private": {
+                                            "type": "boolean"
+                                        },
+                                        "privateDnsZoneRef": {
+                                            "type": "string"
+                                        },
+                                        "replicationType": {
+                                            "type": "string"
+                                        },
+                                        "resourceGroup": {
+                                            "type": "string"
+                                        },
+                                        "storageAccountName": {
+                                            "type": "string"
+                                        },
+                                        "subnetName": {
+                                            "type": "string"
+                                        },
+                                        "subscriptionId": {
+                                            "type": "string"
+                                        },
+                                        "vnetName": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "enabled": {
+                                    "type": "boolean"
+                                },
+                                "observeOnly": {
+                                    "type": "boolean"
+                                },
+                                "provider": {
+                                    "type": "string"
+                                },
+                                "providerConfigRef": {
+                                    "type": "string"
+                                },
+                                "region": {
+                                    "type": "string"
+                                },
+                                "tags": {
+                                    "type": "object",
+                                    "additionalProperties": true
+                                }
+                            }
+                        },
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "immediate": {
+                            "type": "boolean"
+                        },
+                        "method": {
+                            "type": "string"
+                        },
+                        "networkPolicy": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "cidrs": {
+                                    "type": "array"
+                                },
+                                "fqdns": {
+                                    "type": "array"
+                                },
+                                "ports": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "minItems": 1
+                                }
+                            }
+                        },
+                        "objectStore": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "azure": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "connectionString": {
+                                            "type": "object",
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "key": {
+                                                    "type": "string"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "inheritFromAzureAD": {
+                                            "type": "boolean"
+                                        },
+                                        "storageAccount": {
+                                            "type": "object",
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "key": {
+                                                    "type": "string"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "storageKey": {
+                                            "type": "object",
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "key": {
+                                                    "type": "string"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "compression": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "destinationPath": {
+                                    "type": "string"
+                                },
+                                "endpointURL": {
+                                    "type": "string"
+                                },
+                                "existingName": {
+                                    "type": "string"
+                                },
+                                "retentionPolicy": {
+                                    "type": "string"
+                                },
+                                "s3": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "accessKeyId": {
+                                            "type": "object",
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "key": {
+                                                    "type": "string"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "inheritFromIAMRole": {
+                                            "type": "boolean"
+                                        },
+                                        "secretAccessKey": {
+                                            "type": "object",
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "key": {
+                                                    "type": "string"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "sidecar": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "resources": {
+                                            "type": "object",
+                                            "additionalProperties": true
+                                        }
+                                    }
+                                },
+                                "wal": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "compression": {
+                                            "type": "string"
+                                        },
+                                        "maxParallel": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "schedule": {
+                            "type": "string"
+                        },
+                        "serverName": {
+                            "type": "string"
+                        },
+                        "serviceAccount": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "annotations": {
+                                    "type": "object",
+                                    "additionalProperties": true
+                                }
+                            }
+                        },
+                        "suspend": {
+                            "type": "boolean"
+                        },
+                        "volumeSnapshot": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "className": {
+                                    "type": "string"
+                                },
+                                "online": {
+                                    "type": "boolean"
+                                },
+                                "walClassName": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "clusterName": {
+                    "type": "string"
+                },
+                "databases": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                        "substrate": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "component": {
+                                    "type": "string"
+                                },
+                                "enabled": {
+                                    "type": "boolean"
+                                },
+                                "extensions": {
+                                    "type": "array"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "reclaimPolicy": {
+                                    "type": "string"
+                                },
+                                "secretNamespaces": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "image": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "instances": {
+                    "type": "integer"
+                },
+                "namespace": {
+                    "type": "string"
+                },
+                "sessionsDatabase": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "owner": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "storage": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "size": {
+                            "type": "string"
+                        },
+                        "storageClass": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "vector": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "extensionImage": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "reference": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "provider": {
+            "type": "string"
+        },
+        "subscriptionID": {
+            "type": "string"
+        },
+        "substrate": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "substrate-crds": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "valkey": {
+            "type": "object",
+            "additionalProperties": true
+        }
+    }
+}
