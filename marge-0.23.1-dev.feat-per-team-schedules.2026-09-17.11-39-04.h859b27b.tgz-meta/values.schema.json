@@ -1,0 +1,770 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "affinity": {
+            "type": "object",
+            "description": "Affinity for the pod",
+            "additionalProperties": true
+        },
+        "baseDomain": {
+            "type": "string"
+        },
+        "bootstrapMode": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "chartOperator": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "ciliumNetworkPolicy": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "cluster": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "clusterCA": {
+            "type": "string"
+        },
+        "clusterCIDR": {
+            "type": "string"
+        },
+        "clusterDNSIP": {
+            "type": "string"
+        },
+        "clusterID": {
+            "type": "string"
+        },
+        "fullnameOverride": {
+            "type": "string",
+            "description": "Overrides the fully qualified resource name"
+        },
+        "gcpProject": {
+            "type": "string"
+        },
+        "global": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "description": "Global values shared between all subcharts",
+            "$comment": "Added automatically by 'helm schema' to allow this chart to be used as a Helm dependency, as this schema would otherwise not allow Helm's special 'global' values key."
+        },
+        "image": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "pullPolicy": {
+                    "type": "string",
+                    "description": "Image pull policy"
+                },
+                "registry": {
+                    "type": "string",
+                    "description": "Registry of the marge image"
+                },
+                "repository": {
+                    "type": "string",
+                    "description": "Repository of the marge image"
+                },
+                "tag": {
+                    "type": "string",
+                    "description": "Overrides the image tag whose default is the chart appVersion."
+                }
+            }
+        },
+        "imagePullSecrets": {
+            "type": "array",
+            "description": "Image pull secrets for the pod"
+        },
+        "marge": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "circleci": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "existingSecret": {
+                            "type": "string",
+                            "description": "Name of an existing Secret holding the CircleCI token. Takes precedence over token."
+                        },
+                        "existingSecretKey": {
+                            "type": "string",
+                            "description": "Key of the CircleCI token inside existingSecret"
+                        },
+                        "token": {
+                            "type": "string",
+                            "description": "CircleCI API token, optional: lets marge inspect private CircleCI projects and retry auto-cancelled builds. The chart writes it into a Secret; prefer existingSecret in production."
+                        }
+                    }
+                },
+                "github": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "app": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "existingSecret": {
+                                    "type": "string",
+                                    "description": "Name of an existing Secret holding the App credential. Takes precedence over the inline values, and must carry every key named below."
+                                },
+                                "id": {
+                                    "type": "string",
+                                    "description": "Numeric ID of the sweep GitHub App. Required by the scheduled sweeps, which mint an installation token per repository instead of holding a token."
+                                },
+                                "idKey": {
+                                    "type": "string",
+                                    "description": "Key of the App ID inside the Secret"
+                                },
+                                "installationId": {
+                                    "type": "string",
+                                    "description": "Numeric ID of the App's installation on the organization."
+                                },
+                                "installationIdKey": {
+                                    "type": "string",
+                                    "description": "Key of the installation ID inside the Secret"
+                                },
+                                "oauth": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "clientId": {
+                                            "type": "string",
+                                            "description": "OAuth client ID of the App. marge never reads it; it is held here so one place holds the App's credentials, and muster's GitHub connector references the same Secret."
+                                        },
+                                        "clientIdKey": {
+                                            "type": "string",
+                                            "description": "Key of the client ID inside the Secret"
+                                        },
+                                        "clientSecret": {
+                                            "type": "string",
+                                            "description": "OAuth client secret of the App. Do not reuse the shared github-oauth-client secret."
+                                        },
+                                        "clientSecretKey": {
+                                            "type": "string",
+                                            "description": "Key of the client secret inside the Secret"
+                                        },
+                                        "existingSecret": {
+                                            "type": "string",
+                                            "description": "Name of an existing Secret holding the OAuth client credentials. Takes precedence over the inline values."
+                                        }
+                                    }
+                                },
+                                "privateKey": {
+                                    "type": "string",
+                                    "description": "PEM private key of the App. The chart writes it into a Secret; prefer existingSecret in production. The values of this item live in 1Password, in the Team Bumblebee vault, item \"marge sweep GitHub App\"."
+                                },
+                                "privateKeyKey": {
+                                    "type": "string",
+                                    "description": "Key of the PEM private key inside the Secret"
+                                }
+                            }
+                        },
+                        "existingSecret": {
+                            "type": "string",
+                            "description": "Name of an existing Secret holding the GitHub token. Takes precedence over token."
+                        },
+                        "existingSecretKey": {
+                            "type": "string",
+                            "description": "Key of the GitHub token inside existingSecret"
+                        },
+                        "token": {
+                            "type": "string",
+                            "description": "GitHub token marge uses (needs the permissions listed in the repository README). The chart writes it into a Secret; prefer existingSecret in production. The scheduled sweeps ignore it and act as the App instead."
+                        }
+                    }
+                },
+                "slack": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "existingSecret": {
+                            "type": "string",
+                            "description": "Name of an existing Secret holding the Slack bot token. Takes precedence over token."
+                        },
+                        "existingSecretKey": {
+                            "type": "string",
+                            "description": "Key of the Slack bot token inside existingSecret"
+                        },
+                        "token": {
+                            "type": "string",
+                            "description": "Bot token of the sweep's own Slack app, which holds chat:write and nothing else. Without it a scheduled sweep does its work and posts no summary."
+                        }
+                    }
+                }
+            }
+        },
+        "mcp": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Run the MCP server: the Deployment, its Service and its NetworkPolicy. Turn it off on an installation that runs the scheduled sweep alone, until a muster registers the server."
+                }
+            }
+        },
+        "muster": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "Description muster shows for the server."
+                },
+                "github": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "authorizationEndpoint": {
+                            "type": "string",
+                            "description": "GitHub's authorization endpoint."
+                        },
+                        "issuer": {
+                            "type": "string",
+                            "description": "Issuer the grants are filed under, and the identity muster files them under, so it must match the value the other GitHub-backed servers use. GitHub publishes no discovery document, so the endpoints below are pinned instead."
+                        },
+                        "scopes": {
+                            "type": "string",
+                            "description": "OAuth scopes requested at sign-in. A GitHub App's user-to-server token takes its rights from the App's permissions and the person's own, so no scope is requested."
+                        },
+                        "tokenEndpoint": {
+                            "type": "string",
+                            "description": "GitHub's token endpoint."
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the MCPServer resource. Defaults to the release fullname."
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "Namespace the MCPServer is created in. Defaults to the release namespace; set it when muster watches another one."
+                },
+                "register": {
+                    "type": "boolean",
+                    "description": "Register the MCP server with muster, so a person reaches it through the gateway as themselves. Needs the App's OAuth client credentials and a muster in the cluster."
+                },
+                "timeout": {
+                    "type": "integer",
+                    "description": "Seconds muster waits on a connection to this server. The sweep reads the checks of every PR in a team's queue, which passes the CRD default of 30. The CRD caps the value at 300.",
+                    "maximum": 300,
+                    "minimum": 1
+                },
+                "toolGroup": {
+                    "type": "string",
+                    "description": "Value of the agent-platform.giantswarm.io/tool-group label, which is how the portal and the toolset presets group a server. Empty leaves the label off."
+                },
+                "toolPrefix": {
+                    "type": "string",
+                    "description": "Prefix muster gives the tools of this server, so they are reachable as x_<prefix>_<tool>."
+                }
+            }
+        },
+        "nameOverride": {
+            "type": "string",
+            "description": "Overrides the chart name in resource names"
+        },
+        "networkPolicy": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Create a NetworkPolicy: ingress to the MCP port from the selected namespaces, egress to DNS and HTTPS only (GitHub, CircleCI)."
+                },
+                "ingressNamespaceSelector": {
+                    "type": "object",
+                    "description": "Namespaces allowed to reach the MCP port; an empty selector allows every namespace of the cluster.",
+                    "additionalProperties": true
+                }
+            }
+        },
+        "nodeSelector": {
+            "type": "object",
+            "description": "Node selector for the pod",
+            "additionalProperties": true
+        },
+        "podAnnotations": {
+            "type": "object",
+            "description": "Annotations to add to the pod",
+            "additionalProperties": true
+        },
+        "podLabels": {
+            "type": "object",
+            "description": "Labels to add to the pod",
+            "additionalProperties": true
+        },
+        "podSecurityContext": {
+            "type": "object",
+            "description": "Pod-level security context (restricted Pod Security Standard)",
+            "additionalProperties": false,
+            "properties": {
+                "fsGroup": {
+                    "type": "integer"
+                },
+                "runAsGroup": {
+                    "type": "integer"
+                },
+                "runAsNonRoot": {
+                    "type": "boolean"
+                },
+                "runAsUser": {
+                    "type": "integer"
+                },
+                "seccompProfile": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "type": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "provider": {
+            "type": "string"
+        },
+        "replicaCount": {
+            "type": "integer",
+            "description": "Number of marge replicas. The MCP transport is stateful per session, so keep it at 1 unless a client-affine load balancer sits in front."
+        },
+        "resources": {
+            "type": "object",
+            "description": "Container resources",
+            "additionalProperties": false,
+            "properties": {
+                "limits": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "cpu": {
+                            "type": "string"
+                        },
+                        "memory": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "requests": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "cpu": {
+                            "type": "string"
+                        },
+                        "memory": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "schedule": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "daily": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "actions": {
+                            "type": "string",
+                            "description": "Sweep steps the daily run performs. Every step here acts through the GitHub or CircleCI API; none of them writes code to a branch."
+                        },
+                        "activeDeadlineSeconds": {
+                            "type": "integer",
+                            "description": "Seconds the daily run may take before Kubernetes stops it."
+                        },
+                        "dryRun": {
+                            "type": "boolean",
+                            "description": "Report every outcome without writing anything. Turn it on for the first runs on a new installation."
+                        },
+                        "enabled": {
+                            "type": "boolean",
+                            "description": "Run the daily sweep. It sweeps every team whose policy file leaves the schedule enabled, and needs marge.github.app."
+                        },
+                        "failedJobsHistoryLimit": {
+                            "type": "integer",
+                            "description": "Failed Jobs kept"
+                        },
+                        "resources": {
+                            "type": "object",
+                            "description": "Container resources of the daily run",
+                            "additionalProperties": false,
+                            "properties": {
+                                "limits": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "cpu": {
+                                            "type": "integer"
+                                        },
+                                        "memory": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "requests": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "cpu": {
+                                            "type": "string"
+                                        },
+                                        "memory": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "schedule": {
+                            "type": "string",
+                            "description": "Cron expression of the daily sweep, in the cluster's timezone unless timeZone is set."
+                        },
+                        "successfulJobsHistoryLimit": {
+                            "type": "integer",
+                            "description": "Successful Jobs kept"
+                        },
+                        "timeZone": {
+                            "type": "string",
+                            "description": "IANA timezone the cron expression is read in."
+                        }
+                    }
+                },
+                "weekly": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "activeDeadlineSeconds": {
+                            "type": "integer",
+                            "description": "Seconds the weekly run may take before Kubernetes stops it."
+                        },
+                        "args": {
+                            "type": "array",
+                            "description": "Arguments the weekly run passes to the marge binary."
+                        },
+                        "enabled": {
+                            "type": "boolean",
+                            "description": "Run the weekly rescue trigger. It stays off until the rescue run exists: the command it would run is not built yet, so args has no default and an enabled weekly CronJob without args fails to render."
+                        },
+                        "failedJobsHistoryLimit": {
+                            "type": "integer",
+                            "description": "Failed Jobs kept"
+                        },
+                        "resources": {
+                            "type": "object",
+                            "description": "Container resources of the weekly run",
+                            "additionalProperties": false,
+                            "properties": {
+                                "limits": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "cpu": {
+                                            "type": "integer"
+                                        },
+                                        "memory": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "requests": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "cpu": {
+                                            "type": "string"
+                                        },
+                                        "memory": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "schedule": {
+                            "type": "string",
+                            "description": "Cron expression of the weekly rescue trigger."
+                        },
+                        "successfulJobsHistoryLimit": {
+                            "type": "integer",
+                            "description": "Successful Jobs kept"
+                        },
+                        "timeZone": {
+                            "type": "string",
+                            "description": "IANA timezone the cron expression is read in."
+                        },
+                        "tokenAudience": {
+                            "type": "string",
+                            "description": "Audience of the projected ServiceAccount token the weekly run presents to the agent platform gateway. Mounted at /var/run/secrets/kagent/token."
+                        }
+                    }
+                }
+            }
+        },
+        "scheduleDefaults": {
+            "type": "object",
+            "description": "Values every entry of schedules takes for the keys it does not set itself.",
+            "additionalProperties": false,
+            "properties": {
+                "actions": {
+                    "type": "string",
+                    "description": "Sweep steps a scheduled sweep performs. Every step here acts through the GitHub or CircleCI API; none of them writes code to a branch."
+                },
+                "activeDeadlineSeconds": {
+                    "type": "integer",
+                    "description": "Seconds a scheduled run may take before Kubernetes stops it."
+                },
+                "dryRun": {
+                    "type": "boolean",
+                    "description": "Report every outcome without writing anything. Turn it on for the first runs on a new installation."
+                },
+                "failedJobsHistoryLimit": {
+                    "type": "integer",
+                    "description": "Failed Jobs kept"
+                },
+                "resources": {
+                    "type": "object",
+                    "description": "Container resources of a scheduled run",
+                    "additionalProperties": false,
+                    "properties": {
+                        "limits": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "cpu": {
+                                    "type": [
+                                        "integer",
+                                        "string"
+                                    ]
+                                },
+                                "memory": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "requests": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "cpu": {
+                                    "type": [
+                                        "integer",
+                                        "string"
+                                    ]
+                                },
+                                "memory": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "successfulJobsHistoryLimit": {
+                    "type": "integer",
+                    "description": "Successful Jobs kept"
+                },
+                "timeZone": {
+                    "type": "string",
+                    "description": "IANA timezone the cron expressions are read in."
+                }
+            }
+        },
+        "schedules": {
+            "type": "array",
+            "description": "Scheduled runs, one CronJob each. An entry sweeps one team, so every team carries its own cadence and its own suspension.",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "name",
+                    "schedule"
+                ],
+                "properties": {
+                    "actions": {
+                        "type": "string"
+                    },
+                    "activeDeadlineSeconds": {
+                        "type": "integer"
+                    },
+                    "args": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "dryRun": {
+                        "type": "boolean"
+                    },
+                    "failedJobsHistoryLimit": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Names the CronJob and its ServiceAccount."
+                    },
+                    "resources": {
+                        "type": "object",
+                        "description": "Container resources of a scheduled run",
+                        "additionalProperties": false,
+                        "properties": {
+                            "limits": {
+                                "type": "object",
+                                "additionalProperties": false,
+                                "properties": {
+                                    "cpu": {
+                                        "type": [
+                                            "integer",
+                                            "string"
+                                        ]
+                                    },
+                                    "memory": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "requests": {
+                                "type": "object",
+                                "additionalProperties": false,
+                                "properties": {
+                                    "cpu": {
+                                        "type": [
+                                            "integer",
+                                            "string"
+                                        ]
+                                    },
+                                    "memory": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "schedule": {
+                        "type": "string",
+                        "description": "Cron expression of this run."
+                    },
+                    "successfulJobsHistoryLimit": {
+                        "type": "integer"
+                    },
+                    "suspend": {
+                        "type": "boolean",
+                        "description": "Suspend this run alone."
+                    },
+                    "team": {
+                        "type": "string",
+                        "description": "The team this run sweeps."
+                    },
+                    "timeZone": {
+                        "type": "string"
+                    },
+                    "tokenAudience": {
+                        "type": "string",
+                        "description": "Audience of the projected ServiceAccount token, mounted at /var/run/secrets/kagent. Left out, no token is mounted."
+                    }
+                }
+            }
+        },
+        "securityContext": {
+            "type": "object",
+            "description": "Container security context (restricted Pod Security Standard)",
+            "additionalProperties": false,
+            "properties": {
+                "allowPrivilegeEscalation": {
+                    "type": "boolean"
+                },
+                "capabilities": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "drop": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "readOnlyRootFilesystem": {
+                    "type": "boolean"
+                },
+                "runAsGroup": {
+                    "type": "integer"
+                },
+                "runAsNonRoot": {
+                    "type": "boolean"
+                },
+                "runAsUser": {
+                    "type": "integer"
+                },
+                "seccompProfile": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "type": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "service": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "description": "Service type"
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "Service port; the container listens on 8080"
+                }
+            }
+        },
+        "serviceAccount": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "description": "Annotations to add to the ServiceAccount",
+                    "additionalProperties": true
+                },
+                "automount": {
+                    "type": "boolean",
+                    "description": "Mount the ServiceAccount token into the pod"
+                },
+                "create": {
+                    "type": "boolean",
+                    "description": "Create a ServiceAccount for the pod. marge talks to GitHub and CircleCI only, so it needs no Kubernetes API access."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the ServiceAccount to use. Generated from the fullname when empty and create is true."
+                }
+            }
+        },
+        "subscriptionID": {
+            "type": "string"
+        },
+        "suspendAll": {
+            "type": "boolean",
+            "description": "Suspend every scheduled run without deleting its entry."
+        },
+        "tolerations": {
+            "type": "array",
+            "description": "Tolerations for the pod"
+        }
+    }
+}
