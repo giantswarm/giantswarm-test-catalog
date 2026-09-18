@@ -1,0 +1,476 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+        "actions": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "description": "Keep the Action records — one `Action` (`platform-manager.giantswarm.io/v1alpha1`) per enablement or reconcile a person commits: actor, installations, capability, inputs, pull requests, approval, rollout, probes, result — as custom resources in the release namespace, read and written with the pod's ServiceAccount (the CRD, a Role and its binding are rendered). Off: no ServiceAccount token is mounted, `get_action` and `list_actions` refuse with the reason and `get_info` reports `actions.configured: false`.",
+                    "type": "boolean"
+                },
+                "installCRD": {
+                    "description": "Render the `actions.platform-manager.giantswarm.io` CRD from the chart's templates (so upgrades follow the chart). Off when the CRD is delivered separately.",
+                    "type": "boolean"
+                }
+            },
+            "additionalProperties": false
+        },
+        "affinity": {
+            "description": "Affinity.",
+            "type": "object",
+            "additionalProperties": true
+        },
+        "approvals": {
+            "type": "object",
+            "properties": {
+                "audience": {
+                    "description": "Audience of the projected ServiceAccount token the requests carry: the gateway's TokenReview audience.",
+                    "type": "string"
+                },
+                "channel": {
+                    "description": "The capability-owning team's channel the reviews land in (a Slack channel ID).",
+                    "type": "string"
+                },
+                "gatewayURL": {
+                    "description": "klaus-gateway's base URL as reached from the pod (for example `http://klaus-gateway.agent-platform.svc:8080`): the team-review endpoint an action's approval request goes to. Empty refuses `mode: commit` (nothing is committed that no one can approve); `get_info` reports `approvals.configured: false`. The requests carry the pod's projected ServiceAccount token in the gateway's audience; the gateway's `reviews.allowedCallers` must name this ServiceAccount.",
+                    "type": "string"
+                },
+                "noticeChannel": {
+                    "description": "The channel told of a review that targets a customer installation, without buttons (the Account Engineers' channel ID). Must differ from `channel`; empty sends no notice.",
+                    "type": "string"
+                },
+                "team": {
+                    "description": "The team whose members decide, as the gateway names it.",
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "baseDomain": {
+            "type": "string"
+        },
+        "bootstrapMode": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "chartOperator": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "ciliumNetworkPolicy": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "cluster": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "clusterCA": {
+            "type": "string"
+        },
+        "clusterCIDR": {
+            "type": "string"
+        },
+        "clusterDNSIP": {
+            "type": "string"
+        },
+        "clusterID": {
+            "type": "string"
+        },
+        "extraArgs": {
+            "description": "Extra container arguments.",
+            "type": "array"
+        },
+        "extraEnv": {
+            "description": "Extra environment variables.",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    },
+                    "valueFrom": {
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "additionalProperties": false
+            }
+        },
+        "fullnameOverride": {
+            "description": "Override the fully qualified app name.",
+            "type": "string"
+        },
+        "gcpProject": {
+            "type": "string"
+        },
+        "github": {
+            "type": "object",
+            "properties": {
+                "apiURL": {
+                    "description": "GitHub API base URL the caller's calls go to; empty is api.github.com.",
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "global": {
+            "description": "Platform-wide values an umbrella chart shares with every component and Helm forwards here; this chart reads none of them.",
+            "type": "object",
+            "additionalProperties": true
+        },
+        "hub": {
+            "description": "Name of the hub installation this manager runs on. Its management-clusters repository holds the Dev Portal's app-config the registry also reads, and the hub side of every capability lands in its repositories. Empty leaves `list_installations` refusing with the reason; `get_info` reports `registry.configured: false`.",
+            "type": "string"
+        },
+        "image": {
+            "type": "object",
+            "properties": {
+                "pullPolicy": {
+                    "description": "Image pull policy.",
+                    "type": "string"
+                },
+                "registry": {
+                    "description": "Image registry.",
+                    "type": "string"
+                },
+                "repository": {
+                    "description": "Image repository.",
+                    "type": "string"
+                },
+                "tag": {
+                    "description": "Image tag. Defaults to the chart appVersion.",
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "imagePullSecrets": {
+            "description": "Image pull secrets.",
+            "type": "array"
+        },
+        "mcp": {
+            "type": "object",
+            "properties": {
+                "path": {
+                    "description": "MCP streamable-HTTP endpoint path.",
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "muster": {
+            "type": "object",
+            "properties": {
+                "mcpServer": {
+                    "type": "object",
+                    "properties": {
+                        "auth": {
+                            "description": "How muster authenticates to this server; rendered only with `oauth.enabled`: `auth.type: oauth` with the GitHub App `giantswarm-platform-manager` pinned as the authorization server — the pattern of the `github` and `pro` servers on the platform. GitHub publishes no discovery document, so the endpoints are named; the App's client credentials come from a Secret; no `scopes` for GitHub (the App's permissions are the App's), a `scopes` value for an authorization server that needs one. muster runs the consent once per person and puts their user token on every call.",
+                            "type": "object",
+                            "properties": {
+                                "authorizationServer": {
+                                    "type": "object",
+                                    "properties": {
+                                        "authorizationEndpoint": {
+                                            "description": "GitHub's authorize endpoint.",
+                                            "type": "string"
+                                        },
+                                        "clientCredentialsSecretRef": {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {
+                                                    "description": "Secret with the App's OAuth client under `client-id` and `client-secret`.",
+                                                    "type": "string"
+                                                },
+                                                "namespace": {
+                                                    "description": "Namespace of that Secret; empty is the release namespace.",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "additionalProperties": false
+                                        },
+                                        "expectedIssuer": {
+                                            "description": "The issuer the authorization server puts in the RFC 9207 `iss` parameter of its authorization response — GitHub's is `https://github.com/login/oauth` for every App, while `issuer` stays the App's own identity the grant is filed under. Empty omits the field.",
+                                            "type": "string"
+                                        },
+                                        "grantScope": {
+                                            "description": "`subject`: the grant belongs to the person, not to one login session — every session of theirs (the portal, an agent, a Slack click) carries the same token.",
+                                            "type": "string"
+                                        },
+                                        "issuer": {
+                                            "description": "The issuer identity the person's grant is filed under: the App's own, so the login App's GitHub grant stays separate.",
+                                            "type": "string"
+                                        },
+                                        "scopes": {
+                                            "description": "The OAuth `scope` parameter of the authorization request (space-separated), only for an authorization server that needs one — a Dex standing in for GitHub in a lab takes `openid profile email offline_access`. Leave empty for GitHub: a GitHub App's permissions are the App's, and the token endpoint takes no scope. Empty omits the field.",
+                                            "type": "string"
+                                        },
+                                        "tokenEndpoint": {
+                                            "description": "GitHub's token endpoint.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            },
+                            "additionalProperties": false
+                        },
+                        "autoStart": {
+                            "description": "Start the server connection when muster initializes.",
+                            "type": "boolean"
+                        },
+                        "description": {
+                            "description": "Human-readable description shown by muster.",
+                            "type": "string"
+                        },
+                        "enabled": {
+                            "description": "Register this server with muster by rendering an `mcpservers.muster.giantswarm.io` CR in the release namespace. Tools then appear as `x_\u003cname\u003e_\u003ctool\u003e`.",
+                            "type": "boolean"
+                        },
+                        "labels": {
+                            "description": "Extra labels on the MCPServer CR.",
+                            "type": "object",
+                            "additionalProperties": true
+                        },
+                        "name": {
+                            "description": "MCPServer CR name (drives the tool prefix).",
+                            "type": "string"
+                        },
+                        "timeout": {
+                            "description": "Seconds muster waits for one call before it cancels it (the CR's `spec.timeout`; muster's own default is 30, the CRD allows 1–300). 120 because a write in `mode: commit` renders the change and opens the pull request within the one call.",
+                            "type": "integer",
+                            "maximum": 300,
+                            "minimum": 1
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false
+        },
+        "nameOverride": {
+            "description": "Override the chart name.",
+            "type": "string"
+        },
+        "nodeSelector": {
+            "description": "Node selector.",
+            "type": "object",
+            "additionalProperties": true
+        },
+        "oauth": {
+            "type": "object",
+            "properties": {
+                "baseURL": {
+                    "description": "URL muster reaches this server at, without the MCP path: the resource of its OAuth protected-resource metadata. Empty derives the in-cluster Service URL, `http://\u003cfullname\u003e.\u003cnamespace\u003e.svc.cluster.local:\u003cservice.port\u003e`.",
+                    "type": "string"
+                },
+                "enabled": {
+                    "description": "Require a GitHub user token as the bearer of every MCP request, verified with `GET /user`; the server then acts as that person. Behind muster the token is the person's own: muster runs the consent for the GitHub App `giantswarm-platform-manager` once (the MCPServer's `authorizationServer` pin under `muster.mcpServer.auth`), stores and refreshes the user token and puts it on every call. Off: anonymous — no caller, nothing acts as a person, the tools say so; only for a server nothing but a trusted proxy can reach.",
+                    "type": "boolean"
+                }
+            },
+            "additionalProperties": false
+        },
+        "podAnnotations": {
+            "description": "Annotations on the pod.",
+            "type": "object",
+            "additionalProperties": true
+        },
+        "podLabels": {
+            "description": "Labels on the pod.",
+            "type": "object",
+            "additionalProperties": true
+        },
+        "podSecurityContext": {
+            "description": "Pod security context.",
+            "type": "object",
+            "properties": {
+                "fsGroup": {
+                    "type": "integer"
+                },
+                "runAsGroup": {
+                    "type": "integer"
+                },
+                "runAsNonRoot": {
+                    "type": "boolean"
+                },
+                "runAsUser": {
+                    "type": "integer"
+                },
+                "seccompProfile": {
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string"
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false
+        },
+        "provider": {
+            "type": "string"
+        },
+        "registry": {
+            "type": "object",
+            "properties": {
+                "path": {
+                    "description": "Path of the installations catalog in that repository: a Backstage catalog file, one `Resource` of type `installation` per installation.",
+                    "type": "string"
+                },
+                "repository": {
+                    "description": "Repository (`owner/repo`) holding the installations catalog, read as the caller: the GitHub App `giantswarm-platform-manager` must be installed on it with contents read.",
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "replicaCount": {
+            "description": "Number of replicas. The server holds no state; more than one is fine.",
+            "type": "integer"
+        },
+        "resources": {
+            "description": "Container resources.",
+            "type": "object",
+            "properties": {
+                "limits": {
+                    "type": "object",
+                    "properties": {
+                        "cpu": {
+                            "type": "string"
+                        },
+                        "memory": {
+                            "type": "string"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "requests": {
+                    "type": "object",
+                    "properties": {
+                        "cpu": {
+                            "type": "string"
+                        },
+                        "memory": {
+                            "type": "string"
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false
+        },
+        "securityContext": {
+            "description": "Container security context.",
+            "type": "object",
+            "properties": {
+                "allowPrivilegeEscalation": {
+                    "type": "boolean"
+                },
+                "capabilities": {
+                    "type": "object",
+                    "properties": {
+                        "drop": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "readOnlyRootFilesystem": {
+                    "type": "boolean"
+                },
+                "runAsGroup": {
+                    "type": "integer"
+                },
+                "runAsNonRoot": {
+                    "type": "boolean"
+                },
+                "runAsUser": {
+                    "type": "integer"
+                },
+                "seccompProfile": {
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string"
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false
+        },
+        "service": {
+            "type": "object",
+            "properties": {
+                "port": {
+                    "description": "Service port (the container listens on 8080).",
+                    "type": "integer"
+                },
+                "type": {
+                    "description": "Service type.",
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "serviceAccount": {
+            "type": "object",
+            "properties": {
+                "annotations": {
+                    "description": "Annotations on the ServiceAccount.",
+                    "type": "object",
+                    "additionalProperties": true
+                },
+                "create": {
+                    "description": "Create a ServiceAccount.",
+                    "type": "boolean"
+                },
+                "name": {
+                    "description": "ServiceAccount name (generated when empty).",
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "subscriptionID": {
+            "type": "string"
+        },
+        "tolerations": {
+            "description": "Tolerations.",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "effect": {
+                        "type": "string"
+                    },
+                    "key": {
+                        "type": "string"
+                    },
+                    "operator": {
+                        "type": "string"
+                    },
+                    "tolerationSeconds": {
+                        "type": "integer"
+                    },
+                    "value": {
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": false
+            }
+        }
+    },
+    "additionalProperties": false
+}
