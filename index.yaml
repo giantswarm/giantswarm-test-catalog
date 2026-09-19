@@ -31153,6 +31153,42 @@ entries:
           url: https://github.com/giantswarm/agent-platform/issues
       io.giantswarm.application.audience: all
       io.giantswarm.application.managed: "true"
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/agent-platform-connectivity-4.45.1-dev.renovate-g--m-pause-3-x.2026-09-19.07-01-30.hc24fba8.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/agent-platform/refs/tags/v4.45.1-dev.renovate-g--m-pause-3-x.2026-09-19.07-01-30.hc24fba8/README.md
+      io.giantswarm.application.team: bumblebee
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/agent-platform/refs/tags/v4.45.1-dev.renovate-g--m-pause-3-x.2026-09-19.07-01-30.hc24fba8/helm/agent-platform-connectivity/values.schema.json
+    apiVersion: v2
+    appVersion: 4.45.1-dev.renovate-g--m-pause-3-x.2026-09-19.07-01-30.hc24fba8
+    created: "2026-09-19T07:19:13.271469099Z"
+    description: 'Giant Swarm Agent Platform — connectivity / integration layer. Renders
+      the consumer-side wiring that turns the platform components into a working whole
+      on a cluster: the public muster route and the agentgateway data-plane Gateway
+      + AgentgatewayParameters + HTTPRoutes + BackendTrafficPolicies, the NetworkPolicies,
+      the kagent and klaus-gateway routes, the kagent catalog (ModelConfigs and RemoteMCPServers
+      at kagent.dev/v1alpha3) and tenant identity, the CloudNativePG Cluster, and
+      — gated on the component toggles — the Backstage app-config and route, the mcp-kubernetes
+      MCPServer registration with muster and the KServe/vLLM model serving layer (runtime,
+      presets, cache, policies). Ships NO workloads of its own — those are separate
+      releases rendered by the agent-platform meta-chart. The CRDs these CRs consume
+      are app-owned: each component (agentgateway, kagent, muster, …) ships its own
+      CRDs, so this chart''s HelmRelease dependsOn those CRD-owning component releases. '
+    digest: 5d6ce80eedc2635107266c6096e399d1bbe9ba5dcbc435e94aa107f278448546
+    home: https://github.com/giantswarm/agent-platform
+    icon: https://s.giantswarm.io/app-icons/giantswarm/1/light.svg
+    name: agent-platform-connectivity
+    sources:
+    - https://github.com/giantswarm/agent-platform
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/agent-platform-connectivity-4.45.1-dev.renovate-g--m-pause-3-x.2026-09-19.07-01-30.hc24fba8.tgz
+    version: 4.45.1-dev.renovate-g--m-pause-3-x.2026-09-19.07-01-30.hc24fba8
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Support
+          url: https://github.com/giantswarm/agent-platform/issues
+      io.giantswarm.application.audience: all
+      io.giantswarm.application.managed: "true"
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/agent-platform-connectivity-4.44.4-dev.renovate-g--m-pause-3-x.2026-09-19.06-41-30.hd815dc8.tgz-meta/main.yaml
       io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/agent-platform/refs/tags/v4.44.4-dev.renovate-g--m-pause-3-x.2026-09-19.06-41-30.hd815dc8/README.md
       io.giantswarm.application.team: bumblebee
@@ -205723,4 +205759,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.9.1-dev.bump-zot-to-v2-1-20.2026-09-03.07-31-48.hce482ff.tgz
     version: 2.9.1-dev.bump-zot-to-v2-1-20.2026-09-03.07-31-48.hce482ff
-generated: "2026-09-19T07:15:53.096718099Z"
+generated: "2026-09-19T07:19:13.254818524Z"
