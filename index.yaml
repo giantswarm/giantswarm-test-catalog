@@ -94553,6 +94553,47 @@ entries:
       io.giantswarm.application.audience: all
       io.giantswarm.application.logo: https://s.giantswarm.io/app-icons/falco/2/logo_dark.svg
       io.giantswarm.application.managed: "true"
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/falco-0.13.1-dev.release-v0-13-x.2026-09-22.13-55-55.hc2e1e93.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/falco-app/refs/tags/v0.13.1-dev.release-v0-13-x.2026-09-22.13-55-55.hc2e1e93/README.md
+      io.giantswarm.application.team: shield
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/falco-app/refs/tags/v0.13.1-dev.release-v0-13-x.2026-09-22.13-55-55.hc2e1e93/helm/falco/values.schema.json
+    apiVersion: v2
+    appVersion: 0.13.1-dev.release-v0-13-x.2026-09-22.13-55-55.hc2e1e93
+    created: "2026-09-22T14:01:33.558032514Z"
+    dependencies:
+    - condition: falco.enabled
+      name: falco
+      repository: ""
+      version: 9.2.0
+    - condition: falcosidekick.enabled
+      name: falcosidekick
+      repository: ""
+      version: 0.14.0
+    - condition: k8s-metacollector.enabled
+      name: k8s-metacollector
+      repository: ""
+      version: 0.3.2
+    description: A Helm chart for falco
+    digest: 47800f0f76cc4d60d684f5b672ca975006b26365ab6f9338b7c1c11c5ddd164b
+    home: https://github.com/giantswarm/falco-app
+    icon: https://s.giantswarm.io/app-icons/falco/2/icon_dark.svg
+    maintainers:
+    - name: Giant Swarm applications team
+      url: https://github.com/giantswarm/falco-app
+    name: falco
+    sources:
+    - https://github.com/giantswarm/falco-app
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/falco-0.13.1-dev.release-v0-13-x.2026-09-22.13-55-55.hc2e1e93.tgz
+    version: 0.13.1-dev.release-v0-13-x.2026-09-22.13-55-55.hc2e1e93
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Support
+          url: https://github.com/giantswarm/falco-app/issues
+      io.giantswarm.application.audience: all
+      io.giantswarm.application.logo: https://s.giantswarm.io/app-icons/falco/2/logo_dark.svg
+      io.giantswarm.application.managed: "true"
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/falco-0.13.1-dev.main-update-chart.2026-09-22.08-44-45.h0310d69.tgz-meta/main.yaml
       io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/falco-app/refs/tags/v0.13.1-dev.main-update-chart.2026-09-22.08-44-45.h0310d69/README.md
       io.giantswarm.application.team: shield
@@ -243168,4 +243209,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.9.1-dev.bump-zot-to-v2-1-20.2026-09-03.07-31-48.hce482ff.tgz
     version: 2.9.1-dev.bump-zot-to-v2-1-20.2026-09-03.07-31-48.hce482ff
-generated: "2026-09-22T14:01:11.24028305Z"
+generated: "2026-09-22T14:01:33.545343444Z"
