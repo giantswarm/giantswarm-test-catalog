@@ -1,0 +1,447 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "baseDomain": {
+            "type": "string"
+        },
+        "bootstrapMode": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "chartOperator": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "ciliumNetworkPolicy": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "admissionControllerExtraEgress": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "dnsSelector": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "rules": {
+                                    "type": "array"
+                                }
+                            }
+                        },
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "fqdnsConnection": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "port": {
+                                    "type": "string"
+                                },
+                                "protocol": {
+                                    "type": "string"
+                                },
+                                "rules": {
+                                    "type": "array"
+                                }
+                            }
+                        }
+                    }
+                },
+                "enabled": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "cleanupPolicies": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "trivyOperator": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean",
+                            "description": "Enable Trivy cleanup policy to delete old Trivy Operator reports"
+                        },
+                        "olderThan": {
+                            "type": "string",
+                            "description": "Reports older than this duration will be deleted. Needs to be specified in hours. Defaults to 2 weeks (336 hours)."
+                        },
+                        "schedule": {
+                            "type": "string",
+                            "description": "Cleanup schedule"
+                        }
+                    }
+                }
+            }
+        },
+        "cluster": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "clusterCA": {
+            "type": "string"
+        },
+        "clusterCIDR": {
+            "type": "string"
+        },
+        "clusterDNSIP": {
+            "type": "string"
+        },
+        "clusterID": {
+            "type": "string"
+        },
+        "crds": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "install": {
+                    "type": "boolean"
+                },
+                "resources": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "limits": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "cpu": {
+                                    "type": "string"
+                                },
+                                "memory": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "requests": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "cpu": {
+                                    "type": "string"
+                                },
+                                "memory": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "gcpProject": {
+            "type": "string"
+        },
+        "global": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "image": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "registry": {
+                    "type": "string"
+                },
+                "repository": {
+                    "type": "string"
+                },
+                "tag": {
+                    "type": "string",
+                    "description": "Image tag Defaults to `latest` if omitted"
+                }
+            }
+        },
+        "kyverno": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "monitoring": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "podLogs": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "annotations": {
+                            "type": "object",
+                            "additionalProperties": false
+                        },
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "labels": {
+                            "type": "object",
+                            "additionalProperties": false
+                        },
+                        "relabelings": {
+                            "type": "array"
+                        },
+                        "tenant": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "policy-reporter": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "policyExceptions": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "allowedPolexNamespaces": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "enableAwsCloudControllerManagerPolex": {
+                    "type": "boolean"
+                },
+                "enableAwsEbsCsiDriverPolex": {
+                    "type": "boolean"
+                },
+                "enableAzureCloudControllerManagerPolex": {
+                    "type": "boolean"
+                },
+                "enableAzureCloudNodeManagerPolex": {
+                    "type": "boolean"
+                },
+                "enableChartOperatorPolex": {
+                    "type": "boolean"
+                },
+                "enableCiliumPolex": {
+                    "type": "boolean"
+                },
+                "enableNoisyContextsPolicy": {
+                    "type": "boolean"
+                },
+                "enablePolexPolicy": {
+                    "type": "boolean"
+                },
+                "enableWildcardMatchPolicy": {
+                    "type": "boolean"
+                },
+                "polexPolicyMessage": {
+                    "type": "string"
+                }
+            }
+        },
+        "provider": {
+            "type": "string"
+        },
+        "subscriptionID": {
+            "type": "string"
+        },
+        "upgradeJob": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "verticalPodAutoscaler": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "admissionController": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "containerPolicies": {
+                            "type": "object",
+                            "additionalProperties": false
+                        },
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "backgroundController": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "containerPolicies": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "maxAllowed": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "cpu": {
+                                            "type": "integer"
+                                        },
+                                        "memory": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "minAllowed": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "cpu": {
+                                            "type": "string"
+                                        },
+                                        "memory": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "cleanupController": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "containerPolicies": {
+                            "type": "object",
+                            "additionalProperties": false
+                        },
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "kyvernoPlugin": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "containerPolicies": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "minAllowed": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "cpu": {
+                                            "type": "string"
+                                        },
+                                        "memory": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "policyReporter": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "containerPolicies": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "minAllowed": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "cpu": {
+                                            "type": "string"
+                                        },
+                                        "memory": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "reportsController": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "containerPolicies": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "maxAllowed": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "cpu": {
+                                            "type": "integer"
+                                        },
+                                        "memory": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "minAllowed": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "cpu": {
+                                            "type": "string"
+                                        },
+                                        "memory": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "ui": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "containerPolicies": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "minAllowed": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "cpu": {
+                                            "type": "string"
+                                        },
+                                        "memory": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
