@@ -251677,6 +251677,44 @@ entries:
           url: https://github.com/giantswarm/grafana-app/issues
         - name: Upstream project
           url: https://github.com/grafana-community/helm-charts/tree/main/charts/grafana
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/grafana-2.41.1-rbf28cd64t20261008060327h2f5b9a5.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/grafana-app/refs/tags/v2.41.1-rbf28cd64t20261008060327h2f5b9a5/README.md
+      io.giantswarm.application.team: atlas
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/grafana-app/refs/tags/v2.41.1-rbf28cd64t20261008060327h2f5b9a5/helm/grafana/values.schema.json
+    apiVersion: v2
+    appVersion: 13.2.0
+    created: "2026-10-08T06:06:58.561439295Z"
+    dependencies:
+    - name: grafana
+      repository: https://grafana-community.github.io/helm-charts
+      version: 13.2.7
+    - alias: pgClusterRecoveryTest
+      condition: pgClusterRecoveryTest.enabled
+      name: pg-cluster-recovery-test
+      repository: https://giantswarm.github.io/giantswarm-catalog
+      version: 0.5.0
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: a3759fa21e8394bdb928cad1700fa9d21b36769a18d3336ec4373267bf93c98f
+    home: https://github.com/giantswarm/grafana-app
+    icon: https://s.giantswarm.io/app-icons/grafana/1/light.svg
+    kubeVersion: ^1.25.0-0
+    maintainers:
+    - email: team-atlas@giantswarm.io
+      name: giantswarm/team-atlas
+    name: grafana
+    sources:
+    - https://github.com/grafana-community/helm-charts/tree/main/charts/grafana
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/grafana-2.41.1-rbf28cd64t20261008060327h2f5b9a5.tgz
+    version: 2.41.1-rbf28cd64t20261008060327h2f5b9a5
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Support
+          url: https://github.com/giantswarm/grafana-app/issues
+        - name: Upstream project
+          url: https://github.com/grafana-community/helm-charts/tree/main/charts/grafana
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/grafana-2.41.1-rbf28cd64t20261006053431h45adae2.tgz-meta/main.yaml
       io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/grafana-app/refs/tags/v2.41.1-rbf28cd64t20261006053431h45adae2/README.md
       io.giantswarm.application.team: atlas
@@ -368531,4 +368569,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.9.1-dev.bump-zot-to-v2-1-20.2026-09-03.07-31-48.hce482ff.tgz
     version: 2.9.1-dev.bump-zot-to-v2-1-20.2026-09-03.07-31-48.hce482ff
-generated: "2026-10-08T06:06:21.57350607Z"
+generated: "2026-10-08T06:06:58.550484678Z"
