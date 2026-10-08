@@ -275919,6 +275919,39 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/kong-app-5.2.4-dev.chart-metadata-standards.2026-09-02.10-17-39.h8dd3b1e.tgz
     version: 5.2.4-dev.chart-metadata-standards.2026-09-02.10-17-39.h8dd3b1e
+  kube-downscaler:
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Support
+          url: https://github.com/giantswarm/kube-downscaler-app/issues
+        - name: Upstream project
+          url: https://github.com/caas-team/py-kube-downscaler
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/kube-downscaler-0.6.20-rc.1.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/kube-downscaler-app/refs/tags/v0.6.20-rc.1/README.md
+      io.giantswarm.application.team: planeteers
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/kube-downscaler-app/refs/tags/v0.6.20-rc.1/helm/kube-downscaler/values.schema.json
+    apiVersion: v2
+    appVersion: 26.4.1
+    created: "2026-10-08T04:42:14.392224764Z"
+    dependencies:
+    - alias: kube-downscaler
+      condition: enabled
+      name: py-kube-downscaler
+      repository: https://caas-team.github.io/helm-charts/
+      version: 0.3.12
+    description: Downscaling tool to save on resources with dev clusters when they
+      are not used
+    digest: c665dc1bdb5cb6d1673744ecc4b51e430e43884e89a3854a80f9b1f426d1c4c1
+    home: https://github.com/giantswarm/kube-downscaler-app
+    icon: https://s.giantswarm.io/app-icons/giantswarm/1/dark.svg
+    name: kube-downscaler
+    sources:
+    - https://github.com/giantswarm/py-kube-downscaler
+    - https://github.com/caas-team/py-kube-downscaler
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/kube-downscaler-0.6.20-rc.1.tgz
+    version: 0.6.20-rc.1
   kube-prometheus-stack:
   - annotations:
       artifacthub.io/license: Apache-2.0
@@ -366031,4 +366064,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.9.1-dev.bump-zot-to-v2-1-20.2026-09-03.07-31-48.hce482ff.tgz
     version: 2.9.1-dev.bump-zot-to-v2-1-20.2026-09-03.07-31-48.hce482ff
-generated: "2026-10-08T04:14:40.593335265Z"
+generated: "2026-10-08T04:42:14.38986548Z"
