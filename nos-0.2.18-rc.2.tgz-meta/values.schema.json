@@ -1,0 +1,905 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "allowDefaultNamespace": {
+            "type": "boolean",
+            "description": "If true allows to deploy `nos` chart in the `default` namespace"
+        },
+        "baseDomain": {
+            "type": "string"
+        },
+        "bootstrapMode": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "chartOperator": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "ciliumNetworkPolicy": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "cluster": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "clusterCA": {
+            "type": "string"
+        },
+        "clusterCIDR": {
+            "type": "string"
+        },
+        "clusterDNSIP": {
+            "type": "string"
+        },
+        "clusterID": {
+            "type": "string"
+        },
+        "gcpProject": {
+            "type": "string"
+        },
+        "global": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "description": "Global values shared between all subcharts",
+            "$comment": "Added automatically by 'helm schema' to allow this chart to be used as a Helm dependency, as this schema would otherwise not allow Helm's special 'global' values key."
+        },
+        "gpuPartitioner": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "affinity": {
+                    "type": "object",
+                    "description": "Sets the affinity config of the GPU Partitioner Pod.",
+                    "additionalProperties": false
+                },
+                "batchWindowIdleSeconds": {
+                    "type": "integer",
+                    "description": "Idle seconds before the GPU partitioner processes the current batch if no new pending Pods are created, and the timeout has not been reached.  Higher values make the GPU partitioner will potentially take into account more pending Pods when deciding the GPU partitioning plan, but the partitioning will be performed less frequently"
+                },
+                "batchWindowTimeoutSeconds": {
+                    "type": "integer",
+                    "description": "Timeout of the window used by the GPU partitioner for batching pending Pods.  Higher values make the GPU partitioner will potentially take into account more pending Pods when deciding the GPU partitioning plan, but the partitioning will be performed less frequently"
+                },
+                "devicePlugin": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "config": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "description": "Name of the ConfigMap containing the NVIDIA Device Plugin configuration files. It must be equal to the value \"devicePlugin.config.name\" of the Helm chart used for deploying the NVIDIA GPU Operator."
+                                },
+                                "namespace": {
+                                    "type": "string",
+                                    "description": "Namespace of the ConfigMap containing the NVIDIA Device Plugin configuration files. It must be equal to the namespace where the Nebuly NVIDIA Device Plugin has been deployed to."
+                                }
+                            }
+                        },
+                        "configUpdateDelaySeconds": {
+                            "type": "integer",
+                            "description": "Duration of the delay between when the new partitioning config is computed and when it is sent to the NVIDIA device plugin. Since the config is provided to the plugin as a mounted ConfigMap, this delay is required to ensure that the updated ConfigMap is propagated to the mounted volume."
+                        }
+                    }
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Enable or disable the `nos gpu partitioner`"
+                },
+                "fullnameOverride": {
+                    "type": "string"
+                },
+                "gpuAgent": {
+                    "type": "object",
+                    "description": "Configuration of the GPU Agent component of the GPU Partitioner.",
+                    "additionalProperties": false,
+                    "properties": {
+                        "image": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "pullPolicy": {
+                                    "type": "string",
+                                    "description": "Sets the GPU Agent Docker image pull policy."
+                                },
+                                "repository": {
+                                    "type": "string",
+                                    "description": "Sets the GPU Agent Docker image."
+                                },
+                                "tag": {
+                                    "type": "string",
+                                    "description": "Overrides the GPU Agent image tag whose default is the chart appVersion."
+                                }
+                            }
+                        },
+                        "logLevel": {
+                            "type": "integer",
+                            "description": "The level of log of the GPU Agent. Zero corresponds to `info`, while values greater or equal than 1 corresponds to higher debug levels. **Must be >= 0**."
+                        },
+                        "reportConfigIntervalSeconds": {
+                            "type": "integer",
+                            "description": "Interval at which the mig-agent will report to k8s status of the GPUs of the Node"
+                        },
+                        "resources": {
+                            "type": "object",
+                            "description": "Sets the resource requests and limits of the GPU Agent container.",
+                            "additionalProperties": false,
+                            "properties": {
+                                "limits": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "cpu": {
+                                            "type": "string"
+                                        },
+                                        "memory": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "runtimeClassName": {
+                            "type": "null",
+                            "description": "The container runtime class name to use for the GPU Agent container."
+                        },
+                        "tolerations": {
+                            "type": "array",
+                            "description": "Sets the tolerations of the GPU Agent Pod.",
+                            "items": {
+                                "type": "object",
+                                "additionalProperties": false,
+                                "properties": {
+                                    "effect": {
+                                        "type": "string"
+                                    },
+                                    "key": {
+                                        "type": "string"
+                                    },
+                                    "operator": {
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "image": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "pullPolicy": {
+                            "type": "string",
+                            "description": "Sets the GPU Partitioner Docker image pull policy."
+                        },
+                        "repository": {
+                            "type": "string",
+                            "description": "Sets the GPU Partitioner Docker image."
+                        },
+                        "tag": {
+                            "type": "string",
+                            "description": "Overrides the GPU Partitioner image tag whose default is the chart appVersion."
+                        }
+                    }
+                },
+                "knownMigGeometries": {
+                    "type": "array",
+                    "description": "List that associates GPU models to the respective allowed MIG configurations",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "allowedGeometries": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "1g.10gb": {
+                                            "type": "integer"
+                                        },
+                                        "1g.5gb": {
+                                            "type": "integer"
+                                        },
+                                        "1g.6gb": {
+                                            "type": "integer"
+                                        },
+                                        "2g.10gb": {
+                                            "type": "integer"
+                                        },
+                                        "2g.12gb": {
+                                            "type": "integer"
+                                        },
+                                        "2g.20gb": {
+                                            "type": "integer"
+                                        },
+                                        "3g.20gb": {
+                                            "type": "integer"
+                                        },
+                                        "3g.40gb": {
+                                            "type": "integer"
+                                        },
+                                        "4g.20gb": {
+                                            "type": "integer"
+                                        },
+                                        "4g.24gb": {
+                                            "type": "integer"
+                                        },
+                                        "4g.40gb": {
+                                            "type": "integer"
+                                        },
+                                        "7g.40gb": {
+                                            "type": "integer"
+                                        },
+                                        "7g.79gb": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                }
+                            },
+                            "models": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "kubeRbacProxy": {
+                    "type": "object",
+                    "description": "Configuration of the [Kube RBAC Proxy](https://github.com/brancz/kube-rbac-proxy), which runs as sidecar of all the GPU Partitioner components Pods.",
+                    "additionalProperties": false,
+                    "properties": {
+                        "image": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "pullPolicy": {
+                                    "type": "string"
+                                },
+                                "repository": {
+                                    "type": "string"
+                                },
+                                "tag": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "logLevel": {
+                            "type": "integer"
+                        },
+                        "resources": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "limits": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "cpu": {
+                                            "type": "string"
+                                        },
+                                        "memory": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "requests": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "cpu": {
+                                            "type": "string"
+                                        },
+                                        "memory": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "leaderElection": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean",
+                            "description": "Enables/Disables the leader election of the GPU Partitioner controller manager."
+                        }
+                    }
+                },
+                "logLevel": {
+                    "type": "integer",
+                    "description": "The level of log of the GPU Partitioner. Zero corresponds to `info`, while values greater or equal than 1 corresponds to higher debug levels. **Must be >= 0**."
+                },
+                "migAgent": {
+                    "type": "object",
+                    "description": "Configuration of the MIG Agent component of the GPU Partitioner.",
+                    "additionalProperties": false,
+                    "properties": {
+                        "image": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "pullPolicy": {
+                                    "type": "string",
+                                    "description": "Sets the MIG Agent Docker image pull policy."
+                                },
+                                "repository": {
+                                    "type": "string",
+                                    "description": "Sets the MIG Agent Docker image."
+                                },
+                                "tag": {
+                                    "type": "string",
+                                    "description": "Overrides the MIG Agent image tag whose default is the chart appVersion."
+                                }
+                            }
+                        },
+                        "logLevel": {
+                            "type": "integer",
+                            "description": "The level of log of the MIG Agent. Zero corresponds to `info`, while values greater or equal than 1 corresponds to higher debug levels. **Must be >= 0**."
+                        },
+                        "reportConfigIntervalSeconds": {
+                            "type": "integer",
+                            "description": "Interval at which the mig-agent will report to k8s the MIG partitioning status of the GPUs of the Node"
+                        },
+                        "resources": {
+                            "type": "object",
+                            "description": "Sets the resource requests and limits of the MIG Agent container.",
+                            "additionalProperties": false,
+                            "properties": {
+                                "limits": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "cpu": {
+                                            "type": "string"
+                                        },
+                                        "memory": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "tolerations": {
+                            "type": "array",
+                            "description": "Sets the tolerations of the MIG Agent Pod.",
+                            "items": {
+                                "type": "object",
+                                "additionalProperties": false,
+                                "properties": {
+                                    "effect": {
+                                        "type": "string"
+                                    },
+                                    "key": {
+                                        "type": "string"
+                                    },
+                                    "operator": {
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "nameOverride": {
+                    "type": "string"
+                },
+                "nodeSelector": {
+                    "type": "object",
+                    "description": "Sets the nodeSelector config of the GPU Partitioner Pod.",
+                    "additionalProperties": false
+                },
+                "podAnnotations": {
+                    "type": "object",
+                    "description": "Sets the annotations of the GPU Partitioner Pod.",
+                    "additionalProperties": false
+                },
+                "podSecurityContext": {
+                    "type": "object",
+                    "description": "Sets the security context of the GPU partitioner Pod.",
+                    "additionalProperties": false,
+                    "properties": {
+                        "runAsNonRoot": {
+                            "type": "boolean"
+                        },
+                        "runAsUser": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "replicaCount": {
+                    "type": "integer",
+                    "description": "Number of replicas of the gpu-manager Pod."
+                },
+                "resources": {
+                    "type": "object",
+                    "description": "Sets the resource limits and requests of the GPU partitioner container.",
+                    "additionalProperties": false,
+                    "properties": {
+                        "limits": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "cpu": {
+                                    "type": "string"
+                                },
+                                "memory": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "requests": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "cpu": {
+                                    "type": "string"
+                                },
+                                "memory": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "scheduler": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "config": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "description": "Name of the ConfigMap containing the k8s scheduler configuration file. If not specified or the ConfigMap does not exist, the GPU partitioner will use the default k8s scheduler profile."
+                                }
+                            }
+                        }
+                    }
+                },
+                "tolerations": {
+                    "type": "array",
+                    "description": "Sets the tolerations of the GPU Partitioner Pod."
+                }
+            }
+        },
+        "image": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "tag": {
+                    "type": "string"
+                }
+            }
+        },
+        "nvidiaGpuResourceMemoryGB": {
+            "type": "integer",
+            "description": "Defines how many GB of memory each nvidia.com/gpu resource has."
+        },
+        "operator": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "affinity": {
+                    "type": "object",
+                    "description": "Sets the affinity config of the operator Pod.",
+                    "additionalProperties": false
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Enable or disable the `nos operator`"
+                },
+                "fullnameOverride": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "pullPolicy": {
+                            "type": "string",
+                            "description": "Sets the operator Docker image pull policy."
+                        },
+                        "repository": {
+                            "type": "string",
+                            "description": "Sets the operator Docker repository"
+                        },
+                        "tag": {
+                            "type": "string",
+                            "description": "Overrides the operator Docker image tag whose default is the chart appVersion."
+                        }
+                    }
+                },
+                "kubeRbacProxy": {
+                    "type": "object",
+                    "description": "Configuration of the [Kube RBAC Proxy](https://github.com/brancz/kube-rbac-proxy), which runs as sidecar of the operator Pods.",
+                    "additionalProperties": false,
+                    "properties": {
+                        "image": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "pullPolicy": {
+                                    "type": "string"
+                                },
+                                "repository": {
+                                    "type": "string"
+                                },
+                                "tag": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "logLevel": {
+                            "type": "integer"
+                        },
+                        "resources": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "limits": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "cpu": {
+                                            "type": "string"
+                                        },
+                                        "memory": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "requests": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "cpu": {
+                                            "type": "string"
+                                        },
+                                        "memory": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "leaderElection": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean",
+                            "description": "Enables/Disables the leader election of the operator controller manager."
+                        }
+                    }
+                },
+                "logLevel": {
+                    "type": "integer",
+                    "description": "The level of log of the controller manager. Zero corresponds to `info`, while values greater or equal than 1 corresponds to higher debug levels. **Must be >= 0**."
+                },
+                "nameOverride": {
+                    "type": "string"
+                },
+                "nodeSelector": {
+                    "type": "object",
+                    "description": "Sets the nodeSelector config of the operator Pod.",
+                    "additionalProperties": false
+                },
+                "podAnnotations": {
+                    "type": "object",
+                    "description": "Sets the annotations of the operator Pod.",
+                    "additionalProperties": false
+                },
+                "podSecurityContext": {
+                    "type": "object",
+                    "description": "Sets the security context of the operator Pod.",
+                    "additionalProperties": false,
+                    "properties": {
+                        "runAsNonRoot": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "replicaCount": {
+                    "type": "integer",
+                    "description": "Number of replicas of the controller manager Pod."
+                },
+                "resources": {
+                    "type": "object",
+                    "description": "Sets the resource limits and requests of the operator controller manager container.",
+                    "additionalProperties": false,
+                    "properties": {
+                        "limits": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "cpu": {
+                                    "type": "string"
+                                },
+                                "memory": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "requests": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "cpu": {
+                                    "type": "string"
+                                },
+                                "memory": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "securityContext": {
+                    "type": "object",
+                    "description": "Sets the security context of the operator container.",
+                    "additionalProperties": false,
+                    "properties": {
+                        "allowPrivilegeEscalation": {
+                            "type": "boolean"
+                        },
+                        "capabilities": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "drop": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "privileged": {
+                            "type": "boolean"
+                        },
+                        "readOnlyRootFilesystem": {
+                            "type": "boolean"
+                        },
+                        "runAsGroup": {
+                            "type": "integer"
+                        },
+                        "runAsNonRoot": {
+                            "type": "boolean"
+                        },
+                        "runAsUser": {
+                            "type": "integer"
+                        },
+                        "seccompProfile": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "type": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tolerations": {
+                    "type": "array",
+                    "description": "Sets the tolerations of the operator Pod."
+                },
+                "webhookCertIssuerInstall": {
+                    "type": "boolean",
+                    "description": "Set to true in non GS clusters"
+                },
+                "webhookCertIssuerName": {
+                    "type": "string"
+                }
+            }
+        },
+        "provider": {
+            "type": "string"
+        },
+        "registry": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "domain": {
+                    "type": "string"
+                }
+            }
+        },
+        "scheduler": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "affinity": {
+                    "type": "object",
+                    "description": "Sets the affinity config of the scheduler deployment.",
+                    "additionalProperties": false
+                },
+                "config": {
+                    "type": "object",
+                    "description": "Overrides the Kube Scheduler configuration",
+                    "additionalProperties": false
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Enable or disable the `nos scheduler`"
+                },
+                "fullnameOverride": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "pullPolicy": {
+                            "type": "string",
+                            "description": "Sets Docker image pull policy."
+                        },
+                        "repository": {
+                            "type": "string",
+                            "description": "Sets Docker image."
+                        },
+                        "tag": {
+                            "type": "string",
+                            "description": "Overrides the image tag whose default is the chart appVersion."
+                        }
+                    }
+                },
+                "leaderElection": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean",
+                            "description": "Enables/Disables the leader election when deployed with multiple replicas."
+                        }
+                    }
+                },
+                "logLevel": {
+                    "type": "integer",
+                    "description": "The level of log of the scheduler. Zero corresponds to `info`, while values greater or equal than 1 corresponds to higher debug levels. **Must be >= 0**."
+                },
+                "nameOverride": {
+                    "type": "string"
+                },
+                "nodeSelector": {
+                    "type": "object",
+                    "description": "Sets the nodeSelector config of the scheduler deployment.",
+                    "additionalProperties": false
+                },
+                "podAnnotations": {
+                    "type": "object",
+                    "description": "Sets the annotations of the scheduler Pod.",
+                    "additionalProperties": false
+                },
+                "podSecurityContext": {
+                    "type": "object",
+                    "description": "Sets the security context of the scheduler Pod",
+                    "additionalProperties": false,
+                    "properties": {
+                        "runAsNonRoot": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "replicaCount": {
+                    "type": "integer",
+                    "description": "Number of replicas of the scheduler."
+                },
+                "resources": {
+                    "type": "object",
+                    "description": "Sets the resource limits and requests of the scheduler container.",
+                    "additionalProperties": false,
+                    "properties": {
+                        "limits": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "cpu": {
+                                    "type": "string"
+                                },
+                                "memory": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "requests": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "cpu": {
+                                    "type": "string"
+                                },
+                                "memory": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "securityContext": {
+                    "type": "object",
+                    "description": "Sets the security context of the scheduler container",
+                    "additionalProperties": false,
+                    "properties": {
+                        "allowPrivilegeEscalation": {
+                            "type": "boolean"
+                        },
+                        "capabilities": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "drop": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "privileged": {
+                            "type": "boolean"
+                        },
+                        "readOnlyRootFilesystem": {
+                            "type": "boolean"
+                        },
+                        "runAsGroup": {
+                            "type": "integer"
+                        },
+                        "runAsNonRoot": {
+                            "type": "boolean"
+                        },
+                        "runAsUser": {
+                            "type": "integer"
+                        },
+                        "seccompProfile": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "type": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tolerations": {
+                    "type": "array",
+                    "description": "Sets the tolerations of the scheduler deployment."
+                }
+            }
+        },
+        "shareTelemetry": {
+            "type": "boolean",
+            "description": "If true, shares with Nebuly telemetry data collected only during the Chart installation"
+        },
+        "subscriptionID": {
+            "type": "string"
+        }
+    }
+}
