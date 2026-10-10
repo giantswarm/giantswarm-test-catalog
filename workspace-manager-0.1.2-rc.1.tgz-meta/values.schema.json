@@ -1,0 +1,741 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "affinity": {
+            "type": "object",
+            "description": "Affinity.",
+            "additionalProperties": true
+        },
+        "baseDomain": {
+            "type": "string"
+        },
+        "bootstrapMode": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "chartOperator": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "ciliumNetworkPolicy": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "cluster": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "clusterCA": {
+            "type": "string"
+        },
+        "clusterCIDR": {
+            "type": "string"
+        },
+        "clusterDNSIP": {
+            "type": "string"
+        },
+        "clusterID": {
+            "type": "string"
+        },
+        "crds": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "install": {
+                    "type": "boolean",
+                    "description": "Install the `Workspace` CRD (`workspaces.workspace-manager.giantswarm.io`). Kept on uninstall, so removing the chart never deletes a workspace."
+                }
+            }
+        },
+        "extraArgs": {
+            "type": "array",
+            "description": "Extra container arguments."
+        },
+        "extraEnv": {
+            "type": "array",
+            "description": "Extra environment variables.",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    },
+                    "valueFrom": {
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                }
+            }
+        },
+        "fullnameOverride": {
+            "type": "string",
+            "description": "Override the fully qualified release name."
+        },
+        "gcpProject": {
+            "type": "string"
+        },
+        "global": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "grant": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "signingKey": {
+                    "type": "object",
+                    "description": "The key the workspace grant a Session carries is signed with: `{name, key}` of a Secret in the release namespace holding at least 32 random bytes, read at start (a missing or short key fails it); the chart never renders it. Empty signs no grant. Needs `providers` and `oauth.enabled`.",
+                    "additionalProperties": false,
+                    "properties": {
+                        "key": {
+                            "type": "string"
+                        },
+                        "name": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "image": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "pullPolicy": {
+                    "type": "string",
+                    "description": "Image pull policy."
+                },
+                "registry": {
+                    "type": "string",
+                    "description": "Image registry."
+                },
+                "repository": {
+                    "type": "string",
+                    "description": "Image repository."
+                },
+                "tag": {
+                    "type": "string",
+                    "description": "Image tag. Defaults to the chart appVersion."
+                }
+            }
+        },
+        "imagePullSecrets": {
+            "type": "array",
+            "description": "Image pull secrets.",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "logging": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "verbose": {
+                    "type": "boolean",
+                    "description": "Enable debug logging."
+                }
+            }
+        },
+        "mcp": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "path": {
+                    "type": "string",
+                    "description": "MCP endpoint path."
+                }
+            }
+        },
+        "muster": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "mcpServer": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "description": {
+                            "type": "string",
+                            "description": "Human-readable description shown by muster."
+                        },
+                        "auth": {
+                            "type": "object",
+                            "description": "How muster authenticates to this server; rendered only with `oauth.enabled`. `forwardToken` makes muster forward the session's Dex id_token byte-identical (the SSO path this chart trusts through its trusted audiences). `requiredAudiences` are extra audiences that token must carry — the Dex cross-client audience the kube-apiserver trusts (`dex-k8s-authenticator` on Giant Swarm clusters; agentlab's is `kubernetes`); muster requests them at login, so users re-login after a change. They are trusted as bearer audiences by construction, since the server's trusted audiences are `oauth.trustedAudiences` plus this list. The registration is unpinned — no authorization server and no GitHub App: a provider sign-in is the workspace-manager's own business.",
+                            "additionalProperties": false,
+                            "properties": {
+                                "forwardToken": {
+                                    "type": "boolean"
+                                },
+                                "requiredAudiences": {
+                                    "type": "array"
+                                }
+                            }
+                        },
+                        "autoStart": {
+                            "type": "boolean",
+                            "description": "Start the server connection when muster initializes."
+                        },
+                        "enabled": {
+                            "type": "boolean",
+                            "description": "Register this server with muster by rendering an `mcpservers.muster.giantswarm.io` CR in the release namespace. Tools then appear as `x_<name>_<tool>`."
+                        },
+                        "labels": {
+                            "type": "object",
+                            "description": "Extra labels on the MCPServer CR.",
+                            "additionalProperties": true
+                        },
+                        "name": {
+                            "type": "string",
+                            "description": "MCPServer CR name (drives the tool prefix)."
+                        }
+                    }
+                }
+            }
+        },
+        "nameOverride": {
+            "type": "string",
+            "description": "Override the chart name."
+        },
+        "networkPolicy": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "allowInternet": {
+                    "type": "boolean",
+                    "description": "Allow egress on 443 to every destination: Dex (discovery and JWKS). Vanilla NetworkPolicy cannot select by name; narrow with egressCIDRs instead when the addresses are known."
+                },
+                "allowKubeAPI": {
+                    "type": "boolean",
+                    "description": "Allow egress to the Kubernetes API server."
+                },
+                "egressCIDRs": {
+                    "type": "array",
+                    "description": "Extra egress CIDRs."
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Create a Kubernetes NetworkPolicy for the pod (off when an umbrella chart renders the policies)."
+                },
+                "ingressNamespaces": {
+                    "type": "array",
+                    "description": "Namespaces allowed to reach the MCP endpoint (label kubernetes.io/metadata.name). Empty allows ingress from the release namespace only."
+                },
+                "metricsNamespaces": {
+                    "type": "array",
+                    "description": "Namespaces allowed to scrape the metrics port (label kubernetes.io/metadata.name), when `observability.metrics.enabled`.",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "nodeSelector": {
+            "type": "object",
+            "description": "Node selector.",
+            "additionalProperties": true
+        },
+        "oauth": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "allowPublicClientRegistration": {
+                    "type": "boolean",
+                    "description": "Accept unauthenticated dynamic client registration (labs only)."
+                },
+                "baseURL": {
+                    "type": "string",
+                    "description": "Public base URL of this server: the issuer of its own OAuth metadata (https, or http on loopback). Empty derives `https://<fullname>.<global.domain>` when `global.domain` is set."
+                },
+                "dex": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "allowPrivateURLs": {
+                            "type": "boolean",
+                            "description": "Let the issuer resolve to a private or loopback address (an in-cluster Dex)."
+                        },
+                        "caSecret": {
+                            "type": "object",
+                            "description": "Secret with the CA of a Dex that serves a private certificate; mounted and passed as the `dex-ca-file` flag. Empty name falls back to `global.identity.ca.secretName` / `global.identity.ca.key`.",
+                            "additionalProperties": false,
+                            "properties": {
+                                "key": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "clientID": {
+                            "type": "string",
+                            "description": "Dex OAuth client ID. Empty falls back to `global.identity.clientId`."
+                        },
+                        "clientSecret": {
+                            "type": "string",
+                            "description": "Dex OAuth client secret (prefer `oauth.existingSecret`)."
+                        },
+                        "issuerURL": {
+                            "type": "string",
+                            "description": "Dex issuer URL. Empty falls back to `global.identity.issuerUrl`."
+                        }
+                    }
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Make workspace-manager an OAuth 2.1 resource server (mcp-oauth): the MCP endpoint requires a bearer token Dex issued, and every call carries the caller's identity and Dex token, from which the caller's Organization is checked. muster forwards the session's Dex id_token (its MCPServer registration with `auth.forwardToken`, unpinned like every manager); it is validated against Dex's JWKS when its audience is in `trustedAudiences`. Off: no caller, so nothing that needs an Organization works; only for a server nothing but a trusted proxy can reach."
+                },
+                "existingSecret": {
+                    "type": "string",
+                    "description": "Existing Secret with the Dex client secret under `dex-client-secret`. Empty falls back to `global.identity.existingSecret`; without that, the chart renders a Secret from `oauth.dex.clientSecret`."
+                },
+                "sso": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "allowPrivateIPs": {
+                            "type": "boolean",
+                            "description": "Let Dex's JWKS endpoint resolve to a private address when validating forwarded tokens (an in-cluster Dex)."
+                        }
+                    }
+                },
+                "trustedAudiences": {
+                    "type": "array",
+                    "description": "OAuth client IDs whose Dex id_tokens are accepted as bearer tokens (SSO token forwarding). Empty falls back to `[global.identity.clientId]`, the platform client MCP clients and the muster CLI log in with. The server trusts the union of this list and `muster.mcpServer.auth.requiredAudiences` (in that order, without duplicates): every token muster forwards carries the required audiences by construction and they are what the kube-apiserver trusts, so a portal session — whose id_token carries them but not the platform client — is accepted without listing its client here."
+                }
+            }
+        },
+        "observability": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "metrics": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean",
+                            "description": "Serve Prometheus metrics on `GET /metrics` of the `metrics` port: `mcp_server_operation_duration_seconds` per tool and `http_server_request_duration_seconds` for the MCP endpoint. Off, `OTEL_METRICS_EXPORTER=none`: nothing is served."
+                        },
+                        "port": {
+                            "type": "integer",
+                            "description": "Port of the metrics listener, apart from the MCP port so the OAuth guard never covers it."
+                        }
+                    }
+                },
+                "otel": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "endpoint": {
+                            "type": "string",
+                            "description": "OTLP collector URL for traces, e.g. `http://otlp-gateway.kube-system.svc:4317` (gRPC) or `https://tempo.example.com:4318` (with protocol `http/protobuf`). Empty exports nothing; inbound `traceparent` headers still propagate. With `networkPolicy.enabled` the policy opens egress to it: the Service's namespace for an in-cluster host, every address otherwise."
+                        },
+                        "headers": {
+                            "type": "string",
+                            "description": "OTLP headers (`OTEL_EXPORTER_OTLP_HEADERS`), e.g. `X-Scope-OrgID=giantswarm` for a multi-tenant collector."
+                        },
+                        "protocol": {
+                            "type": "string",
+                            "description": "OTLP protocol: `grpc` or `http/protobuf`.",
+                            "enum": [
+                                "grpc",
+                                "http/protobuf"
+                            ]
+                        },
+                        "resourceAttributes": {
+                            "type": "string",
+                            "description": "Resource attributes appended to the downward-API `k8s.pod.name`, `k8s.namespace.name` and `k8s.node.name`."
+                        },
+                        "sampler": {
+                            "type": "string",
+                            "description": "`OTEL_TRACES_SAMPLER`. The parent-based default follows the caller's sampling decision and samples `samplerArg` of the traces that start here."
+                        },
+                        "samplerArg": {
+                            "type": "string",
+                            "description": "`OTEL_TRACES_SAMPLER_ARG`."
+                        }
+                    }
+                }
+            }
+        },
+        "organizations": {
+            "type": "object",
+            "description": "The Organizations whose members manage workspaces, each with its member groups: a caller whose forwarded identity carries any of an Organization's groups reads and writes its workspaces, nobody else does. An Organization not listed has no members. Members are bound to nothing in `workspaces.namespace`; the manager writes as its ServiceAccount. For example `{giantswarm: {memberGroups: [giantswarm-ad:developers]}}`.",
+            "additionalProperties": {
+                "type": "object",
+                "required": [
+                    "memberGroups"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "memberGroups": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "minLength": 1
+                        },
+                        "minItems": 1
+                    }
+                }
+            }
+        },
+        "podAnnotations": {
+            "type": "object",
+            "description": "Annotations on the pod.",
+            "additionalProperties": true
+        },
+        "podLabels": {
+            "type": "object",
+            "description": "Labels on the pod.",
+            "additionalProperties": true
+        },
+        "podSecurityContext": {
+            "type": "object",
+            "description": "Pod security context.",
+            "additionalProperties": false,
+            "properties": {
+                "fsGroup": {
+                    "type": "integer"
+                },
+                "runAsGroup": {
+                    "type": "integer"
+                },
+                "runAsNonRoot": {
+                    "type": "boolean"
+                },
+                "runAsUser": {
+                    "type": "integer"
+                },
+                "seccompProfile": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "type": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "provider": {
+            "type": "string"
+        },
+        "providers": {
+            "type": "array",
+            "description": "The installation's workspace providers, several at once: each a unique `name` (a DNS label: the name workspaces and sign-ins refer to), a `kind` and the kind's `values`. A duplicate name, an unknown kind or invalid values fail the server's start with a message naming the instance. Kind `github` (github.com or a GitHub Enterprise Server) takes `url` (default `https://github.com`), `apiURL` (derived from `url`), `app.id`, `app.privateKey` and `oauth.clientID`, `oauth.clientSecret`; a Secret reference is `{name, key}` of a Secret in the release namespace, e.g. `{name: github, kind: github, values: {app: {id: \"123\", privateKey: {name: github-agents-app, key: private-key}}, oauth: {clientID: Iv1.abc, clientSecret: {name: github-agents-app, key: client-secret}}}}`.",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "kind": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "values": {
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                }
+            }
+        },
+        "rbac": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "create": {
+                    "type": "boolean",
+                    "description": "Create the ServiceAccount's Role and RoleBinding in `workspaces.namespace` (the manager writes the Workspaces), and the sync Job's own ServiceAccount and Role there (`<fullname>-sync`, allowed to write its result ConfigMap). No person or group is bound to anything."
+                }
+            }
+        },
+        "replicaCount": {
+            "type": "integer",
+            "description": "Number of replicas. The server keeps no MCP session state (a session begun on one replica continues on another), so two or more are fine. Tokens issued by its own OAuth flow (a client that signs in to it directly) live in one replica's memory; muster's forwarded Dex tokens are validated by every replica."
+        },
+        "resources": {
+            "type": "object",
+            "description": "Container resources.",
+            "additionalProperties": false,
+            "properties": {
+                "limits": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "cpu": {
+                            "type": "string"
+                        },
+                        "ephemeral-storage": {
+                            "type": "string"
+                        },
+                        "memory": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "requests": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "cpu": {
+                            "type": "string"
+                        },
+                        "ephemeral-storage": {
+                            "type": "string"
+                        },
+                        "memory": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "revisionHistoryLimit": {
+            "type": "integer",
+            "description": "Number of old ReplicaSets retained for rollback."
+        },
+        "securityContext": {
+            "type": "object",
+            "description": "Container security context.",
+            "additionalProperties": false,
+            "properties": {
+                "allowPrivilegeEscalation": {
+                    "type": "boolean"
+                },
+                "capabilities": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "drop": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "readOnlyRootFilesystem": {
+                    "type": "boolean"
+                },
+                "runAsGroup": {
+                    "type": "integer"
+                },
+                "runAsNonRoot": {
+                    "type": "boolean"
+                },
+                "runAsUser": {
+                    "type": "integer"
+                },
+                "seccompProfile": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "type": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "service": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "description": "Service type."
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "Service port (the container listens on 8080)."
+                }
+            }
+        },
+        "serviceAccount": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "description": "Annotations on the ServiceAccount.",
+                    "additionalProperties": true
+                },
+                "create": {
+                    "type": "boolean",
+                    "description": "Create a ServiceAccount."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "ServiceAccount name (generated when empty)."
+                }
+            }
+        },
+        "serviceMonitor": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Render a ServiceMonitor for the `metrics` port. Also needs `observability.metrics.enabled`."
+                },
+                "interval": {
+                    "type": "string",
+                    "description": "Scrape interval; empty uses the Prometheus Operator default."
+                },
+                "labels": {
+                    "type": "object",
+                    "description": "Labels on the ServiceMonitor, beside the chart's own. The Giant Swarm observability platform routes a scrape to a Mimir tenant by `observability.giantswarm.io/tenant`; a monitor without it writes to no tenant.",
+                    "additionalProperties": true
+                }
+            }
+        },
+        "sessions": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "cleanupAfter": {
+                    "type": "string",
+                    "description": "How long a Session's directory on the workspace volume outlives the Session's last turn, a Go duration (`720h` is 30 days). Passed to `serve` as its `sessions-cleanup-after` flag."
+                }
+            }
+        },
+        "signin": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "keys": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "current": {
+                            "type": "string",
+                            "description": "The id of the key that seals. The others still open what they sealed, so a key rotates by adding a new one, making it current and dropping the old one once every sign-in was written again."
+                        },
+                        "secretName": {
+                            "type": "string",
+                            "description": "Secret in the release namespace with the keys that seal each person's provider sign-ins and the sign-in flow's state: each data entry is a key id (a lower-case DNS label of at most 32 characters) and its 32 random bytes. Required with `providers` and `oauth.enabled`; the chart never renders it."
+                        }
+                    }
+                }
+            }
+        },
+        "storage": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "sizing": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "factor": {
+                            "type": [
+                                "string",
+                                "number"
+                            ],
+                            "description": "Multiplier of the measured size, at least 1: a number or a string (`\"1.5\"`). Passed to `serve` as its `sizing-factor` flag.",
+                            "pattern": "^[0-9]+(\\.[0-9]+)?$"
+                        },
+                        "headroom": {
+                            "type": "string",
+                            "description": "Added to the multiplied size, a Kubernetes quantity; a Workspace's larger `spec.sizing.headroom` replaces it. Passed to `serve` as its `sizing-headroom` flag."
+                        },
+                        "maxSize": {
+                            "type": "string",
+                            "description": "Ceiling of the size, a Kubernetes quantity, which wins over a Workspace's minimum. Empty sets none. Passed to `serve` as its `sizing-max-size` flag."
+                        }
+                    }
+                },
+                "storageClassName": {
+                    "type": "string",
+                    "description": "The read-write-many StorageClass every workspace's volume is claimed from (the PersistentVolumeClaim's `spec.storageClassName`, access mode ReadWriteMany): bare mirrors and a directory per Session, used by git, so the class keeps POSIX semantics (file modes, symbolic links): Amazon EFS, Azure Files over NFS, an NFS server. A cluster rarely has such a class by default, and the manager never falls back to the cluster's default class: empty, no volume is claimed and every Workspace's `VolumeClaimed` condition names this value. Passed to `serve` as its `storage-class` flag."
+                }
+            }
+        },
+        "subscriptionID": {
+            "type": "string"
+        },
+        "sync": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "cycle": {
+                    "type": "string",
+                    "description": "How often the controller reconciles every Workspace without an event, a Go duration (`10m`, `1h`): a claim deleted out from under a Workspace is made again by then. Each Workspace's own `spec.sync` (nightly, weekly or custom) says when its mirrors are fetched. Passed to `serve` as its `sync-cycle` flag."
+                }
+            }
+        },
+        "tokenExchange": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "clientID": {
+                    "type": "string",
+                    "description": "The installation's kagent client: the only client the token exchange `POST /token` (RFC 8693) answers, with the person's access token for a provider instance. Empty serves no token exchange. Needs `providers` and `oauth.enabled`; kagent's namespace belongs in `networkPolicy.ingressNamespaces`."
+                },
+                "clientSecret": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "key": {
+                            "type": "string",
+                            "description": "Key of the client secret in that Secret."
+                        },
+                        "name": {
+                            "type": "string",
+                            "description": "Secret in the release namespace with the kagent client's secret, read on every exchange; the chart never renders it."
+                        }
+                    }
+                }
+            }
+        },
+        "tolerations": {
+            "type": "array",
+            "description": "Tolerations.",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "effect": {
+                        "type": "string"
+                    },
+                    "key": {
+                        "type": "string"
+                    },
+                    "operator": {
+                        "type": "string"
+                    },
+                    "tolerationSeconds": {
+                        "type": "integer"
+                    },
+                    "value": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "workspaces": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "namespace": {
+                    "type": "string",
+                    "description": "Namespace the workspaces and everything they own live in: the namespace kagent runs its sessions in. The manager's Role (`rbac.create`) is rendered here."
+                }
+            }
+        }
+    }
+}
