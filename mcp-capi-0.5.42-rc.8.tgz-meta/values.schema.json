@@ -1,0 +1,543 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "affinity": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "baseDomain": {
+            "type": "string"
+        },
+        "bootstrapMode": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "chartOperator": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "ciliumNetworkPolicy": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "additionalProperties": true
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "ingress": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "additionalPeers": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "required": [
+                                    "namespace",
+                                    "matchLabels"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                    "matchLabels": {
+                                        "type": "object",
+                                        "additionalProperties": {
+                                            "type": "string"
+                                        },
+                                        "minProperties": 1
+                                    },
+                                    "namespace": {
+                                        "type": "string",
+                                        "minLength": 1
+                                    }
+                                }
+                            }
+                        },
+                        "gatewayPeers": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "required": [
+                                    "namespace",
+                                    "matchLabels"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                    "matchLabels": {
+                                        "type": "object",
+                                        "additionalProperties": {
+                                            "type": "string"
+                                        },
+                                        "minProperties": 1
+                                    },
+                                    "namespace": {
+                                        "type": "string",
+                                        "minLength": 1
+                                    }
+                                }
+                            }
+                        },
+                        "muster": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "matchLabels": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "minProperties": 1
+                                },
+                                "namespace": {
+                                    "type": "string",
+                                    "minLength": 1
+                                }
+                            }
+                        },
+                        "teleportPeers": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "required": [
+                                    "namespace",
+                                    "matchLabels"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                    "matchLabels": {
+                                        "type": "object",
+                                        "additionalProperties": {
+                                            "type": "string"
+                                        },
+                                        "minProperties": 1
+                                    },
+                                    "namespace": {
+                                        "type": "string",
+                                        "minLength": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": true
+                }
+            }
+        },
+        "cluster": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "clusterCA": {
+            "type": "string"
+        },
+        "clusterCIDR": {
+            "type": "string"
+        },
+        "clusterDNSIP": {
+            "type": "string"
+        },
+        "clusterID": {
+            "type": "string"
+        },
+        "exposeKubeconfig": {
+            "type": "boolean",
+            "description": "Offer capi_get_kubeconfig and let capi_backup_cluster include Secrets: the workload cluster's admin kubeconfig leaves the server. Off by default and independent of readOnly; without it the tool is not registered and the server refuses the export. Never enable this on a Giant Swarm management cluster."
+        },
+        "fullnameOverride": {
+            "type": "string"
+        },
+        "gatewayAPI": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "backendTrafficPolicy": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "annotations": {
+                            "type": "object",
+                            "additionalProperties": true
+                        },
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "labels": {
+                            "type": "object",
+                            "additionalProperties": true
+                        },
+                        "timeout": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "httpRoute": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "annotations": {
+                            "type": "object",
+                            "additionalProperties": true
+                        },
+                        "hostnames": {
+                            "type": "array"
+                        },
+                        "labels": {
+                            "type": "object",
+                            "additionalProperties": true
+                        },
+                        "parentRefs": {
+                            "type": "array"
+                        }
+                    }
+                }
+            }
+        },
+        "gcpProject": {
+            "type": "string"
+        },
+        "gitopsGuard": {
+            "type": "boolean",
+            "description": "Refuse writes to objects owned by a GitOps controller (Flux Kustomization or HelmRelease, Argo CD Application) or a Helm release: the change would be reverted on the next reconciliation and belongs in Git. Only matters when readOnly is false. An object labelled giantswarm.io/prevent-deletion is never deleted, whatever the policy."
+        },
+        "global": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "image": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "pullPolicy": {
+                    "type": "string"
+                },
+                "registry": {
+                    "type": "string"
+                },
+                "repository": {
+                    "type": "string"
+                },
+                "tag": {
+                    "type": "string"
+                }
+            }
+        },
+        "imagePullSecrets": {
+            "type": "array"
+        },
+        "nameOverride": {
+            "type": "string"
+        },
+        "nodeSelector": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "oauth": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "allowPrivateURLs": {
+                    "type": "boolean"
+                },
+                "allowPublicRegistration": {
+                    "type": "boolean"
+                },
+                "baseURL": {
+                    "type": "string"
+                },
+                "dex": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "caSecret": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "key": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "clientID": {
+                            "type": "string"
+                        },
+                        "clientSecret": {
+                            "type": "string"
+                        },
+                        "issuerURL": {
+                            "type": "string"
+                        },
+                        "kubernetesAuthenticatorClientID": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "downstream": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "encryptionKey": {
+                    "type": "string"
+                },
+                "existingSecret": {
+                    "type": "string"
+                },
+                "existingSecretChecksum": {
+                    "type": "string"
+                },
+                "google": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "clientID": {
+                            "type": "string"
+                        },
+                        "clientSecret": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "provider": {
+                    "type": "string"
+                },
+                "storage": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "type": {
+                            "type": "string"
+                        },
+                        "valkey": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "existingSecret": {
+                                    "type": "string"
+                                },
+                                "existingSecretChecksum": {
+                                    "type": "string"
+                                },
+                                "keyPrefix": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                },
+                                "secretKeyPassword": {
+                                    "type": "string"
+                                },
+                                "tls": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "enabled": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "trustedAudiences": {
+                    "type": "array"
+                }
+            }
+        },
+        "podAnnotations": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "podLabels": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "podSecurityContext": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "fsGroup": {
+                    "type": "integer"
+                },
+                "runAsGroup": {
+                    "type": "integer"
+                },
+                "runAsNonRoot": {
+                    "type": "boolean"
+                },
+                "runAsUser": {
+                    "type": "integer"
+                },
+                "seccompProfile": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "type": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "provider": {
+            "type": "string"
+        },
+        "readOnly": {
+            "type": "boolean",
+            "description": "Register only the tools that read (list, get, inspect, export) and refuse every mutating Kubernetes call. Set to false to offer the create, scale, upgrade, pause, resume and delete tools; the person's RBAC still applies."
+        },
+        "replicaCount": {
+            "type": "integer"
+        },
+        "resources": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "limits": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "memory": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "requests": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "cpu": {
+                            "type": "string"
+                        },
+                        "memory": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "securityContext": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "allowPrivilegeEscalation": {
+                    "type": "boolean"
+                },
+                "capabilities": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "drop": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "readOnlyRootFilesystem": {
+                    "type": "boolean"
+                },
+                "runAsGroup": {
+                    "type": "integer"
+                },
+                "runAsNonRoot": {
+                    "type": "boolean"
+                },
+                "runAsUser": {
+                    "type": "integer"
+                },
+                "seccompProfile": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "type": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "service": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "port": {
+                    "type": "integer"
+                }
+            }
+        },
+        "serviceAccount": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "additionalProperties": true
+                },
+                "automount": {
+                    "type": "boolean"
+                },
+                "create": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "startupProbe": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "failureThreshold": {
+                    "type": "integer"
+                },
+                "periodSeconds": {
+                    "type": "integer"
+                },
+                "timeoutSeconds": {
+                    "type": "integer"
+                }
+            }
+        },
+        "subscriptionID": {
+            "type": "string"
+        },
+        "tolerations": {
+            "type": "array"
+        },
+        "volumeMounts": {
+            "type": "array"
+        },
+        "volumes": {
+            "type": "array"
+        }
+    }
+}
