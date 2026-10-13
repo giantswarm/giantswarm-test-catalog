@@ -1,0 +1,192 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "additionalLabels": {
+            "type": "object",
+            "description": "Labels added to all resources when `enabled` is true",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": false
+                }
+            }
+        },
+        "affinity": {
+            "type": "object",
+            "description": "Affinity for the gadget DaemonSet",
+            "additionalProperties": false
+        },
+        "baseDomain": {
+            "type": "string"
+        },
+        "bootstrapMode": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "capabilities": {
+            "type": "object",
+            "description": "Capabilities for the gadget container; empty means the upstream default set",
+            "additionalProperties": false
+        },
+        "chartOperator": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "ciliumNetworkPolicy": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "cluster": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "clusterCA": {
+            "type": "string"
+        },
+        "clusterCIDR": {
+            "type": "string"
+        },
+        "clusterDNSIP": {
+            "type": "string"
+        },
+        "clusterID": {
+            "type": "string"
+        },
+        "config": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "allowedGadgets": {
+                    "type": "array",
+                    "description": "List of allowed gadgets"
+                },
+                "appArmorProfile": {
+                    "type": "string",
+                    "description": "AppArmor profile for the gadget container"
+                },
+                "containerdSocketPath": {
+                    "type": "string",
+                    "description": "Containerd CRI Unix socket path"
+                },
+                "crioSocketPath": {
+                    "type": "string",
+                    "description": "CRI-O CRI Unix socket path"
+                },
+                "daemonLogLevel": {
+                    "type": "string",
+                    "description": "Daemon log level. Valid values are: \"trace\", \"debug\", \"info\", \"warning\", \"error\", \"fatal\", \"panic\""
+                },
+                "disallowGadgetsPulling": {
+                    "type": "boolean",
+                    "description": "Disallow pulling gadgets"
+                },
+                "dockerSocketPath": {
+                    "type": "string",
+                    "description": "Docker Engine API Unix socket path"
+                },
+                "eventsBufferLength": {
+                    "type": "string",
+                    "description": "Events buffer length. A low value could impact horizontal scaling."
+                },
+                "experimental": {
+                    "type": "boolean",
+                    "description": "Enable experimental features"
+                },
+                "fallbackPodInformer": {
+                    "type": "boolean",
+                    "description": "Whether to use the fallback pod informer"
+                },
+                "gadgetsPublicKeys": {
+                    "type": "array",
+                    "description": "Public keys used to verify image-based gadgets",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "hookMode": {
+                    "type": "string",
+                    "description": "How to get containers start/stop notifications (auto, crio, podinformer, nri, fanotify+ebpf)"
+                },
+                "mountPullSecret": {
+                    "type": "boolean",
+                    "description": "Mount pull secret (gadget-pull-secret) to pull image-based gadgets from a private registry"
+                },
+                "otelMetricsAddress": {
+                    "type": "string",
+                    "description": "Address to listen on for OpenTelemetry metrics"
+                },
+                "otelMetricsListen": {
+                    "type": "boolean",
+                    "description": "Enable the OpenTelemetry metrics listener"
+                },
+                "podmanSocketPath": {
+                    "type": "string",
+                    "description": "Podman API Unix socket path"
+                },
+                "verifyGadgets": {
+                    "type": "boolean",
+                    "description": "Verify image-based gadgets"
+                }
+            }
+        },
+        "gcpProject": {
+            "type": "string"
+        },
+        "global": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "description": "Global values shared between all subcharts",
+            "$comment": "Added automatically by 'helm schema' to allow this chart to be used as a Helm dependency, as this schema would otherwise not allow Helm's special 'global' values key."
+        },
+        "image": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "pullPolicy": {
+                    "type": "string",
+                    "description": "Pull policy for the container image"
+                },
+                "repository": {
+                    "type": "string",
+                    "description": "Container image repository. Upstream's image; there is no gsoci mirror yet."
+                },
+                "tag": {
+                    "type": "string",
+                    "description": "Tag for the container image; empty means the chart's appVersion"
+                }
+            }
+        },
+        "nodeSelector": {
+            "type": "object",
+            "description": "Node selector for the gadget DaemonSet",
+            "additionalProperties": false,
+            "properties": {
+                "kubernetes.io/os": {
+                    "type": "string"
+                }
+            }
+        },
+        "provider": {
+            "type": "string"
+        },
+        "skipLabels": {
+            "type": "boolean",
+            "description": "Skip the Helm labels (upstream default is true; Giant Swarm charts carry the team label)"
+        },
+        "subscriptionID": {
+            "type": "string"
+        },
+        "tolerations": {
+            "type": "array",
+            "description": "Extra tolerations for the gadget DaemonSet"
+        }
+    }
+}
