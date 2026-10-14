@@ -11725,6 +11725,46 @@ entries:
           url: https://github.com/giantswarm/agent-platform/issues
       io.giantswarm.application.audience: all
       io.giantswarm.application.managed: "true"
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/agent-platform-4.131.2-rce6e84f9t20261014102550hf4ea745.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/agent-platform/refs/tags/v4.131.2-rce6e84f9t20261014102550hf4ea745/README.md
+      io.giantswarm.application.team: bumblebee
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/agent-platform/refs/tags/v4.131.2-rce6e84f9t20261014102550hf4ea745/helm/agent-platform/values.schema.json
+    apiVersion: v2
+    appVersion: 4.131.2-rce6e84f9t20261014102550hf4ea745
+    created: "2026-10-14T10:39:54.710701196Z"
+    dependencies:
+    - condition: components.flux.enabled
+      name: flux-engine
+      repository: ""
+      version: 0.1.0
+    description: 'Giant Swarm Agent Platform — MCP gateway deploy unit, packaged as
+      an app-of-apps meta-package. Renders each component (muster, agentgateway, kagent,
+      klaus-gateway, valkey, agent-platform-mcps, agent-sandbox, …) and the consumer-side
+      connectivity layer as a Flux OCIRepository + HelmRelease (Flux is the only render
+      engine), with each component''s version expressed as a value RANGE rather than
+      a Chart.yaml pin — so a component release rolls forward with no PR to this chart.
+      Brings its own Flux engine (the flux-engine subchart: Flux Operator + FluxInstance)
+      where a cluster has none, so `helm install` yields a running platform; a cluster
+      that runs Flux sets components.flux.enabled=false. Each component ships its
+      own CRDs (app-owned CRDs, upgraded via Flux CreateReplace); the Gateway API
+      CRDs and GatewayClass remain cluster-level prerequisites — see README. '
+    digest: 92449f0c9bf9bda5ec22df376d1ded10a12e9d1b316d4d125be2e4e8ef58634f
+    home: https://github.com/giantswarm/agent-platform
+    icon: https://s.giantswarm.io/app-icons/giantswarm/1/light.svg
+    name: agent-platform
+    sources:
+    - https://github.com/giantswarm/agent-platform
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/agent-platform-4.131.2-rce6e84f9t20261014102550hf4ea745.tgz
+    version: 4.131.2-rce6e84f9t20261014102550hf4ea745
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Support
+          url: https://github.com/giantswarm/agent-platform/issues
+      io.giantswarm.application.audience: all
+      io.giantswarm.application.managed: "true"
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/agent-platform-4.131.2-rce6e84f9t20261014102439hc9296e1.tgz-meta/main.yaml
       io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/agent-platform/refs/tags/v4.131.2-rce6e84f9t20261014102439hc9296e1/README.md
       io.giantswarm.application.team: bumblebee
@@ -488431,4 +488471,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.9.1-dev.bump-zot-to-v2-1-20.2026-09-03.07-31-48.hce482ff.tgz
     version: 2.9.1-dev.bump-zot-to-v2-1-20.2026-09-03.07-31-48.hce482ff
-generated: "2026-10-14T10:38:50.436027676Z"
+generated: "2026-10-14T10:39:54.684981644Z"
