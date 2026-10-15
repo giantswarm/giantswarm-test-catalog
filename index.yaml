@@ -231051,6 +231051,40 @@ entries:
   - annotations:
       io.giantswarm.application.audience: all
       io.giantswarm.application.logo: https://s.giantswarm.io/app-icons/flux/2/logo_dark.svg
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/flux-app-1.12.3-dev.teams-alignment-branch.2026-10-15.21-47-54.hf16edb3.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/flux-app/refs/tags/v1.12.3-dev.teams-alignment-branch.2026-10-15.21-47-54.hf16edb3/README.md
+      io.giantswarm.application.restrictions.cluster-singleton: "true"
+      io.giantswarm.application.team: honeybadger
+      io.giantswarm.application.two-step-install: "true"
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/flux-app/refs/tags/v1.12.3-dev.teams-alignment-branch.2026-10-15.21-47-54.hf16edb3/helm/flux-app/values.schema.json
+    apiVersion: v2
+    appVersion: 1.12.3-dev.teams-alignment-branch.2026-10-15.21-47-54.hf16edb3
+    created: "2026-10-15T21:51:54.571579723Z"
+    dependencies:
+    - alias: kubeStateMetrics
+      condition: kubeStateMetrics.enabled
+      name: kube-state-metrics
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 7.8.1
+    description: 'Flux is a collection of tools for keeping Kubernetes clusters in
+      sync with sources of configuration (like Git repositories), and automating updates
+      to configuration when there is new code to deploy. '
+    digest: ecedf4ee402bc6688df603ee856668fffbd2ca4e41ccd0f62170e52f8ed51b75
+    home: https://github.com/giantswarm/flux-app
+    icon: https://s.giantswarm.io/app-icons/flux/2/icon_light.svg
+    keywords:
+    - gitops
+    - flux
+    name: flux-app
+    sources:
+    - https://github.com/fluxcd/flux2
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/flux-app-1.12.3-dev.teams-alignment-branch.2026-10-15.21-47-54.hf16edb3.tgz
+    version: 1.12.3-dev.teams-alignment-branch.2026-10-15.21-47-54.hf16edb3
+  - annotations:
+      io.giantswarm.application.audience: all
+      io.giantswarm.application.logo: https://s.giantswarm.io/app-icons/flux/2/logo_dark.svg
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/flux-app-1.12.3-dev.teams-alignment-branch.2026-10-09.14-42-10.h69de22b.tgz-meta/main.yaml
       io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/flux-app/refs/tags/v1.12.3-dev.teams-alignment-branch.2026-10-09.14-42-10.h69de22b/README.md
       io.giantswarm.application.restrictions.cluster-singleton: "true"
@@ -526899,4 +526933,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.9.1-dev.bump-zot-to-v2-1-20.2026-09-03.07-31-48.hce482ff.tgz
     version: 2.9.1-dev.bump-zot-to-v2-1-20.2026-09-03.07-31-48.hce482ff
-generated: "2026-10-15T21:50:56.648254221Z"
+generated: "2026-10-15T21:51:54.565081408Z"
