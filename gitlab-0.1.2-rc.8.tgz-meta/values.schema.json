@@ -1,0 +1,654 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$defs": {
+        "_definitions.json": {
+            "definitions": {
+                "io.k8s.api.networking.v1.IPBlock": {
+                    "type": "object",
+                    "description": "IPBlock describes a particular CIDR (Ex. \"192.168.1.0/24\",\"2001:db8::/64\") that is allowed to the pods matched by a NetworkPolicySpec's podSelector. The except entry describes CIDRs that should not be included within this rule.",
+                    "required": [
+                        "cidr"
+                    ],
+                    "properties": {
+                        "cidr": {
+                            "type": "string",
+                            "description": "cidr is a string representing the IPBlock Valid examples are \"192.168.1.0/24\" or \"2001:db8::/64\""
+                        },
+                        "except": {
+                            "type": "array",
+                            "description": "except is a slice of CIDRs that should not be included within an IPBlock Valid examples are \"192.168.1.0/24\" or \"2001:db8::/64\" Except values will be rejected if they are outside the cidr range",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "io.k8s.apimachinery.pkg.apis.meta.v1.LabelSelector": {
+                    "type": "object",
+                    "description": "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
+                    "properties": {
+                        "matchExpressions": {
+                            "type": "array",
+                            "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+                            "items": {
+                                "$ref": "#/$defs/_definitions.json/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.LabelSelectorRequirement"
+                            }
+                        },
+                        "matchLabels": {
+                            "type": "object",
+                            "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "io.k8s.apimachinery.pkg.apis.meta.v1.LabelSelectorRequirement": {
+                    "type": "object",
+                    "description": "A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
+                    "required": [
+                        "key",
+                        "operator"
+                    ],
+                    "properties": {
+                        "key": {
+                            "type": "string",
+                            "description": "key is the label key that the selector applies to."
+                        },
+                        "operator": {
+                            "type": "string",
+                            "description": "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist."
+                        },
+                        "values": {
+                            "type": "array",
+                            "description": "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "networkpolicypeer.json": {
+            "$schema": "http://json-schema.org/schema#",
+            "type": "object",
+            "description": "NetworkPolicyPeer describes a peer to allow traffic to/from. Only certain combinations of fields are allowed",
+            "properties": {
+                "ipBlock": {
+                    "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.networking.v1.IPBlock",
+                    "description": "ipBlock defines policy on a particular IPBlock. If this field is set then neither of the other fields can be."
+                },
+                "namespaceSelector": {
+                    "$ref": "#/$defs/_definitions.json/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.LabelSelector",
+                    "description": "namespaceSelector selects namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces.\n\nIf podSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the namespaces selected by namespaceSelector. Otherwise it selects all pods in the namespaces selected by namespaceSelector."
+                },
+                "podSelector": {
+                    "$ref": "#/$defs/_definitions.json/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.LabelSelector",
+                    "description": "podSelector is a label selector which selects pods. This field follows standard label selector semantics; if present but empty, it selects all pods.\n\nIf namespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the pods matching podSelector in the policy's own namespace."
+                }
+            }
+        },
+        "toleration.json": {
+            "$schema": "http://json-schema.org/schema#",
+            "type": "object",
+            "description": "The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.",
+            "properties": {
+                "effect": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute."
+                },
+                "key": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys."
+                },
+                "operator": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category."
+                },
+                "tolerationSeconds": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ],
+                    "description": "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+                    "format": "int64"
+                },
+                "value": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string."
+                }
+            }
+        }
+    },
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "affinity": {
+            "type": "object",
+            "description": "Affinity of the pod.",
+            "additionalProperties": true
+        },
+        "baseDomain": {
+            "type": "string"
+        },
+        "bootstrapMode": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "chartOperator": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "ciliumNetworkPolicy": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "cluster": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "clusterCA": {
+            "type": "string"
+        },
+        "clusterCIDR": {
+            "type": "string"
+        },
+        "clusterDNSIP": {
+            "type": "string"
+        },
+        "clusterID": {
+            "type": "string"
+        },
+        "externalUrl": {
+            "type": "string",
+            "description": "The URL GitLab is reached at, with scheme (the hostname of the HTTPRoute or Ingress). TLS is terminated in front of the pod, so an `https://` URL serves plain HTTP in the pod and generates `https://` links."
+        },
+        "gcpProject": {
+            "type": "string"
+        },
+        "global": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "description": "Global values shared between all subcharts",
+            "$comment": "Added automatically by 'helm schema' to allow this chart to be used as a Helm dependency, as this schema would otherwise not allow Helm's special 'global' values key."
+        },
+        "http": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "port": {
+                    "type": "integer",
+                    "description": "Port nginx listens on in the pod and the Service exposes."
+                }
+            }
+        },
+        "httpRoute": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "description": "Annotations of the HTTPRoute.",
+                    "additionalProperties": true
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Render a Gateway API HTTPRoute for `externalUrl`'s host."
+                },
+                "parentRefs": {
+                    "type": "array",
+                    "description": "Gateways the route attaches to.",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "group": {
+                                "type": "string"
+                            },
+                            "kind": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "namespace": {
+                                "type": "string"
+                            },
+                            "port": {
+                                "type": "integer"
+                            },
+                            "sectionName": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "image": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Image repository in the registry, the mirror of `gitlab/gitlab-ce`."
+                },
+                "pullPolicy": {
+                    "type": "string",
+                    "description": "Image pull policy."
+                },
+                "tag": {
+                    "type": "string",
+                    "description": "Image tag; empty means the chart's appVersion."
+                }
+            }
+        },
+        "ingress": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "description": "Annotations of the Ingress, e.g. `cert-manager.io/cluster-issuer: letsencrypt-giantswarm`.",
+                    "additionalProperties": true
+                },
+                "className": {
+                    "type": "string",
+                    "description": "IngressClass of the Ingress."
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Render an Ingress for `externalUrl`'s host."
+                },
+                "tls": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean",
+                            "description": "Terminate TLS at the Ingress with the certificate in `ingress.tls.secretName`."
+                        },
+                        "secretName": {
+                            "type": "string",
+                            "description": "Secret of the certificate; empty means `<release>-tls`."
+                        }
+                    }
+                }
+            }
+        },
+        "networkPolicy": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Render a NetworkPolicy admitting traffic to the HTTP and SSH ports only."
+                },
+                "from": {
+                    "type": "array",
+                    "description": "Peers allowed to reach those ports; empty means from anywhere.",
+                    "items": {
+                        "$ref": "#/$defs/networkpolicypeer.json"
+                    }
+                }
+            }
+        },
+        "nodeSelector": {
+            "type": "object",
+            "description": "Node selector of the pod.",
+            "additionalProperties": true
+        },
+        "objectStorage": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "accessKeyId": {
+                    "type": "string",
+                    "description": "S3 access key id. Required. Not a secret on its own; the secret key is read from `existingSecret`."
+                },
+                "buckets": {
+                    "type": "object",
+                    "description": "Bucket of each object type; the chart creates them (`objectStorage.createBuckets`). Every type is stored in object storage; GitLab Pages is off.",
+                    "additionalProperties": false,
+                    "properties": {
+                        "artifacts": {
+                            "type": "string"
+                        },
+                        "ci_catalog_bundles": {
+                            "type": "string"
+                        },
+                        "ci_secure_files": {
+                            "type": "string"
+                        },
+                        "dependency_proxy": {
+                            "type": "string"
+                        },
+                        "external_diffs": {
+                            "type": "string"
+                        },
+                        "lfs": {
+                            "type": "string"
+                        },
+                        "packages": {
+                            "type": "string"
+                        },
+                        "terraform_state": {
+                            "type": "string"
+                        },
+                        "uploads": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "createBuckets": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean",
+                            "description": "Create every bucket of `objectStorage.buckets` before GitLab is installed or upgraded: a pre-install and pre-upgrade hook Job with the key above, which leaves a bucket that exists as it is. The key needs the permission to create buckets."
+                        },
+                        "resources": {
+                            "type": "object",
+                            "description": "Resources of the hook Job's container.",
+                            "additionalProperties": true
+                        }
+                    }
+                },
+                "endpoint": {
+                    "type": "string",
+                    "description": "S3 endpoint URL, e.g. an in-cluster Garage or MinIO Service. Required. GitLab proxies every download, so the endpoint needs no route from outside the cluster."
+                },
+                "existingSecret": {
+                    "type": "string",
+                    "description": "Name of the Secret holding the S3 secret access key."
+                },
+                "pathStyle": {
+                    "type": "boolean",
+                    "description": "Address buckets in the path (`<endpoint>/<bucket>`) instead of the host name."
+                },
+                "region": {
+                    "type": "string",
+                    "description": "Region of the endpoint."
+                },
+                "secretKeyKey": {
+                    "type": "string",
+                    "description": "Key of the secret access key in that Secret."
+                }
+            }
+        },
+        "omnibus": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "extraConfig": {
+                    "type": "string",
+                    "description": "Further `gitlab.rb` lines, appended to the generated `GITLAB_OMNIBUS_CONFIG` (a later line wins)."
+                },
+                "pumaWorkers": {
+                    "type": "integer",
+                    "description": "Puma worker processes. 2 fits the 4 GiB memory request."
+                },
+                "sidekiqConcurrency": {
+                    "type": "integer",
+                    "description": "Sidekiq concurrency."
+                }
+            }
+        },
+        "persistence": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "accessMode": {
+                    "type": "string",
+                    "description": "Access mode of the volume."
+                },
+                "size": {
+                    "type": "string",
+                    "description": "Size of the volume holding /var/opt/gitlab (the Git repositories of Gitaly) and /etc/gitlab (the generated secrets: keep the volume, or the database's encrypted columns cannot be read)."
+                },
+                "storageClass": {
+                    "type": "string",
+                    "description": "StorageClass of the volume; empty means the cluster's default."
+                }
+            }
+        },
+        "podAnnotations": {
+            "type": "object",
+            "description": "Extra annotations of the pod.",
+            "additionalProperties": true
+        },
+        "podSecurityContext": {
+            "type": "object",
+            "description": "Pod security context. The Omnibus image starts as root and drops to its service users itself: see the README.",
+            "additionalProperties": true
+        },
+        "postgresql": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "database": {
+                    "type": "string",
+                    "description": "Database GitLab owns. Its owner creates the `pg_trgm` and `btree_gist` extensions on first start."
+                },
+                "existingSecret": {
+                    "type": "string",
+                    "description": "Name of the Secret holding the role's password, e.g. CloudNativePG's `<cluster>-app` Secret."
+                },
+                "host": {
+                    "type": "string",
+                    "description": "Host of the PostgreSQL primary, e.g. the `<cluster>-rw` Service of a CloudNativePG Cluster. Required."
+                },
+                "key": {
+                    "type": "string",
+                    "description": "Key of the password in that Secret."
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "Port of the PostgreSQL primary."
+                },
+                "sslMode": {
+                    "type": "string",
+                    "description": "libpq `sslmode` of the connection: disable, prefer, require, verify-ca or verify-full.",
+                    "enum": [
+                        "disable",
+                        "allow",
+                        "prefer",
+                        "require",
+                        "verify-ca",
+                        "verify-full"
+                    ]
+                },
+                "username": {
+                    "type": "string",
+                    "description": "Role GitLab connects as, the database's owner."
+                }
+            }
+        },
+        "probes": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "startupSeconds": {
+                    "type": "integer",
+                    "description": "Seconds the first set-up may take before liveness checks begin (startupProbe period times failures)."
+                }
+            }
+        },
+        "provider": {
+            "type": "string"
+        },
+        "redis": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "existingSecret": {
+                    "type": "string",
+                    "description": "Name of the Secret holding the password of the server's default user."
+                },
+                "host": {
+                    "type": "string",
+                    "description": "Host of the Redis-compatible server (Valkey). Required."
+                },
+                "key": {
+                    "type": "string",
+                    "description": "Key of the password in that Secret."
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "Port of the server."
+                }
+            }
+        },
+        "registry": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "domain": {
+                    "type": "string",
+                    "description": "Registry the image is pulled from."
+                }
+            }
+        },
+        "replicas": {
+            "type": "integer",
+            "description": "Number of GitLab pods: 1, or 0 to stop the instance and keep its volume. Omnibus is a single instance."
+        },
+        "resources": {
+            "type": "object",
+            "description": "Resources of the GitLab container: Puma, Sidekiq, Gitaly, Workhorse and nginx, with PostgreSQL and Redis outside.",
+            "additionalProperties": true
+        },
+        "rootPassword": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "existingSecret": {
+                    "type": "string",
+                    "description": "Name of an existing Secret holding the initial root password; the installer creates it. The password is only read when the instance is set up for the first time. The pod waits until the Secret exists."
+                },
+                "key": {
+                    "type": "string",
+                    "description": "Key of the password in that Secret."
+                }
+            }
+        },
+        "securityContext": {
+            "type": "object",
+            "description": "Container security context: no privilege escalation, every capability dropped except those Omnibus' root start needs to chown its data and switch to its service users, and those sshd's privilege separation needs to chroot its pre-authentication child. See the README for the Pod Security exception.",
+            "additionalProperties": true
+        },
+        "service": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "description": "Type of the HTTP Service."
+                }
+            }
+        },
+        "shmSize": {
+            "type": "string",
+            "description": "Size of the memory-backed /dev/shm (Puma and Sidekiq metrics)."
+        },
+        "ssh": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Expose git over SSH. Off: clones and pushes go over HTTPS only."
+                },
+                "externalPort": {
+                    "type": "integer",
+                    "description": "Port shown in SSH clone URLs: the NodePort, the Gateway listener's port, or the LoadBalancer port."
+                },
+                "service": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "description": "Type of the SSH Service: NodePort, LoadBalancer or ClusterIP (behind a TCPRoute)."
+                        },
+                        "nodePort": {
+                            "type": [
+                                "integer",
+                                "null"
+                            ],
+                            "description": "Fixed node port for the NodePort type; empty lets Kubernetes pick one."
+                        }
+                    }
+                }
+            }
+        },
+        "subscriptionID": {
+            "type": "string"
+        },
+        "tcpRoute": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Render a Gateway API TCPRoute (v1alpha2) for SSH; needs `ssh.enabled` and a TCP listener on the Gateway."
+                },
+                "parentRefs": {
+                    "type": "array",
+                    "description": "Gateways the route attaches to, naming the TCP listener.",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "group": {
+                                "type": "string"
+                            },
+                            "kind": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "namespace": {
+                                "type": "string"
+                            },
+                            "port": {
+                                "type": "integer"
+                            },
+                            "sectionName": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "timeZone": {
+            "type": "string",
+            "description": "Time zone of the instance."
+        },
+        "tolerations": {
+            "type": "array",
+            "description": "Tolerations of the pod.",
+            "items": {
+                "$ref": "#/$defs/toleration.json"
+            }
+        }
+    }
+}
