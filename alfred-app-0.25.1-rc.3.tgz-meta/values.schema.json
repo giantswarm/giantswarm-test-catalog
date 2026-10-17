@@ -1,0 +1,438 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$defs": {
+        "_definitions.json": {
+            "definitions": {
+                "io.k8s.api.core.v1.Toleration": {
+                    "type": "object",
+                    "description": "The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.",
+                    "properties": {
+                        "effect": {
+                            "type": "string",
+                            "description": "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute."
+                        },
+                        "key": {
+                            "type": "string",
+                            "description": "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys."
+                        },
+                        "operator": {
+                            "type": "string",
+                            "description": "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category."
+                        },
+                        "tolerationSeconds": {
+                            "type": "integer",
+                            "description": "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+                            "format": "int64"
+                        },
+                        "value": {
+                            "type": "string",
+                            "description": "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string."
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "affinity": {
+            "type": "object",
+            "description": "Affinity rules for pod scheduling.",
+            "additionalProperties": true
+        },
+        "alloy": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "image": {
+                    "type": "object",
+                    "description": "Sidecar image. Multi-arch, so it does not constrain `architecture`.",
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "registry": {
+                            "type": "string"
+                        },
+                        "tag": {
+                            "type": "string"
+                        }
+                    },
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "resources": {
+                    "type": "object",
+                    "description": "Resources for the `alloy` metrics sidecar, which scrapes the app and ships the samples to Grafana Cloud.",
+                    "additionalProperties": false,
+                    "properties": {
+                        "limits": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "cpu": {
+                                    "type": "string"
+                                },
+                                "ephemeral-storage": {
+                                    "type": "string",
+                                    "description": "Ephemeral storage limit for the sidecar. Deliberate headroom over an already time-bounded WAL: Alloy truncates it every 2h by default and keeps at most 8h of samples, so it cannot grow without end."
+                                },
+                                "memory": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "requests": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "cpu": {
+                                    "type": "string"
+                                },
+                                "ephemeral-storage": {
+                                    "type": "string",
+                                    "description": "Ephemeral storage request for the sidecar. Required by the `require-emptydir-requests-and-limits` policy, because this is the container that mounts the `alloy-storage` `emptyDir`. The volume itself is bounded by its own `sizeLimit`, not by this container limit: kubelet charges an `emptyDir` to the pod, while a container's ephemeral-storage limit covers only its writable layer and logs."
+                                },
+                                "memory": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "architecture": {
+            "type": "string",
+            "description": "Target CPU architecture for the deployment and the reporter CronJobs. Empty imposes no constraint. `arm64` pins them to arm64 nodes, adding both the `kubernetes.io/arch` node selector and the toleration for the `kubernetes.io/arch=arm64:NoSchedule` taint that Giant Swarm arm64 node pools carry. Both are required, so this single value sets both. Every image in the pod must be multi-arch. Both are: the app image and the `alloy` sidecar. Do not also constrain `kubernetes.io/arch` through a `nodeAffinity`: that is ANDed with the node selector and is not visible to this value, so a contradicting one leaves the pod Pending.",
+            "enum": [
+                "",
+                "amd64",
+                "arm64"
+            ]
+        },
+        "baseDomain": {
+            "type": "string"
+        },
+        "bootstrapMode": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "chartOperator": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "ciliumNetworkPolicy": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "cluster": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "clusterCA": {
+            "type": "string"
+        },
+        "clusterCIDR": {
+            "type": "string"
+        },
+        "clusterDNSIP": {
+            "type": "string"
+        },
+        "clusterID": {
+            "type": "string"
+        },
+        "cortex": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "password": {
+                    "type": "string",
+                    "description": "Basic auth password for `url`."
+                },
+                "url": {
+                    "type": "string",
+                    "description": "remote_write endpoint for the `alloy` sidecar. Needs a scheme. An empty value is accepted at startup and surfaces only once samples exist, as a per-batch warn log (`unsupported protocol scheme \"\"`), so the pod stays Ready and the metrics go undelivered rather than the deployment failing."
+                },
+                "username": {
+                    "type": "string",
+                    "description": "Basic auth username for `url`."
+                }
+            }
+        },
+        "fullnameOverride": {
+            "type": "string"
+        },
+        "gcpProject": {
+            "type": "string"
+        },
+        "global": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "podSecurityStandards": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "enforced": {
+                            "type": "boolean"
+                        }
+                    }
+                }
+            }
+        },
+        "image": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "pullPolicy": {
+                    "type": "string"
+                },
+                "registry": {
+                    "type": "string"
+                },
+                "tag": {
+                    "type": "string"
+                }
+            }
+        },
+        "imagePullSecrets": {
+            "type": "array"
+        },
+        "nameOverride": {
+            "type": "string"
+        },
+        "nodeSelector": {
+            "type": "object",
+            "description": "Node selector for pod scheduling. Merged with `architecture`. Pinning to arm64 here rather than through `architecture` also adds the arm64 taint toleration, so either route is safe. A value that contradicts `architecture` fails the render.",
+            "additionalProperties": {
+                "type": "string"
+            }
+        },
+        "pagerduty": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "afternoonShift": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "probeHour": {
+                            "type": "integer"
+                        },
+                        "scheduleID": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "morningShift": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "probeHour": {
+                            "type": "integer"
+                        },
+                        "scheduleID": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        "podSecurityContext": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "fsGroup": {
+                    "type": "integer"
+                },
+                "runAsGroup": {
+                    "type": "integer"
+                },
+                "runAsNonRoot": {
+                    "type": "boolean"
+                },
+                "runAsUser": {
+                    "type": "integer"
+                }
+            }
+        },
+        "prometheusRule": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "maxDaysWithoutSuccess": {
+                    "type": "integer"
+                },
+                "team": {
+                    "type": "string"
+                }
+            }
+        },
+        "provider": {
+            "type": "string"
+        },
+        "replicaCount": {
+            "type": "integer"
+        },
+        "reporter": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "schedule": {
+                        "type": "string"
+                    },
+                    "url": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "resources": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "limits": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "cpu": {
+                            "type": "string"
+                        },
+                        "ephemeral-storage": {
+                            "type": "string",
+                            "description": "Ephemeral storage limit. The app itself opens nothing on disk and logs to stdout, so this covers the runtime's rotated container logs."
+                        },
+                        "memory": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "requests": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "cpu": {
+                            "type": "string"
+                        },
+                        "ephemeral-storage": {
+                            "type": "string",
+                            "description": "Ephemeral storage request. Declared so the pod-level budget, which kubelet sums from the containers, is chosen here rather than inherited from the sidecar alone."
+                        },
+                        "memory": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "securityContext": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "allowPrivilegeEscalation": {
+                    "type": "boolean"
+                },
+                "capabilities": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "drop": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "privileged": {
+                    "type": "boolean"
+                },
+                "seccompProfile": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "type": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "service": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "port": {
+                    "type": "integer"
+                }
+            }
+        },
+        "serviceAccount": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "create": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "null"
+                }
+            }
+        },
+        "slack": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "excludedChannels": {
+                    "type": "array",
+                    "description": "Support channels Alfred ignores entirely: channels used for tests, and channels of customers that are not onboarded yet. They look exactly like a live customer channel, so only this list can tell them apart. Full channel names, with or without the leading \"#\", e.g. \"support-acme\".",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "reportingChannel": {
+                    "type": "string"
+                },
+                "signingSecret": {
+                    "type": "string"
+                },
+                "slackToken": {
+                    "type": "string"
+                }
+            }
+        },
+        "subscriptionID": {
+            "type": "string"
+        },
+        "timeZone": {
+            "type": "string"
+        },
+        "tolerations": {
+            "type": "array",
+            "description": "Tolerations for pod scheduling. Merged with the toleration that `architecture: arm64` adds.",
+            "items": {
+                "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.Toleration"
+            }
+        }
+    }
+}
