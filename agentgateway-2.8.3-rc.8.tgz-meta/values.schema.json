@@ -1,0 +1,663 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "affinity": {
+            "type": "object",
+            "description": "Set affinity rules for pod scheduling, such as 'nodeAffinity:'.",
+            "additionalProperties": true
+        },
+        "agentgatewayModels": {
+            "type": "object",
+            "description": "Configure the AgentgatewayModel API.",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Enable AgentgatewayModel support in the agentgateway controller."
+                }
+            }
+        },
+        "baseDomain": {
+            "type": "string"
+        },
+        "bootstrapMode": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "chartOperator": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "ciliumNetworkPolicy": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "cluster": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "clusterCA": {
+            "type": "string"
+        },
+        "clusterCIDR": {
+            "type": "string"
+        },
+        "clusterDNSIP": {
+            "type": "string"
+        },
+        "clusterID": {
+            "type": "string"
+        },
+        "commonLabels": {
+            "type": "object",
+            "description": "Additional labels to add to all resources created by the Helm chart.",
+            "additionalProperties": false
+        },
+        "controller": {
+            "type": "object",
+            "description": "Configure the agentgateway control plane deployment.",
+            "additionalProperties": false,
+            "properties": {
+                "extraContainers": {
+                    "type": "array",
+                    "description": "Add extra sidecar containers to the controller pod."
+                },
+                "extraEnv": {
+                    "type": "object",
+                    "description": "Add extra environment variables to the controller container. Supports either a direct scalar value: extraEnv: LOG_FORMAT: json Or Kubernetes valueFrom sources: extraEnv: API_TOKEN: valueFrom: secretKeyRef: name: agentgateway-secrets key: apiToken",
+                    "additionalProperties": false
+                },
+                "extraVolumeMounts": {
+                    "type": "array",
+                    "description": "Add extra volume mounts to the controller container."
+                },
+                "extraVolumes": {
+                    "type": "array",
+                    "description": "Add extra volumes to the controller pod."
+                },
+                "horizontalPodAutoscaler": {
+                    "type": "object",
+                    "description": "Set horizontal pod autoscaler for the controller. Note that this does not affect the data plane. The scaleTargetRef is automatically configured to target the controller deployment. E.g.:  horizontalPodAutoscaler: minReplicas: 1 maxReplicas: 5 metrics: - type: Resource resource: name: cpu target: type: Utilization averageUtilization: 80",
+                    "additionalProperties": false
+                },
+                "image": {
+                    "type": "object",
+                    "description": "Configure the controller container image.",
+                    "additionalProperties": false,
+                    "properties": {
+                        "pullPolicy": {
+                            "type": "string",
+                            "description": "Set the image pull policy for the controller."
+                        },
+                        "registry": {
+                            "type": "string",
+                            "description": "Set the image registry for the controller."
+                        },
+                        "repository": {
+                            "type": "string",
+                            "description": "Set the image repository for the controller: the Giant Swarm line of agentgateway (github.com/giantswarm/agentgateway-upstream) publishes under its own nested path; the flattened giantswarm/agentgateway-controller holds copies of upstream's own builds."
+                        },
+                        "tag": {
+                            "type": "string",
+                            "description": "Set the image tag for the controller. A release of the Giant Swarm line of agentgateway: the line's own semver, decoupled from the vendored chart's version (which upstream pin a release carries is documented in the line's FORK.md). Empty would fall back to .Chart.AppVersion, upstream's own build. renovate: datasource=docker depName=giantswarm/agentgateway-upstream/controller registryUrl=https://gsoci.azurecr.io"
+                        }
+                    }
+                },
+                "logLevel": {
+                    "type": "string",
+                    "description": "Set the log level for the controller."
+                },
+                "podDisruptionBudget": {
+                    "type": "object",
+                    "description": "Set pod disruption budget for the controller. Note that this does not affect the data plane. E.g.:  podDisruptionBudget: minAvailable: 100%",
+                    "additionalProperties": false
+                },
+                "priorityClassName": {
+                    "type": "string",
+                    "description": "Set the priority class name for the controller pod."
+                },
+                "replicaCount": {
+                    "type": "integer",
+                    "description": "Set the number of controller pod replicas."
+                },
+                "revisionHistoryLimit": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ],
+                    "description": "Set the number of old ReplicaSets the controller deployment retains for rollback. Leave unset to use the Kubernetes default of 10. '0' is honored and keeps no history.",
+                    "minimum": 0
+                },
+                "service": {
+                    "type": "object",
+                    "description": "Configure the controller service.",
+                    "additionalProperties": false,
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "description": "Service type."
+                        },
+                        "allocateLoadBalancerNodePorts": {
+                            "type": "null",
+                            "description": "Allocate load balancer node ports."
+                        },
+                        "annotations": {
+                            "type": "object",
+                            "description": "Service annotations.",
+                            "additionalProperties": false
+                        },
+                        "clusterIP": {
+                            "type": "string",
+                            "description": "Cluster IP address."
+                        },
+                        "clusterIPs": {
+                            "type": "array",
+                            "description": "Cluster IPs for dual-stack."
+                        },
+                        "enabled": {
+                            "type": "boolean",
+                            "description": "Create the controller Service."
+                        },
+                        "externalIPs": {
+                            "type": "array",
+                            "description": "External IP addresses."
+                        },
+                        "externalName": {
+                            "type": "string",
+                            "description": "External name for ExternalName services."
+                        },
+                        "externalTrafficPolicy": {
+                            "type": "string",
+                            "description": "External traffic policy."
+                        },
+                        "extraLabels": {
+                            "type": "object",
+                            "description": "Extra labels for the Service.",
+                            "additionalProperties": false
+                        },
+                        "healthCheckNodePort": {
+                            "type": "null",
+                            "description": "Health check node port."
+                        },
+                        "internalTrafficPolicy": {
+                            "type": "string",
+                            "description": "Internal traffic policy."
+                        },
+                        "ipFamilies": {
+                            "type": "array",
+                            "description": "IP families."
+                        },
+                        "ipFamilyPolicy": {
+                            "type": "string",
+                            "description": "IP family policy."
+                        },
+                        "loadBalancerClass": {
+                            "type": "string",
+                            "description": "Load balancer class."
+                        },
+                        "loadBalancerIP": {
+                            "type": "string",
+                            "description": "Load balancer IP address."
+                        },
+                        "loadBalancerSourceRanges": {
+                            "type": "array",
+                            "description": "Allowed source ranges for load balancer."
+                        },
+                        "ports": {
+                            "type": "object",
+                            "description": "Service ports.",
+                            "additionalProperties": false,
+                            "properties": {
+                                "agwGrpc": {
+                                    "type": "integer"
+                                },
+                                "health": {
+                                    "type": "integer"
+                                },
+                                "metrics": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "publishNotReadyAddresses": {
+                            "type": "boolean",
+                            "description": "Publish not ready addresses."
+                        },
+                        "sessionAffinity": {
+                            "type": "string",
+                            "description": "Session affinity."
+                        },
+                        "sessionAffinityConfig": {
+                            "type": "object",
+                            "description": "Session affinity configuration.",
+                            "additionalProperties": false
+                        },
+                        "trafficDistribution": {
+                            "type": "string",
+                            "description": "Traffic distribution."
+                        }
+                    }
+                },
+                "strategy": {
+                    "type": "object",
+                    "description": "Change the rollout strategy from the Kubernetes default of a RollingUpdate with 25% maxUnavailable, 25% maxSurge. E.g., to recreate pods, minimizing resources for the rollout but causing downtime: strategy: type: Recreate E.g., to roll out as a RollingUpdate but with non-default parameters: strategy: type: RollingUpdate rollingUpdate: maxSurge: 100%",
+                    "additionalProperties": false
+                },
+                "verticalPodAutoscaler": {
+                    "type": "object",
+                    "description": "Set vertical pod autoscaler for the controller. Note that this does not affect the data plane. The targetRef is automatically configured to target the controller deployment. E.g.:  verticalPodAutoscaler: updatePolicy: updateMode: Auto resourcePolicy: containerPolicies: - containerName: \"*\" minAllowed: cpu: 100m memory: 128Mi",
+                    "additionalProperties": false
+                },
+                "xds": {
+                    "type": "object",
+                    "description": "Configure xDS transport mode for the gRPC servers.",
+                    "additionalProperties": false,
+                    "properties": {
+                        "mode": {
+                            "type": "string",
+                            "description": "One of: plaintext, tls, either."
+                        }
+                    }
+                }
+            }
+        },
+        "controllerName": {
+            "type": "string",
+            "description": "Value written to GatewayClass.spec.controllerName that this controller reconciles. Leave empty to use the built-in default (\"agentgateway.dev/agentgateway\"). Sets AGW_CONTROLLER_NAME. Change this together with gatewayClassName when running multiple agentgateway controllers."
+        },
+        "deploymentAnnotations": {
+            "type": "object",
+            "description": "Add annotations to the agentgateway deployment.",
+            "additionalProperties": true
+        },
+        "discoveryNamespaceSelectors": {
+            "type": "array",
+            "description": "List of namespace selectors (OR'ed): each entry can use 'matchLabels' or 'matchExpressions' (AND'ed within each entry if used together). Agentgateway includes the selected namespaces in config discovery. For more information, see the docs https://agentgateway.dev/docs/kubernetes/latest/documentation/install/advanced/#namespace-discovery."
+        },
+        "dnsConfig": {
+            "type": "object",
+            "description": "Set the pod DNS configuration, such as 'options: [{name: ndots, value: \"3\"}]'. Merged with the DNS settings the kubelet derives from the pod's dnsPolicy.",
+            "additionalProperties": true
+        },
+        "fullnameOverride": {
+            "type": "string",
+            "description": "Override the full name of resources created by the Helm chart, which is 'agentgateway'. If you set 'fullnameOverride: \"foo\", the full name of the resources that the Helm release creates become 'foo', such as the deployment, service, and service account for the agentgateway control plane in the agentgateway-system namespace."
+        },
+        "gatewayClassName": {
+            "type": "string",
+            "description": "Name of the primary GatewayClass the controller creates and manages. Leave empty to use the built-in default (\"agentgateway\"). Sets AGW_AGENTGATEWAY_CLASS_NAME."
+        },
+        "gatewayClassParametersRefs": {
+            "type": "object",
+            "description": "Map of GatewayClass names to GatewayParameters references that will be set on the default GatewayClasses managed by kgateway. Each entry must define both the name and namespace of the GatewayParameters resource. The default GatewayClasses managed by kgateway are: - agentgateway Example: gatewayClassParametersRefs: agentgateway: name: shared-gwp namespace: kgateway-system",
+            "additionalProperties": false
+        },
+        "gcpProject": {
+            "type": "string"
+        },
+        "global": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "description": "Global values shared between all subcharts",
+            "$comment": "Added automatically by 'helm schema' to allow this chart to be used as a Helm dependency, as this schema would otherwise not allow Helm's special 'global' values key."
+        },
+        "image": {
+            "type": "object",
+            "description": "Configure the default container image for the components that Helm deploys. You can override these settings for each particular component in that component's section, such as 'controller.image' for the agentgateway control plane. If you use your own private registry, make sure to include the imagePullSecrets.",
+            "additionalProperties": false,
+            "properties": {
+                "pullPolicy": {
+                    "type": "string",
+                    "description": "Set the default image pull policy."
+                },
+                "registry": {
+                    "type": "string",
+                    "description": "Set the default image registry."
+                },
+                "tag": {
+                    "type": "string",
+                    "description": "Set the default image tag."
+                }
+            }
+        },
+        "imagePullSecrets": {
+            "type": "array",
+            "description": "Set a list of image pull secrets for Kubernetes to use when pulling container images from your own private registry instead of the default agentgateway registry."
+        },
+        "inferenceExtension": {
+            "type": "object",
+            "description": "Configure the integration with the Gateway API Inference Extension project, which lets you use agentgateway to route to AI inference workloads like LLMs that run locally in your Kubernetes cluster. Documentation for Inference Extension can be found here: https://agentgateway.dev/docs/kubernetes/latest/documentation/inference/",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Enable Inference Extension support in the agentgateway controller."
+                }
+            }
+        },
+        "istio": {
+            "type": "object",
+            "description": "Control-plane-wide Istio mesh defaults.",
+            "additionalProperties": false,
+            "properties": {
+                "autoEnabled": {
+                    "type": "boolean",
+                    "description": "Enable Istio integration by default on all built-in-class gateways. When false (default), gateways opt in via AgentgatewayParameters spec.istio; when true, individual gateways can opt out via spec.istio.enabled=false."
+                },
+                "caAddress": {
+                    "type": "string",
+                    "description": "Istio CA address override; Defaults to \"https://istiod.istio-system.svc:15012\""
+                },
+                "clusterId": {
+                    "type": "string",
+                    "description": "Istio cluster ID (the istiod multiCluster clusterName) for mesh-integrated gateways."
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Grant the controller permission to discover Istio ServiceEntry and WorkloadEntry resources. Set to false only when the Istio CRDs are not installed. This controls RBAC generation; it does not disable Istio integration in the controller."
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "Namespace where the Istio control plane the controller integrates with is installed. Defaults to \"istio-system\"."
+                },
+                "network": {
+                    "type": "string",
+                    "description": "Istio network for mesh-integrated gateways."
+                },
+                "revision": {
+                    "type": "string",
+                    "description": "Revision of the Istio control plane the controller integrates with. If unset, the default revision is used."
+                }
+            }
+        },
+        "monitoring": {
+            "type": "object",
+            "description": "Configure Prometheus and Grafana monitoring resources.",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Create monitoring resources (ServiceMonitors and Grafana dashboard ConfigMap). Requires the Prometheus Operator CRDs to be installed in the cluster."
+                },
+                "grafanaDashboard": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "annotations": {
+                            "type": "object",
+                            "description": "Annotations on the dashboard ConfigMap. The Grafana organization and folder the Giant Swarm observability platform loads the board into are display names that contain a space, and no label value admits one, so `observability.giantswarm.io/organization` and `.../folder` belong here.",
+                            "additionalProperties": true
+                        },
+                        "enabled": {
+                            "type": "boolean",
+                            "description": "Create the Grafana dashboard ConfigMap."
+                        },
+                        "labels": {
+                            "type": "object",
+                            "description": "Labels that the Grafana sidecar uses to discover dashboards. The Giant Swarm observability platform discovers a dashboard ConfigMap by `app.giantswarm.io/kind: dashboard`, which belongs here.",
+                            "additionalProperties": true,
+                            "properties": {
+                                "grafana_dashboard": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "proxy": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "gatewayClassNames": {
+                            "type": "array",
+                            "description": "GatewayClass names whose proxy pods are selected by the proxy PodMonitor.",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "namespaceSelector": {
+                            "type": "object",
+                            "description": "Namespace selector used by the proxy PodMonitor. Defaults to the release namespace only.",
+                            "additionalProperties": true
+                        },
+                        "podMonitor": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "enabled": {
+                                    "type": "boolean",
+                                    "description": "Create a PodMonitor that scrapes provisioned proxy pods on the pod's metrics port (15020) directly, without requiring a metrics port on the provisioned Service."
+                                },
+                                "podTargetLabels": {
+                                    "type": "array",
+                                    "description": "Pod labels copied onto the scraped proxy series. The bundled Grafana dashboard discovers and filters gateways by the gateway name, which reaches the series only through this list.",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "serviceMonitor": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean",
+                            "description": "Create the controller ServiceMonitor."
+                        },
+                        "extraLabels": {
+                            "type": "object",
+                            "description": "Additional labels to add to the controller ServiceMonitor and the proxy PodMonitor (e.g. release: prometheus). The Giant Swarm observability platform routes a series to a Mimir tenant by `observability.giantswarm.io/tenant`, which belongs here.",
+                            "additionalProperties": true
+                        },
+                        "interval": {
+                            "type": "string",
+                            "description": "Scrape interval for the controller ServiceMonitor and the proxy PodMonitor."
+                        }
+                    }
+                }
+            }
+        },
+        "nameOverride": {
+            "type": "string",
+            "description": "Add a name to the default Helm base release, which is 'agentgateway'. If you set 'nameOverride: \"foo\", the name of the resources that the Helm release creates become 'agentgateway-foo', such as the deployment, service, and service account for the agentgateway control plane in the agentgateway-system namespace."
+        },
+        "nodeSelector": {
+            "type": "object",
+            "description": "Set node selector labels for pod scheduling, such as 'kubernetes.io/arch: amd64'.",
+            "additionalProperties": true
+        },
+        "podAnnotations": {
+            "type": "object",
+            "description": "Add annotations to the agentgateway pods.",
+            "additionalProperties": true,
+            "properties": {
+                "application.giantswarm.io/team": {
+                    "type": "string"
+                },
+                "prometheus.io/scrape": {
+                    "type": "string"
+                }
+            }
+        },
+        "podLabels": {
+            "type": "object",
+            "description": "Add labels to the agentgateway pods. Useful for `NetworkPolicy` selectors (e.g. opt-in egress labels on Cilium-based clusters).",
+            "additionalProperties": true
+        },
+        "podSecurityContext": {
+            "type": "object",
+            "description": "Set the pod-level security context. For example, 'fsGroup: 2000' sets the filesystem group to 2000.",
+            "additionalProperties": true,
+            "properties": {
+                "runAsNonRoot": {
+                    "type": "boolean"
+                },
+                "seccompProfile": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "type": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "provider": {
+            "type": "string"
+        },
+        "proxy": {
+            "type": "object",
+            "description": "Configure the agentgateway data plane deployment.",
+            "additionalProperties": false,
+            "properties": {
+                "image": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "registry": {
+                            "type": "string",
+                            "description": "Set the default image registry. Set to override the global value."
+                        },
+                        "repository": {
+                            "type": "string",
+                            "description": "Set the default image repository: the data-plane proxy of the Giant Swarm line of agentgateway, under the line's nested path."
+                        },
+                        "tag": {
+                            "type": "string",
+                            "description": "Set the default image tag: the same release of the Giant Swarm line of agentgateway as the controller. renovate: datasource=docker depName=giantswarm/agentgateway-upstream/agentgateway registryUrl=https://gsoci.azurecr.io"
+                        }
+                    }
+                }
+            }
+        },
+        "rbac": {
+            "type": "object",
+            "description": "Configure the RBAC permissions created for the controller.",
+            "additionalProperties": false,
+            "properties": {
+                "gatewayNamespaces": {
+                    "type": "array",
+                    "description": "Restrict namespaced write permissions to these namespaces. The namespaces must already exist. An empty list preserves the default cluster-wide write access. Cluster-wide read permissions and writes to cluster-scoped resources are unaffected. Restricting this list means only Gateways in these namespaces can be used."
+                }
+            }
+        },
+        "resources": {
+            "type": "object",
+            "description": "Configure resource requests and limits for the container, such as 'limits.cpu: 100m' or 'requests.memory: 128Mi'.",
+            "additionalProperties": true,
+            "properties": {
+                "limits": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "cpu": {
+                            "type": "string"
+                        },
+                        "memory": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "requests": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "cpu": {
+                            "type": "string"
+                        },
+                        "memory": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "securityContext": {
+            "type": "object",
+            "description": "Set the container-level security context, such as 'runAsNonRoot: true'.",
+            "additionalProperties": true,
+            "properties": {
+                "allowPrivilegeEscalation": {
+                    "type": "boolean"
+                },
+                "capabilities": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "drop": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "readOnlyRootFilesystem": {
+                    "type": "boolean"
+                },
+                "runAsNonRoot": {
+                    "type": "boolean"
+                },
+                "seccompProfile": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "type": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "serviceAccount": {
+            "type": "object",
+            "description": "Configure the service account for the deployment.",
+            "additionalProperties": false,
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "description": "Add annotations to the service account.",
+                    "additionalProperties": false
+                },
+                "create": {
+                    "type": "boolean",
+                    "description": "Specify whether a service account should be created."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Set the name of the service account to use. If not set and create is true, a name is generated using the fullname template."
+                }
+            }
+        },
+        "subscriptionID": {
+            "type": "string"
+        },
+        "tolerations": {
+            "type": "array",
+            "description": "Set tolerations for pod scheduling, such as 'key: \"nvidia.com/gpu\"'."
+        },
+        "topologySpreadConstraints": {
+            "type": "array",
+            "description": "Configure how controller pods are spread across topology domains, such as nodes or zones."
+        },
+        "xBackend": {
+            "type": "object",
+            "description": "Configure the experimental Gateway API XBackend resource.",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Enable XBackend support in the agentgateway controller."
+                }
+            }
+        }
+    }
+}
