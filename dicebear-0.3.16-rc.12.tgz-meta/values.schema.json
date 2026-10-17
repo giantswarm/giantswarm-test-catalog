@@ -1,0 +1,550 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$defs": {
+        "_definitions.json": {
+            "definitions": {
+                "io.k8s.api.core.v1.AppArmorProfile": {
+                    "type": "object",
+                    "description": "AppArmorProfile defines a pod or container's AppArmor settings.",
+                    "required": [
+                        "type"
+                    ],
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "description": "type indicates which kind of AppArmor profile will be applied. Valid options are:\n  Localhost - a profile pre-loaded on the node.\n  RuntimeDefault - the container runtime's default profile.\n  Unconfined - no AppArmor enforcement."
+                        },
+                        "localhostProfile": {
+                            "type": "string",
+                            "description": "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is \"Localhost\"."
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.Capabilities": {
+                    "type": "object",
+                    "description": "Adds and removes POSIX capabilities from running containers.",
+                    "properties": {
+                        "add": {
+                            "type": "array",
+                            "description": "Added capabilities",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "drop": {
+                            "type": "array",
+                            "description": "Removed capabilities",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.PodSecurityContext": {
+                    "type": "object",
+                    "description": "PodSecurityContext holds pod-level security attributes and common container settings. Some fields are also present in container.securityContext.  Field values of container.securityContext take precedence over field values of PodSecurityContext.",
+                    "properties": {
+                        "appArmorProfile": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.AppArmorProfile",
+                            "description": "appArmorProfile is the AppArmor options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows."
+                        },
+                        "fsGroup": {
+                            "type": "integer",
+                            "description": "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:\n\n1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw----\n\nIf unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
+                            "format": "int64"
+                        },
+                        "fsGroupChangePolicy": {
+                            "type": "string",
+                            "description": "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are \"OnRootMismatch\" and \"Always\". If not specified, \"Always\" is used. Note that this field cannot be set when spec.os.name is windows."
+                        },
+                        "runAsGroup": {
+                            "type": "integer",
+                            "description": "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+                            "format": "int64"
+                        },
+                        "runAsNonRoot": {
+                            "type": "boolean",
+                            "description": "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence."
+                        },
+                        "runAsUser": {
+                            "type": "integer",
+                            "description": "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+                            "format": "int64"
+                        },
+                        "seLinuxChangePolicy": {
+                            "type": "string",
+                            "description": "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are \"MountOption\" and \"Recursive\".\n\n\"Recursive\" means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node.\n\n\"MountOption\" mounts all eligible Pod volumes with `-o context` mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. \"MountOption\" value is allowed only when SELinuxMount feature gate is enabled.\n\nIf not specified and SELinuxMount feature gate is enabled, \"MountOption\" is used. If not specified and SELinuxMount feature gate is disabled, \"MountOption\" is used for ReadWriteOncePod volumes and \"Recursive\" for all other volumes.\n\nThis field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers.\n\nAll Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows."
+                        },
+                        "seLinuxOptions": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.SELinuxOptions",
+                            "description": "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows."
+                        },
+                        "seccompProfile": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.SeccompProfile",
+                            "description": "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows."
+                        },
+                        "supplementalGroups": {
+                            "type": "array",
+                            "description": "A list of groups applied to the first process run in each container, in addition to the container's primary GID and fsGroup (if specified).  If the SupplementalGroupsPolicy feature is enabled, the supplementalGroupsPolicy field determines whether these are in addition to or instead of any group memberships defined in the container image. If unspecified, no additional groups are added, though group memberships defined in the container image may still be used, depending on the supplementalGroupsPolicy field. Note that this field cannot be set when spec.os.name is windows.",
+                            "items": {
+                                "type": "integer",
+                                "format": "int64"
+                            }
+                        },
+                        "supplementalGroupsPolicy": {
+                            "type": "string",
+                            "description": "Defines how supplemental groups of the first container processes are calculated. Valid values are \"Merge\" and \"Strict\". If not specified, \"Merge\" is used. (Alpha) Using the field requires the SupplementalGroupsPolicy feature gate to be enabled and the container runtime must implement support for this feature. Note that this field cannot be set when spec.os.name is windows."
+                        },
+                        "sysctls": {
+                            "type": "array",
+                            "description": "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows.",
+                            "items": {
+                                "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.Sysctl"
+                            }
+                        },
+                        "windowsOptions": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.WindowsSecurityContextOptions",
+                            "description": "The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux."
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.ResourceClaim": {
+                    "type": "object",
+                    "description": "ResourceClaim references one entry in PodSpec.ResourceClaims.",
+                    "required": [
+                        "name"
+                    ],
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container."
+                        },
+                        "request": {
+                            "type": "string",
+                            "description": "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request."
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.ResourceRequirements": {
+                    "type": "object",
+                    "description": "ResourceRequirements describes the compute resource requirements.",
+                    "properties": {
+                        "claims": {
+                            "type": "array",
+                            "description": "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.\n\nThis is an alpha field and requires enabling the DynamicResourceAllocation feature gate.\n\nThis field is immutable. It can only be set for containers.",
+                            "items": {
+                                "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.ResourceClaim"
+                            }
+                        },
+                        "limits": {
+                            "type": "object",
+                            "description": "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+                            "additionalProperties": {
+                                "$ref": "#/$defs/_definitions.json/definitions/io.k8s.apimachinery.pkg.api.resource.Quantity"
+                            }
+                        },
+                        "requests": {
+                            "type": "object",
+                            "description": "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+                            "additionalProperties": {
+                                "$ref": "#/$defs/_definitions.json/definitions/io.k8s.apimachinery.pkg.api.resource.Quantity"
+                            }
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.SELinuxOptions": {
+                    "type": "object",
+                    "description": "SELinuxOptions are the labels to be applied to the container",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "description": "Type is a SELinux type label that applies to the container."
+                        },
+                        "level": {
+                            "type": "string",
+                            "description": "Level is SELinux level label that applies to the container."
+                        },
+                        "role": {
+                            "type": "string",
+                            "description": "Role is a SELinux role label that applies to the container."
+                        },
+                        "user": {
+                            "type": "string",
+                            "description": "User is a SELinux user label that applies to the container."
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.SeccompProfile": {
+                    "type": "object",
+                    "description": "SeccompProfile defines a pod/container's seccomp profile settings. Only one profile source may be set.",
+                    "required": [
+                        "type"
+                    ],
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "description": "type indicates which kind of seccomp profile will be applied. Valid options are:\n\nLocalhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied."
+                        },
+                        "localhostProfile": {
+                            "type": "string",
+                            "description": "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is \"Localhost\". Must NOT be set for any other type."
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.SecurityContext": {
+                    "type": "object",
+                    "description": "SecurityContext holds security configuration that will be applied to a container. Some fields are present in both SecurityContext and PodSecurityContext.  When both are set, the values in SecurityContext take precedence.",
+                    "properties": {
+                        "allowPrivilegeEscalation": {
+                            "type": "boolean",
+                            "description": "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows."
+                        },
+                        "appArmorProfile": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.AppArmorProfile",
+                            "description": "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows."
+                        },
+                        "capabilities": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.Capabilities",
+                            "description": "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows."
+                        },
+                        "privileged": {
+                            "type": "boolean",
+                            "description": "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows."
+                        },
+                        "procMount": {
+                            "type": "string",
+                            "description": "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows."
+                        },
+                        "readOnlyRootFilesystem": {
+                            "type": "boolean",
+                            "description": "Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows."
+                        },
+                        "runAsGroup": {
+                            "type": "integer",
+                            "description": "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+                            "format": "int64"
+                        },
+                        "runAsNonRoot": {
+                            "type": "boolean",
+                            "description": "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence."
+                        },
+                        "runAsUser": {
+                            "type": "integer",
+                            "description": "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+                            "format": "int64"
+                        },
+                        "seLinuxOptions": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.SELinuxOptions",
+                            "description": "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows."
+                        },
+                        "seccompProfile": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.SeccompProfile",
+                            "description": "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows."
+                        },
+                        "windowsOptions": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.WindowsSecurityContextOptions",
+                            "description": "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux."
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.Sysctl": {
+                    "type": "object",
+                    "description": "Sysctl defines a kernel parameter to be set",
+                    "required": [
+                        "name",
+                        "value"
+                    ],
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Name of a property to set"
+                        },
+                        "value": {
+                            "type": "string",
+                            "description": "Value of a property to set"
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.WindowsSecurityContextOptions": {
+                    "type": "object",
+                    "description": "WindowsSecurityContextOptions contain Windows-specific options and credentials.",
+                    "properties": {
+                        "gmsaCredentialSpec": {
+                            "type": "string",
+                            "description": "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field."
+                        },
+                        "gmsaCredentialSpecName": {
+                            "type": "string",
+                            "description": "GMSACredentialSpecName is the name of the GMSA credential spec to use."
+                        },
+                        "hostProcess": {
+                            "type": "boolean",
+                            "description": "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true."
+                        },
+                        "runAsUserName": {
+                            "type": "string",
+                            "description": "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence."
+                        }
+                    }
+                },
+                "io.k8s.apimachinery.pkg.api.resource.Quantity": {
+                    "oneOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "number"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "baseDomain": {
+            "type": "string"
+        },
+        "bootstrapMode": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "chartOperator": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "ciliumNetworkPolicy": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "cluster": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "clusterCA": {
+            "type": "string"
+        },
+        "clusterCIDR": {
+            "type": "string"
+        },
+        "clusterDNSIP": {
+            "type": "string"
+        },
+        "clusterID": {
+            "type": "string"
+        },
+        "config": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "pngSizeMax": {
+                    "type": "integer",
+                    "description": "Largest PNG size (px) the API will render. The avatar edge requests up to 512, and the upstream default of 256 is too small, so we raise the cap.",
+                    "minimum": 1
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "Port the DiceBear API listens on.",
+                    "maximum": 65535,
+                    "minimum": 1
+                }
+            }
+        },
+        "emptyDirSizeLimit": {
+            "type": "string",
+            "description": "Size limit for the emptyDir volumes backing `/tmp` (PNG rendering) and `/run`, to bound node ephemeral-storage use."
+        },
+        "gcpProject": {
+            "type": "string"
+        },
+        "global": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "description": "Global values shared between all subcharts",
+            "$comment": "Added automatically by 'helm schema' to allow this chart to be used as a Helm dependency, as this schema would otherwise not allow Helm's special 'global' values key."
+        },
+        "image": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Repository of the DiceBear API image, relative to the registry domain."
+                },
+                "tag": {
+                    "type": "string",
+                    "description": "Image tag. Pinned explicitly to the mirrored upstream tag; do NOT leave empty to fall back to appVersion, because app-build-suite rewrites appVersion to the chart's dev/release version at build time."
+                }
+            }
+        },
+        "podSecurityContext": {
+            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.PodSecurityContext",
+            "type": "object",
+            "description": "Pod-level security context.",
+            "properties": {
+                "fsGroup": {
+                    "type": "integer"
+                },
+                "runAsGroup": {
+                    "type": "integer"
+                },
+                "runAsNonRoot": {
+                    "type": "boolean"
+                },
+                "runAsUser": {
+                    "type": "integer"
+                },
+                "seccompProfile": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "type": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "unevaluatedProperties": false
+        },
+        "provider": {
+            "type": "string"
+        },
+        "registry": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "domain": {
+                    "type": "string",
+                    "description": "Registry domain the image is pulled from."
+                }
+            }
+        },
+        "replicas": {
+            "type": "integer",
+            "description": "Number of DiceBear API replicas to run.",
+            "minimum": 1
+        },
+        "resources": {
+            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.ResourceRequirements",
+            "type": "object",
+            "description": "Compute resources for the DiceBear API container.",
+            "properties": {
+                "limits": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "cpu": {
+                            "type": "string"
+                        },
+                        "ephemeral-storage": {
+                            "type": "string"
+                        },
+                        "memory": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "requests": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "cpu": {
+                            "type": "string"
+                        },
+                        "ephemeral-storage": {
+                            "type": "string"
+                        },
+                        "memory": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "unevaluatedProperties": false
+        },
+        "route": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "description": "Extra annotations for the HTTPRoute.",
+                    "additionalProperties": {}
+                },
+                "defaultSize": {
+                    "type": "integer",
+                    "description": "Size used when the URL omits one. Must be one of `sizes`.",
+                    "minimum": 1
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Enable the HTTPRoute and Envoy Gateway HTTPRouteFilter resources."
+                },
+                "hostnames": {
+                    "type": "array",
+                    "description": "Hostnames the avatar endpoint is served on (e.g. `avatars.example.com`)."
+                },
+                "labels": {
+                    "type": "object",
+                    "description": "Extra labels for the HTTPRoute.",
+                    "additionalProperties": {}
+                },
+                "parentRefs": {
+                    "type": "array",
+                    "description": "Parent Gateway references the HTTPRoute attaches to. Required when enabled."
+                },
+                "preview": {
+                    "type": "boolean",
+                    "description": "Also expose no-cache preview routes under `/<version>/preview/...` for the creation-time live preview."
+                },
+                "sizes": {
+                    "type": "array",
+                    "description": "Allowed avatar sizes (px). Only these are accepted in the URL.",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "version": {
+                    "type": "string",
+                    "description": "Path version segment. A future global restyle bumps this to mint fresh URLs.",
+                    "pattern": "^[a-zA-Z0-9]+$"
+                }
+            }
+        },
+        "securityContext": {
+            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.SecurityContext",
+            "type": "object",
+            "description": "Container-level security context.",
+            "properties": {
+                "allowPrivilegeEscalation": {
+                    "type": "boolean"
+                },
+                "capabilities": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "drop": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "readOnlyRootFilesystem": {
+                    "type": "boolean"
+                },
+                "runAsNonRoot": {
+                    "type": "boolean"
+                }
+            },
+            "unevaluatedProperties": false
+        },
+        "subscriptionID": {
+            "type": "string"
+        }
+    }
+}
