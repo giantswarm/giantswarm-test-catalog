@@ -100294,6 +100294,43 @@ entries:
           url: https://github.com/giantswarm/agent-platform/issues
       io.giantswarm.application.audience: all
       io.giantswarm.application.managed: "true"
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/agent-platform-connectivity-4.145.2-rd5b96da4t20261018002327h1f7b8fe.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/agent-platform/refs/tags/v4.145.2-rd5b96da4t20261018002327h1f7b8fe/README.md
+      io.giantswarm.application.team: bumblebee
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/agent-platform/refs/tags/v4.145.2-rd5b96da4t20261018002327h1f7b8fe/helm/agent-platform-connectivity/values.schema.json
+    apiVersion: v2
+    appVersion: 4.145.2-rd5b96da4t20261018002327h1f7b8fe
+    created: "2026-10-18T00:37:01.89602263Z"
+    description: 'Giant Swarm Agent Platform — connectivity / integration layer. Renders
+      the consumer-side wiring that turns the platform components into a working whole
+      on a cluster: the public muster route and the agentgateway data-plane Gateway
+      + AgentgatewayParameters + HTTPRoutes + BackendTrafficPolicies, the NetworkPolicies,
+      the kagent and klaus-gateway routes, the kagent catalog (ModelConfigs and RemoteMCPServers
+      at api.kagent.dev/v1alpha3) and tenant identity, the CloudNativePG Cluster,
+      and — gated on the component toggles — the Backstage app-config and route, the
+      mcp-kubernetes MCPServer registration with muster and the KServe/vLLM model
+      serving layer (runtime, presets, cache, policies). Ships NO workloads of its
+      own — those are separate releases rendered by the agent-platform meta-chart.
+      The CRDs these CRs consume are app-owned: each component (agentgateway, kagent,
+      muster, …) ships its own CRDs, so this chart''s HelmRelease dependsOn those
+      CRD-owning component releases. '
+    digest: 29054fc4e44ec31c648cd918dc9c4cab601599688cca943714d2d3937bbdc8c2
+    home: https://github.com/giantswarm/agent-platform
+    icon: https://s.giantswarm.io/app-icons/giantswarm/1/light.svg
+    name: agent-platform-connectivity
+    sources:
+    - https://github.com/giantswarm/agent-platform
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/agent-platform-connectivity-4.145.2-rd5b96da4t20261018002327h1f7b8fe.tgz
+    version: 4.145.2-rd5b96da4t20261018002327h1f7b8fe
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Support
+          url: https://github.com/giantswarm/agent-platform/issues
+      io.giantswarm.application.audience: all
+      io.giantswarm.application.managed: "true"
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/agent-platform-connectivity-4.145.2-rd5b96da4t20261017235958h64809aa.tgz-meta/main.yaml
       io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/agent-platform/refs/tags/v4.145.2-rd5b96da4t20261017235958h64809aa/README.md
       io.giantswarm.application.team: bumblebee
@@ -572050,4 +572087,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.9.1-dev.bump-zot-to-v2-1-20.2026-09-03.07-31-48.hce482ff.tgz
     version: 2.9.1-dev.bump-zot-to-v2-1-20.2026-09-03.07-31-48.hce482ff
-generated: "2026-10-18T00:25:50.529839379Z"
+generated: "2026-10-18T00:37:01.870730677Z"
