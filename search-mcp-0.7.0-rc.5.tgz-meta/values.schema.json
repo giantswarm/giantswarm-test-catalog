@@ -1,0 +1,731 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$defs": {
+        "_definitions.json": {
+            "definitions": {
+                "io.k8s.api.core.v1.ConfigMapEnvSource": {
+                    "type": "object",
+                    "description": "ConfigMapEnvSource selects a ConfigMap to populate the environment variables with.\n\nThe contents of the target ConfigMap's Data field will represent the key-value pairs as environment variables.",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names"
+                        },
+                        "optional": {
+                            "type": "boolean",
+                            "description": "Specify whether the ConfigMap must be defined"
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.ConfigMapKeySelector": {
+                    "type": "object",
+                    "description": "Selects a key from a ConfigMap.",
+                    "required": [
+                        "key"
+                    ],
+                    "properties": {
+                        "key": {
+                            "type": "string",
+                            "description": "The key to select."
+                        },
+                        "name": {
+                            "type": "string",
+                            "description": "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names"
+                        },
+                        "optional": {
+                            "type": "boolean",
+                            "description": "Specify whether the ConfigMap or its key must be defined"
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.EnvFromSource": {
+                    "type": "object",
+                    "description": "EnvFromSource represents the source of a set of ConfigMaps or Secrets",
+                    "properties": {
+                        "configMapRef": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.ConfigMapEnvSource",
+                            "description": "The ConfigMap to select from"
+                        },
+                        "prefix": {
+                            "type": "string",
+                            "description": "Optional text to prepend to the name of each environment variable. Must be a C_IDENTIFIER."
+                        },
+                        "secretRef": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.SecretEnvSource",
+                            "description": "The Secret to select from"
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.EnvVar": {
+                    "type": "object",
+                    "description": "EnvVar represents an environment variable present in a Container.",
+                    "required": [
+                        "name"
+                    ],
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Name of the environment variable. Must be a C_IDENTIFIER."
+                        },
+                        "value": {
+                            "type": "string",
+                            "description": "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. \"$$(VAR_NAME)\" will produce the string literal \"$(VAR_NAME)\". Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to \"\"."
+                        },
+                        "valueFrom": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.EnvVarSource",
+                            "description": "Source for the environment variable's value. Cannot be used if value is not empty."
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.EnvVarSource": {
+                    "type": "object",
+                    "description": "EnvVarSource represents a source for the value of an EnvVar.",
+                    "properties": {
+                        "configMapKeyRef": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.ConfigMapKeySelector",
+                            "description": "Selects a key of a ConfigMap."
+                        },
+                        "fieldRef": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.ObjectFieldSelector",
+                            "description": "Selects a field of the pod: supports metadata.name, metadata.namespace, `metadata.labels['<KEY>']`, `metadata.annotations['<KEY>']`, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs."
+                        },
+                        "resourceFieldRef": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.ResourceFieldSelector",
+                            "description": "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported."
+                        },
+                        "secretKeyRef": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.SecretKeySelector",
+                            "description": "Selects a key of a secret in the pod's namespace"
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.ObjectFieldSelector": {
+                    "type": "object",
+                    "description": "ObjectFieldSelector selects an APIVersioned field of an object.",
+                    "required": [
+                        "fieldPath"
+                    ],
+                    "properties": {
+                        "apiVersion": {
+                            "type": "string",
+                            "description": "Version of the schema the FieldPath is written in terms of, defaults to \"v1\"."
+                        },
+                        "fieldPath": {
+                            "type": "string",
+                            "description": "Path of the field to select in the specified API version."
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.ResourceFieldSelector": {
+                    "type": "object",
+                    "description": "ResourceFieldSelector represents container resources (cpu, memory) and their output format",
+                    "required": [
+                        "resource"
+                    ],
+                    "properties": {
+                        "containerName": {
+                            "type": "string",
+                            "description": "Container name: required for volumes, optional for env vars"
+                        },
+                        "divisor": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.apimachinery.pkg.api.resource.Quantity",
+                            "description": "Specifies the output format of the exposed resources, defaults to \"1\""
+                        },
+                        "resource": {
+                            "type": "string",
+                            "description": "Required: resource to select"
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.SecretEnvSource": {
+                    "type": "object",
+                    "description": "SecretEnvSource selects a Secret to populate the environment variables with.\n\nThe contents of the target Secret's Data field will represent the key-value pairs as environment variables.",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names"
+                        },
+                        "optional": {
+                            "type": "boolean",
+                            "description": "Specify whether the Secret must be defined"
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.SecretKeySelector": {
+                    "type": "object",
+                    "description": "SecretKeySelector selects a key of a Secret.",
+                    "required": [
+                        "key"
+                    ],
+                    "properties": {
+                        "key": {
+                            "type": "string",
+                            "description": "The key of the secret to select from.  Must be a valid secret key."
+                        },
+                        "name": {
+                            "type": "string",
+                            "description": "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names"
+                        },
+                        "optional": {
+                            "type": "boolean",
+                            "description": "Specify whether the Secret or its key must be defined"
+                        }
+                    }
+                },
+                "io.k8s.apimachinery.pkg.api.resource.Quantity": {
+                    "oneOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "number"
+                        }
+                    ]
+                }
+            }
+        },
+        "parentref.schema.json": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "type": "object",
+            "title": "ParentReference",
+            "description": "Gateway API ParentReference identifying the Gateway (or other parent resource) this route attaches to.",
+            "required": [
+                "name"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "group": {
+                    "type": "string",
+                    "description": "Group of the referent. Defaults to gateway.networking.k8s.io when unspecified."
+                },
+                "kind": {
+                    "type": "string",
+                    "description": "Kind of the referent, e.g. Gateway."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the referent."
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "Namespace of the referent. Defaults to the route's namespace when unspecified."
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "Network port this route targets on the parent.",
+                    "maximum": 65535,
+                    "minimum": 1
+                },
+                "sectionName": {
+                    "type": "string",
+                    "description": "Name of a section (listener) within the parent resource."
+                }
+            }
+        }
+    },
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "baseDomain": {
+            "type": "string"
+        },
+        "bootstrapMode": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "chartOperator": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "ciliumNetworkPolicy": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "cluster": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "clusterCA": {
+            "type": "string"
+        },
+        "clusterCIDR": {
+            "type": "string"
+        },
+        "clusterDNSIP": {
+            "type": "string"
+        },
+        "clusterID": {
+            "type": "string"
+        },
+        "env": {
+            "type": "array",
+            "description": "Environment variables for the container Example for OAuth configuration: - name: OAUTH_ISSUER_URL value: \"https://dex.example.com\" - name: OAUTH_CLIENT_ID value: \"searchmcp\"",
+            "items": {
+                "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.EnvVar"
+            }
+        },
+        "envFrom": {
+            "type": "array",
+            "description": "Environment variables from secrets or configmaps Example: - secretRef: name: search-mcp-oauth",
+            "items": {
+                "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.EnvFromSource"
+            }
+        },
+        "fullnameOverride": {
+            "type": "string",
+            "description": "Optional: overrides the generated application name completely. Cannot be combined with nameOverride."
+        },
+        "gcpProject": {
+            "type": "string"
+        },
+        "global": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "description": "Global values shared between all subcharts",
+            "$comment": "Added automatically by 'helm schema' to allow this chart to be used as a Helm dependency, as this schema would otherwise not allow Helm's special 'global' values key."
+        },
+        "image": {
+            "type": "object",
+            "description": "Container image settings",
+            "additionalProperties": false,
+            "properties": {
+                "pullPolicy": {
+                    "type": "string",
+                    "description": "Image pull policy"
+                },
+                "registry": {
+                    "type": "string",
+                    "description": "Registry host name"
+                },
+                "repository": {
+                    "type": "string",
+                    "description": "Repository name"
+                },
+                "tag": {
+                    "type": "string",
+                    "description": "Optional: overrides the image tag. Default tag is identical with the chart appVersion."
+                }
+            }
+        },
+        "imagePullSecrets": {
+            "type": "array",
+            "description": "Image pull secrets"
+        },
+        "livenessProbe": {
+            "type": "object",
+            "description": "Liveness probe",
+            "additionalProperties": false,
+            "properties": {
+                "httpGet": {
+                    "type": "object",
+                    "description": "HTTP GET probe",
+                    "additionalProperties": false,
+                    "properties": {
+                        "path": {
+                            "type": "string",
+                            "description": "Path to access on the HTTP server"
+                        },
+                        "port": {
+                            "type": "string",
+                            "description": "Port to access on the HTTP server. Can be a named port or a number in string format."
+                        }
+                    }
+                }
+            }
+        },
+        "nameOverride": {
+            "type": "string",
+            "description": "Optional: overrides for the generated application name, but will be suffixed with the release name."
+        },
+        "nodeSelector": {
+            "type": "object",
+            "description": "Optional node selector for pod assignment",
+            "additionalProperties": false
+        },
+        "podAnnotations": {
+            "type": "object",
+            "description": "Pod annotations",
+            "additionalProperties": false
+        },
+        "podDisruptionBudget": {
+            "type": "object",
+            "description": "Settings about PodDisruptionBudget creation",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Whether to create a PodDisruptionBudget resource"
+                },
+                "minAvailable": {
+                    "type": "integer",
+                    "description": "Number of pods that must be available after a disruption. Cannot be combined with maxUnavailable."
+                }
+            }
+        },
+        "podLabels": {
+            "type": "object",
+            "description": "Pod labels",
+            "additionalProperties": false
+        },
+        "podSecurityContext": {
+            "type": "object",
+            "description": "Pod security context",
+            "additionalProperties": false
+        },
+        "provider": {
+            "type": "string"
+        },
+        "readinessProbe": {
+            "type": "object",
+            "description": "Readiness probe",
+            "additionalProperties": false,
+            "properties": {
+                "httpGet": {
+                    "type": "object",
+                    "description": "HTTP GET probe",
+                    "additionalProperties": false,
+                    "properties": {
+                        "path": {
+                            "type": "string",
+                            "description": "Path to access on the HTTP server"
+                        },
+                        "port": {
+                            "type": "string",
+                            "description": "Port to access on the HTTP server. Can be a named port or a number in string format."
+                        }
+                    }
+                }
+            }
+        },
+        "replicaCount": {
+            "type": "integer",
+            "description": "Number of pods to run"
+        },
+        "resources": {
+            "type": "object",
+            "description": "Resource requests and limits",
+            "additionalProperties": false,
+            "properties": {
+                "limits": {
+                    "type": "object",
+                    "description": "Resource limits",
+                    "additionalProperties": false,
+                    "properties": {
+                        "cpu": {
+                            "type": "string",
+                            "description": "CPU limit"
+                        },
+                        "memory": {
+                            "type": "string",
+                            "description": "Memory limit"
+                        }
+                    }
+                },
+                "requests": {
+                    "type": "object",
+                    "description": "Resource requests",
+                    "additionalProperties": false,
+                    "properties": {
+                        "cpu": {
+                            "type": "string",
+                            "description": "CPU requested"
+                        },
+                        "memory": {
+                            "type": "string",
+                            "description": "Memory requested"
+                        }
+                    }
+                }
+            }
+        },
+        "route": {
+            "type": "object",
+            "description": "Gateway API route configuration. More information can be found at https://gateway-api.sigs.k8s.io/",
+            "required": [
+                "hostnames"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "additionalRules": {
+                    "type": "array"
+                },
+                "annotations": {
+                    "type": "object",
+                    "description": "Optional extra annotations for the route",
+                    "additionalProperties": false
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Set to true to enable route creation (needs at least one entry in hostnames)"
+                },
+                "externalDNS": {
+                    "type": "object",
+                    "description": "External DNS configuration for automatic DNS record creation",
+                    "additionalProperties": false,
+                    "properties": {
+                        "target": {
+                            "type": "string",
+                            "description": "Target hostname for external-dns (e.g., the load balancer hostname). When set, external-dns annotations are added to the HTTPRoute."
+                        }
+                    }
+                },
+                "filters": {
+                    "type": "array"
+                },
+                "hostnames": {
+                    "type": "array",
+                    "description": "Hostnames that the route should match. Supports templating with {{ .Values.xxx }}",
+                    "items": {
+                        "type": "string"
+                    },
+                    "uniqueItems": true
+                },
+                "kind": {
+                    "type": "string",
+                    "description": "Kind of route to create.",
+                    "enum": [
+                        "GRPCRoute",
+                        "HTTPRoute",
+                        "TCPRoute",
+                        "TLSRoute",
+                        "UDPRoute"
+                    ]
+                },
+                "labels": {
+                    "type": "object",
+                    "description": "Optional extra labels for the route",
+                    "additionalProperties": false
+                },
+                "matches": {
+                    "type": "array",
+                    "description": "Request matching rules",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "path": {
+                                "type": "object",
+                                "additionalProperties": false,
+                                "properties": {
+                                    "type": {
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Override the route name (defaults to the name of the Helm release)"
+                },
+                "parentRefs": {
+                    "type": "array",
+                    "description": "Optional parent gateway references",
+                    "items": {
+                        "$ref": "#/$defs/parentref.schema.json"
+                    }
+                },
+                "securityPolicy": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "annotations": {
+                            "type": "object",
+                            "additionalProperties": false
+                        },
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "labels": {
+                            "type": "object",
+                            "additionalProperties": false
+                        }
+                    }
+                }
+            }
+        },
+        "securityContext": {
+            "type": "object",
+            "description": "Container security context",
+            "additionalProperties": false,
+            "properties": {
+                "allowPrivilegeEscalation": {
+                    "type": "boolean"
+                },
+                "capabilities": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "drop": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "readOnlyRootFilesystem": {
+                    "type": "boolean"
+                },
+                "runAsNonRoot": {
+                    "type": "boolean"
+                },
+                "runAsUser": {
+                    "type": "integer"
+                },
+                "seccompProfile": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "type": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "service": {
+            "type": "object",
+            "description": "Service settings",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "annotations": {
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": false
+                },
+                "port": {
+                    "type": "integer"
+                }
+            }
+        },
+        "serviceAccount": {
+            "type": "object",
+            "description": "Service account settings",
+            "additionalProperties": false,
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "description": "Annotations to add to the service account",
+                    "additionalProperties": false
+                },
+                "automount": {
+                    "type": "boolean",
+                    "description": "Automatically mount a ServiceAccount's API credentials?"
+                },
+                "create": {
+                    "type": "boolean",
+                    "description": "Specifies whether a service account should be created"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the service account to use. If not set and create is true, a name is generated using the fullname template"
+                }
+            }
+        },
+        "serviceMonitor": {
+            "type": "object",
+            "description": "Settings about ServiceMonitor creation for Prometheus Operator",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Whether to create a ServiceMonitor resource"
+                }
+            }
+        },
+        "strategy": {
+            "type": "object",
+            "description": "Deployment strategy",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "Recreate",
+                        "RollingUpdate"
+                    ]
+                },
+                "rollingUpdate": {
+                    "type": "object",
+                    "description": "Rolling update settings. Only applicable if type is RollingUpdate.",
+                    "additionalProperties": false,
+                    "properties": {
+                        "maxSurge": {
+                            "type": "integer",
+                            "description": "Maximum number of pods that can be created above the desired number of pods during the update."
+                        },
+                        "maxUnavailable": {
+                            "type": "integer",
+                            "description": "Maximum number of pods that can be unavailable during the update."
+                        }
+                    }
+                }
+            }
+        },
+        "subscriptionID": {
+            "type": "string"
+        },
+        "tolerations": {
+            "type": "array",
+            "description": "Optional tolerations for pod assignment"
+        },
+        "topologySpreadConstraints": {
+            "type": "array",
+            "description": "Pod topology spread constraints",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "labelSelector": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "matchLabels": {
+                                "type": "object",
+                                "additionalProperties": false,
+                                "properties": {
+                                    "app.kubernetes.io/instance": {
+                                        "type": "string"
+                                    },
+                                    "app.kubernetes.io/name": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "maxSkew": {
+                        "type": "integer"
+                    },
+                    "topologyKey": {
+                        "type": "string"
+                    },
+                    "whenUnsatisfiable": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "volumeMounts": {
+            "type": "array",
+            "description": "Extra volume mounts"
+        },
+        "volumes": {
+            "type": "array",
+            "description": "Extra volumes"
+        }
+    }
+}
