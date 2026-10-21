@@ -428812,6 +428812,98 @@ entries:
           url: https://github.com/kagent-dev/kagent
       io.giantswarm.application.audience: all
       io.giantswarm.application.managed: "true"
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/kagent-0.3.13-r4c02ffect20261021214826h3903cdf.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/kagent/refs/tags/v0.3.13-r4c02ffect20261021214826h3903cdf/README.md
+      io.giantswarm.application.team: bumblebee
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/kagent/refs/tags/v0.3.13-r4c02ffect20261021214826h3903cdf/helm/kagent/values.schema.json
+    apiVersion: v2
+    appVersion: 0.10.3
+    created: "2026-10-21T21:52:47.009115109Z"
+    dependencies:
+    - condition: kmcp.enabled
+      name: kmcp
+      repository: file://charts/kmcp
+      version: 0.3.0
+    - condition: substrate.enabled
+      name: substrate
+      repository: file://charts/substrate
+      version: 0.0.9
+    - condition: kagent-tools.enabled
+      name: kagent-tools
+      repository: file://charts/kagent-tools
+      version: 0.3.0
+    - condition: grafana-mcp.enabled, observability-agent.enabled
+      name: grafana-mcp
+      repository: file://charts/grafana-mcp
+      version: 0.10.3
+    - condition: k8s-agent.enabled
+      name: k8s-agent
+      repository: file://charts/k8s-agent
+      version: 0.10.3
+    - condition: kgateway-agent.enabled
+      name: kgateway-agent
+      repository: file://charts/kgateway-agent
+      version: 0.10.3
+    - condition: istio-agent.enabled
+      name: istio-agent
+      repository: file://charts/istio-agent
+      version: 0.10.3
+    - condition: promql-agent.enabled
+      name: promql-agent
+      repository: file://charts/promql-agent
+      version: 0.10.3
+    - condition: observability-agent.enabled
+      name: observability-agent
+      repository: file://charts/observability-agent
+      version: 0.10.3
+    - condition: argo-rollouts-agent.enabled
+      name: argo-rollouts-agent
+      repository: file://charts/argo-rollouts-agent
+      version: 0.10.3
+    - condition: helm-agent.enabled
+      name: helm-agent
+      repository: file://charts/helm-agent
+      version: 0.10.3
+    - condition: cilium-policy-agent.enabled
+      name: cilium-policy-agent
+      repository: file://charts/cilium-policy-agent
+      version: 0.10.3
+    - condition: cilium-manager-agent.enabled
+      name: cilium-manager-agent
+      repository: file://charts/cilium-manager-agent
+      version: 0.10.3
+    - condition: cilium-debug-agent.enabled
+      name: cilium-debug-agent
+      repository: file://charts/cilium-debug-agent
+      version: 0.10.3
+    - condition: oauth2-proxy.enabled
+      name: oauth2-proxy
+      repository: file://charts/oauth2-proxy
+      version: 10.7.1
+    description: Giant Swarm packaging of the upstream kagent-dev/kagent controller
+      (Kubernetes-native AI agent runtime). The upstream chart is flattened onto the
+      chart root, with its bundled subcharts (kmcp, kagent-tools, agents, oauth2-proxy)
+      under charts/; the kagent.dev and kmcp CRDs ship in this chart's crds/ directory
+      so the app owns its CRDs (delivered via Flux CreateReplace).
+    digest: f19e99c21c9b72377b4ec98074a07d37603751795c3dc15afed42be96522c9a2
+    home: https://github.com/giantswarm/kagent
+    icon: https://s.giantswarm.io/app-icons/giantswarm/1/light.svg
+    name: kagent
+    sources:
+    - https://github.com/giantswarm/kagent
+    - https://github.com/kagent-dev/kagent
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/kagent-0.3.13-r4c02ffect20261021214826h3903cdf.tgz
+    version: 0.3.13-r4c02ffect20261021214826h3903cdf
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Support
+          url: https://github.com/giantswarm/kagent/issues
+        - name: Upstream project
+          url: https://github.com/kagent-dev/kagent
+      io.giantswarm.application.audience: all
+      io.giantswarm.application.managed: "true"
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/kagent-0.3.12-r4c02ffect20261020215359h863a77a.tgz-meta/main.yaml
       io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/kagent/refs/tags/v0.3.12-r4c02ffect20261020215359h863a77a/README.md
       io.giantswarm.application.team: bumblebee
@@ -655477,4 +655569,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.9.1-dev.bump-zot-to-v2-1-20.2026-09-03.07-31-48.hce482ff.tgz
     version: 2.9.1-dev.bump-zot-to-v2-1-20.2026-09-03.07-31-48.hce482ff
-generated: "2026-10-21T21:21:09.638770581Z"
+generated: "2026-10-21T21:52:46.972044108Z"
