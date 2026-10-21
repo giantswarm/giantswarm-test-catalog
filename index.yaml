@@ -271743,6 +271743,37 @@ entries:
         - name: Upstream project
           url: https://github.com/kubernetes-sigs/external-dns
       io.giantswarm.application.audience: all
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-3.5.1-r493f4483t20261021081317h1a4335e.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/external-dns-app/refs/tags/v3.5.1-r493f4483t20261021081317h1a4335e/README.md
+      io.giantswarm.application.team: cabbage
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/external-dns-app/refs/tags/v3.5.1-r493f4483t20261021081317h1a4335e/helm/external-dns-app/values.schema.json
+    apiVersion: v2
+    appVersion: 0.21.0
+    created: "2026-10-21T08:15:35.99487365Z"
+    dependencies:
+    - condition: crd.install
+      name: kubectl-apply-job
+      repository: oci://gsoci.azurecr.io/charts/giantswarm
+      version: 0.14.0
+    description: Configure external DNS servers for Kubernetes Ingresses and Services
+    digest: 6656442e0b15c15dd7fc0dffc2d343a75f5f4ad2e62d6ea68784525f238a364e
+    home: https://github.com/giantswarm/external-dns-app
+    icon: https://s.giantswarm.io/app-icons/external-dns/1/dark.png
+    kubeVersion: '>=1.19.0-0'
+    name: external-dns-app
+    sources:
+    - https://github.com/kubernetes-sigs/external-dns
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-3.5.1-r493f4483t20261021081317h1a4335e.tgz
+    version: 3.5.1-r493f4483t20261021081317h1a4335e
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Support
+          url: https://github.com/giantswarm/external-dns-app/issues
+        - name: Upstream project
+          url: https://github.com/kubernetes-sigs/external-dns
+      io.giantswarm.application.audience: all
       io.giantswarm.application.managed: "true"
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/external-dns-app-3.5.1-r3f5eeabct20260928081330hdf74868.tgz-meta/main.yaml
       io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/external-dns-app/refs/tags/v3.5.1-r3f5eeabct20260928081330hdf74868/README.md
@@ -646058,4 +646089,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.9.1-dev.bump-zot-to-v2-1-20.2026-09-03.07-31-48.hce482ff.tgz
     version: 2.9.1-dev.bump-zot-to-v2-1-20.2026-09-03.07-31-48.hce482ff
-generated: "2026-10-21T08:14:23.074307494Z"
+generated: "2026-10-21T08:15:35.992557068Z"
