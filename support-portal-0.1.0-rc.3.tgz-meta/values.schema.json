@@ -1,0 +1,1083 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$defs": {
+        "_definitions.json": {
+            "definitions": {
+                "io.k8s.api.core.v1.Affinity": {
+                    "type": "object",
+                    "description": "Affinity is a group of affinity scheduling rules.",
+                    "properties": {
+                        "nodeAffinity": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.NodeAffinity",
+                            "description": "Describes node affinity scheduling rules for the pod."
+                        },
+                        "podAffinity": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.PodAffinity",
+                            "description": "Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s))."
+                        },
+                        "podAntiAffinity": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.PodAntiAffinity",
+                            "description": "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s))."
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.AppArmorProfile": {
+                    "type": "object",
+                    "description": "AppArmorProfile defines a pod or container's AppArmor settings.",
+                    "required": [
+                        "type"
+                    ],
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "description": "type indicates which kind of AppArmor profile will be applied. Valid options are:\n  Localhost - a profile pre-loaded on the node.\n  RuntimeDefault - the container runtime's default profile.\n  Unconfined - no AppArmor enforcement."
+                        },
+                        "localhostProfile": {
+                            "type": "string",
+                            "description": "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is \"Localhost\"."
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.Capabilities": {
+                    "type": "object",
+                    "description": "Adds and removes POSIX capabilities from running containers.",
+                    "properties": {
+                        "add": {
+                            "type": "array",
+                            "description": "Added capabilities",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "drop": {
+                            "type": "array",
+                            "description": "Removed capabilities",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.LocalObjectReference": {
+                    "type": "object",
+                    "description": "LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace.",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names"
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.NodeAffinity": {
+                    "type": "object",
+                    "description": "Node affinity is a group of node affinity scheduling rules.",
+                    "properties": {
+                        "preferredDuringSchedulingIgnoredDuringExecution": {
+                            "type": "array",
+                            "description": "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding \"weight\" to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.",
+                            "items": {
+                                "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.PreferredSchedulingTerm"
+                            }
+                        },
+                        "requiredDuringSchedulingIgnoredDuringExecution": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.NodeSelector",
+                            "description": "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node."
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.NodeSelector": {
+                    "type": "object",
+                    "description": "A node selector represents the union of the results of one or more label queries over a set of nodes; that is, it represents the OR of the selectors represented by the node selector terms.",
+                    "required": [
+                        "nodeSelectorTerms"
+                    ],
+                    "properties": {
+                        "nodeSelectorTerms": {
+                            "type": "array",
+                            "description": "Required. A list of node selector terms. The terms are ORed.",
+                            "items": {
+                                "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.NodeSelectorTerm"
+                            }
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.NodeSelectorRequirement": {
+                    "type": "object",
+                    "description": "A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
+                    "required": [
+                        "key",
+                        "operator"
+                    ],
+                    "properties": {
+                        "key": {
+                            "type": "string",
+                            "description": "The label key that the selector applies to."
+                        },
+                        "operator": {
+                            "type": "string",
+                            "description": "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt."
+                        },
+                        "values": {
+                            "type": "array",
+                            "description": "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.NodeSelectorTerm": {
+                    "type": "object",
+                    "description": "A null or empty node selector term matches no objects. The requirements of them are ANDed. The TopologySelectorTerm type implements a subset of the NodeSelectorTerm.",
+                    "properties": {
+                        "matchExpressions": {
+                            "type": "array",
+                            "description": "A list of node selector requirements by node's labels.",
+                            "items": {
+                                "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.NodeSelectorRequirement"
+                            }
+                        },
+                        "matchFields": {
+                            "type": "array",
+                            "description": "A list of node selector requirements by node's fields.",
+                            "items": {
+                                "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.NodeSelectorRequirement"
+                            }
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.PodAffinity": {
+                    "type": "object",
+                    "description": "Pod affinity is a group of inter pod affinity scheduling rules.",
+                    "properties": {
+                        "preferredDuringSchedulingIgnoredDuringExecution": {
+                            "type": "array",
+                            "description": "The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding \"weight\" to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+                            "items": {
+                                "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.WeightedPodAffinityTerm"
+                            }
+                        },
+                        "requiredDuringSchedulingIgnoredDuringExecution": {
+                            "type": "array",
+                            "description": "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
+                            "items": {
+                                "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.PodAffinityTerm"
+                            }
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.PodAffinityTerm": {
+                    "type": "object",
+                    "description": "Defines a set of pods (namely those matching the labelSelector relative to the given namespace(s)) that this pod should be co-located (affinity) or not co-located (anti-affinity) with, where co-located is defined as running on a node whose value of the label with key <topologyKey> matches that of any node on which a pod of the set of pods is running",
+                    "required": [
+                        "topologyKey"
+                    ],
+                    "properties": {
+                        "labelSelector": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.LabelSelector",
+                            "description": "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods."
+                        },
+                        "matchLabelKeys": {
+                            "type": "array",
+                            "description": "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)` to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "mismatchLabelKeys": {
+                            "type": "array",
+                            "description": "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with `labelSelector` as `key notin (value)` to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "namespaceSelector": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.LabelSelector",
+                            "description": "A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means \"this pod's namespace\". An empty selector ({}) matches all namespaces."
+                        },
+                        "namespaces": {
+                            "type": "array",
+                            "description": "namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means \"this pod's namespace\".",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "topologyKey": {
+                            "type": "string",
+                            "description": "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed."
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.PodAntiAffinity": {
+                    "type": "object",
+                    "description": "Pod anti affinity is a group of inter pod anti affinity scheduling rules.",
+                    "properties": {
+                        "preferredDuringSchedulingIgnoredDuringExecution": {
+                            "type": "array",
+                            "description": "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding \"weight\" to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+                            "items": {
+                                "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.WeightedPodAffinityTerm"
+                            }
+                        },
+                        "requiredDuringSchedulingIgnoredDuringExecution": {
+                            "type": "array",
+                            "description": "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.",
+                            "items": {
+                                "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.PodAffinityTerm"
+                            }
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.PodSecurityContext": {
+                    "type": "object",
+                    "description": "PodSecurityContext holds pod-level security attributes and common container settings. Some fields are also present in container.securityContext.  Field values of container.securityContext take precedence over field values of PodSecurityContext.",
+                    "properties": {
+                        "appArmorProfile": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.AppArmorProfile",
+                            "description": "appArmorProfile is the AppArmor options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows."
+                        },
+                        "fsGroup": {
+                            "type": "integer",
+                            "description": "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:\n\n1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw----\n\nIf unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
+                            "format": "int64"
+                        },
+                        "fsGroupChangePolicy": {
+                            "type": "string",
+                            "description": "fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are \"OnRootMismatch\" and \"Always\". If not specified, \"Always\" is used. Note that this field cannot be set when spec.os.name is windows."
+                        },
+                        "runAsGroup": {
+                            "type": "integer",
+                            "description": "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+                            "format": "int64"
+                        },
+                        "runAsNonRoot": {
+                            "type": "boolean",
+                            "description": "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence."
+                        },
+                        "runAsUser": {
+                            "type": "integer",
+                            "description": "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+                            "format": "int64"
+                        },
+                        "seLinuxChangePolicy": {
+                            "type": "string",
+                            "description": "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are \"MountOption\" and \"Recursive\".\n\n\"Recursive\" means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node.\n\n\"MountOption\" mounts all eligible Pod volumes with `-o context` mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. \"MountOption\" value is allowed only when SELinuxMount feature gate is enabled.\n\nIf not specified and SELinuxMount feature gate is enabled, \"MountOption\" is used. If not specified and SELinuxMount feature gate is disabled, \"MountOption\" is used for ReadWriteOncePod volumes and \"Recursive\" for all other volumes.\n\nThis field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers.\n\nAll Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows."
+                        },
+                        "seLinuxOptions": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.SELinuxOptions",
+                            "description": "The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows."
+                        },
+                        "seccompProfile": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.SeccompProfile",
+                            "description": "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows."
+                        },
+                        "supplementalGroups": {
+                            "type": "array",
+                            "description": "A list of groups applied to the first process run in each container, in addition to the container's primary GID and fsGroup (if specified).  If the SupplementalGroupsPolicy feature is enabled, the supplementalGroupsPolicy field determines whether these are in addition to or instead of any group memberships defined in the container image. If unspecified, no additional groups are added, though group memberships defined in the container image may still be used, depending on the supplementalGroupsPolicy field. Note that this field cannot be set when spec.os.name is windows.",
+                            "items": {
+                                "type": "integer",
+                                "format": "int64"
+                            }
+                        },
+                        "supplementalGroupsPolicy": {
+                            "type": "string",
+                            "description": "Defines how supplemental groups of the first container processes are calculated. Valid values are \"Merge\" and \"Strict\". If not specified, \"Merge\" is used. (Alpha) Using the field requires the SupplementalGroupsPolicy feature gate to be enabled and the container runtime must implement support for this feature. Note that this field cannot be set when spec.os.name is windows."
+                        },
+                        "sysctls": {
+                            "type": "array",
+                            "description": "Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows.",
+                            "items": {
+                                "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.Sysctl"
+                            }
+                        },
+                        "windowsOptions": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.WindowsSecurityContextOptions",
+                            "description": "The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux."
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.PreferredSchedulingTerm": {
+                    "type": "object",
+                    "description": "An empty preferred scheduling term matches all objects with implicit weight 0 (i.e. it's a no-op). A null preferred scheduling term matches no objects (i.e. is also a no-op).",
+                    "required": [
+                        "weight",
+                        "preference"
+                    ],
+                    "properties": {
+                        "preference": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.NodeSelectorTerm",
+                            "description": "A node selector term, associated with the corresponding weight."
+                        },
+                        "weight": {
+                            "type": "integer",
+                            "description": "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
+                            "format": "int32"
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.ResourceClaim": {
+                    "type": "object",
+                    "description": "ResourceClaim references one entry in PodSpec.ResourceClaims.",
+                    "required": [
+                        "name"
+                    ],
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container."
+                        },
+                        "request": {
+                            "type": "string",
+                            "description": "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request."
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.ResourceRequirements": {
+                    "type": "object",
+                    "description": "ResourceRequirements describes the compute resource requirements.",
+                    "properties": {
+                        "claims": {
+                            "type": "array",
+                            "description": "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.\n\nThis is an alpha field and requires enabling the DynamicResourceAllocation feature gate.\n\nThis field is immutable. It can only be set for containers.",
+                            "items": {
+                                "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.ResourceClaim"
+                            }
+                        },
+                        "limits": {
+                            "type": "object",
+                            "description": "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+                            "additionalProperties": {
+                                "$ref": "#/$defs/_definitions.json/definitions/io.k8s.apimachinery.pkg.api.resource.Quantity"
+                            }
+                        },
+                        "requests": {
+                            "type": "object",
+                            "description": "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+                            "additionalProperties": {
+                                "$ref": "#/$defs/_definitions.json/definitions/io.k8s.apimachinery.pkg.api.resource.Quantity"
+                            }
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.SELinuxOptions": {
+                    "type": "object",
+                    "description": "SELinuxOptions are the labels to be applied to the container",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "description": "Type is a SELinux type label that applies to the container."
+                        },
+                        "level": {
+                            "type": "string",
+                            "description": "Level is SELinux level label that applies to the container."
+                        },
+                        "role": {
+                            "type": "string",
+                            "description": "Role is a SELinux role label that applies to the container."
+                        },
+                        "user": {
+                            "type": "string",
+                            "description": "User is a SELinux user label that applies to the container."
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.SeccompProfile": {
+                    "type": "object",
+                    "description": "SeccompProfile defines a pod/container's seccomp profile settings. Only one profile source may be set.",
+                    "required": [
+                        "type"
+                    ],
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "description": "type indicates which kind of seccomp profile will be applied. Valid options are:\n\nLocalhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied."
+                        },
+                        "localhostProfile": {
+                            "type": "string",
+                            "description": "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is \"Localhost\". Must NOT be set for any other type."
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.SecurityContext": {
+                    "type": "object",
+                    "description": "SecurityContext holds security configuration that will be applied to a container. Some fields are present in both SecurityContext and PodSecurityContext.  When both are set, the values in SecurityContext take precedence.",
+                    "properties": {
+                        "allowPrivilegeEscalation": {
+                            "type": "boolean",
+                            "description": "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows."
+                        },
+                        "appArmorProfile": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.AppArmorProfile",
+                            "description": "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows."
+                        },
+                        "capabilities": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.Capabilities",
+                            "description": "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows."
+                        },
+                        "privileged": {
+                            "type": "boolean",
+                            "description": "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows."
+                        },
+                        "procMount": {
+                            "type": "string",
+                            "description": "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows."
+                        },
+                        "readOnlyRootFilesystem": {
+                            "type": "boolean",
+                            "description": "Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows."
+                        },
+                        "runAsGroup": {
+                            "type": "integer",
+                            "description": "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+                            "format": "int64"
+                        },
+                        "runAsNonRoot": {
+                            "type": "boolean",
+                            "description": "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence."
+                        },
+                        "runAsUser": {
+                            "type": "integer",
+                            "description": "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+                            "format": "int64"
+                        },
+                        "seLinuxOptions": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.SELinuxOptions",
+                            "description": "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows."
+                        },
+                        "seccompProfile": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.SeccompProfile",
+                            "description": "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows."
+                        },
+                        "windowsOptions": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.WindowsSecurityContextOptions",
+                            "description": "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux."
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.Sysctl": {
+                    "type": "object",
+                    "description": "Sysctl defines a kernel parameter to be set",
+                    "required": [
+                        "name",
+                        "value"
+                    ],
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Name of a property to set"
+                        },
+                        "value": {
+                            "type": "string",
+                            "description": "Value of a property to set"
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.Toleration": {
+                    "type": "object",
+                    "description": "The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.",
+                    "properties": {
+                        "effect": {
+                            "type": "string",
+                            "description": "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute."
+                        },
+                        "key": {
+                            "type": "string",
+                            "description": "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys."
+                        },
+                        "operator": {
+                            "type": "string",
+                            "description": "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category."
+                        },
+                        "tolerationSeconds": {
+                            "type": "integer",
+                            "description": "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+                            "format": "int64"
+                        },
+                        "value": {
+                            "type": "string",
+                            "description": "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string."
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.WeightedPodAffinityTerm": {
+                    "type": "object",
+                    "description": "The weights of all of the matched WeightedPodAffinityTerm fields are added per-node to find the most preferred node(s)",
+                    "required": [
+                        "weight",
+                        "podAffinityTerm"
+                    ],
+                    "properties": {
+                        "podAffinityTerm": {
+                            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.PodAffinityTerm",
+                            "description": "Required. A pod affinity term, associated with the corresponding weight."
+                        },
+                        "weight": {
+                            "type": "integer",
+                            "description": "weight associated with matching the corresponding podAffinityTerm, in the range 1-100.",
+                            "format": "int32"
+                        }
+                    }
+                },
+                "io.k8s.api.core.v1.WindowsSecurityContextOptions": {
+                    "type": "object",
+                    "description": "WindowsSecurityContextOptions contain Windows-specific options and credentials.",
+                    "properties": {
+                        "gmsaCredentialSpec": {
+                            "type": "string",
+                            "description": "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field."
+                        },
+                        "gmsaCredentialSpecName": {
+                            "type": "string",
+                            "description": "GMSACredentialSpecName is the name of the GMSA credential spec to use."
+                        },
+                        "hostProcess": {
+                            "type": "boolean",
+                            "description": "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true."
+                        },
+                        "runAsUserName": {
+                            "type": "string",
+                            "description": "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence."
+                        }
+                    }
+                },
+                "io.k8s.apimachinery.pkg.api.resource.Quantity": {
+                    "oneOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "number"
+                        }
+                    ]
+                },
+                "io.k8s.apimachinery.pkg.apis.meta.v1.LabelSelector": {
+                    "type": "object",
+                    "description": "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
+                    "properties": {
+                        "matchExpressions": {
+                            "type": "array",
+                            "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+                            "items": {
+                                "$ref": "#/$defs/_definitions.json/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.LabelSelectorRequirement"
+                            }
+                        },
+                        "matchLabels": {
+                            "type": "object",
+                            "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed.",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "io.k8s.apimachinery.pkg.apis.meta.v1.LabelSelectorRequirement": {
+                    "type": "object",
+                    "description": "A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.",
+                    "required": [
+                        "key",
+                        "operator"
+                    ],
+                    "properties": {
+                        "key": {
+                            "type": "string",
+                            "description": "key is the label key that the selector applies to."
+                        },
+                        "operator": {
+                            "type": "string",
+                            "description": "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist."
+                        },
+                        "values": {
+                            "type": "array",
+                            "description": "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "affinity": {
+            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.Affinity",
+            "type": "object",
+            "unevaluatedProperties": false
+        },
+        "baseDomain": {
+            "type": "string"
+        },
+        "bootstrapMode": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "chartOperator": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "ciliumNetworkPolicy": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "cluster": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "clusterCA": {
+            "type": "string"
+        },
+        "clusterCIDR": {
+            "type": "string"
+        },
+        "clusterDNSIP": {
+            "type": "string"
+        },
+        "clusterID": {
+            "type": "string"
+        },
+        "config": {
+            "type": "object",
+            "properties": {
+                "EMAIL_ENABLED": {
+                    "type": "string",
+                    "enum": [
+                        "true",
+                        "false"
+                    ]
+                },
+                "GITHUB_APP_ID": {
+                    "type": "string"
+                },
+                "GITHUB_APP_INSTALLATION_ID": {
+                    "type": "string"
+                },
+                "KEYCLOAK_ADMIN_CLIENT_ID": {
+                    "type": "string"
+                },
+                "MAIL_FROM": {
+                    "type": "string"
+                },
+                "MAX_UPLOAD_MB": {
+                    "type": "string",
+                    "pattern": "^[0-9]+$"
+                },
+                "OIDC_CLIENT_ID": {
+                    "type": "string"
+                },
+                "S3_BUCKET": {
+                    "type": "string"
+                },
+                "S3_ENDPOINT": {
+                    "type": "string"
+                },
+                "S3_REGION": {
+                    "type": "string"
+                },
+                "S3_USE_TLS": {
+                    "type": "string"
+                },
+                "SMTP_ADDR": {
+                    "type": "string"
+                },
+                "STAFF_GITHUB_ORG": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9-]+$"
+                },
+                "STAFF_GITHUB_TEAM": {
+                    "type": "string",
+                    "pattern": "^[a-z0-9-]*$"
+                },
+                "TICKET_BACKEND": {
+                    "type": "string"
+                },
+                "TRUSTED_BOT_LOGINS": {
+                    "type": "string"
+                },
+                "UPLOAD_QUOTA_DAILY_MB": {
+                    "type": "string",
+                    "pattern": "^[0-9]+$"
+                },
+                "UPLOAD_QUOTA_TOTAL_MB": {
+                    "type": "string",
+                    "pattern": "^[0-9]+$"
+                },
+                "UPLOAD_RATE_PER_HOUR": {
+                    "type": "string",
+                    "pattern": "^[0-9]+$"
+                }
+            },
+            "additionalProperties": {
+                "type": "string"
+            }
+        },
+        "credentials": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "env": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "customers": {
+            "type": "array"
+        },
+        "gcpProject": {
+            "type": "string"
+        },
+        "global": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "existingSecrets": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "keycloak": {
+                            "type": "string"
+                        },
+                        "portal": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "keycloak": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "hostname": {
+                            "type": "string"
+                        },
+                        "realm": {
+                            "type": "string"
+                        },
+                        "staffIdpAlias": {
+                            "type": "string",
+                            "pattern": "^[a-z0-9-]+$"
+                        }
+                    }
+                },
+                "portalHostname": {
+                    "type": "string",
+                    "pattern": "^[a-z0-9.-]+$"
+                }
+            }
+        },
+        "image": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "pullPolicy": {
+                    "type": "string",
+                    "enum": [
+                        "Always",
+                        "IfNotPresent",
+                        "Never"
+                    ]
+                },
+                "registry": {
+                    "type": "string"
+                },
+                "tag": {
+                    "type": "string"
+                }
+            }
+        },
+        "imagePullSecret": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "dockerconfigjson": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "imagePullSecrets": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.LocalObjectReference"
+            }
+        },
+        "keycloak": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "networkPolicy": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "dns": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "namespace": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "externalPorts": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "extraIngressFrom": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false
+                    }
+                },
+                "gateway": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "namespace": {
+                            "type": "string"
+                        },
+                        "podLabels": {
+                            "type": "object",
+                            "properties": {
+                                "app.kubernetes.io/component": {
+                                    "type": "string"
+                                },
+                                "app.kubernetes.io/name": {
+                                    "type": "string"
+                                }
+                            },
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "monitoring": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "namespace": {
+                            "type": "string"
+                        },
+                        "podLabels": {
+                            "type": "object",
+                            "properties": {
+                                "app.kubernetes.io/instance": {
+                                    "type": "string"
+                                },
+                                "app.kubernetes.io/name": {
+                                    "type": "string"
+                                }
+                            },
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "postgresOperator": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "namespace": {
+                            "type": "string"
+                        },
+                        "podLabels": {
+                            "type": "object",
+                            "properties": {
+                                "app.kubernetes.io/name": {
+                                    "type": "string"
+                                }
+                            },
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "smtpPorts": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            }
+        },
+        "nodeSelector": {
+            "type": "object",
+            "additionalProperties": {
+                "type": "string"
+            }
+        },
+        "podAnnotations": {
+            "type": "object",
+            "additionalProperties": {
+                "type": "string"
+            }
+        },
+        "podDisruptionBudget": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "minAvailable": {
+                    "type": "integer"
+                }
+            }
+        },
+        "podSecurityContext": {
+            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.PodSecurityContext",
+            "type": "object",
+            "unevaluatedProperties": false
+        },
+        "provider": {
+            "type": "string"
+        },
+        "replicas": {
+            "type": "integer",
+            "minimum": 1
+        },
+        "resources": {
+            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.ResourceRequirements",
+            "type": "object",
+            "unevaluatedProperties": false
+        },
+        "route": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "gateway": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "namespace": {
+                            "type": "string"
+                        },
+                        "sectionName": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "securityContext": {
+            "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.SecurityContext",
+            "type": "object",
+            "unevaluatedProperties": false
+        },
+        "service": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "metricsPort": {
+                    "type": "integer"
+                },
+                "port": {
+                    "type": "integer"
+                }
+            }
+        },
+        "serviceAccount": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "awsRoleArn": {
+                    "type": "string",
+                    "pattern": "^(arn:aws:iam::[0-9]{12}:role/.+)?$"
+                },
+                "create": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "serviceMonitor": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "interval": {
+                    "type": "string"
+                },
+                "scrapeTimeout": {
+                    "type": "string"
+                }
+            }
+        },
+        "shutdown": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "preStopSleepSeconds": {
+                    "type": "integer"
+                },
+                "shutdownTimeoutSeconds": {
+                    "type": "integer",
+                    "minimum": 1
+                }
+            }
+        },
+        "subscriptionID": {
+            "type": "string"
+        },
+        "tolerations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/_definitions.json/definitions/io.k8s.api.core.v1.Toleration"
+            }
+        },
+        "uploads": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "concurrentRequests": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "headroomMi": {
+                    "type": "integer"
+                },
+                "requestFactor": {
+                    "type": "integer",
+                    "minimum": 1
+                }
+            }
+        }
+    }
+}

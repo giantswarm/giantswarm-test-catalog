@@ -657618,6 +657618,39 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/substrate-credential-providers-0.1.0-rc.1.tgz
     version: 0.1.0-rc.1
+  support-portal:
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Support
+          url: https://github.com/giantswarm/support-portal/issues
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/support-portal-0.1.0-rc.3.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/support-portal/refs/tags/v0.1.0-rc.3/README.md
+      io.giantswarm.application.team: planeteers
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/support-portal/refs/tags/v0.1.0-rc.3/helm/support-portal/values.schema.json
+    apiVersion: v2
+    appVersion: 0.1.0-rc.3
+    created: "2026-10-23T16:07:54.650240411Z"
+    dependencies:
+    - condition: keycloak.enabled
+      name: keycloak
+      repository: ""
+      version: 0.1.0
+    description: Giant Swarm Support Portal. Customers raise and follow tickets that
+      live as GitHub issues in their repositories.
+    digest: a7e9b8aa153320086d22cf8ba38727782f5a54b3727924d0d7f531b947acc08e
+    home: https://github.com/giantswarm/support-portal
+    icon: https://s.giantswarm.io/app-icons/giantswarm/1/light.svg
+    keywords:
+    - support
+    - portal
+    name: support-portal
+    sources:
+    - https://github.com/giantswarm/support-portal
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/support-portal-0.1.0-rc.3.tgz
+    version: 0.1.0-rc.3
   tekton-dashboard-loki-proxy:
   - annotations:
       artifacthub.io/license: Apache-2.0
@@ -702556,4 +702589,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.9.1-dev.bump-zot-to-v2-1-20.2026-09-03.07-31-48.hce482ff.tgz
     version: 2.9.1-dev.bump-zot-to-v2-1-20.2026-09-03.07-31-48.hce482ff
-generated: "2026-10-23T16:06:35.533670481Z"
+generated: "2026-10-23T16:07:54.642478216Z"
