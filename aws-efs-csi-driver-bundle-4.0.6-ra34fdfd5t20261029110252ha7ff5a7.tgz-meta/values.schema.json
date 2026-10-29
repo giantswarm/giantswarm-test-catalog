@@ -1,0 +1,25 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "additionalProperties": true,
+    "properties": {
+        "ociRepositoryUrl": {
+            "type": "string"
+        },
+        "aws": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "accountID": {
+                    "type": "string"
+                },
+                "partition": {
+                    "type": "string"
+                },
+                "oidcDomain": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
