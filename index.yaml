@@ -486811,6 +486811,46 @@ entries:
           url: https://github.com/giantswarm/giantswarm-repo-manager/issues
       io.giantswarm.application.audience: giantswarm
       io.giantswarm.application.managed: "true"
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/giantswarm-repo-manager-0.38.22-rc2570c6ft20261106022407h2a20520.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/giantswarm-repo-manager/refs/tags/v0.38.22-rc2570c6ft20261106022407h2a20520/README.md
+      io.giantswarm.application.team: bumblebee
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/giantswarm-repo-manager/refs/tags/v0.38.22-rc2570c6ft20261106022407h2a20520/helm/giantswarm-repo-manager/values.schema.json
+    apiVersion: v2
+    appVersion: 0.38.22-rc2570c6ft20261106022407h2a20520
+    created: "2026-11-06T02:33:03.261698695Z"
+    dependencies:
+    - condition: valkey.enabled
+      name: valkey
+      repository: oci://gsoci.azurecr.io/charts/giantswarm
+      version: 0.4.19
+    description: Giant Swarm's repository set-up service — an MCP server behind muster
+      that lists, validates, creates and reconciles the giantswarm org's repositories
+      as the person, with its own Valkey for the inventory
+    digest: 28d48c05a8af9c07bdc022c795f8b33cf9282d4a49a7d3edc154382b6ba7b43f
+    home: https://github.com/giantswarm/giantswarm-repo-manager
+    icon: https://s.giantswarm.io/app-icons/giantswarm/1/dark.svg
+    keywords:
+    - mcp
+    - repositories
+    - github
+    - agent-platform
+    maintainers:
+    - email: team-bumblebee@giantswarm.io
+      name: Giant Swarm
+    name: giantswarm-repo-manager
+    sources:
+    - https://github.com/giantswarm/giantswarm-repo-manager
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/giantswarm-repo-manager-0.38.22-rc2570c6ft20261106022407h2a20520.tgz
+    version: 0.38.22-rc2570c6ft20261106022407h2a20520
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Support
+          url: https://github.com/giantswarm/giantswarm-repo-manager/issues
+      io.giantswarm.application.audience: giantswarm
+      io.giantswarm.application.managed: "true"
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/giantswarm-repo-manager-0.38.21-rc264f12et20261106022256hdaf9ab5.tgz-meta/main.yaml
       io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/giantswarm-repo-manager/refs/tags/v0.38.21-rc264f12et20261106022256hdaf9ab5/README.md
       io.giantswarm.application.team: bumblebee
@@ -845059,4 +845099,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.9.1-dev.bump-zot-to-v2-1-20.2026-09-03.07-31-48.hce482ff.tgz
     version: 2.9.1-dev.bump-zot-to-v2-1-20.2026-09-03.07-31-48.hce482ff
-generated: "2026-11-06T02:31:47.112571711Z"
+generated: "2026-11-06T02:33:03.255366875Z"
