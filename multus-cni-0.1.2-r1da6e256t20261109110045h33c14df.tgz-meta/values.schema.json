@@ -1,0 +1,132 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "properties": {
+    "image": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "default": "giantswarm/multus-cni",
+          "title": "name",
+          "type": "string"
+        },
+        "repository": {
+          "default": "gsoci.azurecr.io",
+          "title": "repository",
+          "type": "string"
+        },
+        "tag": {
+          "title": "tag",
+          "type": "string"
+        }
+      },
+      "required": [
+        "repository",
+        "name",
+        "tag"
+      ],
+      "title": "image",
+      "type": "object"
+    },
+    "initContainer": {
+      "additionalProperties": false,
+      "properties": {
+        "resources": {
+          "additionalProperties": false,
+          "properties": {
+            "requests": {
+              "additionalProperties": false,
+              "properties": {
+                "cpu": {
+                  "default": "10m",
+                  "title": "cpu",
+                  "type": "string"
+                },
+                "memory": {
+                  "default": "15Mi",
+                  "title": "memory",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "cpu",
+                "memory"
+              ],
+              "title": "requests",
+              "type": "object"
+            }
+          },
+          "required": [
+            "requests"
+          ],
+          "title": "resources",
+          "type": "object"
+        }
+      },
+      "required": [
+        "resources"
+      ],
+      "title": "initContainer",
+      "type": "object"
+    },
+    "resources": {
+      "additionalProperties": false,
+      "properties": {
+        "limits": {
+          "additionalProperties": false,
+          "properties": {
+            "cpu": {
+              "default": "100m",
+              "title": "cpu",
+              "type": "string"
+            },
+            "memory": {
+              "default": "50Mi",
+              "title": "memory",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "title": "limits",
+          "type": "object"
+        },
+        "requests": {
+          "additionalProperties": false,
+          "properties": {
+            "cpu": {
+              "default": "100m",
+              "title": "cpu",
+              "type": "string"
+            },
+            "memory": {
+              "default": "50Mi",
+              "title": "memory",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "title": "requests",
+          "type": "object"
+        }
+      },
+      "required": [
+        "limits",
+        "requests"
+      ],
+      "title": "resources",
+      "type": "object"
+    }
+  },
+  "required": [
+    "image",
+    "resources",
+    "initContainer"
+  ],
+  "type": "object"
+}
