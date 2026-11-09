@@ -1,0 +1,56 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "additionalProperties": true,
+    "properties": {
+        "nameOverride": {
+            "type": "string"
+        },
+        "fullnameOverride": {
+            "type": "string"
+        },
+        "networkPolicy": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "verticalPodAutoscaler": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "minAllowed": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                        "cpu": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "podLogs": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "tenant": {
+                    "type": "string"
+                }
+            }
+        },
+        "upstream": {
+            "type": "object",
+            "additionalProperties": true
+        }
+    }
+}
