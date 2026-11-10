@@ -207855,6 +207855,41 @@ entries:
         - name: Upstream project
           url: https://github.com/controlplaneio-fluxcd/charts/tree/main/charts/flux-operator
       io.giantswarm.application.audience: all
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/flux-operator-0.9.1-r4c02ffect20261110220738hb82915c.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/flux-operator-app/refs/tags/v0.9.1-r4c02ffect20261110220738hb82915c/README.md
+      io.giantswarm.application.restrictions.cluster-singleton: "true"
+      io.giantswarm.application.team: honeybadger
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/flux-operator-app/refs/tags/v0.9.1-r4c02ffect20261110220738hb82915c/helm/flux-operator/values.schema.json
+    apiVersion: v2
+    appVersion: 0.9.1-r4c02ffect20261110220738hb82915c
+    created: "2026-11-10T22:12:40.421050251Z"
+    dependencies:
+    - condition: fluxoperator.enabled
+      name: flux-operator
+      repository: oci://ghcr.io/controlplaneio-fluxcd/charts
+      version: 0.62.1
+    description: Flux Operator is a Kubernetes CRD controller that manages the lifecycle
+      of Flux CD
+    digest: 2444ac87d30ba2daec45c74e7318deb5d91271a70e35c49d346f981b125e7764
+    home: https://github.com/giantswarm/flux-operator-app
+    icon: https://s.giantswarm.io/app-icons/flux/2/icon_light.svg
+    keywords:
+    - flux
+    - gitops
+    name: flux-operator
+    sources:
+    - https://github.com/controlplaneio-fluxcd/charts/tree/main/charts/flux-operator
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/flux-operator-0.9.1-r4c02ffect20261110220738hb82915c.tgz
+    version: 0.9.1-r4c02ffect20261110220738hb82915c
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Support
+          url: https://github.com/giantswarm/flux-operator-app/issues
+        - name: Upstream project
+          url: https://github.com/controlplaneio-fluxcd/charts/tree/main/charts/flux-operator
+      io.giantswarm.application.audience: all
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/flux-operator-0.9.1-r4c02ffect20261109215323h7143f71.tgz-meta/main.yaml
       io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/flux-operator-app/refs/tags/v0.9.1-r4c02ffect20261109215323h7143f71/README.md
       io.giantswarm.application.restrictions.cluster-singleton: "true"
@@ -488303,4 +488338,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.10.1-r01db42e8t20261104095727hd31f26a.tgz
     version: 2.10.1-r01db42e8t20261104095727hd31f26a
-generated: "2026-11-10T22:11:24.343123825Z"
+generated: "2026-11-10T22:12:40.417898237Z"
