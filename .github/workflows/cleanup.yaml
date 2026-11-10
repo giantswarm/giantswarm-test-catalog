@@ -5,8 +5,7 @@ on:
   workflow_dispatch:
 jobs:
   cleanup:
-    # Temporarily on the branch of giantswarm/app-catalog-cleanup-tool#330; switch back to @main once it is merged.
-    uses: giantswarm/app-catalog-cleanup-tool/.github/workflows/cleanup.yaml@fix/fetch-base-before-pr-push
+    uses: giantswarm/app-catalog-cleanup-tool/.github/workflows/cleanup.yaml@main
     with:
       delete-before: "1 month"
       dry-run: false
