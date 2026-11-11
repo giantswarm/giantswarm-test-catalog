@@ -212623,6 +212623,47 @@ entries:
           url: https://github.com/fluxcd/flux2
       io.giantswarm.application.audience: all
       io.giantswarm.application.logo: https://s.giantswarm.io/app-icons/flux/2/logo_dark.svg
+      io.giantswarm.application.managed: "true"
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/flux-app-1.12.3-r4c02ffect20261111215601h50f3ae0.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/flux-app/refs/tags/v1.12.3-r4c02ffect20261111215601h50f3ae0/README.md
+      io.giantswarm.application.restrictions.cluster-singleton: "true"
+      io.giantswarm.application.team: honeybadger
+      io.giantswarm.application.two-step-install: "true"
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/flux-app/refs/tags/v1.12.3-r4c02ffect20261111215601h50f3ae0/helm/flux-app/values.schema.json
+    apiVersion: v2
+    appVersion: 1.12.3-r4c02ffect20261111215601h50f3ae0
+    created: "2026-11-11T21:57:35.331283723Z"
+    dependencies:
+    - alias: kubeStateMetrics
+      condition: kubeStateMetrics.enabled
+      name: kube-state-metrics
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 7.8.1
+    description: 'Flux is a collection of tools for keeping Kubernetes clusters in
+      sync with sources of configuration (like Git repositories), and automating updates
+      to configuration when there is new code to deploy. '
+    digest: 721352d78ac03183916e04fa809c3ab509cda18b8b3797daeaadfdbbbe7d8dfa
+    home: https://github.com/giantswarm/flux-app
+    icon: https://s.giantswarm.io/app-icons/flux/2/icon_light.svg
+    keywords:
+    - gitops
+    - flux
+    name: flux-app
+    sources:
+    - https://github.com/fluxcd/flux2
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/flux-app-1.12.3-r4c02ffect20261111215601h50f3ae0.tgz
+    version: 1.12.3-r4c02ffect20261111215601h50f3ae0
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Support
+          url: https://github.com/giantswarm/flux-app/issues
+        - name: Upstream project
+          url: https://github.com/fluxcd/flux2
+      io.giantswarm.application.audience: all
+      io.giantswarm.application.logo: https://s.giantswarm.io/app-icons/flux/2/logo_dark.svg
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/flux-app-1.12.3-r4c02ffect20261110215304h6a53aa4.tgz-meta/main.yaml
       io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/flux-app/refs/tags/v1.12.3-r4c02ffect20261110215304h6a53aa4/README.md
       io.giantswarm.application.restrictions.cluster-singleton: "true"
@@ -500247,4 +500288,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.10.1-r01db42e8t20261104095727hd31f26a.tgz
     version: 2.10.1-r01db42e8t20261104095727hd31f26a
-generated: "2026-11-11T21:55:54.796923448Z"
+generated: "2026-11-11T21:57:35.32384158Z"
