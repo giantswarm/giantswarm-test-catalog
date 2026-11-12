@@ -1,0 +1,42 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string"
+        },
+        "serviceType": {
+            "type": "string"
+        },
+        "vpa": {
+            "type": "object",
+            "properties": {
+                "controlledResources": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "maxAllowed": {
+                    "type": "object",
+                    "additionalProperties": true
+                },
+                "minAllowed": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                        "cpu": {
+                            "type": "string"
+                        },
+                        "memory": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
