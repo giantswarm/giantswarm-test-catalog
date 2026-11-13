@@ -284772,6 +284772,46 @@ entries:
           url: https://github.com/giantswarm/giantswarm-repo-manager/issues
       io.giantswarm.application.audience: giantswarm
       io.giantswarm.application.managed: "true"
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/giantswarm-repo-manager-0.38.29-rc2570c6ft20261113215606h46cb6ca.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/giantswarm-repo-manager/refs/tags/v0.38.29-rc2570c6ft20261113215606h46cb6ca/README.md
+      io.giantswarm.application.team: bumblebee
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/giantswarm-repo-manager/refs/tags/v0.38.29-rc2570c6ft20261113215606h46cb6ca/helm/giantswarm-repo-manager/values.schema.json
+    apiVersion: v2
+    appVersion: 0.38.29-rc2570c6ft20261113215606h46cb6ca
+    created: "2026-11-13T22:05:28.447648853Z"
+    dependencies:
+    - condition: valkey.enabled
+      name: valkey
+      repository: oci://gsoci.azurecr.io/charts/giantswarm
+      version: 0.4.22
+    description: Giant Swarm's repository set-up service — an MCP server behind muster
+      that lists, validates, creates and reconciles the giantswarm org's repositories
+      as the person, with its own Valkey for the inventory
+    digest: 3ff12b1cdf845b55d7da6683cc80597d62e6a62308f263584c74f8257d800797
+    home: https://github.com/giantswarm/giantswarm-repo-manager
+    icon: https://s.giantswarm.io/app-icons/giantswarm/1/dark.svg
+    keywords:
+    - mcp
+    - repositories
+    - github
+    - agent-platform
+    maintainers:
+    - email: team-bumblebee@giantswarm.io
+      name: Giant Swarm
+    name: giantswarm-repo-manager
+    sources:
+    - https://github.com/giantswarm/giantswarm-repo-manager
+    type: application
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/giantswarm-repo-manager-0.38.29-rc2570c6ft20261113215606h46cb6ca.tgz
+    version: 0.38.29-rc2570c6ft20261113215606h46cb6ca
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Support
+          url: https://github.com/giantswarm/giantswarm-repo-manager/issues
+      io.giantswarm.application.audience: giantswarm
+      io.giantswarm.application.managed: "true"
       io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/giantswarm-repo-manager-0.38.29-rc2570c6ft20261113165530h7b0e5ac.tgz-meta/main.yaml
       io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/giantswarm-repo-manager/refs/tags/v0.38.29-rc2570c6ft20261113165530h7b0e5ac/README.md
       io.giantswarm.application.team: bumblebee
@@ -529295,4 +529335,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.10.1-r01db42e8t20261104095727hd31f26a.tgz
     version: 2.10.1-r01db42e8t20261104095727hd31f26a
-generated: "2026-11-13T22:04:08.188816289Z"
+generated: "2026-11-13T22:05:28.441991381Z"
