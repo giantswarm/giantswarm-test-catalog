@@ -1,0 +1,137 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "baseDomain": {
+            "type": "string"
+        },
+        "bootstrapMode": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "chartOperator": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "ciliumNetworkPolicy": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "cluster": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "clusterCA": {
+            "type": "string"
+        },
+        "clusterCIDR": {
+            "type": "string"
+        },
+        "clusterDNSIP": {
+            "type": "string"
+        },
+        "clusterID": {
+            "type": "string"
+        },
+        "externalDNSIP": {
+            "type": "string"
+        },
+        "gcpProject": {
+            "type": "string"
+        },
+        "global": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "description": "Global values shared between all subcharts and the platform.",
+            "additionalProperties": true,
+            "properties": {
+                "podSecurityStandards": {
+                    "type": "object",
+                    "additionalProperties": true
+                }
+            }
+        },
+        "helm": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "image": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "tag": {
+                    "type": "string"
+                }
+            }
+        },
+        "ipam": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "nodeConfigs": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean",
+                            "description": "Render the CiliumNodeConfigs. Only for Cilium in ENI mode with nodes Karpenter labels with their vCPU count (EKS). The CiliumNodeConfig CRD has to exist, so install this chart after Cilium."
+                        },
+                        "nodeLabel": {
+                            "type": "string",
+                            "description": "Node label the sizes are selected on: the node's vCPU count."
+                        },
+                        "sizes": {
+                            "type": "object",
+                            "description": "IPAM settings per vCPU count. minAllocate is the IPs a node of that size gets when it starts, preAllocate the free IPs the operator keeps on it after that. Keep minAllocate a multiple of 16 (a /28 prefix) and below the node pool's maxPods. 4, 8 and 16 vCPU are tested in roadmap#4433 and roadmap#4435; 224 on 32 vCPU adds two prefixes over the 192 tested, which were too tight for 188 pods.",
+                            "additionalProperties": false,
+                            "patternProperties": {
+                                "^[0-9]+$": {
+                                    "type": "object",
+                                    "required": [
+                                        "minAllocate",
+                                        "preAllocate"
+                                    ],
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "minAllocate": {
+                                            "type": "integer",
+                                            "minimum": 0
+                                        },
+                                        "preAllocate": {
+                                            "type": "integer",
+                                            "minimum": 0
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "managementCluster": {
+            "type": "string"
+        },
+        "provider": {
+            "type": "string"
+        },
+        "registry": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "domain": {
+                    "type": "string"
+                }
+            }
+        },
+        "subscriptionID": {
+            "type": "string"
+        }
+    }
+}
