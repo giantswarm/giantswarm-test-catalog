@@ -1,0 +1,535 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$defs": {
+        "object.json": {
+            "type": "object",
+            "additionalProperties": true
+        }
+    },
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "backend": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Enable Backend extension API (disabled by default for security)"
+                }
+            }
+        },
+        "baseDomain": {
+            "type": "string"
+        },
+        "bootstrapMode": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "certgen": {
+            "type": "object",
+            "description": "Certgen is used to generate the certificates required by EnvoyGateway. If you want to construct a custom certificate, you can generate a custom certificate through Cert-Manager before installing EnvoyGateway. Certgen will not overwrite the custom certificate. Please do not manually modify `values.yaml` to disable certgen, it may cause EnvoyGateway OIDC,OAuth2,etc. to not work as expected.",
+            "additionalProperties": false,
+            "properties": {
+                "job": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "affinity": {
+                            "type": "object",
+                            "additionalProperties": true
+                        },
+                        "annotations": {
+                            "type": "object",
+                            "additionalProperties": true
+                        },
+                        "args": {
+                            "type": "array"
+                        },
+                        "nodeSelector": {
+                            "type": "object",
+                            "additionalProperties": true
+                        },
+                        "pod": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "annotations": {
+                                    "type": "object",
+                                    "additionalProperties": true
+                                },
+                                "labels": {
+                                    "type": "object",
+                                    "additionalProperties": true
+                                },
+                                "securityContext": {
+                                    "type": "object",
+                                    "additionalProperties": true
+                                }
+                            }
+                        },
+                        "resources": {
+                            "type": "object",
+                            "additionalProperties": true
+                        },
+                        "securityContext": {
+                            "type": "object",
+                            "additionalProperties": true
+                        },
+                        "tolerations": {
+                            "type": "array"
+                        },
+                        "ttlSecondsAfterFinished": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "rbac": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "annotations": {
+                            "type": "object",
+                            "additionalProperties": true
+                        },
+                        "labels": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "chartOperator": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "ciliumNetworkPolicy": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "controlPlaneAllowWorld": {
+                    "type": "boolean",
+                    "description": "Allow envoy-gateway control plane pods to communicate with the outside world. This can be required in certain cases with SecurityPolicies trying to contact external providers for additional OIDC or JWT configuration."
+                }
+            }
+        },
+        "cluster": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "clusterCA": {
+            "type": "string"
+        },
+        "clusterCIDR": {
+            "type": "string"
+        },
+        "clusterDNSIP": {
+            "type": "string"
+        },
+        "clusterID": {
+            "type": "string"
+        },
+        "commonLabels": {
+            "type": "object",
+            "description": "Labels to apply to all resources",
+            "additionalProperties": true
+        },
+        "config": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "envoyGateway": {
+                    "type": "object",
+                    "description": "EnvoyGateway configuration. Visit https://gateway.envoyproxy.io/docs/api/extension_types/#envoygateway to view all options.",
+                    "additionalProperties": true
+                }
+            }
+        },
+        "crds": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "image": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "registry": {
+                            "type": "string"
+                        },
+                        "repository": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "createNamespace": {
+            "type": "boolean"
+        },
+        "deployment": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "additionalProperties": true
+                },
+                "envoyGateway": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "extraEnv": {
+                            "type": "array",
+                            "description": "Additional environment variables for the envoy-gateway container."
+                        },
+                        "image": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "repository": {
+                                    "type": "string"
+                                },
+                                "tag": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "imagePullPolicy": {
+                            "type": "string"
+                        },
+                        "imagePullSecrets": {
+                            "type": "array"
+                        },
+                        "livenessProbe": {
+                            "type": "object",
+                            "additionalProperties": true
+                        },
+                        "readinessProbe": {
+                            "type": "object",
+                            "additionalProperties": true
+                        },
+                        "resources": {
+                            "type": "object",
+                            "additionalProperties": true
+                        },
+                        "securityContext": {
+                            "type": "object",
+                            "additionalProperties": true
+                        },
+                        "startupProbe": {
+                            "type": "object",
+                            "additionalProperties": true
+                        },
+                        "strategy": {
+                            "type": "object",
+                            "description": "Volume source for the Wasm module cache mounted at /var/lib/eg/wasm. Defaults to an emptyDir when left empty. Example: persist the Wasm module cache across controller restarts by backing it with a PersistentVolumeClaim: wasmCacheVolume: persistentVolumeClaim: claimName: envoy-gateway-wasm-cache",
+                            "additionalProperties": true
+                        },
+                        "wasmCacheVolume": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                },
+                "pod": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "affinity": {
+                            "type": "object",
+                            "additionalProperties": true
+                        },
+                        "annotations": {
+                            "type": "object",
+                            "additionalProperties": true,
+                            "properties": {
+                                "prometheus.io/port": {
+                                    "type": "string"
+                                },
+                                "prometheus.io/scrape": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "extraVolumeMounts": {
+                            "type": "array"
+                        },
+                        "extraVolumes": {
+                            "type": "array"
+                        },
+                        "labels": {
+                            "type": "object",
+                            "additionalProperties": true
+                        },
+                        "nodeSelector": {
+                            "type": "object",
+                            "additionalProperties": true
+                        },
+                        "securityContext": {
+                            "type": "object",
+                            "additionalProperties": true
+                        },
+                        "tolerations": {
+                            "type": "array"
+                        },
+                        "topologySpreadConstraints": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/$defs/object.json",
+                                "type": "object",
+                                "unevaluatedProperties": false
+                            }
+                        }
+                    }
+                },
+                "ports": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/object.json",
+                        "type": "object",
+                        "unevaluatedProperties": false
+                    }
+                },
+                "priorityClassName": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "replicas": {
+                    "type": "integer"
+                }
+            }
+        },
+        "externalDNSIP": {
+            "type": "string"
+        },
+        "fullnameOverride": {
+            "type": "string",
+            "description": "Override the full name of the chart resources."
+        },
+        "gcpProject": {
+            "type": "string"
+        },
+        "global": {
+            "type": "object",
+            "description": "Global values shared between all subcharts and the platform.",
+            "additionalProperties": true,
+            "properties": {
+                "imagePullSecrets": {
+                    "type": "array",
+                    "description": "Global override for image pull secrets"
+                },
+                "imageRegistry": {
+                    "type": "string",
+                    "description": "Global override for image registry"
+                },
+                "images": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "envoyGateway": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "image": {
+                                    "type": "string",
+                                    "description": "Full image for the Envoy Gateway control plane Deployment installed by this chart."
+                                },
+                                "pullPolicy": {
+                                    "type": "string",
+                                    "description": "Image pull policy for the Envoy Gateway control plane Deployment. Default behavior: latest images will be Always else IfNotPresent."
+                                },
+                                "pullSecrets": {
+                                    "type": "array",
+                                    "description": "Pull secrets for the Envoy Gateway control plane Deployment."
+                                }
+                            }
+                        },
+                        "envoyProxy": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "image": {
+                                    "type": "string",
+                                    "description": "Full image for the managed Envoy Proxy data plane. This updates the generated `envoyProxy` config and does not change the `envoy-gateway` control plane Deployment image. If not specified, the default image built into `envoy-gateway` is used."
+                                },
+                                "pullPolicy": {
+                                    "type": "string",
+                                    "description": "Image pull policy for the managed Envoy Proxy data plane. Default behavior: IfNotPresent."
+                                },
+                                "pullSecrets": {
+                                    "type": "array",
+                                    "description": "Pull secrets for the managed Envoy Proxy data plane."
+                                }
+                            }
+                        },
+                        "ratelimit": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "image": {
+                                    "type": "string"
+                                },
+                                "pullPolicy": {
+                                    "type": "string"
+                                },
+                                "pullSecrets": {
+                                    "type": "array"
+                                }
+                            }
+                        }
+                    }
+                },
+                "podSecurityStandards": {
+                    "type": "object",
+                    "additionalProperties": true
+                }
+            }
+        },
+        "helm": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "hpa": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "behavior": {
+                    "type": "object",
+                    "additionalProperties": true
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "maxReplicas": {
+                    "type": "integer"
+                },
+                "metrics": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/object.json",
+                        "type": "object",
+                        "unevaluatedProperties": false
+                    }
+                },
+                "minReplicas": {
+                    "type": "integer"
+                }
+            }
+        },
+        "kubernetesClusterDomain": {
+            "type": "string"
+        },
+        "kyvernoPolicies": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "backend": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "allowedDynamicResolverNamespaces": {
+                            "type": "array",
+                            "description": "Restrict DynamicResolver type to specific namespaces (empty = deny all)"
+                        },
+                        "denyAdminPort": {
+                            "type": "boolean",
+                            "description": "Block access to Envoy admin port (19000)"
+                        },
+                        "denyMetadataService": {
+                            "type": "boolean",
+                            "description": "Block access to cloud metadata service (169.254.169.254)"
+                        },
+                        "enabled": {
+                            "type": "boolean",
+                            "description": "Enable Kyverno policies to restrict Backend resource creation"
+                        },
+                        "validationFailureAction": {
+                            "type": "string",
+                            "description": "Validation failure action: Enforce (block) or Audit (warn only)"
+                        }
+                    }
+                }
+            }
+        },
+        "managementCluster": {
+            "type": "string"
+        },
+        "nameOverride": {
+            "type": "string",
+            "description": "Override the chart name."
+        },
+        "namespaceOverride": {
+            "type": "string",
+            "description": "Override the namespace for resources deployed by the chart. Defaults to the release namespace."
+        },
+        "podDisruptionBudget": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "maxUnavailable": {
+                    "type": [
+                        "integer",
+                        "string",
+                        "null"
+                    ]
+                },
+                "minAvailable": {
+                    "type": [
+                        "integer",
+                        "string",
+                        "null"
+                    ]
+                },
+                "unhealthyPodEvictionPolicy": {
+                    "type": "string"
+                }
+            }
+        },
+        "provider": {
+            "type": "string"
+        },
+        "service": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "description": "Service type. Can be set to LoadBalancer with specific IP, e.g.: type: LoadBalancer loadBalancerIP: 10.236.90.20"
+                },
+                "annotations": {
+                    "type": "object",
+                    "additionalProperties": true
+                },
+                "loadBalancerIP": {
+                    "type": "string",
+                    "description": "Load balancer IP, used when `type` is LoadBalancer."
+                },
+                "trafficDistribution": {
+                    "type": "string"
+                }
+            }
+        },
+        "serviceType": {
+            "type": "string"
+        },
+        "subscriptionID": {
+            "type": "string"
+        },
+        "topologyInjector": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "additionalProperties": true
+                },
+                "enabled": {
+                    "type": "boolean"
+                }
+            }
+        }
+    }
+}
