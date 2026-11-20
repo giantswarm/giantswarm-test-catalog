@@ -255122,6 +255122,47 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/falco-0.14.2-r482e910dt20261020094730h207c9d6.tgz
     version: 0.14.2-r482e910dt20261020094730h207c9d6
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Support
+          url: https://github.com/giantswarm/falco-app/issues
+      io.giantswarm.application.audience: all
+      io.giantswarm.application.logo: https://s.giantswarm.io/app-icons/falco/2/logo_dark.svg
+      io.giantswarm.application.managed: "true"
+      io.giantswarm.application.metadata: https://giantswarm.github.io/giantswarm-test-catalog/falco-0.14.2-r38ea8d10t20261120184858hb864504.tgz-meta/main.yaml
+      io.giantswarm.application.readme: https://raw.githubusercontent.com/giantswarm/falco-app/refs/tags/v0.14.2-r38ea8d10t20261120184858hb864504/README.md
+      io.giantswarm.application.team: shield
+      io.giantswarm.application.values-schema: https://raw.githubusercontent.com/giantswarm/falco-app/refs/tags/v0.14.2-r38ea8d10t20261120184858hb864504/helm/falco/values.schema.json
+    apiVersion: v2
+    appVersion: 0.14.2-r38ea8d10t20261120184858hb864504
+    created: "2026-11-20T18:49:25.879956702Z"
+    dependencies:
+    - condition: falco.enabled
+      name: falco
+      repository: ""
+      version: 9.2.2
+    - condition: falcosidekick.enabled
+      name: falcosidekick
+      repository: ""
+      version: 0.14.1
+    - condition: k8s-metacollector.enabled
+      name: k8s-metacollector
+      repository: ""
+      version: 0.3.3
+    description: A Helm chart for falco
+    digest: 1f5cb257fe013272d9db39c58cbe2b46423e5b7d0336522ab4f1c172fbada6be
+    home: https://github.com/giantswarm/falco-app
+    icon: https://s.giantswarm.io/app-icons/falco/2/icon_dark.svg
+    maintainers:
+    - name: Giant Swarm applications team
+      url: https://github.com/giantswarm/falco-app
+    name: falco
+    sources:
+    - https://github.com/giantswarm/falco-app
+    urls:
+    - https://giantswarm.github.io/giantswarm-test-catalog/falco-0.14.2-r38ea8d10t20261120184858hb864504.tgz
+    version: 0.14.2-r38ea8d10t20261120184858hb864504
   fluent-logshipping-app:
   - annotations:
       artifacthub.io/license: Apache-2.0
@@ -604781,4 +604822,4 @@ entries:
     urls:
     - https://giantswarm.github.io/giantswarm-test-catalog/zot-2.10.1-r01db42e8t20261104095727hd31f26a.tgz
     version: 2.10.1-r01db42e8t20261104095727hd31f26a
-generated: "2026-11-20T18:12:48.445566688Z"
+generated: "2026-11-20T18:49:25.864573985Z"
