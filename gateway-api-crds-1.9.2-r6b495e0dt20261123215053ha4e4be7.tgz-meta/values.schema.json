@@ -1,0 +1,235 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "baseDomain": {
+            "type": "string"
+        },
+        "bootstrapMode": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "chartOperator": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "ciliumNetworkPolicy": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "cluster": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "clusterCA": {
+            "type": "string"
+        },
+        "clusterCIDR": {
+            "type": "string"
+        },
+        "clusterDNSIP": {
+            "type": "string"
+        },
+        "clusterID": {
+            "type": "string"
+        },
+        "crds": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "image": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "registry": {
+                            "type": "string"
+                        },
+                        "repository": {
+                            "type": "string"
+                        },
+                        "tag": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "externalDNSIP": {
+            "type": "string"
+        },
+        "gcpProject": {
+            "type": "string"
+        },
+        "global": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "description": "Global values shared between all subcharts and the platform.",
+            "additionalProperties": true,
+            "properties": {
+                "podSecurityStandards": {
+                    "type": "object",
+                    "additionalProperties": true
+                }
+            }
+        },
+        "helm": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "install": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "admissionPolicies": {
+                    "type": "boolean"
+                },
+                "backendtlspolicies": {
+                    "type": "string",
+                    "enum": [
+                        "standard",
+                        "experimental",
+                        ""
+                    ]
+                },
+                "gatewayclasses": {
+                    "type": "string",
+                    "enum": [
+                        "standard",
+                        "experimental",
+                        ""
+                    ]
+                },
+                "gateways": {
+                    "type": "string",
+                    "enum": [
+                        "standard",
+                        "experimental",
+                        ""
+                    ]
+                },
+                "grpcroutes": {
+                    "type": "string",
+                    "enum": [
+                        "standard",
+                        "experimental",
+                        ""
+                    ]
+                },
+                "httproutes": {
+                    "type": "string",
+                    "enum": [
+                        "standard",
+                        "experimental",
+                        ""
+                    ]
+                },
+                "inferencemodelrewrites": {
+                    "type": "string",
+                    "enum": [
+                        "experimental",
+                        ""
+                    ]
+                },
+                "inferenceobjectives": {
+                    "type": "string",
+                    "enum": [
+                        "experimental",
+                        ""
+                    ]
+                },
+                "inferencepoolimports": {
+                    "type": "string",
+                    "enum": [
+                        "experimental",
+                        ""
+                    ]
+                },
+                "inferencepools": {
+                    "type": "string",
+                    "enum": [
+                        "standard",
+                        ""
+                    ]
+                },
+                "listenersets": {
+                    "type": "string",
+                    "enum": [
+                        "standard",
+                        "experimental",
+                        ""
+                    ]
+                },
+                "referencegrants": {
+                    "type": "string",
+                    "enum": [
+                        "standard",
+                        "experimental",
+                        ""
+                    ]
+                },
+                "tcproutes": {
+                    "type": "string",
+                    "enum": [
+                        "standard",
+                        "experimental",
+                        ""
+                    ]
+                },
+                "tlsroutes": {
+                    "type": "string",
+                    "enum": [
+                        "standard",
+                        "experimental",
+                        ""
+                    ]
+                },
+                "udproutes": {
+                    "type": "string",
+                    "enum": [
+                        "standard",
+                        "experimental",
+                        ""
+                    ]
+                },
+                "xbackends": {
+                    "type": "string",
+                    "enum": [
+                        "experimental",
+                        ""
+                    ]
+                },
+                "xbackendtrafficpolicies": {
+                    "type": "string",
+                    "enum": [
+                        "experimental",
+                        ""
+                    ]
+                },
+                "xmeshes": {
+                    "type": "string",
+                    "enum": [
+                        "experimental",
+                        ""
+                    ]
+                }
+            }
+        },
+        "managementCluster": {
+            "type": "string"
+        },
+        "provider": {
+            "type": "string"
+        },
+        "subscriptionID": {
+            "type": "string"
+        }
+    }
+}
